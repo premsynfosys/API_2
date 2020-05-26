@@ -1,0 +1,20 @@
+# AMS_API
+Git hub
+ dssssssssssss
+git init
+
+git config --global user.name "premsynfosys"
+git config --global user.email "prem@synfosys.com"
+git commit -m 'test'
+
+git remote add origin https://github.com/premsynfosys/AMS__API.git
+
+git push -u origin master
+
+$ git remote -v
+
+$ git remote set-url origin https://github.com/premsynfosys/REPOSITORY.git
+
+
+
+---------------------------------------------
