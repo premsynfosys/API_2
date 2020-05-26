@@ -1,6 +1,6 @@
 # AMS_API
 Git hub
- dssssssssssss
+ 
 git init
 
 git config --global user.name "premsynfosys"
