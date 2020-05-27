@@ -914,6 +914,24 @@ func (m *mysqlRepo) ITAsset_Service_Request(ctx context.Context, itm *itassetmdl
 	return err
 }
 
+func (m *mysqlRepo) ITAsset_Service_Request_Resolve(ctx context.Context, itm *itassetmdl.ITAsset_service_request) error {
+	qry := "update itasset_service_request set AdminComments=?,ModifiedOn=now(),Issue_Status='Resolved' where iditasset_service_request=?;"
+	stmt, err := m.Conn.PrepareContext(ctx, qry)
+	if err != nil {
+		return err
+	}
+	_, err = stmt.Exec(itm.AdminComments, itm.IDitasset_service_request)
+	if itm.ITAssetID !=nil {
+		qryA := "call sp_ITAssetService_Request_ApproveByAsst(?,?,?,?)"
+		stmt, err := m.Conn.PrepareContext(ctx, qryA)
+		if err != nil {
+			return err
+		}
+		_, err = stmt.Exec(itm.ITAssetID, itm.OldITAssetID, itm.Emp_EmpID,itm.Admin_EmpID)
+	
+	}
+	return err
+}
 func (m *mysqlRepo) GetITAsset_service_request_List(ctx context.Context, EmpID int) ([]*itassetmdl.ITAsset_service_request, error) {
 	selDB, err := m.Conn.QueryContext(ctx, "call sp_itasset_service_request_List(?)", EmpID)
 	if err != nil {

@@ -95,6 +95,7 @@ func ConsumableRoutings(r *mux.Router, Handler *cnsmblhndlr.IConsumableRepo) {
 //ITAssetRouting ..
 func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
 	r.HandleFunc("/ITAssetReqForward", pHandler.ITAssetReqForward)
+	r.HandleFunc("/ITAsset_Service_Request_Resolve", pHandler.ITAsset_Service_Request_Resolve)
 	r.HandleFunc("/ITAssetReq_ApprovalStatusList/{ReqGroupID}", pHandler.ITAssetReq_ApprovalStatusList)
 	r.HandleFunc("/Get_ITAssetsHistory_ByAsset/{AssetID}", pHandler.Get_ITAssetsHistory_ByAsset)
 	r.HandleFunc("/ITAssetGroups_Create", pHandler.ITAssetGroups_Create)

@@ -1508,9 +1508,10 @@ func (m *mysqlRepo) Authorization_Create(ctx context.Context, data *cmnmdl.Autho
 	queryB := "insert into authorization (RoleID,Features_List_ID,CreatedBy) values "
 
 	res := []interface{}{}
-	roleid:=1 //super admin
-	AccesstoalllocationsID:=16
-	res = append(res, roleid, AccesstoalllocationsID, data.CreatedBy)
+	//roleid:=1 //super admin
+	//AccesstoalllocationsID:=16
+	//res = append(res, roleid, AccesstoalllocationsID, data.CreatedBy)
+
 	for _, i := range data.Features_List_ID {
 		queryB += " (?,?,?),"
 		res = append(res, data.RoleID, i, data.CreatedBy)

@@ -339,6 +339,16 @@ func (p *IITAsset) ITAsset_Service_Request(w http.ResponseWriter, r *http.Reques
 	}
 }
 
+func (p *IITAsset) ITAsset_Service_Request_Resolve(w http.ResponseWriter, r *http.Request) {
+	mdl := &itassetmdl.ITAsset_service_request{}
+	json.NewDecoder(r.Body).Decode(&mdl)
+	err := p.ITAssetRepo.ITAsset_Service_Request_Resolve(r.Context(), mdl)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
 //GetITAsset_service_request_List ..
 func (p *IITAsset) GetITAsset_service_request_List(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
