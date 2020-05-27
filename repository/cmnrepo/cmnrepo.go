@@ -1927,3 +1927,31 @@ func (m *mysqlRepo) InwardOutwardReqForward(ctx context.Context, mdl *cmnmdl.InW
 	err = txn.Commit()
 	return err
 }
+
+
+func (m *mysqlRepo) GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDashBoard) (*cmnmdl.AdminDashBoard, error) {
+	query := "call sp_AdminDashBoard(?,?) ;"
+	selDB:= m.Conn.QueryRowContext(ctx, query, mdl.EmpID,mdl.LocID)
+	res:= cmnmdl.AdminDashBoard{}
+		err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpired,  &res.ITAssetApprovals, &res.NonITAssetApprovals,  &res.ITAssetsAvailable, 
+			&res.ITAssetsAssigned,&res.NonITAssetThreshold,&res.ConsumableThreshold,&res.OutwardApproval,&res.ReadyToShip,&res.InWardAssets, &res.ITAssetServiceRequests)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+	
+	return &res, nil
+}
+
+func (m *mysqlRepo) GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.EmployeeDashboard) (*cmnmdl.EmployeeDashboard, error) {
+	query := "call sp_EmployeeDashboard(?,?) ;"
+	selDB:= m.Conn.QueryRowContext(ctx, query, mdl.EmpID,mdl.LocID)
+	res:= cmnmdl.EmployeeDashboard{}
+		err := selDB.Scan(&res.ITAssetsAssigned, &res.NonITAssetsAssigned, &res.NonITAssetRequests, &res.ITAssetRequests, &res.ITAssetServiceRequests)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+	
+	return &res, nil
+}

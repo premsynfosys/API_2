@@ -321,3 +321,16 @@ func (p *INonITAsset) Getnonitassets_checkinByID(w http.ResponseWriter, r *http.
 		utils.RespondwithJSON(w, http.StatusOK, data)
 	}
 }
+
+
+func (p *INonITAsset) GetNonITAssetReqListByEmp(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["EmpID"]
+	EmpID, _ := strconv.Atoi(ID)
+	data, err := p.INonTAssetRepo.GetNonITAssetReqListByEmp(r.Context(), EmpID)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, data)
+	}
+}

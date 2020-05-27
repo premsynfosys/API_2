@@ -41,6 +41,7 @@ type ITAsserIntfc interface {
 	ITAssetReq_ApprovalStatusList(ctx context.Context, ReqGroupID int) ([]*itassetmdl.ITAssetRequestApproval, error)
 	ITAssetReqForward(ctx context.Context, mdl *itassetmdl.ITAssetRequestApproval) error
 	ITAsset_Service_Request_Resolve(ctx context.Context, itm *itassetmdl.ITAsset_service_request) error
+	GetITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*itassetmdl.ITAssetReqList, error)
 }
 
 // //ITAssetRepo interface

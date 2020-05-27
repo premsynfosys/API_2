@@ -392,9 +392,9 @@ func (p *CmnIrepo) TransferApprovReject(w http.ResponseWriter, r *http.Request) 
 	params := mux.Vars(r)
 	idInWardOutWard := params["idInWardOutWard"]
 	status := params["status"]
-	comments:=r.URL.Query().Get("comments")
+	comments := r.URL.Query().Get("comments")
 	IDInWardOutWard, _ := strconv.Atoi(idInWardOutWard)
-	err := p.ICmnrepo.TransferApprovReject(IDInWardOutWard, status,comments)
+	err := p.ICmnrepo.TransferApprovReject(IDInWardOutWard, status, comments)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -755,5 +755,26 @@ func (p *CmnIrepo) InwardOutwardReqForward(w http.ResponseWriter, r *http.Reques
 		utils.RespondWithError(w, http.StatusNoContent, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *CmnIrepo) GetAdminDashBoard(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.AdminDashBoard{}
+	json.NewDecoder(r.Body).Decode(&data)
+	payload, err := p.ICmnrepo.GetAdminDashBoard(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, payload)
+	}
+}
+func (p *CmnIrepo) GetEmployeeDashboard(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.EmployeeDashboard{}
+	json.NewDecoder(r.Body).Decode(&data)
+	payload, err := p.ICmnrepo.GetEmployeeDashboard(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, payload)
 	}
 }

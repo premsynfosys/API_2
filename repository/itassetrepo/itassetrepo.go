@@ -1055,3 +1055,37 @@ func (m *mysqlRepo) ITAssetReq_ApprovalStatusList(ctx context.Context, ReqGroupI
 	}
 	return res, nil
 }
+
+
+func (m *mysqlRepo) GetITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*itassetmdl.ITAssetReqList, error) {
+	selDB, err := m.Conn.QueryContext(ctx, "call sp_ITAssetReqListByEmp(?);", EmpID)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	res := make([]*itassetmdl.ITAssetReqList, 0)
+	for selDB.Next() {
+		mdl := new(itassetmdl.ITAssetReqList)
+		ITAssetRequest := new(itassetmdl.ITAssetRequest)
+		ira := new(itassetmdl.ITAssetRequestApproval)
+		Requester := new(cmnmdl.Employees)
+		err = selDB.Scan(&ITAssetRequest.AssetType, &ITAssetRequest.ReqGroupID, &ITAssetRequest.RequestedBy,
+			&ITAssetRequest.ReqStatus, &ITAssetRequest.Priority, &ITAssetRequest.RequestedOn, &ITAssetRequest.AssetID, &ITAssetRequest.Description,
+			&Requester.FirstName,
+			&ira.RoleID, &ira.ApproverID, &ira.Grade, &ira.Status, &ira.Comments, &ira.CreatedOn, &ira.ActionedOn)
+
+		ITAssetRequest.ITAssetRequestApproval = ira
+		mdl.Requester = Requester
+		mdl.ITAssetRequest = ITAssetRequest
+		if err != nil {
+			panic(err.Error())
+		}
+		res = append(res, mdl)
+	}
+	if err != nil {
+		return nil, err
+
+	}
+	defer selDB.Close()
+	return res, nil
+}

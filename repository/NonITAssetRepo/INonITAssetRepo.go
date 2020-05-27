@@ -9,6 +9,7 @@ import (
 
 //NonITAssetIntfc ...
 type NonITAssetIntfc interface {
+	GetNonITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*nonitassets_mdl.NonITAssetReqList, error)
 	NonITAssetReqListByReqGroup(ctx context.Context, ReqGroupID int, ApproverID int) ([]*nonitassets_mdl.NonITAssetReqList, error)
 	GetNonITAssetMasterLists(ctx context.Context) ([]*nonitassets_mdl.NonITAssets_Master, error)
 	CreateNonITAsset(ctx context.Context, mdl *nonitassets_mdl.NonITAssets) error

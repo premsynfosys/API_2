@@ -70,5 +70,8 @@ type CmnIntrfc interface {
 	 VednorsAssetMapUpdate(ctx context.Context, mdl *cmnmdl.Vendors_consumablemaster_map) ( error)
 	 IWOW_ApprovalStatusList(ctx context.Context, IDinwardoutward int) ([]*cmnmdl.InWardOutWardApproval, error)
 	 InwardOutwardReqForward(ctx context.Context, mdl *cmnmdl.InWardOutWardApproval) error
+	 GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDashBoard) (*cmnmdl.AdminDashBoard, error)
+
+	 GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.EmployeeDashboard) (*cmnmdl.EmployeeDashboard, error) 
 }
  

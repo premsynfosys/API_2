@@ -414,3 +414,12 @@ func (p *IITAsset) ITAssetReqForward(w http.ResponseWriter, r *http.Request) {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
+func (p *IITAsset) GetITAssetReqListByEmp(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["EmpID"]
+	EmpID, _ := strconv.Atoi(ID)
+	payload, _ := p.ITAssetRepo.GetITAssetReqListByEmp(r.Context(), EmpID)
+
+	utils.RespondwithJSON(w, http.StatusOK, payload)
+}

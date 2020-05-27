@@ -11,6 +11,8 @@ import (
 //CmnRoutings ggg ..
 func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	r.HandleFunc("/VednorsAssetMapInsert", Handler.VednorsAssetMapInsert)
+	r.HandleFunc("/GetAdminDashBoard", Handler.GetAdminDashBoard)
+	r.HandleFunc("/GetEmployeeDashboard", Handler.GetEmployeeDashboard)
 
 	r.HandleFunc("/IWOW_ApprovalStatusList/{IDinwardoutward}", Handler.IWOW_ApprovalStatusList)
 	r.HandleFunc("/VednorsAssetMapUpdate", Handler.VednorsAssetMapUpdate)
@@ -95,6 +97,7 @@ func ConsumableRoutings(r *mux.Router, Handler *cnsmblhndlr.IConsumableRepo) {
 //ITAssetRouting ..
 func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
 	r.HandleFunc("/ITAssetReqForward", pHandler.ITAssetReqForward)
+	r.HandleFunc("/GetITAssetReqListByEmp/{EmpID}", pHandler.GetITAssetReqListByEmp)
 	r.HandleFunc("/ITAsset_Service_Request_Resolve", pHandler.ITAsset_Service_Request_Resolve)
 	r.HandleFunc("/ITAssetReq_ApprovalStatusList/{ReqGroupID}", pHandler.ITAssetReq_ApprovalStatusList)
 	r.HandleFunc("/Get_ITAssetsHistory_ByAsset/{AssetID}", pHandler.Get_ITAssetsHistory_ByAsset)
@@ -136,6 +139,7 @@ func NonITAssetRouting(r *mux.Router, pHandler *nonitassetshndlr.INonITAsset) {
 	r.HandleFunc("/CheckDuplicateNonITAssetEntry/{MasterID:[0-9]+}/{LocID:[0-9]+}", pHandler.CheckDuplicateNonITAssetEntry)
 	r.HandleFunc("/Check_Unique_NonITAsset/{NonITAssetName}", pHandler.Check_Unique_NonITAsset)
 	r.HandleFunc("/GetNonITAssetMasterLists", pHandler.GetNonITAssetMasterLists)
+	r.HandleFunc("/GetNonITAssetReqListByEmp/{EmpID}", pHandler.GetNonITAssetReqListByEmp)
 	r.HandleFunc("/NonITAssetCheckin", pHandler.NonITAssetCheckin)
 	r.HandleFunc("/CreateNonITAsset", pHandler.CreateNonITAsset)
 	r.HandleFunc("/GetNonITAssetLists/{LocID}", pHandler.GetNonITAssetLists)

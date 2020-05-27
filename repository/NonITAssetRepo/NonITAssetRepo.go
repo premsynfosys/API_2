@@ -843,3 +843,36 @@ func (m *mysqlRepo) GetNonITAssetCheckinDetailsByEmp(ctx context.Context, EmpID 
 
 	return Listmdl, nil
 }
+
+func (m *mysqlRepo) GetNonITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*nonitassets_mdl.NonITAssetReqList, error) {
+	selDB, err := m.Conn.QueryContext(ctx, "call sp_NonITAssetReqListByEmp(?);", EmpID)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	res := make([]*nonitassets_mdl.NonITAssetReqList, 0)
+	for selDB.Next() {
+		mdl := new(nonitassets_mdl.NonITAssetReqList)
+		ITAssetRequest := new(nonitassets_mdl.NonITAssetRequest)
+		ira := new(nonitassets_mdl.NonITAssetRequestApproval)
+		Requester := new(cmnmdl.Employees)
+		err = selDB.Scan(&ITAssetRequest.AssetType, &ITAssetRequest.ReqGroupID, &ITAssetRequest.RequestedBy,
+			&ITAssetRequest.ReqStatus, &ITAssetRequest.Priority, &ITAssetRequest.RequestedOn, &ITAssetRequest.AssetID, &ITAssetRequest.Description,
+			&Requester.FirstName,
+			&ira.RoleID, &ira.ApproverID, &ira.Grade, &ira.Status, &ira.Comments, &ira.CreatedOn, &ira.ActionedOn)
+
+		ITAssetRequest.NonITAssetRequestApproval = ira
+		mdl.Requester = Requester
+		mdl.NonITAssetRequest = ITAssetRequest
+		if err != nil {
+			panic(err.Error())
+		}
+		res = append(res, mdl)
+	}
+	if err != nil {
+		return nil, err
+
+	}
+	defer selDB.Close()
+	return res, nil
+}
