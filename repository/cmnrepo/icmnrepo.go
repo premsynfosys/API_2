@@ -72,6 +72,7 @@ type CmnIntrfc interface {
 	 InwardOutwardReqForward(ctx context.Context, mdl *cmnmdl.InWardOutWardApproval) error
 	 GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDashBoard) (*cmnmdl.AdminDashBoard, error)
 
-	 GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.EmployeeDashboard) (*cmnmdl.EmployeeDashboard, error) 
+	 GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.EmployeeDashboard) (*cmnmdl.EmployeeDashboard, error)
+	// GetThresholdReachedStocks(ctx context.Context, LocID int) ([]*cmnmdl.ThresholdAlert, error) 
 }
  

@@ -40,7 +40,7 @@ func (m *mysqlRepo) CreateConsumables(ctx context.Context, mdl *cnsmblemdl.Consu
 		mdl.TotalQnty, mdl.ThresholdQnty, mdl.ReOrderStockPrice, mdl.ReOrderQuantity, mdl.StatusID, mdl.LocationID,
 		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
-		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type,mdl.CreatedBy)
+		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.CreatedBy)
 
 	defer stmt.Close()
 
@@ -93,13 +93,32 @@ func (m *mysqlRepo) PostConsumableOprtnsRemovestock(mdl *cnsmblemdl.ConsumableOp
 	}
 	_, err1 = stmt1.Exec(mdl.ConsumableID, mdl.Quantity, mdl.UnitPrice, mdl.OrderedBy, mdl.Comments, mdl.StatusID)
 	_, err2 = stmt2.Exec(mdl.Quantity, mdl.ConsumableID)
+
 	if err != nil || err1 != nil || err2 != nil || err3 != nil {
 		txn.Rollback()
 		return errors.New("failed")
 	} else {
 		err = txn.Commit()
+
 	}
 	return err
+
+}
+
+func (m *mysqlRepo) GetThresholdReachedStockConsumablesByID(AssetID int) (*cmnmdl.ThresholdAlert, error) {
+	query := "select  cnm.consumableName,con.IdentificationNo,emp.FirstName,emp.Email from consumables con "
+	query += " join employees emp on emp.Location=con.LocationID "
+	query += " join consumablemaster cnm on cnm.idconsumableMaster= con.idconsumableMaster "
+	query += " join users usr on usr.EmployeeId=emp.IdEmployees where usr.Role=2 and  con.ThresholdQnty >= con.TotalQnty and con.idconsumables=? "
+	res := cmnmdl.ThresholdAlert{}
+	selDB, _ := m.Conn.Query(query)
+	err := selDB.Scan(&res.AssetName, &res.IdentificationNo, &res.FirstName, &res.Email)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+
+	return &res, nil
 }
 
 func (m *mysqlRepo) GetConsumableGroups(ctx context.Context) ([]*cnsmblemdl.ConsumableGroup, error) {
@@ -229,7 +248,7 @@ func (m *mysqlRepo) GetConsumableOprtnList(ctx context.Context) ([]*cnsmblemdl.C
 			&item.IDconsumableOprtns, &item.Quantity, &item.UnitPrice, &item.VendorID, &item.OrderedBy, &item.Comments, &item.CreataedOn, &item.StatusID,
 			&vdr.Name, &vdr.Address, &vdr.Email, &vdr.Phone,
 			&ConMst.GroupName,
-			&loc.Name, &loc.Address1, &loc.Address2, &loc.State, &loc.Zipcode, &ConStatus.StatusName, &CopStatus.StatusName,&item.CreatedByName)
+			&loc.Name, &loc.Address1, &loc.Address2, &loc.State, &loc.Zipcode, &ConStatus.StatusName, &CopStatus.StatusName, &item.CreatedByName)
 		if err != nil {
 			return nil, err
 		}
@@ -267,7 +286,7 @@ func (m *mysqlRepo) GetConsumableOprtnListByID(ctx context.Context, IDConsumable
 			&item.IDconsumableOprtns, &item.Quantity, &item.UnitPrice, &item.VendorID, &item.OrderedBy, &item.Comments, &item.CreataedOn, &item.StatusID,
 			&vdr.Name, &vdr.Address, &vdr.Email, &vdr.Phone,
 			&ConMst.GroupName,
-			&loc.Name, &loc.Address1, &loc.Address2, &loc.State, &loc.Zipcode, &ConStatus.StatusName, &CopStatus.StatusName,&item.CreatedByName)
+			&loc.Name, &loc.Address1, &loc.Address2, &loc.State, &loc.Zipcode, &ConStatus.StatusName, &CopStatus.StatusName, &item.CreatedByName)
 		if err != nil {
 			return nil, err
 		}
@@ -315,7 +334,7 @@ func (m *mysqlRepo) ConsumableBulkEdit(ctx context.Context, usr *cnsmblemdl.Cons
 	if err != nil {
 		return err
 	}
-	_, err = stmt.ExecContext(ctx, usr.Consumablemaster.GroupID, usr.Consumablemaster.SubGroupID, usr.Description, usr.ThresholdQnty, usr.ReOrderStockPrice, usr.ReOrderQuantity, usr.LocationID ,usr.ModifiedBy)
+	_, err = stmt.ExecContext(ctx, usr.Consumablemaster.GroupID, usr.Consumablemaster.SubGroupID, usr.Description, usr.ThresholdQnty, usr.ReOrderStockPrice, usr.ReOrderQuantity, usr.LocationID, usr.ModifiedBy)
 	defer stmt.Close()
 
 	if err != nil {
@@ -445,10 +464,10 @@ func (m *mysqlRepo) GetVendorsByConsumable(ctx context.Context, ConsumableID int
 func (m *mysqlRepo) ConsumableBulkDelete(ctx context.Context, ids []string) error {
 
 	query := "update consumables set StatusID=23 ,RecordStatus='InActive',ModifiedOn=now(),ModifiedBy=? where idconsumables in (0, "
-for i := 1; i < len(ids); i++ {
-	query += ids[i] + ","
+	for i := 1; i < len(ids); i++ {
+		query += ids[i] + ","
 
-}
+	}
 	// for _, dt := range ids {
 	// 	query += dt + ","
 
@@ -460,7 +479,7 @@ for i := 1; i < len(ids); i++ {
 	if err != nil {
 		return err
 	}
-	_, err = stmt.ExecContext(ctx,ids[0])
+	_, err = stmt.ExecContext(ctx, ids[0])
 	defer stmt.Close()
 
 	if err != nil {

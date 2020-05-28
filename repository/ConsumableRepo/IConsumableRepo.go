@@ -9,6 +9,7 @@ import (
 
 //ConsumableIntfc ...
 type ConsumableIntfc interface {
+	//GetThresholdReachedStockConsumablesByID(AssetID int) (*cmnmdl.ThresholdAlert, error)
 	CreateConsumables(ctx context.Context, mdl *cnsmblemdl.Consumables) error
 	GetConsumableGroups(ctx context.Context) ([]*cnsmblemdl.ConsumableGroup, error)
 	GetConsumableMasterList(ctx context.Context) ([]*cnsmblemdl.Consumablemaster, error)

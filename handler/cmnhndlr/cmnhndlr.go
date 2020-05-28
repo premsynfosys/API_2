@@ -778,3 +778,17 @@ func (p *CmnIrepo) GetEmployeeDashboard(w http.ResponseWriter, r *http.Request) 
 		utils.RespondwithJSON(w, http.StatusOK, payload)
 	}
 }
+
+
+
+// func (p *CmnIrepo) GetThresholdReachedStocks(w http.ResponseWriter, r *http.Request) {
+// 	params := mux.Vars(r)
+// 	LocID := params["LocID"]
+// 	id, _ := strconv.Atoi(LocID)
+// 	payload, err := p.ICmnrepo.GetThresholdReachedStocks(r.Context(), id)
+// 	if err != nil {
+// 		utils.RespondWithError(w, http.StatusNoContent, err.Error())
+// 	} else {
+// 		utils.RespondwithJSON(w, http.StatusOK, payload)
+// 	}
+// }

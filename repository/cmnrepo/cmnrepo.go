@@ -605,6 +605,11 @@ func (m *mysqlRepo) RetryFailedmails() {
 				}
 			}
 		case <-time.After(24 * time.Hour):
+
+			stocksEmail, _ := m.ThreshHoldReachedStocksEmailBody()
+			for _, itm := range stocksEmail {
+				go m.SendEmail(&itm, true)
+			}
 			for _, itm := range ListEmails {
 				if itm.TimePeriod == 24 {
 					go m.SendEmail(itm, true)
@@ -657,14 +662,14 @@ func (m *mysqlRepo) OutWardAssetDetailsByIwOwID(ctx context.Context, IwOwID int)
 			&ITAsset.ITAssetName, &ITAsset.ITAssetModel, &ITAsset.ITAssetSerialNo,
 			&ITAsset.ITAssetIdentificationNo, &ITAsset.ITAssetPrice, &ITAsset.ITAssetWarranty, &ITAsset.ITAssetStatus,
 			&ConMst.ConsumableName, &Consumable.IdentificationNo, &Consumable.ReOrderStockPrice, &Consumable.StatusID,
-			&NonITMst.NonITAssets_Name,&NonIT.IdentificationNo,&NonIT.ReOrderStockPrice,&NonIT.AvailableQnty,&NonIT.StatusID,
+			&NonITMst.NonITAssets_Name, &NonIT.IdentificationNo, &NonIT.ReOrderStockPrice, &NonIT.AvailableQnty, &NonIT.StatusID,
 			&status.StatusName)
 		if err != nil {
 			panic(err.Error())
 		}
 		Consumable.Consumablemaster = ConMst
-		NonIT.NonITAssets_Master=NonITMst
-		item.NonITAsset=NonIT
+		NonIT.NonITAssets_Master = NonITMst
+		item.NonITAsset = NonIT
 		item.Status = &status
 		item.ITAsset = ITAsset
 		item.Consumable = Consumable
@@ -706,7 +711,7 @@ func (m *mysqlRepo) InWardDetailsByEmp(ctx context.Context, RcvrEmpID int) ([]*c
 		}
 		item.SenderEmployee = EmpSndr
 		item.ReceiverEmployee = EmpRcvr
-	//	item.ApproverEmployee = EmpAprvr
+		//	item.ApproverEmployee = EmpAprvr
 		item.FromLocation = FrmLoc
 		item.ToLocation = ToLoc
 		item.Status = status
@@ -1211,7 +1216,7 @@ func (m *mysqlRepo) CreateInWardOutWard(ctx context.Context, usr *cmnmdl.InWardO
 		} else if *l.AssetType == "consumable" {
 			Cnsmbls[*l.AssetID] = *l.Quantity
 			CnsmblIDs = append(CnsmblIDs, *l.AssetID)
-		}else if *l.AssetType == "nonitasset" {
+		} else if *l.AssetType == "nonitasset" {
 			NonIT[*l.AssetID] = *l.Quantity
 			NonITIDs = append(NonITIDs, *l.AssetID)
 		}
@@ -1326,7 +1331,7 @@ func (m *mysqlRepo) NonITAssetQuantityChange(cnsmbles map[int]int, ids []int) er
 		if err != nil {
 			return err
 		}
-		_, err = txn.Exec(query, cnsmbles[ids[i]],cnsmbles[ids[i]], ids[i])
+		_, err = txn.Exec(query, cnsmbles[ids[i]], cnsmbles[ids[i]], ids[i])
 		if err != nil {
 			txn.Rollback()
 			return err
@@ -1928,30 +1933,94 @@ func (m *mysqlRepo) InwardOutwardReqForward(ctx context.Context, mdl *cmnmdl.InW
 	return err
 }
 
-
 func (m *mysqlRepo) GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDashBoard) (*cmnmdl.AdminDashBoard, error) {
 	query := "call sp_AdminDashBoard(?,?) ;"
-	selDB:= m.Conn.QueryRowContext(ctx, query, mdl.EmpID,mdl.LocID)
-	res:= cmnmdl.AdminDashBoard{}
-		err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpired,  &res.ITAssetApprovals, &res.NonITAssetApprovals,  &res.ITAssetsAvailable, 
-			&res.ITAssetsAssigned,&res.NonITAssetThreshold,&res.ConsumableThreshold,&res.OutwardApproval,&res.ReadyToShip,&res.InWardAssets, &res.ITAssetServiceRequests)
-		if err != nil {
-			fmt.Println(err.Error())
-			return nil, err
-		}
-	
+	selDB := m.Conn.QueryRowContext(ctx, query, mdl.EmpID, mdl.LocID)
+	res := cmnmdl.AdminDashBoard{}
+	err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpired, &res.ITAssetApprovals, &res.NonITAssetApprovals, &res.ITAssetsAvailable,
+		&res.ITAssetsAssigned, &res.NonITAssetThreshold, &res.ConsumableThreshold, &res.OutwardApproval, &res.ReadyToShip, &res.InWardAssets, &res.ITAssetServiceRequests)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+
 	return &res, nil
 }
 
 func (m *mysqlRepo) GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.EmployeeDashboard) (*cmnmdl.EmployeeDashboard, error) {
 	query := "call sp_EmployeeDashboard(?,?) ;"
-	selDB:= m.Conn.QueryRowContext(ctx, query, mdl.EmpID,mdl.LocID)
-	res:= cmnmdl.EmployeeDashboard{}
-		err := selDB.Scan(&res.ITAssetsAssigned, &res.NonITAssetsAssigned, &res.NonITAssetRequests, &res.ITAssetRequests, &res.ITAssetServiceRequests)
+	selDB := m.Conn.QueryRowContext(ctx, query, mdl.EmpID, mdl.LocID)
+	res := cmnmdl.EmployeeDashboard{}
+	err := selDB.Scan(&res.ITAssetsAssigned, &res.NonITAssetsAssigned, &res.NonITAssetRequests, &res.ITAssetRequests, &res.ITAssetServiceRequests)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+
+	return &res, nil
+}
+
+func (m *mysqlRepo) GetThresholdReachedStocks() ([]*cmnmdl.ThresholdAlert, error) {
+	query := "select vw.AssetName, vw.IdentificationNo, vw.AvailableQnty, vw.ThresholdQnty, vw.LocationID, "
+	query += " emp.FirstName, emp.Email from view_threshhold vw join employees emp on emp.Location=vw.LocationID "
+	query += " join users usr on usr.EmployeeId=emp.IdEmployees where usr.Role=2 "
+	selDB, _ := m.Conn.Query(query)
+	res := make([]*cmnmdl.ThresholdAlert, 0)
+	for selDB.Next() {
+		iwa := new(cmnmdl.ThresholdAlert)
+		err := selDB.Scan(&iwa.AssetName, &iwa.IdentificationNo, &iwa.AvailableQnty, &iwa.ThresholdQnty, &iwa.LocationID, &iwa.FirstName, &iwa.Email)
 		if err != nil {
 			fmt.Println(err.Error())
 			return nil, err
 		}
-	
-	return &res, nil
+		res = append(res, iwa)
+	}
+	return res, nil
 }
+
+func (m *mysqlRepo) ThreshHoldReachedStocksEmailBody() ([]cmnmdl.Email, error) {
+	data, _ := m.GetThresholdReachedStocks()
+	var Email string
+	//var FirstName string
+	listEmails := make([]cmnmdl.Email, 0)
+	Subject := "Stock Reached Threshold levels"
+	mailHtmlbody := ""
+	for i := 0; i < len(data); i++ {
+		if i == 0 {
+			Email = *data[i].Email
+			mailHtmlbody = "<p>Hai " + *data[i].FirstName + "</p><p>Below stocks are reached Threshold levels</p>"
+			mailHtmlbody = "<table   border='1' width='50%'> <thead><th>Asset Name</th><th>Identification No</th><th>Available Quantity</th><th>Threshold Quantity</th></thead><tbody>"
+		}
+		if Email == *data[i].Email {
+			mailHtmlbody += "<tr>"
+			mailHtmlbody += "<td>" + *data[i].AssetName + "</td>"
+			mailHtmlbody += "<td>" + *data[i].IdentificationNo + "</td>"
+			mailHtmlbody += "<td>" + strconv.Itoa(*data[i].AvailableQnty) + "</td>"
+			mailHtmlbody += "<td>" + strconv.Itoa(*data[i].ThresholdQnty) + "</td>"
+			mailHtmlbody += "</tr>"
+		} else {
+			mailHtmlbody += "</tbody></table>"
+			emailAprvr := cmnmdl.Email{
+				ToAddress: *data[i].Email,
+				Subject:   Subject,
+				Body:      mailHtmlbody,
+			}
+			listEmails = append(listEmails, emailAprvr)
+			Email = *data[i].Email
+			mailHtmlbody = "<p>Hai " + *data[i].FirstName + "</p><p>Below stocks are reached Threshold levels</p>"
+			mailHtmlbody = "<table   border='1' width='50%'> <thead><th>Asset Name</th><th>Identification No</th><th>Available Quantity</th><th>Threshold Quantity</th></thead><tbody>"
+			mailHtmlbody += "<tr>"
+			mailHtmlbody += "<td>" + *data[i].AssetName + "</td>"
+			mailHtmlbody += "<td>" + *data[i].IdentificationNo + "</td>"
+			mailHtmlbody += "<td>" + strconv.Itoa(*data[i].AvailableQnty) + "</td>"
+			mailHtmlbody += "<td>" + strconv.Itoa(*data[i].ThresholdQnty) + "</td>"
+			mailHtmlbody += "</tr>"
+		}
+
+	}
+
+	return listEmails, nil
+
+}
+
+

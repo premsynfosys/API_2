@@ -10,6 +10,7 @@ import (
 
 //CmnRoutings ggg ..
 func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
+//	r.HandleFunc("/GetThresholdReachedStocks/{LocID}", Handler.GetThresholdReachedStocks)
 	r.HandleFunc("/VednorsAssetMapInsert", Handler.VednorsAssetMapInsert)
 	r.HandleFunc("/GetAdminDashBoard", Handler.GetAdminDashBoard)
 	r.HandleFunc("/GetEmployeeDashboard", Handler.GetEmployeeDashboard)

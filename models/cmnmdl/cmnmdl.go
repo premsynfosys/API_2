@@ -1,5 +1,14 @@
 package cmnmdl
 
+type ThresholdAlert struct {
+	AssetName        *string `json:"AssetName"`
+	IdentificationNo *string `json:"IdentificationNo"`
+	AvailableQnty    *int    `json:"AvailableQnty"`
+	ThresholdQnty    *int    `json:"ThresholdQnty"`
+	LocationID       *int    `json:"LocationID"`
+	FirstName *string `json:"FirstName"`
+	Email *string `json:"Email"`
+}
 type AdminDashBoard struct {
 	EmpID                  *int `json:"EmpID"`
 	LocID                  *int `json:"LocID"`
