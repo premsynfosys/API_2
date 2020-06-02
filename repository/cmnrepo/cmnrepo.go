@@ -2030,8 +2030,14 @@ func (m *mysqlRepo) ThreshHoldReachedStocksEmailBody() ([]cmnmdl.Email, error) {
 
 func (m *mysqlRepo) PurchaseOrders_RequestsInsert(ctx context.Context, mdl *cmnmdl.PurchaseOrders_Requests) error {
 	txn, _ := m.Conn.Begin()
-	query := "INSERT INTO purchaseorders_requests(POID,LocationID,VendorID,PORequestedBy, "
-	query += "PODescription,ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy) VALUES(?,?,?,?,?,  ?,?,?,?,?);"
+	var query string
+	if *mdl.StatusID == 34 {
+		query = "INSERT INTO purchaseorders_requests(POID,LocationID,VendorID,PORequestedBy, "
+		query += "PODescription,ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy) VALUES(?,?,?,?,?,  ?,?,?,?,?);"
+	} else {
+		query = "INSERT INTO purchaseorders_requests(POID,LocationID,VendorID,PORequestedBy, "
+		query += "PODescription,ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy,CreatedOn) VALUES(?,?,?,?,?,  ?,?,?,?,?,now());"
+	}
 	stmt, err := txn.PrepareContext(ctx, query)
 	if err != nil {
 		txn.Rollback()
@@ -2426,5 +2432,288 @@ func (m *mysqlRepo) POStatusChange(IDPO int, Status int) error {
 		err = txn.Commit()
 	}()
 
+	return err
+}
+
+func (m *mysqlRepo) Requisition_RequestsInsert(ctx context.Context, mdl *cmnmdl.Requisition_Requests) error {
+	txn, _ := m.Conn.Begin()
+	var query string
+	if *mdl.StatusID == 40 {
+		query = "INSERT INTO requisition_requests(LocationID,VendorID,RequestedBy, "
+		query += "Description,ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy,CreatedOn) VALUES(?,?,?,?,?,  ?,?,?,?,now());"
+	} else {
+		query = "INSERT INTO requisition_requests(LocationID,VendorID,RequestedBy, "
+		query += "Description,ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy) VALUES(?,?,?,?,?,  ?,?,?,?);"
+	}
+
+	stmt, err := txn.PrepareContext(ctx, query)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	res, err := stmt.ExecContext(ctx, &mdl.LocationID, &mdl.VendorID,
+		&mdl.RequestedBy, &mdl.Description, &mdl.ShipmentTerms, &mdl.PaymentTerms, &mdl.TotalAmmount, &mdl.StatusID, &mdl.CreatedBy)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	id, _ := res.LastInsertId()
+
+	if *mdl.StatusID == 40 { //request
+		queryA := "insert into requisition_approval(Requisition_RequestsID, RoleID, ApproverID, Grade, Status ) values(?,?,?, ?,'Requested'); "
+		stmtA, err := txn.PrepareContext(ctx, queryA)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		_, err = stmtA.ExecContext(ctx, &id, &mdl.RequisitionApproval.RoleID, &mdl.RequisitionApproval.ApproverID,
+			&mdl.RequisitionApproval.Grade)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.RequisitionApproval.RoleID)
+		Subject := "Requisition Request Approval"
+		Msg := "<p>Hai " + AprvrName + "</p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>"
+		emailAprvr := cmnmdl.Email{
+			ToAddress: AprvrMail,
+			Subject:   Subject,
+			Body:      Msg,
+		}
+		go m.SendEmail(&emailAprvr, false)
+	}
+
+	queryA := "INSERT INTO requisition_assets(Requisition_RequestsID,AssetName, "
+	queryA += " AssetID,ReqQuantity,PriceperUnit,AssetComments,CreatedBy) VALUES  "
+	vals := []interface{}{}
+	for i := 0; i < len(mdl.ListRequisition_Assets); i++ {
+		itm := mdl.ListRequisition_Assets[i]
+		queryA += " (?,?,?,?, ?,?,?),"
+		vals = append(vals, &id, &itm.AssetName, &itm.AssetID,
+			&itm.ReqQuantity, &itm.PriceperUnit, &itm.AssetComments, &itm.CreatedBy)
+	}
+	queryA = queryA[0 : len(queryA)-1]
+	stmtA, err := txn.PrepareContext(ctx, queryA)
+	if err != nil {
+
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtA.ExecContext(ctx, vals...)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+
+	defer stmt.Close()
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) GetRequisitionDetailsByReqstrID(ctx context.Context, ReqstrID int) ([]*cmnmdl.Requisition_Requests, error) {
+	query := "call sp_RequisitionDetailsByReq(?) ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, ReqstrID)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*cmnmdl.Requisition_Requests, 0)
+	for selDB.Next() {
+		por := new(cmnmdl.Requisition_Requests)
+		vend := new(cmnmdl.Vendors)
+		loc := new(cmnmdl.Locations)
+		err := selDB.Scan(&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
+			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+		por.VendorData = vend
+		por.LocationData = loc
+		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) RequisitionDetailsByID(ctx context.Context, ID int) (*cmnmdl.Requisition_Requests, error) {
+	query := "call sp_RequisitionDetailsByID(?) ;"
+	selDB := m.Conn.QueryRowContext(ctx, query, ID)
+
+	por := new(cmnmdl.Requisition_Requests)
+	vend := new(cmnmdl.Vendors)
+	loc := new(cmnmdl.Locations)
+	err := selDB.Scan(&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
+		&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+		&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+		&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+	por.VendorData = vend
+	por.LocationData = loc
+
+	return por, nil
+}
+
+func (m *mysqlRepo) RequisitionAssetDetailsByID(ctx context.Context, IDPO int) ([]*cmnmdl.Requisition_Assets, error) {
+	query := "SELECT IDRequisition_assets, Requisition_RequestsID, AssetName, AssetID, ReqQuantity, RecvQuantity, PriceperUnit, "
+	query += " AssetComments, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn FROM requisition_assets where Requisition_RequestsID=?   ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, IDPO)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*cmnmdl.Requisition_Assets, 0)
+	for selDB.Next() {
+		por := new(cmnmdl.Requisition_Assets)
+
+		err := selDB.Scan(&por.IDRequisition_assets, &por.Requisition_RequestsID, &por.AssetName, &por.AssetID, &por.ReqQuantity, &por.RecvQuantity,
+			&por.PriceperUnit, &por.AssetComments, &por.CreatedBy, &por.CreatedOn, &por.ModifiedBy, &por.ModifiedOn)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+
+		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) Requisition_ApprovalStatusList(ctx context.Context, IDPO int) ([]*cmnmdl.RequisitionApproval, error) {
+	query := " select poa.IDRequisition_approval, poa.Requisition_RequestsID, poa.RoleID, poa.ApproverID, poa.Grade, "
+	query += " poa.Comments, poa.Status, poa.CreatedOn, poa.ActionedOn,rl.RoleName, Aprvr.FirstName from requisition_approval poa "
+	query += " join employees Aprvr on aprvr.IdEmployees=poa.ApproverID"
+	query += " join roles rl on rl.idRoles=poa.RoleID where poa.Requisition_RequestsID=?;"
+
+	selDB, err := m.Conn.QueryContext(ctx, query, IDPO)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+	res := make([]*cmnmdl.RequisitionApproval, 0)
+	for selDB.Next() {
+		iwa := new(cmnmdl.RequisitionApproval)
+		err := selDB.Scan(&iwa.IDRequisition_approval, &iwa.Requisition_RequestsID, &iwa.RoleID, &iwa.ApproverID, &iwa.Grade, &iwa.Comments,
+			&iwa.StatusName, &iwa.CreatedOn, &iwa.ActionedOn, &iwa.RoleName, &iwa.ApproverName)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+
+		res = append(res, iwa)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) GetRequisitionDetailsByApprover(ctx context.Context, ApproverID int) ([]*cmnmdl.Requisition_Requests, error) {
+	query := "call sp_RequisitionByApprover(?) ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, ApproverID)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*cmnmdl.Requisition_Requests, 0)
+	for selDB.Next() {
+		poa := new(cmnmdl.RequisitionApproval)
+		por := new(cmnmdl.Requisition_Requests)
+		vend := new(cmnmdl.Vendors)
+		loc := new(cmnmdl.Locations)
+		err := selDB.Scan(&poa.IDRequisition_approval, &poa.Requisition_RequestsID, &poa.RoleID, &poa.ApproverID, &poa.Grade, &poa.Comments, &poa.StatusName, &poa.CreatedOn, &poa.ActionedOn,
+			&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
+			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+		por.RequisitionApproval = poa
+		por.VendorData = vend
+		por.LocationData = loc
+		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) Requisition_RequestsUpdate(ctx context.Context, mdl *cmnmdl.Requisition_Requests) error {
+	txn, _ := m.Conn.Begin()
+
+	query := "update requisition_requests set  LocationID=?,VendorID=?,RequestedBy=?,Description=?,ShipmentTerms=?, "
+	query += "PaymentTerms=?,TotalAmmount=?,StatusID=?,ModifiedBy=?,ModifiedOn=now() where IDRequisition_Requests=?"
+	stmt, err := txn.PrepareContext(ctx, query)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmt.ExecContext(ctx, &mdl.LocationID, &mdl.VendorID, &mdl.RequestedBy, &mdl.Description, &mdl.ShipmentTerms,
+		&mdl.PaymentTerms, &mdl.TotalAmmount, &mdl.StatusID, &mdl.ModifiedBy, &mdl.IDRequisition_Requests)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+
+	if *mdl.StatusID == 40 { //request
+		queryA := "insert into requisition_approval(Requisition_RequestsID, RoleID, ApproverID, Grade, Status ) values(?,?,?, ?,'Requested'); "
+		stmtA, err := txn.PrepareContext(ctx, queryA)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		_, err = stmtA.ExecContext(ctx, &mdl.IDRequisition_Requests, &mdl.RequisitionApproval.RoleID, &mdl.RequisitionApproval.ApproverID,
+			&mdl.RequisitionApproval.Grade)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.RequisitionApproval.RoleID)
+		Subject := "Requisition Request Approval"
+		Msg := "<p>Hai " + AprvrName + "</p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>"
+		emailAprvr := cmnmdl.Email{
+			ToAddress: AprvrMail,
+			Subject:   Subject,
+			Body:      Msg,
+		}
+		go m.SendEmail(&emailAprvr, false)
+	}
+	queryDel := "delete from requisition_assets where Requisition_RequestsID=? ; "
+	stmtDel, err := txn.PrepareContext(ctx, queryDel)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtDel.ExecContext(ctx, &mdl.IDRequisition_Requests)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	queryA := "INSERT INTO requisition_assets(Requisition_RequestsID,AssetName, "
+	queryA += " AssetID,ReqQuantity,PriceperUnit,AssetComments,CreatedBy) VALUES  "
+	vals := []interface{}{}
+	for i := 0; i < len(mdl.ListRequisition_Assets); i++ {
+		itm := mdl.ListRequisition_Assets[i]
+		queryA += " (?,?,?,?, ?,?,?),"
+		vals = append(vals, &mdl.IDRequisition_Requests, &itm.AssetName, &itm.AssetID,
+			&itm.ReqQuantity, &itm.PriceperUnit, &itm.AssetComments, &itm.CreatedBy)
+	}
+	queryA = queryA[0 : len(queryA)-1]
+	stmtA, err := txn.PrepareContext(ctx, queryA)
+	if err != nil {
+
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtA.ExecContext(ctx, vals...)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+
+	defer stmt.Close()
+	err = txn.Commit()
 	return err
 }

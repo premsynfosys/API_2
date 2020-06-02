@@ -922,3 +922,87 @@ func (p *CmnIrepo) POStatusChange(w http.ResponseWriter, r *http.Request) {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
+func (p *CmnIrepo) Requisition_RequestsInsert(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.Requisition_Requests{}
+	json.NewDecoder(r.Body).Decode(&data)
+	err := p.ICmnrepo.Requisition_RequestsInsert(r.Context(), &data)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *CmnIrepo) GetRequisitionDetailsByReqstrID(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ReqstrID := params["ReqstrID"]
+	ReqstrIDs, _ := strconv.Atoi(ReqstrID)
+	dt, err := p.ICmnrepo.GetRequisitionDetailsByReqstrID(r.Context(), ReqstrIDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+
+func (p *CmnIrepo) RequisitionDetailsByID(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["ID"]
+	IDs, _ := strconv.Atoi(ID)
+	dt, err := p.ICmnrepo.RequisitionDetailsByID(r.Context(), IDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) RequisitionAssetDetailsByID(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["ID"]
+	IDs, _ := strconv.Atoi(ID)
+	dt, err := p.ICmnrepo.RequisitionAssetDetailsByID(r.Context(), IDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) Requisition_ApprovalStatusList(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["ID"]
+	IDs, _ := strconv.Atoi(ID)
+	dt, err := p.ICmnrepo.Requisition_ApprovalStatusList(r.Context(), IDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+
+func (p *CmnIrepo) GetRequisitionDetailsByApprover(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ApprvrID := params["ApprvrID"]
+	ApprvrIDs, _ := strconv.Atoi(ApprvrID)
+	dt, err := p.ICmnrepo.GetRequisitionDetailsByApprover(r.Context(), ApprvrIDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) Requisition_RequestsUpdate(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.Requisition_Requests{}
+	json.NewDecoder(r.Body).Decode(&data)
+	err := p.ICmnrepo.Requisition_RequestsUpdate(r.Context(), &data)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, nil)
+	}
+}

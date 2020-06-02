@@ -15,14 +15,31 @@ func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	r.HandleFunc("/POReqApproved", Handler.POReqApproved)
 	r.HandleFunc("/POReqForward", Handler.POReqForward)
 	r.HandleFunc("/POReqRejected", Handler.POReqRejected)
+	
 	r.HandleFunc("/PurchaseOrders_RequestsUpdate", Handler.PurchaseOrders_RequestsUpdate)
+	r.HandleFunc("/Requisition_RequestsUpdate", Handler.Requisition_RequestsUpdate)
+	
 	r.HandleFunc("/GetPODetailsByApprover/{ApprvrID}", Handler.GetPODetailsByApprover)
+	r.HandleFunc("/GetRequisitionDetailsByApprover/{ApprvrID}", Handler.GetRequisitionDetailsByApprover)
+	
 	r.HandleFunc("/GetPurchaseOrderUniqueID", Handler.GetPurchaseOrderUniqueID)
+
 	r.HandleFunc("/GetPODetailsByReqstrID/{ReqstrID}", Handler.GetPODetailsByReqstrID)
+	r.HandleFunc("/GetRequisitionDetailsByReqstrID/{ReqstrID}", Handler.GetRequisitionDetailsByReqstrID)
+	
 	r.HandleFunc("/PODetailsByIDPO/{IDPO}", Handler.PODetailsByIDPO)
+	r.HandleFunc("/RequisitionDetailsByID/{ID}", Handler.RequisitionDetailsByID)
+	
 	r.HandleFunc("/POAssetDetailsByIDPO/{IDPO}", Handler.POAssetDetailsByIDPO)
+	r.HandleFunc("/RequisitionAssetDetailsByID/{ID}", Handler.RequisitionAssetDetailsByID)
+	
 	r.HandleFunc("/PO_ApprovalStatusList/{IDPO}", Handler.PO_ApprovalStatusList)
+	r.HandleFunc("/Requisition_ApprovalStatusList/{ID}", Handler.Requisition_ApprovalStatusList)
+	
 	r.HandleFunc("/PurchaseOrders_RequestsInsert", Handler.PurchaseOrders_RequestsInsert)
+	r.HandleFunc("/Requisition_RequestsInsert", Handler.Requisition_RequestsInsert)
+	
+	
 	r.HandleFunc("/VednorsAssetMapInsert", Handler.VednorsAssetMapInsert)
 	r.HandleFunc("/GetAdminDashBoard", Handler.GetAdminDashBoard)
 	r.HandleFunc("/GetEmployeeDashboard", Handler.GetEmployeeDashboard)
