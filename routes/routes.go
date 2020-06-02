@@ -10,7 +10,19 @@ import (
 
 //CmnRoutings ggg ..
 func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
-//	r.HandleFunc("/GetThresholdReachedStocks/{LocID}", Handler.GetThresholdReachedStocks)
+	//	r.HandleFunc("/GetThresholdReachedStocks/{LocID}", Handler.GetThresholdReachedStocks)
+	r.HandleFunc("/POStatusChange/{IDPO}/{Status}", Handler.POStatusChange)
+	r.HandleFunc("/POReqApproved", Handler.POReqApproved)
+	r.HandleFunc("/POReqForward", Handler.POReqForward)
+	r.HandleFunc("/POReqRejected", Handler.POReqRejected)
+	r.HandleFunc("/PurchaseOrders_RequestsUpdate", Handler.PurchaseOrders_RequestsUpdate)
+	r.HandleFunc("/GetPODetailsByApprover/{ApprvrID}", Handler.GetPODetailsByApprover)
+	r.HandleFunc("/GetPurchaseOrderUniqueID", Handler.GetPurchaseOrderUniqueID)
+	r.HandleFunc("/GetPODetailsByReqstrID/{ReqstrID}", Handler.GetPODetailsByReqstrID)
+	r.HandleFunc("/PODetailsByIDPO/{IDPO}", Handler.PODetailsByIDPO)
+	r.HandleFunc("/POAssetDetailsByIDPO/{IDPO}", Handler.POAssetDetailsByIDPO)
+	r.HandleFunc("/PO_ApprovalStatusList/{IDPO}", Handler.PO_ApprovalStatusList)
+	r.HandleFunc("/PurchaseOrders_RequestsInsert", Handler.PurchaseOrders_RequestsInsert)
 	r.HandleFunc("/VednorsAssetMapInsert", Handler.VednorsAssetMapInsert)
 	r.HandleFunc("/GetAdminDashBoard", Handler.GetAdminDashBoard)
 	r.HandleFunc("/GetEmployeeDashboard", Handler.GetEmployeeDashboard)
@@ -76,6 +88,8 @@ func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 
 //ConsumableRoutings ..
 func ConsumableRoutings(r *mux.Router, Handler *cnsmblhndlr.IConsumableRepo) {
+	r.HandleFunc("/GetConsumableMastersByVendors/{VendorID}", Handler.GetConsumableMastersByVendors)
+	r.HandleFunc("/ConsumableDelete/{AssetID}", Handler.ConsumableDelete)
 	r.HandleFunc("/Check_Unique_Consumable/{ConsumableName}", Handler.Check_Unique_Consumable)
 	r.HandleFunc("/GetVendorsByConsumable/{ConsumableID}", Handler.GetVendorsByConsumable)
 	r.HandleFunc("/Consumables/CreateConsumable", Handler.CreateConsumable)
@@ -98,6 +112,7 @@ func ConsumableRoutings(r *mux.Router, Handler *cnsmblhndlr.IConsumableRepo) {
 //ITAssetRouting ..
 func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
 	r.HandleFunc("/ITAssetReqForward", pHandler.ITAssetReqForward)
+	r.HandleFunc("/ITAssetDelete/{AssetID}", pHandler.ITAssetDelete)
 	r.HandleFunc("/GetITAssetReqListByEmp/{EmpID}", pHandler.GetITAssetReqListByEmp)
 	r.HandleFunc("/ITAsset_Service_Request_Resolve", pHandler.ITAsset_Service_Request_Resolve)
 	r.HandleFunc("/ITAssetReq_ApprovalStatusList/{ReqGroupID}", pHandler.ITAssetReq_ApprovalStatusList)
@@ -137,6 +152,7 @@ func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
 
 //NonITAssetRouting ..
 func NonITAssetRouting(r *mux.Router, pHandler *nonitassetshndlr.INonITAsset) {
+	r.HandleFunc("/NonITAssetDelete/{AssetID}", pHandler.NonITAssetDelete)
 	r.HandleFunc("/CheckDuplicateNonITAssetEntry/{MasterID:[0-9]+}/{LocID:[0-9]+}", pHandler.CheckDuplicateNonITAssetEntry)
 	r.HandleFunc("/Check_Unique_NonITAsset/{NonITAssetName}", pHandler.Check_Unique_NonITAsset)
 	r.HandleFunc("/GetNonITAssetMasterLists", pHandler.GetNonITAssetMasterLists)

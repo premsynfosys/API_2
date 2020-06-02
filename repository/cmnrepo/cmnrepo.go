@@ -1509,7 +1509,10 @@ func (m *mysqlRepo) User_Inactive(UserID int) error {
 }
 
 func (m *mysqlRepo) Authorization_Create(ctx context.Context, data *cmnmdl.Authorization_Create) error {
+
 	queryA := "delete from authorization where RoleID=?;"
+	queryC := "insert into authorization  (RoleID,Features_List_ID)  select 1,idFeatures_list from features_list;"
+
 	queryB := "insert into authorization (RoleID,Features_List_ID,CreatedBy) values "
 
 	res := []interface{}{}
@@ -1525,12 +1528,14 @@ func (m *mysqlRepo) Authorization_Create(ctx context.Context, data *cmnmdl.Autho
 	txn, err := m.Conn.Begin()
 
 	_, err3 := txn.ExecContext(ctx, queryA, data.RoleID)
+	_, err5 := txn.ExecContext(ctx, queryC)
 	_, err4 := txn.ExecContext(ctx, queryB, res...)
+
 	if err != nil {
 		return err
 	}
 	defer func() {
-		if err != nil || err3 != nil || err4 != nil {
+		if err != nil || err3 != nil || err4 != nil || err5 != nil {
 			txn.Rollback()
 			return
 		}
@@ -2023,4 +2028,403 @@ func (m *mysqlRepo) ThreshHoldReachedStocksEmailBody() ([]cmnmdl.Email, error) {
 
 }
 
+func (m *mysqlRepo) PurchaseOrders_RequestsInsert(ctx context.Context, mdl *cmnmdl.PurchaseOrders_Requests) error {
+	txn, _ := m.Conn.Begin()
+	query := "INSERT INTO purchaseorders_requests(POID,LocationID,VendorID,PORequestedBy, "
+	query += "PODescription,ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy) VALUES(?,?,?,?,?,  ?,?,?,?,?);"
+	stmt, err := txn.PrepareContext(ctx, query)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	res, err := stmt.ExecContext(ctx, &mdl.POID, &mdl.LocationID, &mdl.VendorID,
+		&mdl.PORequestedBy, &mdl.PODescription, &mdl.ShipmentTerms, &mdl.PaymentTerms, &mdl.TotalAmmount, &mdl.StatusID, &mdl.CreatedBy)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	id, _ := res.LastInsertId()
 
+	if *mdl.StatusID == 34 { //request
+		queryA := "insert into po_approval(PurchaseOrders_RequestsID, RoleID, ApproverID, Grade, Status ) values(?,?,?, ?,'Requested'); "
+		stmtA, err := txn.PrepareContext(ctx, queryA)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		res, err = stmtA.ExecContext(ctx, &id, &mdl.POApproval.RoleID, &mdl.POApproval.ApproverID,
+			&mdl.POApproval.Grade)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.POApproval.RoleID)
+		Subject := "PO Request Approval"
+		Msg := "<p>Hai " + AprvrName + "</p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>"
+		emailAprvr := cmnmdl.Email{
+			ToAddress: AprvrMail,
+			Subject:   Subject,
+			Body:      Msg,
+		}
+		go m.SendEmail(&emailAprvr, false)
+	}
+
+	queryA := "INSERT INTO purchaseorders_assets(Purchaseorders_requests_ID,AssetType,AssetName, "
+	queryA += " AssetID,Quantity,PriceperUnit,AssetComments,CreatedBy) VALUES  "
+	vals := []interface{}{}
+	for i := 0; i < len(mdl.ListPurchaseOrders_Assets); i++ {
+		itm := mdl.ListPurchaseOrders_Assets[i]
+		queryA += " (?,?,?,?, ?,?,?,?),"
+		vals = append(vals, &id, &itm.AssetType, &itm.AssetName, &itm.AssetID,
+			&itm.Quantity, &itm.PriceperUnit, &itm.AssetComments, &itm.CreatedBy)
+	}
+	queryA = queryA[0 : len(queryA)-1]
+	stmtA, err := txn.PrepareContext(ctx, queryA)
+	if err != nil {
+
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtA.ExecContext(ctx, vals...)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+
+	defer stmt.Close()
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) GetPurchaseOrderUniqueID() (*string, error) {
+	query := "SELECT max(IDPurchaseOrders_Requests)+1 as nextid FROM purchaseorders_requests;"
+	var NextID string
+	err := m.Conn.QueryRow(query).Scan(&NextID)
+	if err != nil {
+		return nil, err
+	}
+	return &NextID, nil
+}
+
+func (m *mysqlRepo) GetPODetailsByReqstrID(ctx context.Context, ReqstrID int) ([]*cmnmdl.PurchaseOrders_Requests, error) {
+	query := "call sp_PODetailsByReq(?) ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, ReqstrID)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*cmnmdl.PurchaseOrders_Requests, 0)
+	for selDB.Next() {
+		por := new(cmnmdl.PurchaseOrders_Requests)
+		vend := new(cmnmdl.Vendors)
+		loc := new(cmnmdl.Locations)
+		err := selDB.Scan(&por.IDPurchaseOrders_Requests, &por.POID, &por.LocationID, &por.VendorID, &por.PORequestedBy, &por.PODescription,
+			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.PORequestedByName, &por.StatusName)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+		por.VendorData = vend
+		por.LocationData = loc
+		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) PODetailsByIDPO(ctx context.Context, IDPO int) (*cmnmdl.PurchaseOrders_Requests, error) {
+	query := "call sp_PODetailsByPOID(?) ;"
+	selDB := m.Conn.QueryRowContext(ctx, query, IDPO)
+
+	por := new(cmnmdl.PurchaseOrders_Requests)
+	vend := new(cmnmdl.Vendors)
+	loc := new(cmnmdl.Locations)
+	err := selDB.Scan(&por.IDPurchaseOrders_Requests, &por.POID, &por.LocationID, &por.VendorID, &por.PORequestedBy, &por.PODescription,
+		&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+		&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+		&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.PORequestedByName, &por.StatusName)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+	por.VendorData = vend
+	por.LocationData = loc
+
+	return por, nil
+}
+
+func (m *mysqlRepo) POAssetDetailsByIDPO(ctx context.Context, IDPO int) ([]*cmnmdl.PurchaseOrders_Assets, error) {
+	query := "SELECT IDpurchaseorders_Assets, Purchaseorders_requests_ID, AssetType, AssetName, AssetID,Quantity, "
+	query += " PriceperUnit, AssetComments, CreatedBy, CreatedOn FROM purchaseorders_assets where Purchaseorders_requests_ID=?  ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, IDPO)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*cmnmdl.PurchaseOrders_Assets, 0)
+	for selDB.Next() {
+		por := new(cmnmdl.PurchaseOrders_Assets)
+
+		err := selDB.Scan(&por.IDpurchaseorders_Assets, &por.Purchaseorders_requests_ID, &por.AssetType, &por.AssetName, &por.AssetID, &por.Quantity,
+			&por.PriceperUnit, &por.AssetComments, &por.CreatedBy, &por.CreatedOn)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+
+		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) PO_ApprovalStatusList(ctx context.Context, IDPO int) ([]*cmnmdl.POApproval, error) {
+	query := "select poa.IDPO_approval, poa.PurchaseOrders_RequestsID, poa.RoleID, poa.ApproverID, poa.Grade, "
+	query += " poa.Comments, poa.Status, poa.CreatedOn, poa.ActionedOn,rl.RoleName, Aprvr.FirstName"
+	query += " 	from po_approval poa "
+	query += " join employees Aprvr on aprvr.IdEmployees=poa.ApproverID"
+	query += " join roles rl on rl.idRoles=poa.RoleID"
+
+	query += " where poa.PurchaseOrders_RequestsID=? ;"
+
+	selDB, err := m.Conn.QueryContext(ctx, query, IDPO)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+	res := make([]*cmnmdl.POApproval, 0)
+	for selDB.Next() {
+		iwa := new(cmnmdl.POApproval)
+		err := selDB.Scan(&iwa.IDPO_approval, &iwa.PurchaseOrders_RequestsID, &iwa.RoleID, &iwa.ApproverID, &iwa.Grade, &iwa.Comments,
+			&iwa.StatusName, &iwa.CreatedOn, &iwa.ActionedOn, &iwa.RoleName, &iwa.ApproverName)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+
+		res = append(res, iwa)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) GetPODetailsByApprover(ctx context.Context, ApproverID int) ([]*cmnmdl.PurchaseOrders_Requests, error) {
+	query := "call sp_PODetailsByApprover(?) ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, ApproverID)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*cmnmdl.PurchaseOrders_Requests, 0)
+	for selDB.Next() {
+		poa := new(cmnmdl.POApproval)
+		por := new(cmnmdl.PurchaseOrders_Requests)
+		vend := new(cmnmdl.Vendors)
+		loc := new(cmnmdl.Locations)
+		err := selDB.Scan(&poa.IDPO_approval, &poa.PurchaseOrders_RequestsID, &poa.RoleID, &poa.ApproverID, &poa.Grade, &poa.Comments, &poa.StatusName, &poa.CreatedOn, &poa.ActionedOn,
+			&por.IDPurchaseOrders_Requests, &por.POID, &por.LocationID, &por.VendorID, &por.PORequestedBy, &por.PODescription,
+			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.PORequestedByName, &por.StatusName)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+		por.POApproval = poa
+		por.VendorData = vend
+		por.LocationData = loc
+		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) POReqForward(ctx context.Context, mdl *cmnmdl.POApproval) error {
+	query := "update po_approval set Status='Approved' , Comments=?,ActionedOn=now() where IDPO_approval=?; "
+	txn, err := m.Conn.Begin()
+	stmnt, _ := txn.PrepareContext(ctx, query)
+	_, err2 := stmnt.Exec(&mdl.Comments, &mdl.IDPO_approval)
+	if err2 != nil {
+		txn.Rollback()
+		return err2
+	}
+
+	Apprvlquery := " insert into po_approval (PurchaseOrders_RequestsID, RoleID, ApproverID, Grade, Status) "
+	Apprvlquery += "	values(?,?,? ,?,'Requested') "
+	stmtApprvl, err3 := txn.Prepare(Apprvlquery)
+
+	if err3 != nil {
+		txn.Rollback()
+		return err3
+	}
+	_, err4 := stmtApprvl.Exec(&mdl.PurchaseOrders_RequestsID, &mdl.NextRoleID, &mdl.NextApproverID, &mdl.NextGrade)
+
+	if err4 != nil {
+		txn.Rollback()
+		return err4
+	}
+
+	AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.NextApproverID)
+	Subject := "PO Request Approval"
+	Msg := "<p>Hai " + AprvrName + "</p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>"
+	emailAprvr := cmnmdl.Email{
+		ToAddress: AprvrMail,
+		Subject:   Subject,
+		Body:      Msg,
+	}
+	go m.SendEmail(&emailAprvr, false)
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) POReqApproved(ctx context.Context, mdl *cmnmdl.POApproval) error {
+	query := "update po_approval set Status='Approved' , Comments=?,ActionedOn=now() where IDPO_approval=?; "
+	txn, err := m.Conn.Begin()
+	stmnt, _ := txn.PrepareContext(ctx, query)
+	_, err2 := stmnt.Exec(&mdl.Comments, &mdl.IDPO_approval)
+	if err2 != nil {
+		txn.Rollback()
+		return err2
+	}
+	Apprvlquery := " update purchaseorders_requests set StatusID=36 ,ModifiedOn=now(),ModifiedBy=? where IDPurchaseOrders_Requests=?"
+	stmtApprvl, err3 := txn.Prepare(Apprvlquery)
+	if err3 != nil {
+		txn.Rollback()
+		return err3
+	}
+	_, err4 := stmtApprvl.Exec(&mdl.ApproverID, &mdl.PurchaseOrders_RequestsID)
+
+	if err4 != nil {
+		txn.Rollback()
+		return err4
+	}
+
+	AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.ApproverID)
+	Subject := "PO Request Approved"
+	Msg := "<p>Hai " + AprvrName + "</p><p>PO request is approved succesfully.Please check the status in Purchase order details.</p>"
+	emailAprvr := cmnmdl.Email{
+		ToAddress: AprvrMail,
+		Subject:   Subject,
+		Body:      Msg,
+	}
+	go m.SendEmail(&emailAprvr, false)
+	err = txn.Commit()
+	return err
+}
+func (m *mysqlRepo) POReqRejected(ctx context.Context, mdl *cmnmdl.POApproval) error {
+	query := "update po_approval set Status='Rejected' , Comments=?,ActionedOn=now() where IDPO_approval=?; "
+	txn, err := m.Conn.Begin()
+	stmnt, _ := txn.PrepareContext(ctx, query)
+	_, err2 := stmnt.Exec(&mdl.Comments, &mdl.IDPO_approval)
+	if err2 != nil {
+		txn.Rollback()
+		return err2
+	}
+	Apprvlquery := " update purchaseorders_requests set StatusID=35 ,ModifiedOn=now(),ModifiedBy=? where IDPurchaseOrders_Requests=?"
+	stmtApprvl, err3 := txn.Prepare(Apprvlquery)
+	if err3 != nil {
+		txn.Rollback()
+		return err3
+	}
+	_, err4 := stmtApprvl.Exec(&mdl.ApproverID, &mdl.PurchaseOrders_RequestsID)
+
+	if err4 != nil {
+		txn.Rollback()
+		return err4
+	}
+
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) PurchaseOrders_RequestsUpdate(ctx context.Context, mdl *cmnmdl.PurchaseOrders_Requests) error {
+	txn, _ := m.Conn.Begin()
+
+	query := "update purchaseorders_requests set  LocationID=?,VendorID=?,PORequestedBy=?,PODescription=?,ShipmentTerms=?, "
+	query += "PaymentTerms=?,TotalAmmount=?,StatusID=?,ModifiedBy=?,ModifiedOn=now() where IDPurchaseOrders_Requests=?"
+	stmt, err := txn.PrepareContext(ctx, query)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmt.ExecContext(ctx, &mdl.LocationID, &mdl.VendorID, &mdl.PORequestedBy, &mdl.PODescription, &mdl.ShipmentTerms,
+		&mdl.PaymentTerms, &mdl.TotalAmmount, &mdl.StatusID, &mdl.ModifiedBy, &mdl.IDPurchaseOrders_Requests)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+
+	if *mdl.StatusID == 34 { //request
+		queryA := "insert into po_approval(PurchaseOrders_RequestsID, RoleID, ApproverID, Grade, Status ) values(?,?,?, ?,'Requested'); "
+		stmtA, err := txn.PrepareContext(ctx, queryA)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		_, err = stmtA.ExecContext(ctx, &mdl.IDPurchaseOrders_Requests, &mdl.POApproval.RoleID, &mdl.POApproval.ApproverID,
+			&mdl.POApproval.Grade)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.POApproval.RoleID)
+		Subject := "PO Request Approval"
+		Msg := "<p>Hai " + AprvrName + "</p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>"
+		emailAprvr := cmnmdl.Email{
+			ToAddress: AprvrMail,
+			Subject:   Subject,
+			Body:      Msg,
+		}
+		go m.SendEmail(&emailAprvr, false)
+	}
+	queryDel := "delete from purchaseorders_assets where Purchaseorders_requests_ID=? ; "
+	stmtDel, err := txn.PrepareContext(ctx, queryDel)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtDel.ExecContext(ctx, &mdl.IDPurchaseOrders_Requests)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	queryA := "INSERT INTO purchaseorders_assets(Purchaseorders_requests_ID,AssetType,AssetName, "
+	queryA += " AssetID,Quantity,PriceperUnit,AssetComments,CreatedBy) VALUES  "
+	vals := []interface{}{}
+	for i := 0; i < len(mdl.ListPurchaseOrders_Assets); i++ {
+		itm := mdl.ListPurchaseOrders_Assets[i]
+		queryA += " (?,?,?,?, ?,?,?,?),"
+		vals = append(vals, &mdl.IDPurchaseOrders_Requests, &itm.AssetType, &itm.AssetName, &itm.AssetID,
+			&itm.Quantity, &itm.PriceperUnit, &itm.AssetComments, &itm.CreatedBy)
+	}
+	queryA = queryA[0 : len(queryA)-1]
+	stmtA, err := txn.PrepareContext(ctx, queryA)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtA.ExecContext(ctx, vals...)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+
+	defer stmt.Close()
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) POStatusChange(IDPO int, Status int) error {
+	query := "update purchaseorders_requests set StatusID=?,ModifiedOn=now()  where IDPurchaseOrders_Requests=?;"
+	txn, err := m.Conn.Begin()
+	_, err = txn.Exec(query, Status, IDPO)
+
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			txn.Rollback()
+			return
+		}
+		err = txn.Commit()
+	}()
+
+	return err
+}

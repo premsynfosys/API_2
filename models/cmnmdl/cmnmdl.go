@@ -6,8 +6,8 @@ type ThresholdAlert struct {
 	AvailableQnty    *int    `json:"AvailableQnty"`
 	ThresholdQnty    *int    `json:"ThresholdQnty"`
 	LocationID       *int    `json:"LocationID"`
-	FirstName *string `json:"FirstName"`
-	Email *string `json:"Email"`
+	FirstName        *string `json:"FirstName"`
+	Email            *string `json:"Email"`
 }
 type AdminDashBoard struct {
 	EmpID                  *int `json:"EmpID"`
@@ -347,4 +347,82 @@ type VendorsAssetDetails struct {
 	Consumablegroups             interface{}                   `json:"Consumablegroups"`
 	Vendors                      *Vendors                      `json:"Vendors"`
 	CreatedBy                    *string                       `json:"CreatedBy"`
+}
+
+type PurchaseOrders_Requests struct {
+	IDPurchaseOrders_Requests *int    `json:"IDPurchaseOrders_Requests"`
+	POID                      *string `json:"POID"`
+	LocationID                *int    `json:"LocationID"`
+	VendorID                  *int    `json:"VendorID"`
+	//POApproverID              *int                     `json:"POApproverID"`
+	PORequestedBy             *int                     `json:"PORequestedBy"`
+	PODescription             *string                  `json:"PODescription"`
+	ShipmentTerms             *string                  `json:"ShipmentTerms"`
+	PaymentTerms              *string                  `json:"PaymentTerms"`
+	TotalAmmount              *float64                 `json:"TotalAmmount"`
+	StatusID                  *int                     `json:"StatusID"`
+	CreatedBy                 *int                     `json:"CreatedBy"`
+	ModifiedBy                *int                     `json:"ModifiedBy"`
+	CreatedOn                 *string                  `json:"CreatedOn"`
+	ModifiedOn                *string                  `json:"ModifiedOn"`
+	RecordStatus              *string                  `json:"RecordStatus"`
+	PORequestedByName         *string                  `json:"PORequestedByName"`
+	StatusName                *string                  `json:"StatusName"`
+	ListPurchaseOrders_Assets []*PurchaseOrders_Assets `json:"ListPurchaseOrders_Assets"`
+	VendorData                *Vendors                 `json:"VendorData"`
+	LocationData              *Locations               `json:"LocationData"`
+	POApproval                *POApproval              `json:"POApproval"`
+}
+
+type PurchaseOrders_Assets struct {
+	IDpurchaseorders_Assets    *int     `json:"IDpurchaseorders_Assets"`
+	Purchaseorders_requests_ID *int     `json:"Purchaseorders_requests_ID"`
+	AssetType                  *string  `json:"AssetType"`
+	AssetName                  *string  `json:"AssetName"`
+	AssetID                    *int     `json:"AssetID"`
+	PriceperUnit               *float64 `json:"PriceperUnit"`
+	Quantity                   *int     `json:"Quantity"`
+	AssetComments              *string  `json:"AssetComments"`
+	CreatedBy                  *int     `json:"CreatedBy"`
+	CreatedOn                  *string  `json:"CreatedOn"`
+	ModifiedOn                 *string  `json:"ModifiedOn"`
+	ModifiedBy                 *int     `json:"ModifiedBy"`
+}
+
+type POApproval struct {
+	IDPO_approval             *int    `json:"IDPO_approval"`
+	PurchaseOrders_RequestsID *int    `json:"PurchaseOrders_RequestsID"`
+	RoleID                    *int    `json:"RoleID"`
+	RoleName                  *string `json:"RoleName"`
+	ApproverID                *int    `json:"ApproverID"`
+	ApproverName              *string `json:"ApproverName"`
+	Grade                     *int    `json:"Grade"`
+	Comments                  *string `json:"Comments"`
+	Status                    *int    `json:"Status"`
+	StatusName                *string `json:"StatusName"`
+	CreatedOn                 *string `json:"CreatedOn"`
+	ActionedOn                *string `json:"ActionedOn"`
+	NextRoleID                *int    `json:"NextRoleID"`
+	NextApproverID            *int    `json:"NextApproverID"`
+	NextGrade                 *int    `json:"NextGrade"`
+}
+
+type PurchaseOrders_Assets_Received struct {
+	IDpurchaseorders_Assets_Received *int     `json:"IDpurchaseorders_Assets_Received"`
+	Purchaseorders_requests_ID       *int     `json:"Purchaseorders_requests_ID"`
+	AssetType                        *string  `json:"AssetType"`
+	AssetName                        *string  `json:"AssetName"`
+	AssetID                          *int     `json:"AssetID"`
+	PriceperUnit                     *float64 `json:"PriceperUnit"`
+	Quantity                         *int     `json:"Quantity"`
+	AssetComments                    *string  `json:"AssetComments"`
+	CreatedBy                        *int     `json:"CreatedBy"`
+	CreatedOn                        *string  `json:"CreatedOn"`
+	ModelNo *string  `json:"ModelNo"`
+	SerialNo *string  `json:"SerialNo"`
+}
+type PO_Bills struct {
+	IDPO_Bills                *int    `json:"IDPO_Bills"`
+	PurchaseOrders_RequestsID *int    `json:"PurchaseOrders_RequestsID"`
+	InvoiceNumber             *string `json:"InvoiceNumber"`
 }

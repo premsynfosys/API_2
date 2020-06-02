@@ -74,5 +74,17 @@ type CmnIntrfc interface {
 
 	 GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.EmployeeDashboard) (*cmnmdl.EmployeeDashboard, error)
 	// GetThresholdReachedStocks(ctx context.Context, LocID int) ([]*cmnmdl.ThresholdAlert, error) 
+	PurchaseOrders_RequestsInsert(ctx context.Context, mdl *cmnmdl.PurchaseOrders_Requests) error
+	GetPurchaseOrderUniqueID() (*string, error)
+	GetPODetailsByReqstrID(ctx context.Context, ReqstrID int) ([]*cmnmdl.PurchaseOrders_Requests, error) 
+	PODetailsByIDPO(ctx context.Context, IDPO int) (*cmnmdl.PurchaseOrders_Requests, error) 
+	POAssetDetailsByIDPO(ctx context.Context, IDPO int) ([]*cmnmdl.PurchaseOrders_Assets, error)
+	PO_ApprovalStatusList(ctx context.Context, IDPO int) ([]*cmnmdl.POApproval, error)
+	GetPODetailsByApprover(ctx context.Context, ApproverID int) ([]*cmnmdl.PurchaseOrders_Requests, error)
+	POReqForward(ctx context.Context, mdl *cmnmdl.POApproval) error 
+	POReqApproved(ctx context.Context, mdl *cmnmdl.POApproval) error 
+	POReqRejected(ctx context.Context, mdl *cmnmdl.POApproval) error
+	PurchaseOrders_RequestsUpdate(ctx context.Context, mdl *cmnmdl.PurchaseOrders_Requests) error
+	POStatusChange(IDPO int, Status int) error
 }
  

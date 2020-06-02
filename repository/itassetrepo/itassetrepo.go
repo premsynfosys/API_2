@@ -921,14 +921,14 @@ func (m *mysqlRepo) ITAsset_Service_Request_Resolve(ctx context.Context, itm *it
 		return err
 	}
 	_, err = stmt.Exec(itm.AdminComments, itm.IDitasset_service_request)
-	if itm.ITAssetID !=nil {
+	if itm.ITAssetID != nil {
 		qryA := "call sp_ITAssetService_Request_ApproveByAsst(?,?,?,?)"
 		stmt, err := m.Conn.PrepareContext(ctx, qryA)
 		if err != nil {
 			return err
 		}
-		_, err = stmt.Exec(itm.ITAssetID, itm.OldITAssetID, itm.Emp_EmpID,itm.Admin_EmpID)
-	
+		_, err = stmt.Exec(itm.ITAssetID, itm.OldITAssetID, itm.Emp_EmpID, itm.Admin_EmpID)
+
 	}
 	return err
 }
@@ -1056,7 +1056,6 @@ func (m *mysqlRepo) ITAssetReq_ApprovalStatusList(ctx context.Context, ReqGroupI
 	return res, nil
 }
 
-
 func (m *mysqlRepo) GetITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*itassetmdl.ITAssetReqList, error) {
 	selDB, err := m.Conn.QueryContext(ctx, "call sp_ITAssetReqListByEmp(?);", EmpID)
 	if err != nil {
@@ -1088,4 +1087,12 @@ func (m *mysqlRepo) GetITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*i
 	}
 	defer selDB.Close()
 	return res, nil
+}
+
+func (m *mysqlRepo) ITAssetDelete(ctx context.Context, AssetID int) error {
+	query := "call sp_ITAssetDelete(?);"
+	stmt, err := m.Conn.PrepareContext(ctx, query)
+	_, err = stmt.ExecContext(ctx, AssetID)
+	defer stmt.Close()
+	return err
 }

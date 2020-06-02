@@ -9,6 +9,7 @@ import (
 
 //ConsumableIntfc ...
 type ConsumableIntfc interface {
+	ConsumableDelete(ctx context.Context, AssetID int) error 
 	//GetThresholdReachedStockConsumablesByID(AssetID int) (*cmnmdl.ThresholdAlert, error)
 	CreateConsumables(ctx context.Context, mdl *cnsmblemdl.Consumables) error
 	GetConsumableGroups(ctx context.Context) ([]*cnsmblemdl.ConsumableGroup, error)
@@ -27,4 +28,5 @@ type ConsumableIntfc interface {
 	Check_Unique_Consumable(ctx context.Context, name string) (*string, error) 
 	GetVendorsByConsumable(ctx context.Context,ConsumableID int) ([]*cmnmdl.VendorsAssetDetails, error)
 	ConsumableBulkDelete(ctx context.Context, ids []string) error
+	GetConsumableMastersByVendors(ctx context.Context, VendorID int) ([]*cmnmdl.VendorsAssetDetails, error)
 }

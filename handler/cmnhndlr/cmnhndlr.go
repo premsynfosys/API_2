@@ -779,8 +779,6 @@ func (p *CmnIrepo) GetEmployeeDashboard(w http.ResponseWriter, r *http.Request) 
 	}
 }
 
-
-
 // func (p *CmnIrepo) GetThresholdReachedStocks(w http.ResponseWriter, r *http.Request) {
 // 	params := mux.Vars(r)
 // 	LocID := params["LocID"]
@@ -792,3 +790,135 @@ func (p *CmnIrepo) GetEmployeeDashboard(w http.ResponseWriter, r *http.Request) 
 // 		utils.RespondwithJSON(w, http.StatusOK, payload)
 // 	}
 // }
+
+func (p *CmnIrepo) PurchaseOrders_RequestsInsert(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.PurchaseOrders_Requests{}
+	json.NewDecoder(r.Body).Decode(&data)
+	err := p.ICmnrepo.PurchaseOrders_RequestsInsert(r.Context(), &data)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, nil)
+	}
+}
+func (p *CmnIrepo) PurchaseOrders_RequestsUpdate(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.PurchaseOrders_Requests{}
+	json.NewDecoder(r.Body).Decode(&data)
+	err := p.ICmnrepo.PurchaseOrders_RequestsUpdate(r.Context(), &data)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, nil)
+	}
+}
+func (p *CmnIrepo) GetPurchaseOrderUniqueID(w http.ResponseWriter, r *http.Request) {
+	dt, err := p.ICmnrepo.GetPurchaseOrderUniqueID()
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+func (p *CmnIrepo) GetPODetailsByReqstrID(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ReqstrID := params["ReqstrID"]
+	ReqstrIDs, _ := strconv.Atoi(ReqstrID)
+	dt, err := p.ICmnrepo.GetPODetailsByReqstrID(r.Context(), ReqstrIDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) PODetailsByIDPO(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	IDPO := params["IDPO"]
+	IDPOs, _ := strconv.Atoi(IDPO)
+	dt, err := p.ICmnrepo.PODetailsByIDPO(r.Context(), IDPOs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) POAssetDetailsByIDPO(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	IDPO := params["IDPO"]
+	IDPOs, _ := strconv.Atoi(IDPO)
+	dt, err := p.ICmnrepo.POAssetDetailsByIDPO(r.Context(), IDPOs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) PO_ApprovalStatusList(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	IDPO := params["IDPO"]
+	IDPOs, _ := strconv.Atoi(IDPO)
+	dt, err := p.ICmnrepo.PO_ApprovalStatusList(r.Context(), IDPOs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) GetPODetailsByApprover(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ApprvrID := params["ApprvrID"]
+	ApprvrIDs, _ := strconv.Atoi(ApprvrID)
+	dt, err := p.ICmnrepo.GetPODetailsByApprover(r.Context(), ApprvrIDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
+	}
+}
+
+func (p *CmnIrepo) POReqForward(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.POApproval{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.POReqForward(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+func (p *CmnIrepo) POReqApproved(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.POApproval{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.POReqApproved(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+func (p *CmnIrepo) POReqRejected(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.POApproval{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.POReqRejected(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+func (p *CmnIrepo) POStatusChange(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	IDPO := params["IDPO"]
+	Status := params["Status"]
+	IDPOs, _ := strconv.Atoi(IDPO)
+	status, _ := strconv.Atoi(Status)
+	err := p.ICmnrepo.POStatusChange(IDPOs, status)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}

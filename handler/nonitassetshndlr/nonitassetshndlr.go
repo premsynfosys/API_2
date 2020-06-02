@@ -334,3 +334,15 @@ func (p *INonITAsset) GetNonITAssetReqListByEmp(w http.ResponseWriter, r *http.R
 		utils.RespondwithJSON(w, http.StatusOK, data)
 	}
 }
+
+func (p *INonITAsset) NonITAssetDelete(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	AssetID := params["AssetID"]
+	id, _ := strconv.Atoi(AssetID)
+	 err := p.INonTAssetRepo.NonITAssetDelete(r.Context(), id)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}

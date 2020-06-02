@@ -1,10 +1,15 @@
 package consumablerepo
 
 import (
+	"bytes"
 	"context"
 	"database/sql"
 	"errors"
 	"fmt"
+	"html/template"
+	"log"
+	"net/smtp"
+	"strconv"
 	"strings"
 
 	"github.com/premsynfosys/AMS_API/models/cmnmdl"
@@ -96,23 +101,142 @@ func (m *mysqlRepo) PostConsumableOprtnsRemovestock(mdl *cnsmblemdl.ConsumableOp
 
 	if err != nil || err1 != nil || err2 != nil || err3 != nil {
 		txn.Rollback()
-		return errors.New("failed")
-	} else {
-		err = txn.Commit()
-
+		return err
+	}
+	err = txn.Commit()
+	dt, errq := m.GetThresholdReachedStockConsumablesByID(*mdl.ConsumableID)
+	if errq == nil {
+		Subject := "Stock Reached Threshold levels"
+		mailHtmlbody := "<p>Hai " + *dt.FirstName + "</p><p>Below stocks are reached Threshold levels</p>"
+		mailHtmlbody += "<table   border='1' width='50%'> <thead><th>Asset Name</th><th>Identification No</th><th>Available Quantity</th><th>Threshold Quantity</th></thead><tbody>"
+		mailHtmlbody += "<tr>"
+		mailHtmlbody += "<td>" + *dt.AssetName + "</td>"
+		mailHtmlbody += "<td>" + *dt.IdentificationNo + "</td>"
+		mailHtmlbody += "<td>" + strconv.Itoa(*dt.AvailableQnty) + "</td>"
+		mailHtmlbody += "<td>" + strconv.Itoa(*dt.ThresholdQnty) + "</td>"
+		mailHtmlbody += "</tr>"
+		mailHtmlbody += "</tbody></table>"
+		emailAprvr := cmnmdl.Email{
+			ToAddress: *dt.Email,
+			Subject:   Subject,
+			Body:      mailHtmlbody,
+		}
+		go m.SendEmail(&emailAprvr, false)
 	}
 	return err
 
 }
 
+func (m *mysqlRepo) SendEmail(mdl *cmnmdl.Email, IsRetry bool) {
+	auth := smtp.PlainAuth("", "premkumardot123@gmail.com", "premkumar143", "smtp.gmail.com")
+	htmlbdy := "<!doctype html><html lang='en'><head></head><body>" + mdl.Body + "</body></html>"
+	t, err := template.New("msg").Parse(htmlbdy)
+	if err != nil {
+		log.Printf("smtp error: %s", err)
+	}
+	buf := new(bytes.Buffer)
+	if err = t.Execute(buf, nil); err != nil {
+		log.Printf("smtp error: %s", err)
+	}
+	body := buf.String()
+
+	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
+	Htmlsubject := "Subject: " + mdl.Subject + "!\n"
+	msg := []byte(Htmlsubject + mime + "\n" + body)
+	err = smtp.SendMail("smtp.gmail.com:587", auth, "premkumardot123@gmail.com", []string{mdl.ToAddress}, msg)
+	if err != nil {
+		if IsRetry {
+			if mdl.TimePeriod == 1 {
+				if mdl.Attempts < 3 {
+					mdl.Reason = err.Error()
+					mdl.Attempts = mdl.Attempts + 1
+					m.UpdateFailedEmails(mdl)
+				} else {
+					mdl.Reason = err.Error()
+					mdl.TimePeriod = 12
+					m.UpdateFailedEmails(mdl)
+				}
+			} else if mdl.TimePeriod == 12 {
+				mdl.TimePeriod = 24
+				mdl.Reason = err.Error()
+				m.UpdateFailedEmails(mdl)
+			} else if mdl.TimePeriod == 24 {
+				mdl.Status = "Failed"
+				mdl.Reason = err.Error()
+				m.UpdateFailedEmails(mdl)
+			}
+		} else {
+			mdl.TimePeriod = 1
+			mdl.Attempts = 1
+			mdl.Status = "Retry"
+			mdl.Reason = err.Error()
+			m.CreateFailedEmails(mdl)
+		}
+		log.Printf("smtp error: %s", err)
+	} else if IsRetry {
+		m.DeleteFailedEmails(mdl)
+	}
+
+}
+
+func (m *mysqlRepo) GetFailedMails() ([]*cmnmdl.Email, error) {
+	selDB, err := m.Conn.Query("SELECT idEmails,ToAddress,Subject,Body,TimePeriod,Status,Attempts,Created_On FROM emails where status!='Failed';")
+	if err != nil {
+		panic(err.Error())
+	}
+	res := make([]*cmnmdl.Email, 0)
+	for selDB.Next() {
+		item := new(cmnmdl.Email)
+		err = selDB.Scan(&item.IDEmails, &item.ToAddress, &item.Subject, &item.Body, &item.TimePeriod, &item.Status,
+			&item.Attempts, &item.CreatedOn)
+		if err != nil {
+			panic(err.Error())
+		}
+		res = append(res, item)
+	}
+	if err != nil {
+		return nil, err
+
+	}
+	defer selDB.Close()
+	return res, nil
+}
+func (m *mysqlRepo) CreateFailedEmails(mdl *cmnmdl.Email) (err error) {
+
+	query := "INSERT INTO emails ( ToAddress,Subject,Body,TimePeriod,Status,Attempts,Reason) VALUES (?,?,?,?,?,?,?);"
+	stmt, _ := m.Conn.Prepare(query)
+	_, err = stmt.Exec(mdl.ToAddress, mdl.Subject, mdl.Body, mdl.TimePeriod, mdl.Status, mdl.Attempts, mdl.Reason)
+	defer stmt.Close()
+
+	return err
+}
+func (m *mysqlRepo) UpdateFailedEmails(mdl *cmnmdl.Email) (err error) {
+
+	query := "UPDATE emails SET TimePeriod = ?,Status = ?,Attempts =? ,Reason=? WHERE idEmails = ?;"
+	stmt, _ := m.Conn.Prepare(query)
+	_, err = stmt.Exec(mdl.TimePeriod, mdl.Status, mdl.Attempts, mdl.Reason, mdl.IDEmails)
+	defer stmt.Close()
+
+	return err
+}
+func (m *mysqlRepo) DeleteFailedEmails(mdl *cmnmdl.Email) (err error) {
+
+	query := "delete from emails WHERE idEmails = ?;"
+	stmt, _ := m.Conn.Prepare(query)
+	_, err = stmt.Exec(mdl.TimePeriod, mdl.Status, mdl.Attempts, mdl.IDEmails)
+	defer stmt.Close()
+
+	return err
+}
+
 func (m *mysqlRepo) GetThresholdReachedStockConsumablesByID(AssetID int) (*cmnmdl.ThresholdAlert, error) {
-	query := "select  cnm.consumableName,con.IdentificationNo,emp.FirstName,emp.Email from consumables con "
+	query := "select  cnm.consumableName,con.IdentificationNo,emp.FirstName,emp.Email,con.TotalQnty,con.ThresholdQnty from consumables con "
 	query += " join employees emp on emp.Location=con.LocationID "
 	query += " join consumablemaster cnm on cnm.idconsumableMaster= con.idconsumableMaster "
 	query += " join users usr on usr.EmployeeId=emp.IdEmployees where usr.Role=2 and  con.ThresholdQnty >= con.TotalQnty and con.idconsumables=? "
 	res := cmnmdl.ThresholdAlert{}
-	selDB, _ := m.Conn.Query(query)
-	err := selDB.Scan(&res.AssetName, &res.IdentificationNo, &res.FirstName, &res.Email)
+	selDB:= m.Conn.QueryRow(query, AssetID)
+	err := selDB.Scan(&res.AssetName, &res.IdentificationNo, &res.FirstName, &res.Email, &res.AvailableQnty, &res.ThresholdQnty)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
@@ -486,4 +610,45 @@ func (m *mysqlRepo) ConsumableBulkDelete(ctx context.Context, ids []string) erro
 		return err
 	}
 	return err
+}
+
+
+func (m *mysqlRepo) ConsumableDelete(ctx context.Context, AssetID int) error {
+	query := "call sp_ConsumableDelete(?);"
+	stmt, err := m.Conn.PrepareContext(ctx, query)
+	_, err = stmt.ExecContext(ctx, AssetID)
+	defer stmt.Close()
+	return err
+}
+
+func (m *mysqlRepo) GetConsumableMastersByVendors(ctx context.Context, VendorID int) ([]*cmnmdl.VendorsAssetDetails, error) {
+	selDB, err := m.Conn.QueryContext(ctx, "call sp_ConsumablesByVendor(?);", VendorID)
+	if err != nil {
+		panic(err.Error())
+	}
+	res := make([]*cmnmdl.VendorsAssetDetails, 0)
+	for selDB.Next() {
+		mdl := new(cmnmdl.VendorsAssetDetails)
+		vend := new(cmnmdl.Vendors)
+		vcm := new(cmnmdl.Vendors_consumablemaster_map)
+		cm := new(cnsmblemdl.Consumablemaster)
+		err = selDB.Scan(&vend.Idvendors, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email, &vend.ContactPersonName,
+			&vend.Phone, &vend.Status, &vend.CreatedOn, &vend.ModifiedOn, &vend.CreatedBy, &vend.ModifiedBy,
+			&vcm.IDVendors_ConsumableMaster_Map, &vcm.ConsumableMasterID, &vcm.VendorsID, &vcm.PriceperUnit, &vcm.ItemType,
+			&vcm.CreatedBy, &vcm.CreatedOn, &vcm.VendorRfrdAssetName,
+			&cm.IDconsumableMaster, &cm.ConsumableName, &cm.GroupID, &cm.SubGroupID, &cm.Description, &cm.CreatedOn, &cm.ModifiedOn)
+		if err != nil {
+			panic(err.Error())
+		}
+		mdl.Vendors = vend
+		mdl.Consumablemaster = cm
+		mdl.Vendors_consumablemaster_map = vcm
+		res = append(res, mdl)
+	}
+	if err != nil {
+		return nil, err
+
+	}
+	defer selDB.Close()
+	return res, nil
 }

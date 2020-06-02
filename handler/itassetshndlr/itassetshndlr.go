@@ -423,3 +423,15 @@ func (p *IITAsset) GetITAssetReqListByEmp(w http.ResponseWriter, r *http.Request
 
 	utils.RespondwithJSON(w, http.StatusOK, payload)
 }
+
+func (p *IITAsset) ITAssetDelete(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	AssetID := params["AssetID"]
+	id, _ := strconv.Atoi(AssetID)
+	 err := p.ITAssetRepo.ITAssetDelete(r.Context(), id)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}

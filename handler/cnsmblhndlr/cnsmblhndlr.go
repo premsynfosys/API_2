@@ -234,3 +234,27 @@ func (p *IConsumableRepo) ConsumableBulkDelete(w http.ResponseWriter, r *http.Re
 		utils.RespondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
+func (p *IConsumableRepo) ConsumableDelete(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	AssetID := params["AssetID"]
+	id, _ := strconv.Atoi(AssetID)
+	err := p.IConsumableRepo.ConsumableDelete(r.Context(), id)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *IConsumableRepo) GetConsumableMastersByVendors(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	VendorID := params["VendorID"]
+	id, _ := strconv.Atoi(VendorID)
+	data, err := p.IConsumableRepo.GetConsumableMastersByVendors(r.Context(), id)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, data)
+	}
+}

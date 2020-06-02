@@ -5,6 +5,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -256,11 +257,43 @@ func (m *mysqlRepo) PostNonITAssets_CheckOut(mdl *nonitassets_mdl.NonITAssets_ch
 	if err != nil || err1 != nil || err2 != nil {
 		txn.Rollback()
 		return errors.New("failed")
-	} else {
-		err = txn.Commit()
 	}
 
+	err = txn.Commit()
+	dt, errq := m.GetThresholdReachedStockNonITAssetsByID(*mdl.NonITAsset_ID)
+	if errq == nil {
+		Subject := "Stock Reached Threshold levels"
+		mailHtmlbody := "<p>Hai " + *dt.FirstName + "</p><p>Below stocks are reached Threshold levels</p>"
+		mailHtmlbody += "<table   border='1' width='50%'> <thead><th>Asset Name</th><th>Identification No</th><th>Available Quantity</th><th>Threshold Quantity</th></thead><tbody>"
+		mailHtmlbody += "<tr>"
+		mailHtmlbody += "<td>" + *dt.AssetName + "</td>"
+		mailHtmlbody += "<td>" + *dt.IdentificationNo + "</td>"
+		mailHtmlbody += "<td>" + strconv.Itoa(*dt.AvailableQnty) + "</td>"
+		mailHtmlbody += "<td>" + strconv.Itoa(*dt.ThresholdQnty) + "</td>"
+		mailHtmlbody += "</tr>"
+		mailHtmlbody += "</tbody></table>"
+		emailAprvr := cmnmdl.Email{
+			ToAddress: *dt.Email,
+			Subject:   Subject,
+			Body:      mailHtmlbody,
+		}
+		fmt.Println(mailHtmlbody)
+		go m.SendEmail(&emailAprvr, false)
+	}
 	return err
+}
+
+func (m *mysqlRepo) GetThresholdReachedStockNonITAssetsByID(AssetID int) (*cmnmdl.ThresholdAlert, error) {
+	query := " select  nim.NonITAssets_Name,nit.IdentificationNo,emp.FirstName,emp.Email,nit.AvailableQnty,nit.ThresholdQnty from nonitassets nit  "
+	query += " join employees emp on emp.Location=nit.LocationID "
+	query += " join nonitassets_master nim on nim.idNonITAssets_Master= nit.NonITAssets_Master_ID "
+	query += " join users usr on usr.EmployeeId=emp.IdEmployees where usr.Role=2 and  nit.ThresholdQnty >= nit.AvailableQnty and nit.IDNonITAsset=? "
+	res := cmnmdl.ThresholdAlert{}
+	selDB := m.Conn.QueryRow(query, AssetID)
+	err := selDB.Scan(&res.AssetName, &res.IdentificationNo, &res.FirstName, &res.Email, &res.AvailableQnty, &res.ThresholdQnty)
+
+	return &res, err
+
 }
 
 func (m *mysqlRepo) CheckDuplicateNonITAssetEntry(ctx context.Context, MasterID int, LocID int) (*int, error) {
@@ -761,12 +794,9 @@ func (m *mysqlRepo) GetNonITAssetCheckinDetails(ctx context.Context, LocID int) 
 }
 
 func (m *mysqlRepo) NonITAssetCheckin(ctx context.Context, Mdl *nonitassets_mdl.NonITAssets_checkin) error {
-	query := "insert nonitassets_checkin(CheckIN_Qnty,Checkin_Comments,CheckIN_By,nonitassets_checkout_checkinID) values(?,?,?,?);"
+	query := "call sp_NonITAssetCheckin(?,?,?,?);"
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	_, err = stmt.ExecContext(ctx, &Mdl.CheckIn_Qnty, &Mdl.Checkin_Comments, &Mdl.CheckIN_By, &Mdl.NonITAssets_Checkout_CheckinID)
-	query = "update nonitassets_checkout_checkin set  InUse=InUse-? where IDNonITAssets_Checkout_Checkin=?;"
-	stmt, err = m.Conn.PrepareContext(ctx, query)
-	_, err = stmt.ExecContext(ctx, &Mdl.CheckIn_Qnty, &Mdl.NonITAssets_Checkout_CheckinID)
 	defer stmt.Close()
 	if err != nil {
 		return err
@@ -785,7 +815,7 @@ func (m *mysqlRepo) Getnonitassets_checkinByID(ctx context.Context, checkinID in
 	Listmdl := make([]*nonitassets_mdl.NonITAssets_checkin, 0)
 	for selDB.Next() {
 		nchk := nonitassets_mdl.NonITAssets_checkin{}
-	
+
 		err := selDB.Scan(&nchk.CheckinDate, &nchk.CheckIn_Qnty, &nchk.Checkin_Comments, &nchk.CheckIN_By, &nchk.CheckIN_ByName)
 		if err != nil {
 			return nil, err
@@ -875,4 +905,12 @@ func (m *mysqlRepo) GetNonITAssetReqListByEmp(ctx context.Context, EmpID int) ([
 	}
 	defer selDB.Close()
 	return res, nil
+}
+
+func (m *mysqlRepo) NonITAssetDelete(ctx context.Context, AssetID int) error {
+	query := "call sp_NonITAssetDelete(?);"
+	stmt, err := m.Conn.PrepareContext(ctx, query)
+	_, err = stmt.ExecContext(ctx, AssetID)
+	defer stmt.Close()
+	return err
 }
