@@ -12,9 +12,15 @@ import (
 func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	//	r.HandleFunc("/GetThresholdReachedStocks/{LocID}", Handler.GetThresholdReachedStocks)
 	r.HandleFunc("/POStatusChange/{IDPO}/{Status}", Handler.POStatusChange)
+	r.HandleFunc("/RequisitionStatusChange/{ID}/{Status}", Handler.RequisitionStatusChange)
 	r.HandleFunc("/POReqApproved", Handler.POReqApproved)
 	r.HandleFunc("/POReqForward", Handler.POReqForward)
 	r.HandleFunc("/POReqRejected", Handler.POReqRejected)
+	r.HandleFunc("/RequisitionStcokReceived", Handler.RequisitionStcokReceived)
+
+	r.HandleFunc("/RequisitionReqApproved", Handler.RequisitionReqApproved)
+	r.HandleFunc("/RequisitionReqForward", Handler.RequisitionReqForward)
+	r.HandleFunc("/RequisitionReqRejected", Handler.RequisitionReqRejected)
 	
 	r.HandleFunc("/PurchaseOrders_RequestsUpdate", Handler.PurchaseOrders_RequestsUpdate)
 	r.HandleFunc("/Requisition_RequestsUpdate", Handler.Requisition_RequestsUpdate)

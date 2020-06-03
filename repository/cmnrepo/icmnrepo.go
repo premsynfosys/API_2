@@ -93,5 +93,10 @@ type CmnIntrfc interface {
 	Requisition_ApprovalStatusList(ctx context.Context, IDPO int) ([]*cmnmdl.RequisitionApproval, error)
 	GetRequisitionDetailsByApprover(ctx context.Context, ApproverID int) ([]*cmnmdl.Requisition_Requests, error)
 	Requisition_RequestsUpdate(ctx context.Context, mdl *cmnmdl.Requisition_Requests) error
+	RequisitionReqRejected(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error
+	RequisitionReqApproved(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error
+	RequisitionReqForward(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error
+	RequisitionStatusChange(ID int, Status int) error
+	RequisitionStcokReceived(mdl *cmnmdl.Requisition_Requests) (err error)
 }
  

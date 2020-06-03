@@ -1006,3 +1006,59 @@ func (p *CmnIrepo) Requisition_RequestsUpdate(w http.ResponseWriter, r *http.Req
 		respondwithJSON(w, http.StatusOK, nil)
 	}
 }
+func (p *CmnIrepo) RequisitionReqRejected(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.RequisitionApproval{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.RequisitionReqRejected(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *CmnIrepo) RequisitionReqForward(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.RequisitionApproval{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.RequisitionReqForward(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+func (p *CmnIrepo) RequisitionReqApproved(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.RequisitionApproval{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.RequisitionReqApproved(r.Context(), &data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *CmnIrepo) RequisitionStatusChange(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["ID"]
+	Status := params["Status"]
+	IDPOs, _ := strconv.Atoi(ID)
+	status, _ := strconv.Atoi(Status)
+	err := p.ICmnrepo.RequisitionStatusChange(IDPOs, status)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *CmnIrepo) RequisitionStcokReceived(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.Requisition_Requests{}
+	json.NewDecoder(r.Body).Decode(&data)
+	 err := p.ICmnrepo.RequisitionStcokReceived(&data)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}

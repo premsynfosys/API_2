@@ -2522,7 +2522,7 @@ func (m *mysqlRepo) GetRequisitionDetailsByReqstrID(ctx context.Context, ReqstrI
 		vend := new(cmnmdl.Vendors)
 		loc := new(cmnmdl.Locations)
 		err := selDB.Scan(&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
-			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.BillInvoiceNo, &por.BillImagePath, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
 			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 		if err != nil {
@@ -2544,7 +2544,7 @@ func (m *mysqlRepo) RequisitionDetailsByID(ctx context.Context, ID int) (*cmnmdl
 	vend := new(cmnmdl.Vendors)
 	loc := new(cmnmdl.Locations)
 	err := selDB.Scan(&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
-		&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+		&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount,&por.BillInvoiceNo,&por.BillImagePath, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
 		&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 		&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 	if err != nil {
@@ -2714,6 +2714,157 @@ func (m *mysqlRepo) Requisition_RequestsUpdate(ctx context.Context, mdl *cmnmdl.
 	}
 
 	defer stmt.Close()
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) RequisitionReqRejected(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error {
+	query := "update requisition_approval set Status='Rejected' , Comments=?,ActionedOn=now() where IDRequisition_approval=?; "
+	txn, err := m.Conn.Begin()
+	stmnt, _ := txn.PrepareContext(ctx, query)
+	_, err2 := stmnt.Exec(&mdl.Comments, &mdl.IDRequisition_approval)
+	if err2 != nil {
+		txn.Rollback()
+		return err2
+	}
+	Apprvlquery := " update requisition_requests set StatusID=41 ,ModifiedOn=now(),ModifiedBy=? where IDRequisition_Requests=?"
+	stmtApprvl, err3 := txn.Prepare(Apprvlquery)
+	if err3 != nil {
+		txn.Rollback()
+		return err3
+	}
+	_, err4 := stmtApprvl.Exec(&mdl.ApproverID, &mdl.Requisition_RequestsID)
+
+	if err4 != nil {
+		txn.Rollback()
+		return err4
+	}
+
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) RequisitionReqForward(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error {
+	query := "update requisition_approval set Status='Approved' , Comments=?,ActionedOn=now() where IDRequisition_approval=?; "
+	txn, err := m.Conn.Begin()
+	stmnt, _ := txn.PrepareContext(ctx, query)
+	_, err2 := stmnt.Exec(&mdl.Comments, &mdl.IDRequisition_approval)
+	if err2 != nil {
+		txn.Rollback()
+		return err2
+	}
+
+	Apprvlquery := " insert into requisition_approval (Requisition_RequestsID, RoleID, ApproverID, Grade, Status) "
+	Apprvlquery += "	values(?,?,? ,?,'Requested') "
+	stmtApprvl, err3 := txn.Prepare(Apprvlquery)
+
+	if err3 != nil {
+		txn.Rollback()
+		return err3
+	}
+	_, err4 := stmtApprvl.Exec(&mdl.Requisition_RequestsID, &mdl.NextRoleID, &mdl.NextApproverID, &mdl.NextGrade)
+
+	if err4 != nil {
+		txn.Rollback()
+		return err4
+	}
+
+	AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.NextApproverID)
+	Subject := "Requisition Request Approval"
+	Msg := "<p>Hai " + AprvrName + "</p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>"
+	emailAprvr := cmnmdl.Email{
+		ToAddress: AprvrMail,
+		Subject:   Subject,
+		Body:      Msg,
+	}
+	go m.SendEmail(&emailAprvr, false)
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) RequisitionReqApproved(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error {
+	query := "update requisition_approval set Status='Approved' , Comments=?,ActionedOn=now() where IDRequisition_approval=?; "
+	txn, err := m.Conn.Begin()
+	stmnt, _ := txn.PrepareContext(ctx, query)
+	_, err2 := stmnt.Exec(&mdl.Comments, &mdl.IDRequisition_approval)
+	if err2 != nil {
+		txn.Rollback()
+		return err2
+	}
+	Apprvlquery := " update requisition_requests set StatusID=42 ,ModifiedOn=now(),ModifiedBy=? where IDRequisition_Requests=?"
+	stmtApprvl, err3 := txn.Prepare(Apprvlquery)
+	if err3 != nil {
+		txn.Rollback()
+		return err3
+	}
+	_, err4 := stmtApprvl.Exec(&mdl.ApproverID, &mdl.Requisition_RequestsID)
+
+	if err4 != nil {
+		txn.Rollback()
+		return err4
+	}
+
+	AprvrMail, AprvrName := m.GetMailByUserID(nil, mdl.ApproverID)
+	Subject := "Requisition Request Approved"
+	Msg := "<p>Hai " + AprvrName + "</p><p>Requisition request is approved succesfully.Please check the status in Requisition details.</p>"
+	emailAprvr := cmnmdl.Email{
+		ToAddress: AprvrMail,
+		Subject:   Subject,
+		Body:      Msg,
+	}
+	go m.SendEmail(&emailAprvr, false)
+	err = txn.Commit()
+	return err
+}
+
+func (m *mysqlRepo) RequisitionStatusChange(ID int, Status int) error {
+	query := "update requisition_requests set StatusID=?,ModifiedOn=now()  where IDRequisition_Requests=?;"
+	txn, err := m.Conn.Begin()
+	_, err = txn.Exec(query, Status, ID)
+
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			txn.Rollback()
+			return
+		}
+		err = txn.Commit()
+	}()
+
+	return err
+}
+
+func (m *mysqlRepo) RequisitionStcokReceived(mdl *cmnmdl.Requisition_Requests) (err error) {
+	txn, _ := m.Conn.Begin()
+	QueryReq := "update requisition_requests set TotalPaidAmmount=?,BillInvoiceNo=?,BillImagePath=?,StatusID=44, "
+	QueryReq += " ModifiedBy=?,ModifiedOn=now() where IDRequisition_Requests=? "
+	stmt1, err := txn.Prepare(QueryReq)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmt1.Exec(mdl.TotalPaidAmmount, mdl.BillInvoiceNo, mdl.BillImagePath, mdl.ModifiedBy, mdl.IDRequisition_Requests)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	for _, itm := range mdl.ListRequisition_Assets {
+		QuerySp := "call sp_RequisitionRecvStock(?,?,?, ?,?,?, ?)"
+		stmt2, err := txn.Prepare(QuerySp)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		_, err = stmt2.Exec(itm.AssetID, mdl.LocationID, itm.IDRequisition_assets, itm.RecvQuantity, itm.PriceperUnit, mdl.VendorID,
+			mdl.ModifiedBy)
+
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+	}
 	err = txn.Commit()
 	return err
 }

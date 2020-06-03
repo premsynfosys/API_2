@@ -438,6 +438,8 @@ type Requisition_Requests struct {
 	PaymentTerms           *string               `json:"PaymentTerms"`
 	TotalAmmount           *float64              `json:"TotalAmmount"`
 	TotalPaidAmmount       *float64              `json:"TotalPaidAmmount"`
+	BillInvoiceNo          *string               `json:"BillInvoiceNo"`
+	BillImagePath          *string               `json:"BillImagePath"`
 	StatusID               *int                  `json:"StatusID"`
 	CreatedBy              *int                  `json:"CreatedBy"`
 	ModifiedBy             *int                  `json:"ModifiedBy"`
@@ -449,7 +451,7 @@ type Requisition_Requests struct {
 	ListRequisition_Assets []*Requisition_Assets `json:"ListRequisition_Assets"`
 	VendorData             *Vendors              `json:"VendorData"`
 	LocationData           *Locations            `json:"LocationData"`
-	RequisitionApproval             *RequisitionApproval           `json:"RequisitionApproval"`
+	RequisitionApproval    *RequisitionApproval  `json:"RequisitionApproval"`
 }
 
 type Requisition_Assets struct {
