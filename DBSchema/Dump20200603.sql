@@ -29,7 +29,7 @@ CREATE TABLE `authorization` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `CreatedBy` int DEFAULT NULL,
   PRIMARY KEY (`idAuthorization`)
-) ENGINE=InnoDB AUTO_INCREMENT=620 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1321 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `authorization` (
 
 LOCK TABLES `authorization` WRITE;
 /*!40000 ALTER TABLE `authorization` DISABLE KEYS */;
-INSERT INTO `authorization` VALUES (1,1,1,'2020-05-22 12:21:38',1),(535,5,0,'2020-05-24 23:02:42',73),(536,5,1,'2020-05-24 23:02:42',73),(537,5,2,'2020-05-24 23:02:42',73),(538,5,3,'2020-05-24 23:02:42',73),(539,5,4,'2020-05-24 23:02:42',73),(540,5,5,'2020-05-24 23:02:42',73),(541,5,0,'2020-05-24 23:02:42',73),(542,5,8,'2020-05-24 23:02:42',73),(543,5,9,'2020-05-24 23:02:42',73),(544,5,10,'2020-05-24 23:02:42',73),(545,5,11,'2020-05-24 23:02:42',73),(546,5,0,'2020-05-24 23:02:42',73),(547,5,6,'2020-05-24 23:02:42',73),(548,5,7,'2020-05-24 23:02:42',73),(549,5,12,'2020-05-24 23:02:42',73),(550,5,13,'2020-05-24 23:02:42',73),(551,5,14,'2020-05-24 23:02:42',73),(552,5,0,'2020-05-24 23:02:42',73),(553,5,18,'2020-05-24 23:02:42',73),(554,5,19,'2020-05-24 23:02:42',73),(555,5,20,'2020-05-24 23:02:42',73),(556,5,21,'2020-05-24 23:02:42',73),(557,5,22,'2020-05-24 23:02:42',73),(558,5,23,'2020-05-24 23:02:42',73),(559,5,24,'2020-05-24 23:02:42',73),(560,5,25,'2020-05-24 23:02:42',73),(561,5,26,'2020-05-24 23:02:42',73),(562,5,27,'2020-05-24 23:02:42',73),(563,5,28,'2020-05-24 23:02:42',73),(564,2,0,'2020-05-24 23:02:52',73),(565,2,1,'2020-05-24 23:02:52',73),(566,2,2,'2020-05-24 23:02:52',73),(567,2,3,'2020-05-24 23:02:52',73),(568,2,4,'2020-05-24 23:02:52',73),(569,2,5,'2020-05-24 23:02:52',73),(570,2,8,'2020-05-24 23:02:52',73),(571,2,9,'2020-05-24 23:02:52',73),(572,2,10,'2020-05-24 23:02:52',73),(573,2,11,'2020-05-24 23:02:52',73),(574,2,6,'2020-05-24 23:02:52',73),(575,2,7,'2020-05-24 23:02:52',73),(576,2,12,'2020-05-24 23:02:52',73),(577,2,13,'2020-05-24 23:02:52',73),(578,2,14,'2020-05-24 23:02:52',73),(579,2,18,'2020-05-24 23:02:52',73),(580,2,19,'2020-05-24 23:02:52',73),(581,2,20,'2020-05-24 23:02:52',73),(582,2,21,'2020-05-24 23:02:52',73),(583,2,22,'2020-05-24 23:02:52',73),(584,2,23,'2020-05-24 23:02:52',73),(585,2,24,'2020-05-24 23:02:52',73),(586,2,25,'2020-05-24 23:02:52',73),(587,2,26,'2020-05-24 23:02:52',73),(588,2,27,'2020-05-24 23:02:52',73),(589,2,28,'2020-05-24 23:02:52',73),(590,4,0,'2020-05-24 23:03:25',73),(591,4,1,'2020-05-24 23:03:25',73),(592,4,2,'2020-05-24 23:03:25',73),(593,4,3,'2020-05-24 23:03:25',73),(594,4,4,'2020-05-24 23:03:25',73),(595,4,5,'2020-05-24 23:03:25',73),(596,4,0,'2020-05-24 23:03:25',73),(597,4,8,'2020-05-24 23:03:25',73),(598,4,9,'2020-05-24 23:03:25',73),(599,4,10,'2020-05-24 23:03:25',73),(600,4,11,'2020-05-24 23:03:25',73),(601,4,0,'2020-05-24 23:03:25',73),(602,4,6,'2020-05-24 23:03:25',73),(603,4,7,'2020-05-24 23:03:25',73),(604,4,12,'2020-05-24 23:03:25',73),(605,4,13,'2020-05-24 23:03:25',73),(606,4,14,'2020-05-24 23:03:25',73),(607,4,0,'2020-05-24 23:03:25',73),(608,4,18,'2020-05-24 23:03:25',73),(609,4,19,'2020-05-24 23:03:25',73),(610,4,20,'2020-05-24 23:03:25',73),(611,4,21,'2020-05-24 23:03:25',73),(612,4,22,'2020-05-24 23:03:25',73),(613,4,23,'2020-05-24 23:03:25',73),(614,4,24,'2020-05-24 23:03:25',73),(615,4,0,'2020-05-24 23:03:25',73),(616,4,25,'2020-05-24 23:03:25',73),(617,4,26,'2020-05-24 23:03:25',73),(618,4,27,'2020-05-24 23:03:25',73),(619,4,28,'2020-05-24 23:03:25',73);
+INSERT INTO `authorization` VALUES (820,1,1,'2020-05-28 17:55:06',NULL),(821,1,2,'2020-05-28 17:55:06',NULL),(822,1,3,'2020-05-28 17:55:06',NULL),(823,1,4,'2020-05-28 17:55:06',NULL),(824,1,5,'2020-05-28 17:55:06',NULL),(825,1,6,'2020-05-28 17:55:06',NULL),(826,1,7,'2020-05-28 17:55:06',NULL),(827,1,8,'2020-05-28 17:55:06',NULL),(828,1,9,'2020-05-28 17:55:06',NULL),(829,1,10,'2020-05-28 17:55:06',NULL),(830,1,11,'2020-05-28 17:55:06',NULL),(831,1,12,'2020-05-28 17:55:06',NULL),(832,1,13,'2020-05-28 17:55:06',NULL),(833,1,14,'2020-05-28 17:55:06',NULL),(834,1,16,'2020-05-28 17:55:06',NULL),(835,1,17,'2020-05-28 17:55:06',NULL),(836,1,18,'2020-05-28 17:55:06',NULL),(837,1,19,'2020-05-28 17:55:06',NULL),(838,1,20,'2020-05-28 17:55:06',NULL),(839,1,21,'2020-05-28 17:55:06',NULL),(840,1,22,'2020-05-28 17:55:06',NULL),(841,1,23,'2020-05-28 17:55:06',NULL),(842,1,24,'2020-05-28 17:55:06',NULL),(843,1,25,'2020-05-28 17:55:06',NULL),(844,1,26,'2020-05-28 17:55:06',NULL),(845,1,27,'2020-05-28 17:55:06',NULL),(846,1,28,'2020-05-28 17:55:06',NULL),(847,1,29,'2020-05-28 17:55:06',NULL),(848,1,30,'2020-05-28 17:55:06',NULL),(849,1,31,'2020-05-28 17:55:06',NULL),(850,1,32,'2020-05-28 17:55:06',NULL),(851,1,33,'2020-05-28 17:55:06',NULL),(852,1,34,'2020-05-28 17:55:06',NULL),(853,1,35,'2020-05-28 17:55:06',NULL),(854,1,36,'2020-05-28 17:55:06',NULL),(855,1,37,'2020-05-28 17:55:06',NULL),(856,1,39,'2020-05-28 17:55:06',NULL),(857,1,40,'2020-05-28 17:55:06',NULL),(858,1,41,'2020-05-28 17:55:06',NULL),(859,1,42,'2020-05-28 17:55:06',NULL),(860,1,43,'2020-05-28 17:55:06',NULL),(861,1,44,'2020-05-28 17:55:06',NULL),(862,1,45,'2020-05-28 17:55:06',NULL),(883,1,1,'2020-05-28 18:06:56',NULL),(884,1,2,'2020-05-28 18:06:56',NULL),(885,1,3,'2020-05-28 18:06:56',NULL),(886,1,4,'2020-05-28 18:06:56',NULL),(887,1,5,'2020-05-28 18:06:56',NULL),(888,1,6,'2020-05-28 18:06:56',NULL),(889,1,7,'2020-05-28 18:06:56',NULL),(890,1,8,'2020-05-28 18:06:56',NULL),(891,1,9,'2020-05-28 18:06:56',NULL),(892,1,10,'2020-05-28 18:06:56',NULL),(893,1,11,'2020-05-28 18:06:56',NULL),(894,1,12,'2020-05-28 18:06:56',NULL),(895,1,13,'2020-05-28 18:06:56',NULL),(896,1,14,'2020-05-28 18:06:56',NULL),(897,1,16,'2020-05-28 18:06:56',NULL),(898,1,17,'2020-05-28 18:06:56',NULL),(899,1,18,'2020-05-28 18:06:56',NULL),(900,1,19,'2020-05-28 18:06:56',NULL),(901,1,20,'2020-05-28 18:06:56',NULL),(902,1,21,'2020-05-28 18:06:56',NULL),(903,1,22,'2020-05-28 18:06:56',NULL),(904,1,23,'2020-05-28 18:06:56',NULL),(905,1,24,'2020-05-28 18:06:56',NULL),(906,1,25,'2020-05-28 18:06:56',NULL),(907,1,26,'2020-05-28 18:06:56',NULL),(908,1,27,'2020-05-28 18:06:56',NULL),(909,1,28,'2020-05-28 18:06:56',NULL),(910,1,29,'2020-05-28 18:06:56',NULL),(911,1,30,'2020-05-28 18:06:56',NULL),(912,1,31,'2020-05-28 18:06:56',NULL),(913,1,32,'2020-05-28 18:06:56',NULL),(914,1,33,'2020-05-28 18:06:56',NULL),(915,1,34,'2020-05-28 18:06:56',NULL),(916,1,35,'2020-05-28 18:06:56',NULL),(917,1,36,'2020-05-28 18:06:56',NULL),(918,1,37,'2020-05-28 18:06:56',NULL),(919,1,39,'2020-05-28 18:06:56',NULL),(920,1,40,'2020-05-28 18:06:56',NULL),(921,1,41,'2020-05-28 18:06:56',NULL),(922,1,42,'2020-05-28 18:06:56',NULL),(923,1,43,'2020-05-28 18:06:56',NULL),(924,1,44,'2020-05-28 18:06:56',NULL),(925,1,45,'2020-05-28 18:06:56',NULL),(995,1,1,'2020-05-29 12:09:52',NULL),(996,1,2,'2020-05-29 12:09:52',NULL),(997,1,3,'2020-05-29 12:09:52',NULL),(998,1,4,'2020-05-29 12:09:52',NULL),(999,1,5,'2020-05-29 12:09:52',NULL),(1000,1,6,'2020-05-29 12:09:52',NULL),(1001,1,7,'2020-05-29 12:09:52',NULL),(1002,1,8,'2020-05-29 12:09:52',NULL),(1003,1,9,'2020-05-29 12:09:52',NULL),(1004,1,10,'2020-05-29 12:09:52',NULL),(1005,1,11,'2020-05-29 12:09:52',NULL),(1006,1,12,'2020-05-29 12:09:52',NULL),(1007,1,13,'2020-05-29 12:09:52',NULL),(1008,1,14,'2020-05-29 12:09:52',NULL),(1009,1,16,'2020-05-29 12:09:52',NULL),(1010,1,17,'2020-05-29 12:09:52',NULL),(1011,1,18,'2020-05-29 12:09:52',NULL),(1012,1,19,'2020-05-29 12:09:52',NULL),(1013,1,20,'2020-05-29 12:09:52',NULL),(1014,1,21,'2020-05-29 12:09:52',NULL),(1015,1,22,'2020-05-29 12:09:52',NULL),(1016,1,23,'2020-05-29 12:09:52',NULL),(1017,1,24,'2020-05-29 12:09:52',NULL),(1018,1,25,'2020-05-29 12:09:52',NULL),(1019,1,26,'2020-05-29 12:09:52',NULL),(1020,1,27,'2020-05-29 12:09:52',NULL),(1021,1,28,'2020-05-29 12:09:52',NULL),(1022,1,29,'2020-05-29 12:09:52',NULL),(1023,1,30,'2020-05-29 12:09:52',NULL),(1024,1,31,'2020-05-29 12:09:52',NULL),(1025,1,32,'2020-05-29 12:09:52',NULL),(1026,1,33,'2020-05-29 12:09:52',NULL),(1027,1,34,'2020-05-29 12:09:52',NULL),(1028,1,35,'2020-05-29 12:09:52',NULL),(1029,1,36,'2020-05-29 12:09:52',NULL),(1030,1,37,'2020-05-29 12:09:52',NULL),(1031,1,39,'2020-05-29 12:09:52',NULL),(1032,1,40,'2020-05-29 12:09:52',NULL),(1033,1,41,'2020-05-29 12:09:52',NULL),(1034,1,42,'2020-05-29 12:09:52',NULL),(1035,1,43,'2020-05-29 12:09:52',NULL),(1036,1,44,'2020-05-29 12:09:52',NULL),(1037,1,45,'2020-05-29 12:09:52',NULL),(1099,1,1,'2020-06-01 22:05:40',NULL),(1100,1,2,'2020-06-01 22:05:40',NULL),(1101,1,3,'2020-06-01 22:05:40',NULL),(1102,1,4,'2020-06-01 22:05:40',NULL),(1103,1,5,'2020-06-01 22:05:40',NULL),(1104,1,6,'2020-06-01 22:05:40',NULL),(1105,1,7,'2020-06-01 22:05:40',NULL),(1106,1,8,'2020-06-01 22:05:40',NULL),(1107,1,9,'2020-06-01 22:05:40',NULL),(1108,1,10,'2020-06-01 22:05:40',NULL),(1109,1,11,'2020-06-01 22:05:40',NULL),(1110,1,12,'2020-06-01 22:05:40',NULL),(1111,1,13,'2020-06-01 22:05:40',NULL),(1112,1,14,'2020-06-01 22:05:40',NULL),(1113,1,16,'2020-06-01 22:05:40',NULL),(1114,1,17,'2020-06-01 22:05:40',NULL),(1115,1,18,'2020-06-01 22:05:40',NULL),(1116,1,19,'2020-06-01 22:05:40',NULL),(1117,1,20,'2020-06-01 22:05:40',NULL),(1118,1,21,'2020-06-01 22:05:40',NULL),(1119,1,22,'2020-06-01 22:05:40',NULL),(1120,1,23,'2020-06-01 22:05:40',NULL),(1121,1,24,'2020-06-01 22:05:40',NULL),(1122,1,25,'2020-06-01 22:05:40',NULL),(1123,1,26,'2020-06-01 22:05:40',NULL),(1124,1,27,'2020-06-01 22:05:40',NULL),(1125,1,28,'2020-06-01 22:05:40',NULL),(1126,1,29,'2020-06-01 22:05:40',NULL),(1127,1,30,'2020-06-01 22:05:40',NULL),(1128,1,31,'2020-06-01 22:05:40',NULL),(1129,1,32,'2020-06-01 22:05:40',NULL),(1130,1,33,'2020-06-01 22:05:40',NULL),(1131,1,34,'2020-06-01 22:05:40',NULL),(1132,1,35,'2020-06-01 22:05:40',NULL),(1133,1,36,'2020-06-01 22:05:40',NULL),(1134,1,37,'2020-06-01 22:05:40',NULL),(1135,1,39,'2020-06-01 22:05:40',NULL),(1136,1,40,'2020-06-01 22:05:40',NULL),(1137,1,41,'2020-06-01 22:05:40',NULL),(1138,1,42,'2020-06-01 22:05:40',NULL),(1139,1,43,'2020-06-01 22:05:40',NULL),(1140,1,44,'2020-06-01 22:05:40',NULL),(1141,1,45,'2020-06-01 22:05:40',NULL),(1142,1,46,'2020-06-01 22:05:40',NULL),(1143,1,47,'2020-06-01 22:05:40',NULL),(1144,1,48,'2020-06-01 22:05:40',NULL),(1145,1,49,'2020-06-01 22:05:40',NULL),(1208,1,1,'2020-06-02 13:27:01',NULL),(1209,1,2,'2020-06-02 13:27:01',NULL),(1210,1,3,'2020-06-02 13:27:01',NULL),(1211,1,4,'2020-06-02 13:27:01',NULL),(1212,1,5,'2020-06-02 13:27:01',NULL),(1213,1,6,'2020-06-02 13:27:01',NULL),(1214,1,7,'2020-06-02 13:27:01',NULL),(1215,1,8,'2020-06-02 13:27:01',NULL),(1216,1,9,'2020-06-02 13:27:01',NULL),(1217,1,10,'2020-06-02 13:27:01',NULL),(1218,1,11,'2020-06-02 13:27:01',NULL),(1219,1,12,'2020-06-02 13:27:01',NULL),(1220,1,13,'2020-06-02 13:27:01',NULL),(1221,1,14,'2020-06-02 13:27:01',NULL),(1222,1,16,'2020-06-02 13:27:01',NULL),(1223,1,17,'2020-06-02 13:27:01',NULL),(1224,1,18,'2020-06-02 13:27:01',NULL),(1225,1,19,'2020-06-02 13:27:01',NULL),(1226,1,20,'2020-06-02 13:27:01',NULL),(1227,1,21,'2020-06-02 13:27:01',NULL),(1228,1,22,'2020-06-02 13:27:01',NULL),(1229,1,23,'2020-06-02 13:27:01',NULL),(1230,1,24,'2020-06-02 13:27:01',NULL),(1231,1,25,'2020-06-02 13:27:01',NULL),(1232,1,26,'2020-06-02 13:27:01',NULL),(1233,1,27,'2020-06-02 13:27:01',NULL),(1234,1,28,'2020-06-02 13:27:01',NULL),(1235,1,29,'2020-06-02 13:27:01',NULL),(1236,1,30,'2020-06-02 13:27:01',NULL),(1237,1,31,'2020-06-02 13:27:01',NULL),(1238,1,32,'2020-06-02 13:27:01',NULL),(1239,1,33,'2020-06-02 13:27:01',NULL),(1240,1,34,'2020-06-02 13:27:01',NULL),(1241,1,35,'2020-06-02 13:27:01',NULL),(1242,1,36,'2020-06-02 13:27:01',NULL),(1243,1,37,'2020-06-02 13:27:01',NULL),(1244,1,39,'2020-06-02 13:27:01',NULL),(1245,1,40,'2020-06-02 13:27:01',NULL),(1246,1,41,'2020-06-02 13:27:01',NULL),(1247,1,42,'2020-06-02 13:27:01',NULL),(1248,1,43,'2020-06-02 13:27:01',NULL),(1249,1,44,'2020-06-02 13:27:01',NULL),(1250,1,45,'2020-06-02 13:27:01',NULL),(1251,1,46,'2020-06-02 13:27:01',NULL),(1252,1,47,'2020-06-02 13:27:01',NULL),(1253,1,48,'2020-06-02 13:27:01',NULL),(1254,1,49,'2020-06-02 13:27:01',NULL),(1255,1,50,'2020-06-02 13:27:01',NULL),(1256,1,51,'2020-06-02 13:27:01',NULL),(1257,1,52,'2020-06-02 13:27:01',NULL),(1258,1,53,'2020-06-02 13:27:01',NULL),(1271,2,1,'2020-06-02 13:27:01',67),(1272,2,2,'2020-06-02 13:27:01',67),(1273,2,3,'2020-06-02 13:27:01',67),(1274,2,4,'2020-06-02 13:27:01',67),(1275,2,5,'2020-06-02 13:27:01',67),(1276,2,8,'2020-06-02 13:27:01',67),(1277,2,9,'2020-06-02 13:27:01',67),(1278,2,10,'2020-06-02 13:27:01',67),(1279,2,11,'2020-06-02 13:27:01',67),(1280,2,6,'2020-06-02 13:27:01',67),(1281,2,7,'2020-06-02 13:27:01',67),(1282,2,12,'2020-06-02 13:27:01',67),(1283,2,13,'2020-06-02 13:27:01',67),(1284,2,14,'2020-06-02 13:27:01',67),(1285,2,29,'2020-06-02 13:27:01',67),(1286,2,45,'2020-06-02 13:27:01',67),(1287,2,30,'2020-06-02 13:27:01',67),(1288,2,31,'2020-06-02 13:27:01',67),(1289,2,32,'2020-06-02 13:27:01',67),(1290,2,33,'2020-06-02 13:27:01',67),(1291,2,34,'2020-06-02 13:27:01',67),(1292,2,44,'2020-06-02 13:27:01',67),(1293,2,18,'2020-06-02 13:27:01',67),(1294,2,19,'2020-06-02 13:27:01',67),(1295,2,20,'2020-06-02 13:27:01',67),(1296,2,21,'2020-06-02 13:27:01',67),(1297,2,22,'2020-06-02 13:27:01',67),(1298,2,23,'2020-06-02 13:27:01',67),(1299,2,24,'2020-06-02 13:27:01',67),(1300,2,35,'2020-06-02 13:27:01',67),(1301,2,36,'2020-06-02 13:27:01',67),(1302,2,37,'2020-06-02 13:27:01',67),(1303,2,25,'2020-06-02 13:27:01',67),(1304,2,26,'2020-06-02 13:27:01',67),(1305,2,27,'2020-06-02 13:27:01',67),(1306,2,28,'2020-06-02 13:27:01',67),(1307,2,39,'2020-06-02 13:27:01',67),(1308,2,40,'2020-06-02 13:27:01',67),(1309,2,41,'2020-06-02 13:27:01',67),(1310,2,42,'2020-06-02 13:27:01',67),(1311,2,43,'2020-06-02 13:27:01',67),(1312,2,46,'2020-06-02 13:27:01',67),(1313,2,47,'2020-06-02 13:27:01',67),(1314,2,48,'2020-06-02 13:27:01',67),(1315,2,49,'2020-06-02 13:27:01',67),(1316,2,0,'2020-06-02 13:27:01',67),(1317,2,50,'2020-06-02 13:27:01',67),(1318,2,51,'2020-06-02 13:27:01',67),(1319,2,52,'2020-06-02 13:27:01',67),(1320,2,53,'2020-06-02 13:27:01',67);
 /*!40000 ALTER TABLE `authorization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `consumableoprtns` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `StatusID` int DEFAULT NULL,
   PRIMARY KEY (`idconsumableOprtns`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `consumableoprtns` (
 
 LOCK TABLES `consumableoprtns` WRITE;
 /*!40000 ALTER TABLE `consumableoprtns` DISABLE KEYS */;
-INSERT INTO `consumableoprtns` VALUES (2,80,2,NULL,NULL,NULL,'sc sd','2020-04-25 06:25:41',20),(3,80,50,2000,11,156,'adscs','2020-05-14 11:11:15',16),(4,87,123,0,0,156,'vv','2020-05-14 11:12:30',1),(5,88,0,0,0,156,'kk','2020-05-14 17:58:15',1),(6,89,11,1111,11,156,'ade','2020-05-14 18:20:10',1),(8,81,10,4,11,156,'added','2020-05-19 15:16:30',16),(9,81,3,12,NULL,156,'consumdddd','2020-05-19 15:17:02',17),(10,81,2,12,NULL,0,'ecws','2020-05-19 15:17:20',19),(11,82,2,22,NULL,0,'df','2020-05-19 15:21:21',19),(12,81,2,4,11,156,'2222','2020-05-19 17:57:23',16),(13,91,-2,0,0,156,'ac','2020-05-19 18:58:26',1),(14,92,0,0,0,156,'wdc','2020-05-19 19:00:09',1),(15,93,0,0,0,156,'cdsd','2020-05-19 19:04:10',1),(16,94,0,0,0,156,'sssss','2020-05-19 19:08:15',1),(17,80,2,NULL,NULL,NULL,NULL,'2020-05-21 13:59:25',12),(18,81,2,NULL,NULL,NULL,NULL,'2020-05-21 13:59:25',12),(19,81,2,NULL,NULL,NULL,NULL,'2020-05-25 11:38:50',12);
+INSERT INTO `consumableoprtns` VALUES (2,80,2,NULL,NULL,NULL,'sc sd','2020-04-25 06:25:41',20),(3,80,50,2000,11,156,'adscs','2020-05-14 11:11:15',16),(4,87,123,0,0,156,'vv','2020-05-14 11:12:30',1),(5,88,0,0,0,156,'kk','2020-05-14 17:58:15',1),(6,89,11,1111,11,156,'ade','2020-05-14 18:20:10',1),(8,81,10,4,11,156,'added','2020-05-19 15:16:30',16),(9,81,3,12,NULL,156,'consumdddd','2020-05-19 15:17:02',17),(10,81,2,12,NULL,0,'ecws','2020-05-19 15:17:20',19),(11,82,2,22,NULL,0,'df','2020-05-19 15:21:21',19),(12,81,2,4,11,156,'2222','2020-05-19 17:57:23',16),(13,91,-2,0,0,156,'ac','2020-05-19 18:58:26',1),(14,92,0,0,0,156,'wdc','2020-05-19 19:00:09',1),(15,93,0,0,0,156,'cdsd','2020-05-19 19:04:10',1),(16,94,0,0,0,156,'sssss','2020-05-19 19:08:15',1),(17,80,2,NULL,NULL,NULL,NULL,'2020-05-21 13:59:25',12),(18,81,2,NULL,NULL,NULL,NULL,'2020-05-21 13:59:25',12),(19,81,2,NULL,NULL,NULL,NULL,'2020-05-25 11:38:50',12),(22,81,10,4,NULL,156,'added from Requisition','2020-06-03 15:27:30',25),(23,81,10,4,NULL,156,'added from Requisition','2020-06-03 15:27:30',25);
 /*!40000 ALTER TABLE `consumableoprtns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +176,7 @@ CREATE TABLE `consumables` (
 
 LOCK TABLES `consumables` WRITE;
 /*!40000 ALTER TABLE `consumables` DISABLE KEYS */;
-INSERT INTO `consumables` VALUES (80,1,'SYS/CNSMBL/001','Tissues ','images.jpg',79,10,2000,50,NULL,16,14,'2020-04-23 10:37:23','2020-05-21 16:21:46','','','','','','','','','','','','','','','','Active',NULL,NULL),(81,3,'SYS/CNSMBL/081','perfumes ','product_462_1.jpg',16,5,100,10,NULL,16,14,'2020-04-23 10:38:53','2020-05-25 11:35:16','','','','','','','','','','','','','','','','Active',NULL,NULL),(82,2,'SYS/CNSMBL/082','pens for accounts','',48,5,10,50,NULL,23,14,'2020-04-23 23:14:44','2020-05-19 17:55:00','','','','','','','','','','','','','','','','InActive',NULL,156),(85,3,'SYS/CNSMBL/081','perfumes ','product_462_1.jpg',4,5,100,10,NULL,12,15,'2020-04-25 05:04:35','2020-05-25 11:38:49','','','','','','','','','','','','','','','','Active',NULL,NULL),(94,63,'SBS/CNSMBL/93','sssss','',0,10000,11,10,NULL,16,14,'2020-05-19 19:08:15','2020-05-19 19:10:08','','','','','','','','','','','','','','','','Active',156,156);
+INSERT INTO `consumables` VALUES (80,1,'SYS/CNSMBL/001','Tissues ','images.jpg',79,10,2000,50,NULL,16,14,'2020-04-23 10:37:23','2020-05-21 16:21:46','','','','','','','','','','','','','','','','Active',NULL,NULL),(81,3,'SYS/CNSMBL/081','perfumes ','product_462_1.jpg',36,5,100,10,NULL,16,14,'2020-04-23 10:38:53','2020-06-03 15:27:30','','','','','','','','','','','','','','','','Active',NULL,NULL),(82,2,'SYS/CNSMBL/082','pens for accounts','',48,5,10,50,NULL,23,14,'2020-04-23 23:14:44','2020-05-19 17:55:00','','','','','','','','','','','','','','','','InActive',NULL,156),(85,3,'SYS/CNSMBL/081','perfumes ','product_462_1.jpg',4,5,100,10,NULL,12,15,'2020-04-25 05:04:35','2020-05-25 11:38:49','','','','','','','','','','','','','','','','Active',NULL,NULL),(94,63,'SBS/CNSMBL/93','sssss','',0,10000,11,10,NULL,23,14,'2020-05-19 19:08:15','2020-05-28 17:50:29','','','','','','','','','','','','','','','','InActive',156,156);
 /*!40000 ALTER TABLE `consumables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -308,7 +308,7 @@ CREATE TABLE `consumables_history` (
   `ActionePerformed` varchar(50) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`idconsumables_History`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -317,7 +317,7 @@ CREATE TABLE `consumables_history` (
 
 LOCK TABLES `consumables_history` WRITE;
 /*!40000 ALTER TABLE `consumables_history` DISABLE KEYS */;
-INSERT INTO `consumables_history` VALUES (91,91,62,'SBS/CNSMBL/91','ac','',0,11,11,11,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 18:58:26',156,'Asset Created',91),(93,92,63,'SBS/CNSMBL/92','wdc','',0,11,11,11,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 19:00:09',156,'Asset Created',92),(95,93,62,'SBS/CNSMBL/93','cdsd','',0,11,11,11,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 19:04:09',156,'Asset Created',93),(98,94,63,'SBS/CNSMBL/93','sssss','',0,10,11,10,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 19:08:15',156,'Asset Created',94),(111,85,3,'SYS/CNSMBL/081','perfumes ','product_462_1.jpg',2,5,100,10,NULL,12,15,'','','','','','','','','','','','','','','','Active','2020-05-25 11:38:49',NULL,'Asset Updated',85);
+INSERT INTO `consumables_history` VALUES (91,91,62,'SBS/CNSMBL/91','ac','',0,11,11,11,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 18:58:26',156,'Asset Created',91),(93,92,63,'SBS/CNSMBL/92','wdc','',0,11,11,11,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 19:00:09',156,'Asset Created',92),(95,93,62,'SBS/CNSMBL/93','cdsd','',0,11,11,11,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 19:04:09',156,'Asset Created',93),(98,94,63,'SBS/CNSMBL/93','sssss','',0,10,11,10,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-19 19:08:15',156,'Asset Created',94),(112,94,63,'SBS/CNSMBL/93','sssss','',0,10000,11,10,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-05-28 17:50:29',156,'Asset Updated',94),(116,81,3,'SYS/CNSMBL/081','perfumes ','product_462_1.jpg',26,5,100,10,NULL,16,14,'','','','','','','','','','','','','','','','Active','2020-06-03 15:27:30',NULL,'Asset Updated',81);
 /*!40000 ALTER TABLE `consumables_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +417,7 @@ CREATE TABLE `emails` (
   `Created_On` datetime DEFAULT CURRENT_TIMESTAMP,
   `Reason` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`idEmails`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -426,7 +426,7 @@ CREATE TABLE `emails` (
 
 LOCK TABLES `emails` WRITE;
 /*!40000 ALTER TABLE `emails` DISABLE KEYS */;
-INSERT INTO `emails` VALUES (16,'','ITAsset(s) requested by - ',' requested below assets <br /><table   border=\'1\' width=\'50%\'> <thead><th>Asset Type</th><th>Description</th></thead><tbody><tr><td>CPU</td><td>from manger</td></tr></tbody></table><br/><p>Approver : Prem co admn</p><br/><p>Priority : High</p>',12,'Retry',3,'2020-05-14 13:02:45','555 5.5.2 Syntax error. a2sm653238pfl.12 - gsmtp'),(17,'','ITAsset(s) requested by - ',' requested below assets <br /><table   border=\'1\' width=\'50%\'> <thead><th>Asset Type</th><th>Description</th></thead><tbody><tr><td>Monitor</td><td>sdc</td></tr></tbody></table><br/><p>Approver : premcotl</p><br/><p>Priority : Low</p>',12,'Retry',3,'2020-05-14 14:03:13','read tcp [2401:4900:33a7:377:114:52a7:4b59:21a5]:56642->[2404:6800:4003:c02::6c]:587: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.'),(18,'','ITAsset(s) requested by - ',' requested below assets <br /><table   border=\'1\' width=\'50%\'> <thead><th>Asset Type</th><th>Description</th></thead><tbody><tr><td>Monitor</td><td>dsc</td></tr><tr><td>Laptops</td><td>sdc </td></tr></tbody></table><br/><p>Approver : premcotl</p><br/><p>Priority : Low</p>',12,'Retry',3,'2020-05-14 14:07:32','read tcp [2401:4900:33a7:377:114:52a7:4b59:21a5]:56643->[2404:6800:4003:c02::6c]:587: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.'),(19,'','ITAsset(s) requested by - ',' requested below assets <br /><table   border=\'1\' width=\'50%\'> <thead><th>Asset Type</th><th>Description</th></thead><tbody><tr><td>Laptops</td><td>ec</td></tr></tbody></table><br/><p>Approver : anil mngr</p><br/><p>Priority : Low</p>',12,'Retry',3,'2020-05-14 14:46:28','read tcp [2401:4900:33a7:377:114:52a7:4b59:21a5]:56641->[2404:6800:4003:c02::6c]:587: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.'),(20,'','OutWard Request','Hi <br/><p>You got new outward approve request.</p>',12,'Retry',3,'2020-05-20 14:45:22','555 5.5.2 Syntax error. l133sm4317306qke.105 - gsmtp'),(21,'','OutWard Request','Hi <br/><p>You got new outward approve request.</p>',12,'Retry',3,'2020-05-20 14:47:47','555 5.5.2 Syntax error. q7sm4159702qki.56 - gsmtp'),(22,'','NonITAsset(s) requested by - ',' requested below assets <br /><table   border=\'1\' width=\'50%\'> <thead><th>Asset Type</th><th>Description</th></thead><tbody><tr><td>Air Cooler/Fans</td><td>air cooler</td></tr></tbody></table><br/><p>Approver : premcotl</p><br/><p>Priority : Low</p>',12,'Retry',3,'2020-05-22 18:42:32','555 5.5.2 Syntax error. v1sm11052489pgl.11 - gsmtp'),(23,'dehh@iji.com','OutWard Request','Hi premcotl<br/><p>You got new outward approve request.</p>',1,'Retry',3,'2020-05-24 21:19:08','dial tcp: lookup smtp.gmail.com: no such host'),(24,'dehh@iji.com','OutWard Request','Hi premcotl<br/><p>You got new outward approve request.</p>',1,'Retry',3,'2020-05-24 21:21:05','dial tcp: lookup smtp.gmail.com: no such host'),(25,'prem@ss.cm','Outward Request Approval','<p>Hai anil mngr</p><p>One New Outward Request forwarded to you. Please check the Outward Approval list</p>',1,'Retry',2,'2020-05-24 23:01:40','dial tcp: lookup smtp.gmail.com: no such host'),(26,'a@b.com','Outward Request Approval','<p>Hai Prem co admn</p><p>One New Outward Request forwarded to you. Please check the Outward Approval list</p>',1,'Retry',2,'2020-05-24 23:07:43','dial tcp: lookup smtp.gmail.com: no such host');
+INSERT INTO `emails` VALUES (29,'premkumar.regulla@gmail.com','Stock Reached Threshold levels','<table   border=\'1\' width=\'50%\'> <thead><th>Asset Name</th><th>Identification No</th><th>Available Quantity</th><th>Threshold Quantity</th></thead><tbody><tr><td>Chairs</td><td>SYS/NONITASSETS/002</td><td>1</td><td>5</td></tr></tbody></table>',12,'Retry',3,'2020-05-28 15:34:36','EOF'),(30,'','PO Request Approval','<p>Hai </p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',12,'Retry',3,'2020-06-01 13:24:17','555 5.5.2 Syntax error. h4sm618091pjq.55 - gsmtp'),(31,'','PO Request Approval','<p>Hai </p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',12,'Retry',3,'2020-06-01 14:47:34','555 5.5.2 Syntax error. w6sm4481551pjy.15 - gsmtp'),(32,'','PO Request Approval','<p>Hai </p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',12,'Retry',3,'2020-06-01 16:40:50','555 5.5.2 Syntax error. f14sm1571989qka.70 - gsmtp'),(33,'','PO Request Approval','<p>Hai </p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',12,'Retry',3,'2020-06-01 16:47:05','555 5.5.2 Syntax error. h8sm1556618qto.0 - gsmtp'),(34,'dehh@iji.com','PO Request Approval','<p>Hai premcotl</p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',1,'Retry',1,'2020-06-01 16:48:48','534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu\n5.7.14 vbMuuDdIN4VTzP_YBUU2J-i4M_UTFSSi3plco4z4rxl91UZaq6WaLfRXQ_gE7_8kidIEL\n5.7.14 aI_2hn8TBlvIUFkEvLfr_iVa1FeOzGbZ-DuFzgnXL0q1YiUVPrEDY3AVNKPLdiPq>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 m14sm12679232pgt.6 - gsmtp'),(35,'','PO Request Approved','<p>Hai </p><p>PO request is approved succesfully.Please check the status in Purchase order details.</p>',12,'Retry',3,'2020-06-01 16:51:25','555 5.5.2 Syntax error. h8sm1556617qto.0 - gsmtp'),(36,'','PO Request Approval','<p>Hai </p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',12,'Retry',3,'2020-06-01 19:00:36','555 5.5.2 Syntax error. v53sm1896283qtv.10 - gsmtp'),(37,'','PO Request Approved','<p>Hai </p><p>PO request is approved succesfully.Please check the status in Purchase order details.</p>',12,'Retry',3,'2020-06-01 19:08:43','555 5.5.2 Syntax error. l19sm1752851qtq.13 - gsmtp'),(38,'','PO Request Approval','<p>Hai </p><p>One New PO Request forwarded to you. Please check the PO Approval list</p>',12,'Retry',3,'2020-06-02 11:26:03','555 5.5.2 Syntax error. p11sm2130424qtb.4 - gsmtp'),(39,'','Requisition Request Approval','<p>Hai </p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>',12,'Retry',3,'2020-06-02 19:37:36','555 5.5.2 Syntax error. 138sm1125288qkk.38 - gsmtp'),(40,'','Requisition Request Approval','<p>Hai </p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>',12,'Retry',3,'2020-06-02 19:39:45','555 5.5.2 Syntax error. y129sm1118671qkc.1 - gsmtp'),(41,'','Requisition Request Approval','<p>Hai </p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>',12,'Retry',3,'2020-06-02 19:41:44','555 5.5.2 Syntax error. a15sm1053567qkl.20 - gsmtp'),(42,'','Requisition Request Approval','<p>Hai </p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>',12,'Retry',3,'2020-06-02 19:46:37','555 5.5.2 Syntax error. e1sm1460788qto.51 - gsmtp'),(43,'','Requisition Request Approval','<p>Hai </p><p>One New Requisition Request forwarded to you. Please check the Requisition Approval list</p>',12,'Retry',3,'2020-06-02 19:56:09','555 5.5.2 Syntax error. v144sm1135552qka.69 - gsmtp'),(44,'','Requisition Request Approved','<p>Hai </p><p>Requisition request is approved succesfully.Please check the status in Requisition details.</p>',12,'Retry',3,'2020-06-03 10:51:59','555 5.5.2 Syntax error. 80sm1026682qkl.116 - gsmtp'),(45,'','Requisition Request Approved','<p>Hai </p><p>Requisition request is approved succesfully.Please check the status in Requisition details.</p>',12,'Retry',3,'2020-06-03 10:53:48','555 5.5.2 Syntax error. z19sm1478462qtz.81 - gsmtp'),(46,'','Requisition Request Approved','<p>Hai </p><p>Requisition request is approved succesfully.Please check the status in Requisition details.</p>',12,'Retry',3,'2020-06-03 10:58:25','555 5.5.2 Syntax error. r57sm1539242qtr.41 - gsmtp');
 /*!40000 ALTER TABLE `emails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,7 +470,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Sreekanth','Adm','vvvvv','1994-05-08','premkumar.regulla@gmail.com','1234567889','Hyderabad','d','photo-1503023345310-bd7c1de61c7d.jpg',1,3,0,1,'2020-02-22',14,'Male','Active','2020-04-27 07:53:38','2020-05-05 11:41:15',1,NULL),(156,'Prem co admn','loc','eeeeeee','2020-04-29','a@b.com','3333333333','eeeeee','eeeeeeeee','59-512.png',2,0,14,2,'2020-04-28',14,'Male','Active','2020-05-01 17:24:52','2020-05-05 14:28:45',1,1),(158,'prem co emp','emp','2222','2020-05-05','a@A.com','2222222222','222','222','',1,0,17,1,'2020-05-04',14,'Male','Active','2020-05-05 14:28:25','2020-05-05 14:28:25',NULL,1),(159,'prem rd emp','e','555','2020-05-04','aa@dd.com','5555555555','55','55','',1,0,19,1,'2020-05-04',15,'Male','Active','2020-05-05 14:34:11','2020-05-05 14:34:11',NULL,1),(160,'prem rd admn','r','svdzfv','2020-05-04','ff@d.com','3222423434','svs','sfvs','',2,0,14,1,'2020-05-04',15,'Male','Active','2020-05-05 14:36:06','2020-05-05 14:36:06',NULL,1),(161,'cws','edcw','wefc','2020-05-05','qadxqw@fs.csf','3444444444','345345','efew','',3,0,0,3,'2020-05-04',14,'Male','Active','2020-05-05 15:32:22','2020-05-05 15:32:22',NULL,156),(163,'anil mngr','w','252','2020-05-12','prem@ss.cm','3432525245','52454','2525','',1,4,16,4,'2020-05-12',14,'Male','Active','2020-05-12 11:08:41','2020-05-12 11:08:41',NULL,156),(164,'premcotl','TL','324234','2020-05-11','dehh@iji.com','8973981378','dfbdb','dfbvfdbvdf','',1,0,13,3,'2020-04-28',14,'Male','Active','2020-05-12 17:45:44','2020-05-12 17:46:05',163,163);
+INSERT INTO `employees` VALUES (1,'Sreekanth','Adm','vvvvv','1994-05-08','a@a.com','1234567889','Hyderabad','d','photo-1503023345310-bd7c1de61c7d.jpg',1,3,0,1,'2020-02-22',14,'Male','Active','2020-04-27 07:53:38','2020-05-28 13:40:31',1,NULL),(156,'Prem co admn','loc','eeeeeee','2020-04-29','premkumar.regulla@gmail.com','3333333333','eeeeee','eeeeeeeee','59-512.png',2,0,14,2,'2020-04-28',14,'Male','Active','2020-05-01 17:24:52','2020-05-28 13:40:31',1,1),(158,'prem co emp','emp','2222','2020-05-05','a@A.com','2222222222','222','222','',1,0,17,1,'2020-05-04',14,'Male','Active','2020-05-05 14:28:25','2020-05-05 14:28:25',NULL,1),(159,'prem rd emp','e','555','2020-05-04','aa@dd.com','5555555555','55','55','',1,0,19,1,'2020-05-04',15,'Male','Active','2020-05-05 14:34:11','2020-05-05 14:34:11',NULL,1),(160,'prem rd admn','r','svdzfv','2020-05-04','ff@d.com','3222423434','svs','sfvs','',2,0,14,1,'2020-05-04',15,'Male','Active','2020-05-05 14:36:06','2020-05-05 14:36:06',NULL,1),(163,'anil mngr','w','252','2020-05-12','prem@ss.cm','3432525245','52454','2525','',1,4,16,4,'2020-05-12',14,'Male','Active','2020-05-12 11:08:41','2020-05-12 11:08:41',NULL,156),(164,'premcotl','TL','324234','2020-05-11','dehh@iji.com','8973981378','dfbdb','dfbvfdbvdf','',1,0,13,3,'2020-04-28',14,'Male','Active','2020-05-12 17:45:44','2020-05-12 17:46:05',163,163);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -551,7 +551,7 @@ CREATE TABLE `employeeshistory` (
   `CreatedBy` int DEFAULT NULL,
   `ActionPerformed` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`IDemployeesHistory`)
-) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -560,7 +560,7 @@ CREATE TABLE `employeeshistory` (
 
 LOCK TABLES `employeeshistory` WRITE;
 /*!40000 ALTER TABLE `employeeshistory` DISABLE KEYS */;
-INSERT INTO `employeeshistory` VALUES (173,NULL,'cws','edcw','wefc','2020-05-05','qadxqw@fs.csf','3444444444','345345','efew','',3,0,0,3,'2020-05-04',14,'Male','Active','2020-05-05 15:32:22',156,'Employee added'),(174,162,'sdvc','svdcs','dgvsdg','2020-05-05','ss@dd.com','4543534634','rdg','dffb','',1,0,1,1,'2020-05-05',14,'Male','Active','2020-05-06 14:01:56',1,'Employee added'),(175,163,'anil mngr','w','252','2020-05-12','prem@ss.cm','3432525245','52454','2525','',1,4,16,4,'2020-05-12',14,'Male','Active','2020-05-12 11:08:41',156,'Employee added'),(176,164,'premcontl','TL','324234','2020-05-11','dehh@iji.com','8973981378','dfbdb','dfbvfdbvdf','',1,0,13,3,'2020-04-28',14,'Male','Active','2020-05-12 17:45:44',163,'Employee added'),(177,164,'premcontl','TL','324234','2020-05-11','dehh@iji.com','8973981378','dfbdb','dfbvfdbvdf','',1,0,13,3,'2020-04-28',14,'Male','Active','2020-05-12 17:46:05',NULL,'Employee Updated');
+INSERT INTO `employeeshistory` VALUES (173,NULL,'cws','edcw','wefc','2020-05-05','qadxqw@fs.csf','3444444444','345345','efew','',3,0,0,3,'2020-05-04',14,'Male','Active','2020-05-05 15:32:22',156,'Employee added'),(174,162,'sdvc','svdcs','dgvsdg','2020-05-05','ss@dd.com','4543534634','rdg','dffb','',1,0,1,1,'2020-05-05',14,'Male','Active','2020-05-06 14:01:56',1,'Employee added'),(175,163,'anil mngr','w','252','2020-05-12','prem@ss.cm','3432525245','52454','2525','',1,4,16,4,'2020-05-12',14,'Male','Active','2020-05-12 11:08:41',156,'Employee added'),(176,164,'premcontl','TL','324234','2020-05-11','dehh@iji.com','8973981378','dfbdb','dfbvfdbvdf','',1,0,13,3,'2020-04-28',14,'Male','Active','2020-05-12 17:45:44',163,'Employee added'),(177,164,'premcontl','TL','324234','2020-05-11','dehh@iji.com','8973981378','dfbdb','dfbvfdbvdf','',1,0,13,3,'2020-04-28',14,'Male','Active','2020-05-12 17:46:05',NULL,'Employee Updated'),(178,156,'Prem co admn','loc','eeeeeee','2020-04-29','a@b.com','3333333333','eeeeee','eeeeeeeee','59-512.png',2,0,14,2,'2020-04-28',14,'Male','Active','2020-05-28 13:40:31',1,'Employee Updated'),(179,1,'Sreekanth','Adm','vvvvv','1994-05-08','premkumar.regulla@gmail.com','1234567889','Hyderabad','d','photo-1503023345310-bd7c1de61c7d.jpg',1,3,0,1,'2020-02-22',14,'Male','Active','2020-05-28 13:40:31',1,'Employee Updated');
 /*!40000 ALTER TABLE `employeeshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -577,7 +577,7 @@ CREATE TABLE `features_list` (
   `Module` varchar(45) DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idFeatures_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,7 +586,7 @@ CREATE TABLE `features_list` (
 
 LOCK TABLES `features_list` WRITE;
 /*!40000 ALTER TABLE `features_list` DISABLE KEYS */;
-INSERT INTO `features_list` VALUES (1,'Add Employee','Employee','2020-04-28 22:00:40'),(2,'Update Employee','Employee','2020-04-28 22:00:40'),(3,'Delete Employee','Employee','2020-04-28 22:00:40'),(4,'View Employee','Employee','2020-04-29 17:36:17'),(5,'Employee List','Employee','2020-04-29 17:36:17'),(6,'Add ITAsset','IT Assets','2020-04-29 17:36:17'),(7,'Edit ITAsset','IT Assets','2020-04-29 17:36:17'),(8,'Password Reset','User','2020-04-30 21:16:34'),(9,'Active InActive','User','2020-04-30 21:16:34'),(10,'Create User','User','2020-04-30 21:16:34'),(11,'Edit User','User','2020-04-30 21:22:08'),(12,'ITAsset Request','IT Assets','2020-05-04 10:25:06'),(13,'ITAsset CheckOut','IT Assets','2020-05-04 10:25:06'),(14,'ITAsset List','IT Assets','2020-05-04 10:27:49'),(15,'ITAsset Request','IT Asset','2020-05-04 10:29:31'),(16,'Access to all locations','User','2020-05-05 12:44:11'),(17,'Retire','IT Asset','2020-05-07 13:28:12'),(18,'Add Consumable','Consumables','2020-05-19 19:54:34'),(19,'Edit Consumable','Consumables','2020-05-19 19:54:34'),(20,'Delete Consumable','Consumables','2020-05-19 19:54:34'),(21,'Consumable List','Consumables','2020-05-19 19:54:34'),(22,'Add Consumable Stock','Consumables','2020-05-19 19:54:34'),(23,'Consumable Consume','Consumables','2020-05-19 19:54:34'),(24,'Consumable Retire','Consumables','2020-05-19 19:54:34'),(25,'OutWard Request','InWard-OutWard','2020-05-22 09:59:27'),(26,'OutWard List','InWard-OutWard','2020-05-22 09:59:27'),(27,'InWard List','InWard-OutWard','2020-05-22 09:59:27'),(28,'Approval List','InWard-OutWard','2020-05-22 09:59:27');
+INSERT INTO `features_list` VALUES (1,'Add Employee','Employee','2020-04-28 22:00:40'),(2,'Update Employee','Employee','2020-04-28 22:00:40'),(3,'Delete Employee','Employee','2020-04-28 22:00:40'),(4,'View Employee','Employee','2020-04-29 17:36:17'),(5,'Employee List','Employee','2020-04-29 17:36:17'),(6,'Add ITAsset','IT Assets','2020-04-29 17:36:17'),(7,'Edit ITAsset','IT Assets','2020-04-29 17:36:17'),(8,'Password Reset','User','2020-04-30 21:16:34'),(9,'Active InActive','User','2020-04-30 21:16:34'),(10,'Create User','User','2020-04-30 21:16:34'),(11,'Edit User','User','2020-04-30 21:22:08'),(12,'ITAsset Request','IT Assets','2020-05-04 10:25:06'),(13,'ITAsset CheckOut','IT Assets','2020-05-04 10:25:06'),(14,'ITAsset List','IT Assets','2020-05-04 10:27:49'),(16,'Access to all locations','User','2020-05-05 12:44:11'),(17,'Retire','IT Asset','2020-05-07 13:28:12'),(18,'Add Consumable','Consumables','2020-05-19 19:54:34'),(19,'Edit Consumable','Consumables','2020-05-19 19:54:34'),(20,'Delete Consumable','Consumables','2020-05-19 19:54:34'),(21,'Consumable List','Consumables','2020-05-19 19:54:34'),(22,'Add Consumable Stock','Consumables','2020-05-19 19:54:34'),(23,'Consumable Consume','Consumables','2020-05-19 19:54:34'),(24,'Consumable Retire','Consumables','2020-05-19 19:54:34'),(25,'OutWard Request','InWard-OutWard','2020-05-22 09:59:27'),(26,'OutWard List','InWard-OutWard','2020-05-22 09:59:27'),(27,'InWard List','InWard-OutWard','2020-05-22 09:59:27'),(28,'Approval List','InWard-OutWard','2020-05-22 09:59:27'),(29,'Retired ITAssets List','IT Assets','2020-05-26 19:19:12'),(30,'Add NonITAsset','Non ITAssets','2020-05-26 19:21:27'),(31,'Edit NonITAsset','Non ITAssets','2020-05-26 19:21:27'),(32,'NonITAsset Request','Non ITAssets','2020-05-26 19:21:27'),(33,'NonITAsset CheckOut','Non ITAssets','2020-05-26 19:21:27'),(34,'NonITAsset List','Non ITAssets','2020-05-26 19:21:27'),(35,'ITAsset Request List','Requests','2020-05-26 19:26:48'),(36,'Non ITAsset Request List','Requests','2020-05-26 19:26:48'),(37,'ITAsset Service Request List','Requests','2020-05-26 19:26:48'),(39,'Lcations','Settings','2020-05-27 11:16:15'),(40,'Vendors','Settings','2020-05-27 11:16:15'),(41,'Authorizations','Settings','2020-05-27 11:16:15'),(42,'Add NonITAsset Names','Settings','2020-05-27 11:16:15'),(43,'Multi Level Approval','Settings','2020-05-27 11:16:15'),(44,'Delete NonITAsset','Non ITAssets','2020-05-28 17:47:47'),(45,'Delete ITAsset','IT Assets','2020-05-28 17:49:04'),(46,'Create PO','PO','2020-06-01 22:00:35'),(47,'Edit PO','PO','2020-06-01 22:00:35'),(48,'PO Approval List','PO','2020-06-01 22:00:35'),(49,'PO Details','PO','2020-06-01 22:01:25'),(50,'Create Requisition','Requisition','2020-06-02 13:15:06'),(51,'Edit Requisition','Requisition','2020-06-02 13:15:06'),(52,'Requisition Approval List','Requisition','2020-06-02 13:15:06'),(53,'Requisition Details','Requisition','2020-06-02 13:15:06');
 /*!40000 ALTER TABLE `features_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -637,7 +637,7 @@ CREATE TABLE `inwardoutward` (
   `StatusUpdatedOn` datetime DEFAULT NULL,
   `IsMsngStcksRslvdMain` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idInWardOutWard`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -646,7 +646,7 @@ CREATE TABLE `inwardoutward` (
 
 LOCK TABLES `inwardoutward` WRITE;
 /*!40000 ALTER TABLE `inwardoutward` DISABLE KEYS */;
-INSERT INTO `inwardoutward` VALUES (14,'TR20200520144743',15,14,156,160,'ASXSDC',9,'2020-05-20 14:47:43',NULL,NULL),(15,'TR20200520192503',15,14,163,160,'acs',14,'2020-05-20 19:25:03','2020-05-21 10:20:37',NULL),(16,'TR20200521131415',15,14,164,160,'efce',13,'2020-05-21 13:14:15','2020-05-21 13:59:26',NULL),(17,'TR20200521162146',15,14,164,160,'aedcw',9,'2020-05-21 16:21:46',NULL,NULL),(18,'TR20200524211907',15,14,156,160,'sdcdsv',12,'2020-05-24 21:19:07','2020-05-25 11:07:04',NULL),(20,'TR20200525111904',15,14,156,160,'cfgd',12,'2020-05-25 11:19:04','2020-05-25 11:21:43',NULL),(21,'TR20200525113515',15,14,156,160,'sdcsd',12,'2020-05-25 11:35:15','2020-05-25 11:38:50',NULL);
+INSERT INTO `inwardoutward` VALUES (14,'TR20200520144743',15,14,156,160,'ASXSDC',9,'2020-05-20 14:47:43',NULL,NULL),(15,'TR20200520192503',15,14,163,160,'acs',14,'2020-05-20 19:25:03','2020-05-21 10:20:37',NULL),(16,'TR20200521131415',15,14,164,160,'efce',13,'2020-05-21 13:14:15','2020-05-21 13:59:26',NULL),(17,'TR20200521162146',15,14,164,160,'aedcw',9,'2020-05-21 16:21:46',NULL,NULL),(18,'TR20200524211907',15,14,156,160,'sdcdsv',12,'2020-05-24 21:19:07','2020-05-25 11:07:04',NULL),(20,'TR20200525111904',15,14,156,160,'cfgd',12,'2020-05-25 11:19:04','2020-05-25 11:21:43',NULL),(21,'TR20200525113515',15,14,156,160,'sdcsd',12,'2020-05-25 11:35:15','2020-05-25 11:38:50',NULL),(22,'TR20200527162010',15,14,1,160,'sds',11,'2020-05-27 16:20:10','2020-05-27 16:28:12',NULL);
 /*!40000 ALTER TABLE `inwardoutward` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -713,7 +713,7 @@ CREATE TABLE `inwardoutward_approval` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`IDInwardoutward_Approval`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -722,7 +722,7 @@ CREATE TABLE `inwardoutward_approval` (
 
 LOCK TABLES `inwardoutward_approval` WRITE;
 /*!40000 ALTER TABLE `inwardoutward_approval` DISABLE KEYS */;
-INSERT INTO `inwardoutward_approval` VALUES (2,14,4,163,2,'forwarded','10','2020-05-20 14:47:43','2020-05-21 11:45:43'),(3,15,4,163,2,'qwdwcw','14','2020-05-20 19:25:03',NULL),(4,14,2,156,1,NULL,'9','2020-05-21 11:45:43',NULL),(5,16,5,164,3,'sssssss','10','2020-05-21 13:14:15','2020-05-21 13:18:13'),(6,16,4,163,2,'sdcds','10','2020-05-21 13:18:13','2020-05-21 13:18:41'),(7,16,2,156,1,'approed','10','2020-05-21 13:18:41','2020-05-21 13:34:04'),(8,17,5,164,3,NULL,'9','2020-05-21 16:21:46',NULL),(9,18,5,164,3,'non','10','2020-05-24 21:19:07','2020-05-24 23:01:40'),(11,18,4,163,2,'ascs','10','2020-05-24 23:01:40','2020-05-24 23:07:43'),(12,18,2,156,1,'scs','10','2020-05-24 23:07:43','2020-05-24 23:08:20'),(13,20,4,163,1,'adxx','10','2020-05-25 11:19:04','2020-05-25 11:19:59'),(14,21,4,163,1,'adcsdc','10','2020-05-25 11:35:15','2020-05-25 11:35:52');
+INSERT INTO `inwardoutward_approval` VALUES (2,14,4,163,2,'forwarded','10','2020-05-20 14:47:43','2020-05-21 11:45:43'),(3,15,4,163,2,'qwdwcw','14','2020-05-20 19:25:03',NULL),(4,14,2,156,1,NULL,'9','2020-05-21 11:45:43',NULL),(5,16,5,164,3,'sssssss','10','2020-05-21 13:14:15','2020-05-21 13:18:13'),(6,16,4,163,2,'sdcds','10','2020-05-21 13:18:13','2020-05-21 13:18:41'),(7,16,2,156,1,'approed','10','2020-05-21 13:18:41','2020-05-21 13:34:04'),(8,17,5,164,3,NULL,'9','2020-05-21 16:21:46',NULL),(9,18,5,164,3,'non','10','2020-05-24 21:19:07','2020-05-24 23:01:40'),(11,18,4,163,2,'ascs','10','2020-05-24 23:01:40','2020-05-24 23:07:43'),(12,18,2,156,1,'scs','10','2020-05-24 23:07:43','2020-05-24 23:08:20'),(13,20,4,163,1,'adxx','10','2020-05-25 11:19:04','2020-05-25 11:19:59'),(14,21,4,163,1,'adcsdc','10','2020-05-25 11:35:15','2020-05-25 11:35:52'),(15,22,4,163,1,'adceadc','10','2020-05-27 16:20:10','2020-05-27 16:28:11');
 /*!40000 ALTER TABLE `inwardoutward_approval` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -792,7 +792,7 @@ CREATE TABLE `inwardoutward_history` (
   `ActionePerformed` varchar(45) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`idinwardoutward_History`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -801,7 +801,7 @@ CREATE TABLE `inwardoutward_history` (
 
 LOCK TABLES `inwardoutward_history` WRITE;
 /*!40000 ALTER TABLE `inwardoutward_history` DISABLE KEYS */;
-INSERT INTO `inwardoutward_history` VALUES (17,17,'TR20200521162146',15,14,164,160,'aedcw',9,'2020-05-21 16:21:46',NULL,NULL,'2020-05-21 16:21:46',164,'Outward request Generated',17),(18,17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-21 16:21:46',164,'Outward request Approval Received',8),(19,18,'TR20200524211907',15,14,156,160,'sdcdsv',9,'2020-05-24 21:19:07',NULL,NULL,'2020-05-24 21:19:07',156,'Outward request Generated',18),(20,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 21:19:07',164,'Outward request Approval Received',9),(21,19,'TR20200524212050',15,14,156,160,'f vdvd  2nd',9,'2020-05-24 21:20:50',NULL,NULL,'2020-05-24 21:20:50',156,'Outward request Generated',19),(22,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 21:20:50',164,'Outward request Approval Received',10),(23,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:01:40',164,'Outward request Approval Updated',9),(24,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:01:40',163,'Outward request Approval Received',11),(25,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:07:43',163,'Outward request Approval Updated',11),(26,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:07:43',156,'Outward request Approval Received',12),(27,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:08:20',156,'Outward request Approval Updated',12),(28,18,'TR20200524211907',15,14,156,160,'sdcdsv',9,'2020-05-24 21:19:07',NULL,NULL,'2020-05-24 23:08:20',156,'Outward request Upadted',18),(29,18,'TR20200524211907',15,14,156,160,'sdcdsv',10,'2020-05-24 21:19:07','2020-05-24 23:08:20',NULL,'2020-05-24 23:08:41',156,'Outward request Upadted',18),(30,18,'TR20200524211907',15,14,156,160,'sdcdsv',11,'2020-05-24 21:19:07','2020-05-24 23:08:20',NULL,'2020-05-25 11:07:04',156,'Outward request Upadted',18),(31,20,'TR20200525111904',15,14,156,160,'cfgd',9,'2020-05-25 11:19:04',NULL,NULL,'2020-05-25 11:19:04',156,'Outward request Generated',20),(32,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:19:04',163,'Outward request Approval Received',13),(33,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:19:59',163,'Outward request Approval Updated',13),(34,20,'TR20200525111904',15,14,156,160,'cfgd',9,'2020-05-25 11:19:04',NULL,NULL,'2020-05-25 11:19:59',156,'Outward request Upadted',20),(35,20,'TR20200525111904',15,14,156,160,'cfgd',10,'2020-05-25 11:19:04','2020-05-25 11:19:59',NULL,'2020-05-25 11:20:21',156,'Outward request Upadted',20),(36,20,'TR20200525111904',15,14,156,160,'cfgd',11,'2020-05-25 11:19:04','2020-05-25 11:19:59',NULL,'2020-05-25 11:21:43',156,'Outward request Upadted',20),(37,21,'TR20200525113515',15,14,156,160,'sdcsd',9,'2020-05-25 11:35:15',NULL,NULL,'2020-05-25 11:35:15',156,'Outward request Generated',21),(38,21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:35:15',163,'Outward request Approval Received',14),(39,21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:35:52',163,'Outward request Approval Updated',14),(40,21,'TR20200525113515',15,14,156,160,'sdcsd',9,'2020-05-25 11:35:15',NULL,NULL,'2020-05-25 11:35:53',156,'Outward request Upadted',21),(41,21,'TR20200525113515',15,14,156,160,'sdcsd',10,'2020-05-25 11:35:15','2020-05-25 11:35:53',NULL,'2020-05-25 11:36:11',156,'Outward request Upadted',21),(42,21,'TR20200525113515',15,14,156,160,'sdcsd',11,'2020-05-25 11:35:15','2020-05-25 11:35:53',NULL,'2020-05-25 11:38:50',156,'Outward request Upadted',21);
+INSERT INTO `inwardoutward_history` VALUES (17,17,'TR20200521162146',15,14,164,160,'aedcw',9,'2020-05-21 16:21:46',NULL,NULL,'2020-05-21 16:21:46',164,'Outward request Generated',17),(18,17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-21 16:21:46',164,'Outward request Approval Received',8),(19,18,'TR20200524211907',15,14,156,160,'sdcdsv',9,'2020-05-24 21:19:07',NULL,NULL,'2020-05-24 21:19:07',156,'Outward request Generated',18),(20,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 21:19:07',164,'Outward request Approval Received',9),(21,19,'TR20200524212050',15,14,156,160,'f vdvd  2nd',9,'2020-05-24 21:20:50',NULL,NULL,'2020-05-24 21:20:50',156,'Outward request Generated',19),(22,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 21:20:50',164,'Outward request Approval Received',10),(23,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:01:40',164,'Outward request Approval Updated',9),(24,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:01:40',163,'Outward request Approval Received',11),(25,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:07:43',163,'Outward request Approval Updated',11),(26,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:07:43',156,'Outward request Approval Received',12),(27,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-24 23:08:20',156,'Outward request Approval Updated',12),(28,18,'TR20200524211907',15,14,156,160,'sdcdsv',9,'2020-05-24 21:19:07',NULL,NULL,'2020-05-24 23:08:20',156,'Outward request Upadted',18),(29,18,'TR20200524211907',15,14,156,160,'sdcdsv',10,'2020-05-24 21:19:07','2020-05-24 23:08:20',NULL,'2020-05-24 23:08:41',156,'Outward request Upadted',18),(30,18,'TR20200524211907',15,14,156,160,'sdcdsv',11,'2020-05-24 21:19:07','2020-05-24 23:08:20',NULL,'2020-05-25 11:07:04',156,'Outward request Upadted',18),(31,20,'TR20200525111904',15,14,156,160,'cfgd',9,'2020-05-25 11:19:04',NULL,NULL,'2020-05-25 11:19:04',156,'Outward request Generated',20),(32,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:19:04',163,'Outward request Approval Received',13),(33,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:19:59',163,'Outward request Approval Updated',13),(34,20,'TR20200525111904',15,14,156,160,'cfgd',9,'2020-05-25 11:19:04',NULL,NULL,'2020-05-25 11:19:59',156,'Outward request Upadted',20),(35,20,'TR20200525111904',15,14,156,160,'cfgd',10,'2020-05-25 11:19:04','2020-05-25 11:19:59',NULL,'2020-05-25 11:20:21',156,'Outward request Upadted',20),(36,20,'TR20200525111904',15,14,156,160,'cfgd',11,'2020-05-25 11:19:04','2020-05-25 11:19:59',NULL,'2020-05-25 11:21:43',156,'Outward request Upadted',20),(37,21,'TR20200525113515',15,14,156,160,'sdcsd',9,'2020-05-25 11:35:15',NULL,NULL,'2020-05-25 11:35:15',156,'Outward request Generated',21),(38,21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:35:15',163,'Outward request Approval Received',14),(39,21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-25 11:35:52',163,'Outward request Approval Updated',14),(40,21,'TR20200525113515',15,14,156,160,'sdcsd',9,'2020-05-25 11:35:15',NULL,NULL,'2020-05-25 11:35:53',156,'Outward request Upadted',21),(41,21,'TR20200525113515',15,14,156,160,'sdcsd',10,'2020-05-25 11:35:15','2020-05-25 11:35:53',NULL,'2020-05-25 11:36:11',156,'Outward request Upadted',21),(42,21,'TR20200525113515',15,14,156,160,'sdcsd',11,'2020-05-25 11:35:15','2020-05-25 11:35:53',NULL,'2020-05-25 11:38:50',156,'Outward request Upadted',21),(43,22,'TR20200527162010',15,14,1,160,'sds',9,'2020-05-27 16:20:10',NULL,NULL,'2020-05-27 16:20:10',1,'Outward request Generated',22),(44,22,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-27 16:20:10',163,'Outward request Approval Received',15),(45,22,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-27 16:28:11',163,'Outward request Approval Updated',15),(46,22,'TR20200527162010',15,14,1,160,'sds',9,'2020-05-27 16:20:10',NULL,NULL,'2020-05-27 16:28:12',1,'Outward request Upadted',22),(47,22,'TR20200527162010',15,14,1,160,'sds',10,'2020-05-27 16:20:10','2020-05-27 16:28:12',NULL,'2020-05-27 16:32:36',1,'Outward request Upadted',22);
 /*!40000 ALTER TABLE `inwardoutward_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -824,7 +824,7 @@ CREATE TABLE `inwardoutwardassets` (
   `UpdatedOn` datetime DEFAULT NULL,
   `IsMsngStcksRslvd` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idinwardoutwardAssets`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -833,7 +833,7 @@ CREATE TABLE `inwardoutwardassets` (
 
 LOCK TABLES `inwardoutwardassets` WRITE;
 /*!40000 ALTER TABLE `inwardoutwardassets` DISABLE KEYS */;
-INSERT INTO `inwardoutwardassets` VALUES (14,14,49,'itasset',1,NULL,NULL,9,'2020-05-20 14:47:43',NULL),(15,15,80,'consumable',2,NULL,NULL,14,'2020-05-21 10:20:37',NULL),(16,15,81,'consumable',2,NULL,NULL,14,'2020-05-21 10:20:37',NULL),(17,16,80,'consumable',2,1,'Received',13,'2020-05-21 13:59:25',NULL),(18,16,81,'consumable',2,1,'Received',13,'2020-05-21 13:59:25',NULL),(19,17,80,'consumable',2,NULL,NULL,9,'2020-05-21 16:21:46',NULL),(20,18,6,'nonitasset',2,2,'Received',12,'2020-05-25 11:07:04',NULL),(22,20,6,'nonitasset',1,1,'Received',12,'2020-05-25 11:21:42',NULL),(23,21,6,'nonitasset',2,2,'Received',12,'2020-05-25 11:38:49',NULL),(24,21,81,'consumable',2,2,'Received',12,'2020-05-25 11:38:50',NULL);
+INSERT INTO `inwardoutwardassets` VALUES (14,14,49,'itasset',1,NULL,NULL,9,'2020-05-20 14:47:43',NULL),(15,15,80,'consumable',2,NULL,NULL,14,'2020-05-21 10:20:37',NULL),(16,15,81,'consumable',2,NULL,NULL,14,'2020-05-21 10:20:37',NULL),(17,16,80,'consumable',2,1,'Received',13,'2020-05-21 13:59:25',NULL),(18,16,81,'consumable',2,1,'Received',13,'2020-05-21 13:59:25',NULL),(19,17,80,'consumable',2,NULL,NULL,9,'2020-05-21 16:21:46',NULL),(20,18,6,'nonitasset',2,2,'Received',12,'2020-05-25 11:07:04',NULL),(22,20,6,'nonitasset',1,1,'Received',12,'2020-05-25 11:21:42',NULL),(23,21,6,'nonitasset',2,2,'Received',12,'2020-05-25 11:38:49',NULL),(24,21,81,'consumable',2,2,'Received',12,'2020-05-25 11:38:50',NULL),(25,22,58,'itasset',1,NULL,NULL,11,'2020-05-27 16:28:12',NULL);
 /*!40000 ALTER TABLE `inwardoutwardassets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -855,7 +855,7 @@ CREATE TABLE `itasset_req_approvals` (
   `Comments` varchar(500) DEFAULT NULL,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`iditasset_Req_approvals`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -864,7 +864,7 @@ CREATE TABLE `itasset_req_approvals` (
 
 LOCK TABLES `itasset_req_approvals` WRITE;
 /*!40000 ALTER TABLE `itasset_req_approvals` DISABLE KEYS */;
-INSERT INTO `itasset_req_approvals` VALUES (34,0,5,164,3,'2020-05-14 14:07:28','Approved','fcw','2020-05-14 14:30:25'),(35,0,4,163,2,'2020-05-14 14:30:25','Approved','aedw','2020-05-14 14:38:23'),(36,0,2,156,1,'2020-05-14 14:38:23','Requested',NULL,NULL),(37,1,4,163,2,'2020-05-14 14:46:25','Requested',NULL,NULL);
+INSERT INTO `itasset_req_approvals` VALUES (34,0,5,164,3,'2020-05-14 14:07:28','Approved','fcw','2020-05-14 14:30:25'),(35,0,4,163,2,'2020-05-14 14:30:25','Approved','aedw','2020-05-14 14:38:23'),(36,0,2,156,1,'2020-05-14 14:38:23','Requested',NULL,NULL),(37,1,4,163,2,'2020-05-14 14:46:25','Requested',NULL,NULL),(38,2,5,164,3,'2020-05-27 21:22:37','Requested',NULL,NULL);
 /*!40000 ALTER TABLE `itasset_req_approvals` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -930,7 +930,7 @@ CREATE TABLE `itasset_service_request` (
   `CreatedBy` int DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iditasset_service_request`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -939,7 +939,7 @@ CREATE TABLE `itasset_service_request` (
 
 LOCK TABLES `itasset_service_request` WRITE;
 /*!40000 ALTER TABLE `itasset_service_request` DISABLE KEYS */;
-INSERT INTO `itasset_service_request` VALUES (1,'2020-05-07 19:25:03',50,156,156,'sdcs','Requested','2020-05-07 19:29:22',NULL,NULL,'2020-05-07 19:25:03');
+INSERT INTO `itasset_service_request` VALUES (1,'2020-05-07 19:25:03',50,156,156,'sdcs','Resolved','2020-05-26 18:54:31','ecdwe',NULL,'2020-05-07 19:25:03'),(2,'2020-05-26 19:53:07',58,156,156,'dddd','Requested','2020-05-26 19:53:07',NULL,NULL,'2020-05-26 19:53:07'),(3,'2020-05-26 20:23:47',NULL,156,158,'escsw','Requested','2020-05-26 20:23:47',NULL,NULL,'2020-05-26 20:23:47'),(4,'2020-05-26 20:25:26',NULL,156,158,'sdvcdsfvxxxxxxxxxx','Requested','2020-05-26 20:25:26',NULL,NULL,'2020-05-26 20:25:26'),(5,'2020-05-26 20:29:52',58,156,158,'ccccccccccccc','Resolved','2020-05-26 20:30:33','chnge to hp',NULL,'2020-05-26 20:29:52'),(6,'2020-05-27 10:28:56',50,156,158,'got problem in hp','Resolved','2020-05-27 10:30:32','we are jifoe',NULL,'2020-05-27 10:28:56');
 /*!40000 ALTER TABLE `itasset_service_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1009,7 +1009,7 @@ CREATE TABLE `itassetcheckoutcheckin` (
   `CheckIN_By` int DEFAULT NULL,
   `CheckOut_By` int DEFAULT NULL,
   PRIMARY KEY (`idITAssetCheckOutCheckIN`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1018,7 +1018,7 @@ CREATE TABLE `itassetcheckoutcheckin` (
 
 LOCK TABLES `itassetcheckoutcheckin` WRITE;
 /*!40000 ALTER TABLE `itassetcheckoutcheckin` DISABLE KEYS */;
-INSERT INTO `itassetcheckoutcheckin` VALUES (1,53,'User',1,0,'2020-05-04','2020-05-19','2020-05-05','d','acs',1,'Active','2020-05-05 19:06:36',1,NULL,NULL),(2,51,'User',162,0,'2020-05-13','2020-05-13','2020-05-07','sdvs','sfds',1,'Active','2020-05-06 19:06:36',1,NULL,NULL),(3,51,'User',162,0,'2020-05-20','2020-05-26','2020-05-07','esfc','qde',1,'Active','2020-05-07 12:30:17',1,NULL,1),(4,51,'User',159,0,'2020-05-14','2020-05-18','2020-05-15','dcc','wefe',1,'Active','2020-05-07 13:07:03',1,NULL,1),(5,50,'User',161,0,'2020-05-13','2020-05-14','2020-05-07','edw','ww',1,'Active','2020-05-07 14:18:16',1,NULL,1),(6,50,'User',156,0,'2020-05-06','2020-05-07','2020-05-08','wf','scdsc',1,'Active','2020-05-07 17:55:43',156,NULL,156),(7,49,'User',156,NULL,'2020-05-08',NULL,'2020-05-08','sfc','cvxd',1,'Active','2020-05-08 13:31:30',156,NULL,156),(8,49,'User',156,NULL,'2020-05-08',NULL,'2020-05-11','hai hai','sdc',1,'Active','2020-05-08 13:47:01',156,NULL,156),(9,49,'User',158,NULL,'2020-05-13',NULL,'2020-05-13','approved by all','dc',1,'Active','2020-05-13 16:08:09',156,NULL,156),(10,49,'User',158,NULL,'2020-05-13',NULL,'2020-05-13','sdcsdvcs','sdc',1,'Active','2020-05-13 16:18:16',156,NULL,156),(11,49,'User',158,NULL,'2020-05-13',NULL,'2020-05-13','by alllllllllllllllllllll','sdcs',1,'Active','2020-05-13 16:23:28',156,NULL,156),(12,49,'User',158,NULL,'2020-05-13',NULL,'2020-05-13','fcskjlvsklvhfvuo','cds',1,'Active','2020-05-13 16:52:56',156,NULL,156),(13,50,'User',158,NULL,'2020-05-13',NULL,'2020-05-13','dcs','acx',1,'Active','2020-05-13 16:55:59',156,NULL,156),(14,49,'User',158,NULL,'2020-05-13',NULL,'2020-05-13','ddddddd','dsc',1,'Active','2020-05-13 17:17:33',156,NULL,156),(15,50,'User',158,NULL,'2020-05-14',NULL,NULL,'approved by all',NULL,0,'Active','2020-05-14 10:30:12',156,NULL,156);
+INSERT INTO `itassetcheckoutcheckin` VALUES (16,49,'User',158,0,'2020-05-26','2020-05-26',NULL,'wefewfc',NULL,0,'Active','2020-05-26 19:16:37',156,NULL,156);
 /*!40000 ALTER TABLE `itassetcheckoutcheckin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1105,7 +1105,7 @@ CREATE TABLE `itassetrequest` (
   `Priority` varchar(45) DEFAULT NULL,
   `ReqStatus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`iditassetrequest`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1114,7 +1114,7 @@ CREATE TABLE `itassetrequest` (
 
 LOCK TABLES `itassetrequest` WRITE;
 /*!40000 ALTER TABLE `itassetrequest` DISABLE KEYS */;
-INSERT INTO `itassetrequest` VALUES (46,0,158,'Monitor',0,'dsc','2020-05-14 14:07:28','Low','Requested'),(47,0,158,'Laptops',0,'sdc ','2020-05-14 14:07:28','Low','Requested'),(48,1,164,'Laptops',0,'ec','2020-05-14 14:46:25','Low','Requested');
+INSERT INTO `itassetrequest` VALUES (46,0,158,'Monitor',0,'dsc','2020-05-14 14:07:28','Low','Requested'),(47,0,158,'Laptops',0,'sdc ','2020-05-14 14:07:28','Low','Requested'),(48,1,164,'Laptops',0,'ec','2020-05-14 14:46:25','Low','Requested'),(49,2,156,'Monitor',0,'vsf','2020-05-27 21:22:37','Low','Requested'),(50,2,156,'Laptops',0,'sfv df','2020-05-27 21:22:37','Low','Requested');
 /*!40000 ALTER TABLE `itassetrequest` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1155,7 +1155,7 @@ CREATE TABLE `itassetrequest_history` (
   `ActionedBy` int DEFAULT NULL,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`iditassetrequest_History`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1164,7 +1164,7 @@ CREATE TABLE `itassetrequest_history` (
 
 LOCK TABLES `itassetrequest_history` WRITE;
 /*!40000 ALTER TABLE `itassetrequest_history` DISABLE KEYS */;
-INSERT INTO `itassetrequest_history` VALUES (9,46,'Requested for ITAsset',158,'2020-05-14 14:07:28'),(10,47,'Requested for ITAsset',158,'2020-05-14 14:07:28'),(11,34,'Request Forwarded',164,'2020-05-14 14:07:28'),(12,34,'ITAsset Request Approved',164,'2020-05-14 14:30:25'),(13,35,'Request Forwarded',163,'2020-05-14 14:30:25'),(14,35,'ITAsset Request Approved',163,'2020-05-14 14:38:23'),(15,36,'Request Forwarded',156,'2020-05-14 14:38:23'),(16,48,'Requested for ITAsset',164,'2020-05-14 14:46:25'),(17,37,'Request Forwarded',163,'2020-05-14 14:46:25');
+INSERT INTO `itassetrequest_history` VALUES (9,46,'Requested for ITAsset',158,'2020-05-14 14:07:28'),(10,47,'Requested for ITAsset',158,'2020-05-14 14:07:28'),(11,34,'Request Forwarded',164,'2020-05-14 14:07:28'),(12,34,'ITAsset Request Approved',164,'2020-05-14 14:30:25'),(13,35,'Request Forwarded',163,'2020-05-14 14:30:25'),(14,35,'ITAsset Request Approved',163,'2020-05-14 14:38:23'),(15,36,'Request Forwarded',156,'2020-05-14 14:38:23'),(16,48,'Requested for ITAsset',164,'2020-05-14 14:46:25'),(17,37,'Request Forwarded',163,'2020-05-14 14:46:25'),(18,49,'Requested for ITAsset',156,'2020-05-27 21:22:37'),(19,50,'Requested for ITAsset',156,'2020-05-27 21:22:37'),(20,38,'Request Forwarded',164,'2020-05-27 21:22:37');
 /*!40000 ALTER TABLE `itassetrequest_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1211,7 +1211,7 @@ CREATE TABLE `itassets` (
   `CustomFields5Value` varchar(45) DEFAULT NULL,
   `CustomFields5Type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idITAssets`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1220,7 +1220,7 @@ CREATE TABLE `itassets` (
 
 LOCK TABLES `itassets` WRITE;
 /*!40000 ALTER TABLE `itassets` DISABLE KEYS */;
-INSERT INTO `itassets` VALUES (49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'','desktop-monitor-250x250.jpg',1,'2020-04-23 06:50:28',NULL,'2020-05-21 19:13:41','Active',0,14,'','','','','','','','','','','','','','',''),(50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'','c06223466.png',1,'2020-04-23 10:26:33',NULL,'2020-05-14 10:30:12','Active',10,14,'','','','','','','','','','','','','','',''),(51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',1,'','aaaaa.jpg',1,'2020-04-23 10:33:50',NULL,'2020-05-07 14:30:08','Active',11,15,'','','','','','','','','','','','','','',''),(52,'Dell laptop',4,'12345','1234567890','SYS/ITASSETS/052','description',100000,'2020-12-23',10,'','c06223466.png',1,'2020-04-23 22:52:42',NULL,'2020-05-06 17:04:21','Active',11,15,'Custm','extra field','textarea','','','','','','','','','','','',''),(53,'Acer',1,'12345','1234567890','SYS/ITASSETS/053','desc',1000,'2020-04-30',4,'','',1,'2020-04-23 23:18:22',NULL,'2020-05-06 17:04:21','Active',11,15,'','','','','','','','','','','','','','',''),(54,'111',1,'111','111','SBS/ITASSET/54','111',11,'2020-05-22',5,'','',1,'2020-05-04 16:26:59',NULL,'2020-05-06 17:04:21','InActive',11,15,'','','','','','','','','','','','','','',''),(55,'sss',1,'','','SBS/ITASSET/55','',0,'0000-00-00',7,'','',156,'2020-05-05 17:41:07',NULL,'2020-05-05 17:55:01','InActive',0,14,'','','','','','','','','','','','','','',''),(57,'test',1,'testaf','testaf','SBS/ITASSET/57','awcfwefc',333,'2020-05-28',5,'','',1,'2020-05-06 18:59:06',NULL,'2020-05-06 19:04:07','InActive',11,14,'','','','','','','','','','','','','','',''),(58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',1,'','',156,'2020-05-22 10:46:43',NULL,'2020-05-22 10:46:43','Active',0,14,'','','','','','','','','','','','','','','');
+INSERT INTO `itassets` VALUES (49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'','desktop-monitor-250x250.jpg',1,'2020-04-23 06:50:28',NULL,'2020-05-27 10:30:32','Active',0,14,'','','','','','','','','','','','','','',''),(51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',1,'','aaaaa.jpg',1,'2020-04-23 10:33:50',NULL,'2020-05-07 14:30:08','Active',11,15,'','','','','','','','','','','','','','',''),(52,'Dell laptop',4,'12345','1234567890','SYS/ITASSETS/052','description',100000,'2020-12-23',1,'','c06223466.png',1,'2020-04-23 22:52:42',NULL,'2020-05-26 19:15:37','Active',11,15,'Custm','extra field','textarea','','','','','','','','','','','',''),(53,'Acer',1,'12345','1234567890','SYS/ITASSETS/053','desc',1000,'2020-04-30',1,'','',1,'2020-04-23 23:18:22',NULL,'2020-05-26 19:15:37','Active',11,15,'','','','','','','','','','','','','','',''),(54,'111',1,'111','111','SBS/ITASSET/54','111',11,'2020-05-22',1,'','',1,'2020-05-04 16:26:59',NULL,'2020-05-26 19:15:37','InActive',11,15,'','','','','','','','','','','','','','',''),(55,'sss',1,'','','SBS/ITASSET/55','',0,'0000-00-00',1,'','',156,'2020-05-05 17:41:07',NULL,'2020-05-26 19:15:37','InActive',0,14,'','','','','','','','','','','','','','',''),(57,'test',1,'testaf','testaf','SBS/ITASSET/57','awcfwefc',333,'2020-05-28',1,'','',1,'2020-05-06 18:59:06',NULL,'2020-05-26 19:15:37','InActive',11,14,'','','','','','','','','','','','','','',''),(58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',10,'','',156,'2020-05-22 10:46:43',NULL,'2020-05-27 16:28:13','Active',0,14,'','','','','','','','','','','','','','',''),(59,'',0,'','','SBS/ITASSET/59','',0,'0000-00-00',0,'','',156,'2020-06-03 14:00:37',NULL,'2020-06-03 14:00:37','Active',0,0,'','','','','','','','','','','','','','','');
 /*!40000 ALTER TABLE `itassets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1346,7 +1346,7 @@ CREATE TABLE `itassets_history` (
   `ActionePerformed` varchar(60) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`iditassets_history`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1355,7 +1355,7 @@ CREATE TABLE `itassets_history` (
 
 LOCK TABLES `itassets_history` WRITE;
 /*!40000 ALTER TABLE `itassets_history` DISABLE KEYS */;
-INSERT INTO `itassets_history` VALUES (56,57,'test',1,'testaf','testaf','SBS/ITASSET/57','awcfwefc',333,'2020-05-28',1,'','Active',11,14,'','','','','','','','','','','','','','','','2020-05-06 18:59:06',1,'Asset Added',57),(57,57,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-06 19:04:06',1,'Asset Retired',7),(59,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-06 19:06:36',1,'CheckOut/CheckIN',2),(61,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',3,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 12:08:26',1,'Asset Updated',51),(62,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 12:30:17',1,'CheckOut',3),(63,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',1,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 12:30:18',1,'Asset Updated',51),(64,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 12:31:07',1,'CheckIN',3),(65,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',3,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 12:31:07',1,'Asset Updated',51),(66,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 13:07:03',1,'CheckOut',4),(67,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',1,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 13:07:03',1,'Asset Updated',51),(68,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 14:18:16',1,'CheckOut',5),(69,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-07 14:18:16',1,'Asset Updated',50),(70,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 14:21:45',1,'CheckIN',5),(71,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-07 14:21:46',1,'Asset Updated',50),(72,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 14:30:07',1,'CheckIN',4),(73,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',3,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 14:30:08',1,'Asset Updated',51),(74,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 17:55:43',156,'CheckOut',6),(75,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-07 17:55:43',1,'Asset Updated',50),(76,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:31:30',156,'CheckOut',7),(77,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-08 13:31:30',1,'Asset Updated',49),(78,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:44:25',156,'CheckIN',6),(79,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-08 13:44:25',1,'Asset Updated',50),(80,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:44:39',156,'CheckIN',7),(81,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-08 13:44:40',1,'Asset Updated',49),(82,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:47:01',156,'CheckOut',8),(83,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-08 13:47:02',1,'Asset Updated',49),(84,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-11 18:22:41',156,'CheckIN',8),(85,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-11 18:22:41',1,'Asset Updated',49),(86,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:08:09',156,'CheckOut',9),(87,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:08:09',1,'Asset Updated',49),(88,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:10:59',156,'CheckIN',9),(89,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:11:00',1,'Asset Updated',49),(90,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:18:16',156,'CheckOut',10),(91,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:18:16',1,'Asset Updated',49),(92,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:20:51',156,'CheckIN',10),(93,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:20:51',1,'Asset Updated',49),(94,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:23:28',156,'CheckOut',11),(95,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:23:28',1,'Asset Updated',49),(96,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:25:32',156,'CheckIN',11),(97,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:25:32',1,'Asset Updated',49),(98,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:52:56',156,'CheckOut',12),(99,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:52:56',1,'Asset Updated',49),(100,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:55:59',156,'CheckOut',13),(101,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-13 16:56:00',1,'Asset Updated',50),(102,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:58:10',156,'CheckIN',13),(103,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-13 16:58:10',1,'Asset Updated',50),(104,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:58:21',156,'CheckIN',12),(105,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:58:21',1,'Asset Updated',49),(106,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 17:17:33',156,'CheckOut',14),(107,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 17:17:34',1,'Asset Updated',49),(108,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 17:23:36',156,'CheckIN',14),(109,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 17:23:36',1,'Asset Updated',49),(110,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-14 10:30:12',156,'CheckOut',15),(111,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-14 10:30:12',1,'Asset Updated',50),(112,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 13:44:45',1,'Asset Updated',49),(113,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',9,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 13:46:07',1,'Asset Updated',49),(114,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 14:45:18',1,'Asset Updated',49),(115,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',9,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 14:47:00',1,'Asset Updated',49),(116,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 14:47:44',1,'Asset Updated',49),(117,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',9,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-21 19:13:41',1,'Asset Updated',49),(118,58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',1,'','Active',0,14,'','','','','','','','','','','','','','','','2020-05-22 10:46:43',156,'Asset Added',58);
+INSERT INTO `itassets_history` VALUES (56,57,'test',1,'testaf','testaf','SBS/ITASSET/57','awcfwefc',333,'2020-05-28',1,'','Active',11,14,'','','','','','','','','','','','','','','','2020-05-06 18:59:06',1,'Asset Added',57),(57,57,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-06 19:04:06',1,'Asset Retired',7),(59,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-06 19:06:36',1,'CheckOut/CheckIN',2),(61,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',3,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 12:08:26',1,'Asset Updated',51),(62,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 12:30:17',1,'CheckOut',3),(63,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',1,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 12:30:18',1,'Asset Updated',51),(64,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 12:31:07',1,'CheckIN',3),(65,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',3,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 12:31:07',1,'Asset Updated',51),(66,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 13:07:03',1,'CheckOut',4),(67,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',1,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 13:07:03',1,'Asset Updated',51),(68,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 14:18:16',1,'CheckOut',5),(69,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-07 14:18:16',1,'Asset Updated',50),(70,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 14:21:45',1,'CheckIN',5),(71,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-07 14:21:46',1,'Asset Updated',50),(72,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 14:30:07',1,'CheckIN',4),(73,51,'Apple MacBook Pro',4,'686998213','123414','SYS/ITASSETS/051','16gb ,500TB ssd',99999,'2020-04-25',3,'aaaaa.jpg','Active',11,15,'','','','','','','','','','','','','','','','2020-05-07 14:30:08',1,'Asset Updated',51),(74,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-07 17:55:43',156,'CheckOut',6),(75,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-07 17:55:43',1,'Asset Updated',50),(76,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:31:30',156,'CheckOut',7),(77,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-08 13:31:30',1,'Asset Updated',49),(78,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:44:25',156,'CheckIN',6),(79,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-08 13:44:25',1,'Asset Updated',50),(80,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:44:39',156,'CheckIN',7),(81,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-08 13:44:40',1,'Asset Updated',49),(82,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-08 13:47:01',156,'CheckOut',8),(83,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-08 13:47:02',1,'Asset Updated',49),(84,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-11 18:22:41',156,'CheckIN',8),(85,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-11 18:22:41',1,'Asset Updated',49),(86,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:08:09',156,'CheckOut',9),(87,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:08:09',1,'Asset Updated',49),(88,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:10:59',156,'CheckIN',9),(89,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:11:00',1,'Asset Updated',49),(90,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:18:16',156,'CheckOut',10),(91,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:18:16',1,'Asset Updated',49),(92,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:20:51',156,'CheckIN',10),(93,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:20:51',1,'Asset Updated',49),(94,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:23:28',156,'CheckOut',11),(95,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:23:28',1,'Asset Updated',49),(96,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:25:32',156,'CheckIN',11),(97,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:25:32',1,'Asset Updated',49),(98,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:52:56',156,'CheckOut',12),(99,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:52:56',1,'Asset Updated',49),(100,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:55:59',156,'CheckOut',13),(101,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-13 16:56:00',1,'Asset Updated',50),(102,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:58:10',156,'CheckIN',13),(103,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-13 16:58:10',1,'Asset Updated',50),(104,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 16:58:21',156,'CheckIN',12),(105,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 16:58:21',1,'Asset Updated',49),(106,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 17:17:33',156,'CheckOut',14),(107,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 17:17:34',1,'Asset Updated',49),(108,49,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-13 17:23:36',156,'CheckIN',14),(109,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',3,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-13 17:23:36',1,'Asset Updated',49),(110,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-14 10:30:12',156,'CheckOut',15),(111,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-14 10:30:12',1,'Asset Updated',50),(112,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 13:44:45',1,'Asset Updated',49),(113,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',9,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 13:46:07',1,'Asset Updated',49),(114,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 14:45:18',1,'Asset Updated',49),(115,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',9,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 14:47:00',1,'Asset Updated',49),(116,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-20 14:47:44',1,'Asset Updated',49),(117,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',9,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-21 19:13:41',1,'Asset Updated',49),(118,58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',1,'','Active',0,14,'','','','','','','','','','','','','','','','2020-05-22 10:46:43',156,'Asset Added',58),(119,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-26 19:15:37',1,'Asset Updated',50),(120,52,'Dell laptop',4,'12345','1234567890','SYS/ITASSETS/052','description',100000,'2020-12-23',10,'c06223466.png','Active',11,15,'Custm','extra field','textarea','','','','','','','','','','','','','2020-05-26 19:15:37',1,'Asset Updated',52),(121,53,'Acer',1,'12345','1234567890','SYS/ITASSETS/053','desc',1000,'2020-04-30',4,'','Active',11,15,'','','','','','','','','','','','','','','','2020-05-26 19:15:37',1,'Asset Updated',53),(122,54,'111',1,'111','111','SBS/ITASSET/54','111',11,'2020-05-22',5,'','InActive',11,15,'','','','','','','','','','','','','','','','2020-05-26 19:15:37',1,'Asset Updated',54),(123,55,'sss',1,'','','SBS/ITASSET/55','',0,'0000-00-00',7,'','InActive',0,14,'','','','','','','','','','','','','','','','2020-05-26 19:15:37',156,'Asset Updated',55),(124,57,'test',1,'testaf','testaf','SBS/ITASSET/57','awcfwefc',333,'2020-05-28',5,'','InActive',11,14,'','','','','','','','','','','','','','','','2020-05-26 19:15:37',1,'Asset Updated',57),(125,58,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-26 19:16:37',156,'CheckOut',16),(126,58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',1,'','Active',0,14,'','','','','','','','','','','','','','','','2020-05-26 19:16:37',156,'Asset Updated',58),(127,58,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-26 20:30:34',156,'CheckIN',16),(128,58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',3,'','Active',0,14,'','','','','','','','','','','','','','','','2020-05-26 20:30:34',156,'Asset Updated',58),(129,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',1,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-26 20:30:34',1,'Asset Updated',50),(130,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-05-27 10:30:32',156,'CheckIN',16),(131,50,'HP Laptop',4,'35534634','2637474674','SYS/ITASSETS/050','laptop',70000,'2021-03-18',3,'c06223466.png','Active',10,14,'','','','','','','','','','','','','','','','2020-05-27 10:30:32',1,'Asset Updated',50),(132,49,'Acer',1,'12345','1234567890','SYS/ITASSETS/001','19 inch monitor',5000,'2025-01-01',1,'desktop-monitor-250x250.jpg','Active',0,14,'','','','','','','','','','','','','','','','2020-05-27 10:30:32',1,'Asset Updated',49),(133,58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',1,'','Active',0,14,'','','','','','','','','','','','','','','','2020-05-27 16:20:11',156,'Asset Updated',58),(134,58,'vvvvvvvvvv',3,'wc','testaf','SBS/ITASSET/58','scsd',0,'0000-00-00',9,'','Active',0,14,'','','','','','','','','','','','','','','','2020-05-27 16:28:13',156,'Asset Updated',58),(135,59,'',0,'','','SBS/ITASSET/59','',0,'0000-00-00',0,'','Active',0,0,'','','','','','','','','','','','','','','','2020-06-03 14:00:37',156,'Asset Added',59);
 /*!40000 ALTER TABLE `itassets_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1444,7 +1444,7 @@ CREATE TABLE `multilevelapproval_main` (
   `CreatedBy` int DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`IDMultiLevelApproval_Main`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1453,7 +1453,7 @@ CREATE TABLE `multilevelapproval_main` (
 
 LOCK TABLES `multilevelapproval_main` WRITE;
 /*!40000 ALTER TABLE `multilevelapproval_main` DISABLE KEYS */;
-INSERT INTO `multilevelapproval_main` VALUES (1,'OutWard Request','InWard OutWard',1,160,'2020-05-08 14:56:18'),(2,'ITAsset Request','ITAsset',3,160,'2020-05-08 14:56:19'),(3,'NonITAsset Request','Non ITAsset',3,160,'2020-05-22 17:24:51');
+INSERT INTO `multilevelapproval_main` VALUES (1,'OutWard Request','InWard OutWard',1,156,'2020-05-08 14:56:18'),(2,'ITAsset Request','ITAsset',3,156,'2020-05-08 14:56:19'),(3,'NonITAsset Request','Non ITAsset',3,156,'2020-05-22 17:24:51'),(4,'Purchase Order','Purchase Order',3,156,'2020-05-28 19:42:25'),(5,'Requisition','Requisition',1,156,'2020-06-02 13:15:31');
 /*!40000 ALTER TABLE `multilevelapproval_main` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1472,7 +1472,7 @@ CREATE TABLE `multilevelapproval_map` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `CreatedBy` int DEFAULT NULL,
   PRIMARY KEY (`IDMultiLevelApproval_Map`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1481,7 +1481,7 @@ CREATE TABLE `multilevelapproval_map` (
 
 LOCK TABLES `multilevelapproval_map` WRITE;
 /*!40000 ALTER TABLE `multilevelapproval_map` DISABLE KEYS */;
-INSERT INTO `multilevelapproval_map` VALUES (25,'1','4',1,'2020-05-25 11:09:02',160),(26,'2','5',3,'2020-05-25 11:09:02',160),(27,'2','4',2,'2020-05-25 11:09:02',160),(28,'2','2',1,'2020-05-25 11:09:02',160),(29,'3','5',3,'2020-05-25 11:09:02',160),(30,'3','4',2,'2020-05-25 11:09:02',160),(31,'3','2',1,'2020-05-25 11:09:02',160);
+INSERT INTO `multilevelapproval_map` VALUES (50,'1','4',1,'2020-06-02 13:16:34',156),(51,'2','5',3,'2020-06-02 13:16:34',156),(52,'2','4',2,'2020-06-02 13:16:34',156),(53,'2','2',1,'2020-06-02 13:16:34',156),(54,'3','5',3,'2020-06-02 13:16:34',156),(55,'3','4',2,'2020-06-02 13:16:34',156),(56,'3','2',1,'2020-06-02 13:16:34',156),(57,'4','2',3,'2020-06-02 13:16:34',156),(58,'4','4',2,'2020-06-02 13:16:34',156),(59,'4','5',1,'2020-06-02 13:16:34',156),(60,'5','2',1,'2020-06-02 13:16:34',156);
 /*!40000 ALTER TABLE `multilevelapproval_map` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1600,7 +1600,7 @@ CREATE TABLE `nonitassets` (
 
 LOCK TABLES `nonitassets` WRITE;
 /*!40000 ALTER TABLE `nonitassets` DISABLE KEYS */;
-INSERT INTO `nonitassets` VALUES (1,2,'SYS/NONITASSETS/001','modelsssss','vga cables ','projecter-vga-cable-500x500.jpg',40,28,12,5,100,10,16,14,'2020-04-21 01:58:37','2020-05-25 16:08:41',84,0,'','','','','','','','','','','','','','','','Active'),(6,3,'SYS/NONITASSETS/002','model','sdc sdc','',8,5,3,5,100,10,25,14,'2020-04-25 06:02:41','2020-05-25 16:35:09',1,NULL,'','','','','','','','','','','','','','','','Active'),(19,3,'SBS/NONITASSET/7',NULL,'sdc sdc','',2,2,NULL,5,100,10,12,15,'2020-05-25 11:38:48','2020-05-25 11:38:48',1,NULL,'','','','','','','','','','','','','','','','Active');
+INSERT INTO `nonitassets` VALUES (1,2,'SYS/NONITASSETS/001','modelsssss','vga cables ','projecter-vga-cable-500x500.jpg',40,1,39,5,100,10,16,14,'2020-04-21 01:58:37','2020-05-28 14:58:12',84,0,'','','','','','','','','','','','','','','','Active'),(6,3,'SYS/NONITASSETS/002','model','sdc sdc','',8,8,0,5,100,10,25,14,'2020-04-25 06:02:41','2020-05-28 15:41:21',1,NULL,'','','','','','','','','','','','','','','','Active'),(19,3,'SBS/NONITASSET/7',NULL,'sdc sdc','',2,2,NULL,5,100,10,12,15,'2020-05-25 11:38:48','2020-05-25 11:38:48',1,NULL,'','','','','','','','','','','','','','','','Active');
 /*!40000 ALTER TABLE `nonitassets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1643,7 +1643,7 @@ CREATE TABLE `nonitassets_checkin` (
   `Checkin_Comments` varchar(500) DEFAULT NULL,
   `CheckIN_By` int DEFAULT NULL,
   PRIMARY KEY (`idnonitassets_checkin`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1652,7 +1652,7 @@ CREATE TABLE `nonitassets_checkin` (
 
 LOCK TABLES `nonitassets_checkin` WRITE;
 /*!40000 ALTER TABLE `nonitassets_checkin` DISABLE KEYS */;
-INSERT INTO `nonitassets_checkin` VALUES (4,4,'2020-05-25 18:48:45',1,'1',156),(5,4,'2020-05-25 18:57:40',1,'dcxw',156),(6,3,'2020-05-25 20:16:31',1,'sdc',156),(7,2,'2020-05-26 10:27:15',2,'adcsd',156),(8,2,'2020-05-26 10:31:28',3,'returned 3',156);
+INSERT INTO `nonitassets_checkin` VALUES (4,4,'2020-05-25 18:48:45',1,'1',156),(5,4,'2020-05-25 18:57:40',1,'dcxw',156),(6,3,'2020-05-25 20:16:31',1,'sdc',156),(7,2,'2020-05-26 10:27:15',2,'adcsd',156),(8,2,'2020-05-26 10:31:28',3,'returned 3',156),(9,6,'2020-05-28 13:45:38',20,'dcs',156),(10,8,'2020-05-28 13:54:15',2,'sfvs',156),(11,2,'2020-05-28 13:55:07',3,'sdv',156),(12,9,'2020-05-28 13:56:35',1,'dvdfd',156),(13,7,'2020-05-28 13:56:58',1,'scsdc',156),(14,12,'2020-05-28 14:48:41',2,'jnj',156),(15,10,'2020-05-28 14:49:24',2,'l,l',156),(16,10,'2020-05-28 14:49:26',2,'l,l',156),(17,13,'2020-05-28 14:49:54',1,',mlm',156),(18,13,'2020-05-28 14:49:55',1,',mlm',156),(19,20,'2020-05-28 15:17:50',1,'acwsd',156),(20,5,'2020-05-28 15:22:07',1,'sqs',156),(21,22,'2020-05-28 15:25:32',1,'asdcsd',156),(22,23,'2020-05-28 15:39:43',2,'cwsc',156),(23,25,'2020-05-28 15:41:03',2,'asc',156),(24,24,'2020-05-28 15:41:12',3,'as',156),(25,23,'2020-05-28 15:41:21',2,'awdx',156);
 /*!40000 ALTER TABLE `nonitassets_checkin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1678,7 +1678,7 @@ CREATE TABLE `nonitassets_checkout_checkin` (
   `Record_Status` varchar(45) DEFAULT 'Active',
   `InUse` int DEFAULT NULL,
   PRIMARY KEY (`IDNonITAssets_Checkout_Checkin`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1687,7 +1687,7 @@ CREATE TABLE `nonitassets_checkout_checkin` (
 
 LOCK TABLES `nonitassets_checkout_checkin` WRITE;
 /*!40000 ALTER TABLE `nonitassets_checkout_checkin` DISABLE KEYS */;
-INSERT INTO `nonitassets_checkout_checkin` VALUES (1,6,'User',156,'','2020-05-22 00:00:00',1,'zdfdsdg','2020-05-22 17:34:01',67,67,'Active',1),(2,1,'User',158,NULL,'2020-05-24 19:28:16',11,'ddddddddddddd','2020-05-24 19:28:16',156,156,'Active',6),(3,1,'User',158,'','2020-05-25 00:00:00',1,'dsc sdvs','2020-05-25 16:08:41',67,67,'Active',0),(4,6,'User',158,'','2020-05-25 00:00:00',2,'sfvd','2020-05-25 16:35:09',67,67,'Active',0);
+INSERT INTO `nonitassets_checkout_checkin` VALUES (23,6,'User',156,'','2020-05-28 00:00:00',4,'sdcs','2020-05-28 15:29:03',156,156,'Active',0),(24,6,'User',156,'','2020-05-28 00:00:00',3,'ecwd','2020-05-28 15:34:08',156,156,'Active',0),(25,6,'Place',0,'1st floor','2020-05-28 00:00:00',2,'cs','2020-05-28 15:40:28',156,156,'Active',0);
 /*!40000 ALTER TABLE `nonitassets_checkout_checkin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1828,7 +1828,7 @@ CREATE TABLE `outwardcart` (
   `SenderEmpID` int DEFAULT NULL,
   `CreatedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`idOutWardCart`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1838,6 +1838,369 @@ CREATE TABLE `outwardcart` (
 LOCK TABLES `outwardcart` WRITE;
 /*!40000 ALTER TABLE `outwardcart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `outwardcart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `po_approval`
+--
+
+DROP TABLE IF EXISTS `po_approval`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `po_approval` (
+  `IDPO_approval` int NOT NULL AUTO_INCREMENT,
+  `PurchaseOrders_RequestsID` int DEFAULT NULL,
+  `RoleID` int DEFAULT NULL,
+  `ApproverID` int DEFAULT NULL,
+  `Grade` int DEFAULT NULL,
+  `Comments` varchar(500) DEFAULT NULL,
+  `Status` varchar(45) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ActionedOn` datetime DEFAULT NULL,
+  PRIMARY KEY (`IDPO_approval`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `po_approval`
+--
+
+LOCK TABLES `po_approval` WRITE;
+/*!40000 ALTER TABLE `po_approval` DISABLE KEYS */;
+INSERT INTO `po_approval` VALUES (26,22,2,156,3,'wxdwa','Approved','2020-06-01 19:00:33','2020-06-01 19:07:53'),(27,22,4,163,2,'aec','Approved','2020-06-01 19:07:53','2020-06-01 19:08:21'),(28,22,5,164,1,'c','Approved','2020-06-01 19:08:21','2020-06-01 19:08:41'),(29,28,2,156,3,NULL,'Requested','2020-06-02 11:26:00',NULL);
+/*!40000 ALTER TABLE `po_approval` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `po_bills`
+--
+
+DROP TABLE IF EXISTS `po_bills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `po_bills` (
+  `IDPO_Bills` int NOT NULL,
+  `PurchaseOrders_RequestsID` int DEFAULT NULL,
+  `InvoiceNumber` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IDPO_Bills`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `po_bills`
+--
+
+LOCK TABLES `po_bills` WRITE;
+/*!40000 ALTER TABLE `po_bills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `po_bills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchaseorders_assets`
+--
+
+DROP TABLE IF EXISTS `purchaseorders_assets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `purchaseorders_assets` (
+  `IDpurchaseorders_Assets` int NOT NULL AUTO_INCREMENT,
+  `Purchaseorders_requests_ID` int DEFAULT NULL,
+  `AssetType` varchar(45) DEFAULT NULL,
+  `AssetName` varchar(45) DEFAULT NULL,
+  `AssetID` int DEFAULT NULL,
+  `Quantity` int DEFAULT NULL,
+  `PriceperUnit` float DEFAULT NULL,
+  `AssetComments` varchar(500) DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModifiedBy` int DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  PRIMARY KEY (`IDpurchaseorders_Assets`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchaseorders_assets`
+--
+
+LOCK TABLES `purchaseorders_assets` WRITE;
+/*!40000 ALTER TABLE `purchaseorders_assets` DISABLE KEYS */;
+INSERT INTO `purchaseorders_assets` VALUES (22,22,'NonITAsset','Fridge',6,6,7,'ewcf',156,'2020-06-01 19:00:33',NULL,NULL),(23,22,'Consumable','Air Frshners',3,21,4,'ewcfed',156,'2020-06-01 19:00:33',NULL,NULL),(24,26,'NonITAsset','Chairs',3,6,7,'qed',156,'2020-06-02 11:10:32',NULL,NULL),(26,28,'Consumable','Air Frshners',3,17,4,'dv',156,'2020-06-02 11:26:00',NULL,NULL),(27,27,'Consumable','Air Frshners',3,10,4,'cswdc',0,'2020-06-02 11:28:05',NULL,NULL),(28,27,'Consumable','Air Frshners',3,7,4,'dcs',0,'2020-06-02 11:28:05',NULL,NULL);
+/*!40000 ALTER TABLE `purchaseorders_assets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchaseorders_assets_received`
+--
+
+DROP TABLE IF EXISTS `purchaseorders_assets_received`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `purchaseorders_assets_received` (
+  `IDpurchaseorders_Assets_Received` int NOT NULL AUTO_INCREMENT,
+  `Purchaseorders_requests_ID` int DEFAULT NULL,
+  `AssetType` varchar(45) DEFAULT NULL,
+  `AssetName` varchar(45) DEFAULT NULL,
+  `AssetID` int DEFAULT NULL,
+  `Quantity` int DEFAULT NULL,
+  `PriceperUnit` float DEFAULT NULL,
+  `AssetComments` varchar(500) DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModelNo` varchar(45) DEFAULT NULL,
+  `SerialNo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IDpurchaseorders_Assets_Received`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchaseorders_assets_received`
+--
+
+LOCK TABLES `purchaseorders_assets_received` WRITE;
+/*!40000 ALTER TABLE `purchaseorders_assets_received` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchaseorders_assets_received` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchaseorders_requests`
+--
+
+DROP TABLE IF EXISTS `purchaseorders_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `purchaseorders_requests` (
+  `IDPurchaseOrders_Requests` int NOT NULL AUTO_INCREMENT,
+  `POID` varchar(45) DEFAULT NULL,
+  `LocationID` int DEFAULT NULL,
+  `VendorID` int DEFAULT NULL,
+  `PORequestedBy` int DEFAULT NULL,
+  `PODescription` varchar(500) DEFAULT NULL,
+  `ShipmentTerms` varchar(500) DEFAULT NULL,
+  `PaymentTerms` varchar(500) DEFAULT NULL,
+  `TotalAmmount` float DEFAULT NULL,
+  `StatusID` int DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `ModifiedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `RecordStatus` varchar(45) DEFAULT 'Active',
+  PRIMARY KEY (`IDPurchaseOrders_Requests`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchaseorders_requests`
+--
+
+LOCK TABLES `purchaseorders_requests` WRITE;
+/*!40000 ALTER TABLE `purchaseorders_requests` DISABLE KEYS */;
+INSERT INTO `purchaseorders_requests` VALUES (22,'22',14,11,156,'x','c','v',126,37,156,156,'2020-06-01 18:22:18','2020-06-01 20:10:23','Active'),(26,'23',14,11,156,'wcwd','wdc','wedcwdc',42,33,156,NULL,'2020-06-02 11:10:32',NULL,'Active'),(27,'27',14,11,156,'ace','sdc','dc',68,33,156,156,'2020-06-02 11:23:41','2020-06-02 11:28:05','Active'),(28,'28',14,11,156,'req','','',68,34,156,NULL,'2020-06-02 11:25:59',NULL,'Active');
+/*!40000 ALTER TABLE `purchaseorders_requests` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `purchaseorders_requests_AFTER_INSERT` AFTER INSERT ON `purchaseorders_requests` FOR EACH ROW BEGIN
+declare _Actionperform varchar(500);
+if new.StatusID=33 then
+set _Actionperform='PO created and added as Draft';
+end if;
+if new.StatusID=34 then
+set _Actionperform='PO created and Requested ';
+else
+set _Actionperform='PO created';
+end if;
+
+INSERT INTO ams.purchaseorders_requests_history(POID,LocationID,VendorID,PORequestedBy,PODescription,
+ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy,ActionedBy,ActionedOn,ActionePerformed,MainTblID)
+VALUES(new.POID,new.LocationID,new.VendorID,new.PORequestedBy,new.PODescription,
+new.ShipmentTerms,new.PaymentTerms,new.TotalAmmount,new.StatusID,new.CreatedBy,new.CreatedBy,now(),_Actionperform,new.IDPurchaseOrders_Requests);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `purchaseorders_requests_BEFORE_UPDATE` BEFORE UPDATE ON `purchaseorders_requests` FOR EACH ROW BEGIN
+declare _Actionperform varchar(500);
+if ((new.StatusID!=old.StatusID) and new.StatusID is not  null) then
+set _Actionperform='PO Status changed';
+else
+set _Actionperform='PO Updated';
+end if;
+if ((new.TotalAmmount!=old.TotalAmmount) and new.TotalAmmount is not  null) then
+set _Actionperform='PO and Requested stock updated';
+else
+set _Actionperform='PO Updated';
+end if;
+INSERT INTO ams.purchaseorders_requests_history(POID,LocationID,VendorID,PORequestedBy,PODescription,
+ShipmentTerms,PaymentTerms,TotalAmmount,StatusID,CreatedBy,ActionedBy,ActionedOn,ActionePerformed,MainTblID)
+VALUES(old.POID,old.LocationID,old.VendorID,old.PORequestedBy,old.PODescription,
+old.ShipmentTerms,old.PaymentTerms,old.TotalAmmount,old.StatusID,old.ModifiedBy,new.ModifiedBy,now(),
+_Actionperform,new.IDPurchaseOrders_Requests);
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `purchaseorders_requests_history`
+--
+
+DROP TABLE IF EXISTS `purchaseorders_requests_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `purchaseorders_requests_history` (
+  `IDPurchaseOrders_Requests_History` int NOT NULL AUTO_INCREMENT,
+  `POID` varchar(45) DEFAULT NULL,
+  `LocationID` int DEFAULT NULL,
+  `VendorID` int DEFAULT NULL,
+  `PORequestedBy` int DEFAULT NULL,
+  `PODescription` varchar(500) DEFAULT NULL,
+  `ShipmentTerms` varchar(500) DEFAULT NULL,
+  `PaymentTerms` varchar(500) DEFAULT NULL,
+  `TotalAmmount` float DEFAULT NULL,
+  `StatusID` int DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `ActionedBy` int DEFAULT NULL,
+  `ActionedOn` datetime DEFAULT NULL,
+  `ActionePerformed` varchar(500) DEFAULT NULL,
+  `MainTblID` int DEFAULT NULL,
+  PRIMARY KEY (`IDPurchaseOrders_Requests_History`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchaseorders_requests_history`
+--
+
+LOCK TABLES `purchaseorders_requests_history` WRITE;
+/*!40000 ALTER TABLE `purchaseorders_requests_history` DISABLE KEYS */;
+INSERT INTO `purchaseorders_requests_history` VALUES (26,'23',14,11,156,'wcwd','wdc','wedcwdc',42,33,156,156,'2020-06-02 11:10:32','New PO request created',26),(27,'27',14,11,156,'ace','sdc','dc',40,33,156,156,'2020-06-02 11:23:41','PO created',27),(28,'28',14,11,156,'req','','',68,34,156,156,'2020-06-02 11:25:59','PO created and Requested ',28),(29,'27',14,11,156,'ace','sdc','dc',40,33,NULL,156,'2020-06-02 11:28:05','PO and Requested stock change',27),(30,'27',14,11,156,'ace','sdc','dc',68,33,0,156,'2020-06-02 11:30:55','PO Updated',27),(31,'22',14,11,156,'x','c','v',126,37,0,156,'2020-06-02 11:30:55','PO Updated',22);
+/*!40000 ALTER TABLE `purchaseorders_requests_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `requisition_approval`
+--
+
+DROP TABLE IF EXISTS `requisition_approval`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `requisition_approval` (
+  `IDRequisition_approval` int NOT NULL AUTO_INCREMENT,
+  `Requisition_RequestsID` int DEFAULT NULL,
+  `RoleID` int DEFAULT NULL,
+  `ApproverID` int DEFAULT NULL,
+  `Grade` int DEFAULT NULL,
+  `Comments` varchar(500) DEFAULT NULL,
+  `Status` varchar(45) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ActionedOn` datetime DEFAULT NULL,
+  PRIMARY KEY (`IDRequisition_approval`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `requisition_approval`
+--
+
+LOCK TABLES `requisition_approval` WRITE;
+/*!40000 ALTER TABLE `requisition_approval` DISABLE KEYS */;
+INSERT INTO `requisition_approval` VALUES (34,31,2,156,1,'sdcwdc','Approved','2020-06-02 19:56:02','2020-06-03 10:58:19');
+/*!40000 ALTER TABLE `requisition_approval` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `requisition_assets`
+--
+
+DROP TABLE IF EXISTS `requisition_assets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `requisition_assets` (
+  `IDRequisition_assets` int NOT NULL AUTO_INCREMENT,
+  `Requisition_RequestsID` int DEFAULT NULL,
+  `AssetName` varchar(45) DEFAULT NULL,
+  `AssetID` int DEFAULT NULL,
+  `ReqQuantity` int DEFAULT NULL,
+  `RecvQuantity` int DEFAULT NULL,
+  `PriceperUnit` float DEFAULT NULL,
+  `AssetComments` varchar(500) DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModifiedBy` int DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  PRIMARY KEY (`IDRequisition_assets`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `requisition_assets`
+--
+
+LOCK TABLES `requisition_assets` WRITE;
+/*!40000 ALTER TABLE `requisition_assets` DISABLE KEYS */;
+INSERT INTO `requisition_assets` VALUES (40,31,'Air Frshners',3,10,10,4,'wcw',156,'2020-06-02 19:56:02',156,'2020-06-03 15:27:30'),(41,31,'Air Frshners',3,10,10,4,'wecwe',156,'2020-06-02 19:56:02',156,'2020-06-03 15:27:30'),(42,32,'Air Frshners',3,6,NULL,4,'cwsedc',156,'2020-06-03 10:02:56',NULL,NULL);
+/*!40000 ALTER TABLE `requisition_assets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `requisition_requests`
+--
+
+DROP TABLE IF EXISTS `requisition_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `requisition_requests` (
+  `IDRequisition_Requests` int NOT NULL AUTO_INCREMENT,
+  `LocationID` int DEFAULT NULL,
+  `VendorID` int DEFAULT NULL,
+  `RequestedBy` int DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `ShipmentTerms` varchar(500) DEFAULT NULL,
+  `PaymentTerms` varchar(500) DEFAULT NULL,
+  `TotalAmmount` float DEFAULT NULL,
+  `TotalPaidAmmount` float DEFAULT NULL,
+  `BillInvoiceNo` varchar(45) DEFAULT NULL,
+  `BillImagePath` mediumtext,
+  `StatusID` int DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `ModifiedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `RecordStatus` varchar(45) DEFAULT 'Active',
+  PRIMARY KEY (`IDRequisition_Requests`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `requisition_requests`
+--
+
+LOCK TABLES `requisition_requests` WRITE;
+/*!40000 ALTER TABLE `requisition_requests` DISABLE KEYS */;
+INSERT INTO `requisition_requests` VALUES (31,14,11,156,'edw','wcw','wcfw',80,322,'34234r2','user3.jpg',44,156,156,'2020-06-02 19:56:02','2020-06-03 15:27:30','Active'),(32,14,11,156,'vcfs','dcscs','dcsd',24,NULL,NULL,NULL,39,156,NULL,'2020-06-03 10:02:56',NULL,'Active');
+/*!40000 ALTER TABLE `requisition_requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1998,7 +2361,7 @@ CREATE TABLE `status` (
   `StatusName` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idStatus`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2007,7 +2370,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'Available','itasset'),(2,'Retired','itasset'),(3,'Assigned','itasset'),(4,'In maintenance','itasset'),(5,'Damaged','itasset'),(6,'Expired','itasset'),(7,'Lost','itasset'),(8,'Sold','itasset'),(9,'Outward Requested','transfer'),(10,'Transfer Approved','transfer'),(11,'InTransit ','transfer'),(12,'Received','transfer'),(13,'Partially Received','transfer'),(14,'Transfer Rejected','transfer'),(15,'Not Received','transfer'),(16,'Purchased','consumable'),(17,'Consumed','consumable'),(18,'Expired','consumable'),(19,'Damaged','consumable'),(20,'Lost','consumable'),(21,'Duplicated','consumable'),(23,'Deleted','consumable'),(24,'Other','consumable'),(25,'Purchased','nonitasset'),(26,'InUse','nonitasset'),(27,'Expired','nonitasset'),(28,'Damaged','nonitasset'),(29,'Lost','nonitasset'),(30,'Duplicated','nonitasset'),(31,'Deleted','nonitasset'),(32,'Other','nonitasset');
+INSERT INTO `status` VALUES (1,'Available','itasset'),(2,'Retired','itasset'),(3,'Assigned','itasset'),(4,'In maintenance','itasset'),(5,'Damaged','itasset'),(6,'Expired','itasset'),(7,'Lost','itasset'),(8,'Sold','itasset'),(9,'Outward Requested','transfer'),(10,'Transfer Approved','transfer'),(11,'InTransit ','transfer'),(12,'Received','transfer'),(13,'Partially Received','transfer'),(14,'Transfer Rejected','transfer'),(15,'Not Received','transfer'),(16,'Purchased','consumable'),(17,'Consumed','consumable'),(18,'Expired','consumable'),(19,'Damaged','consumable'),(20,'Lost','consumable'),(21,'Duplicated','consumable'),(23,'Deleted','consumable'),(24,'Other','consumable'),(25,'Purchased','nonitasset'),(26,'InUse','nonitasset'),(27,'Expired','nonitasset'),(28,'Damaged','nonitasset'),(29,'Lost','nonitasset'),(30,'Duplicated','nonitasset'),(31,'Deleted','nonitasset'),(32,'Other','nonitasset'),(33,'Draft','PO'),(34,'Requested','PO'),(35,'Rejected','PO'),(36,'Approved','PO'),(37,'Sent to Vendor','PO'),(38,'Received from Vendor','PO'),(39,'Draft','Requisition'),(40,'Requested','Requisition'),(41,'Rejected','Requisition'),(42,'Approved','Requisition'),(43,'Sent to Vendor','Requisition'),(44,'Received from Vendor','Requisition');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2040,7 +2403,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (42,1,'sreekanth',_binary '],E«™’£r\Û\Öò¨½{\×ð—™‰À\ã°õ+\Æ\ËA5ÿeò5õ','Active',1,NULL,'2020-04-23 06:29:30','2020-05-05 14:13:49',0,NULL),(67,156,'premcoadmn',_binary '‘i~\ÅRdà»°o_,‰ó+-\×HF\å\Ê\×\éó\âóõF\Ò\Õ&_?ƒ2\è','Active',2,NULL,'2020-05-01 17:25:19','2020-05-05 14:32:40',0,1),(69,158,'premcoemp',_binary '¤M¦Æ³\Ô/ÁLÅ« ¬¼’\Ó^#gLª¯a=m	½\È7œ','Active',3,NULL,'2020-05-05 14:28:26','2020-05-12 18:26:30',0,1),(70,159,'premrdemp',_binary '\î4uN\ÝQÌ‰\áý-W\ZD˜P\Z©Œ›\á\ÕC²œö\Õ\èˆ\é3\ã‡HE','Active',3,NULL,'2020-05-05 14:34:11','2020-05-05 14:34:56',0,1),(71,160,'premrdadmn',_binary '?˜\ÉJ\Ú>t•:c\Æ\Ð]žõÿA‡«\Ë…fz’£\08bQ\å','Active',2,NULL,'2020-05-05 14:36:07','2020-05-05 14:36:40',0,1),(73,163,'anilmngrco',_binary 'oû~\0\ïqr\×J¤H\ÐJ	ˆˆ>•7\â§[ý¨!N\ã\â-®¿µ4','Active',4,NULL,'2020-05-12 11:08:41','2020-05-12 11:12:01',0,156),(74,164,'premcotl',_binary '{?¤|O)L1¸K±vº\ëjýÚ|·c—„ŠvBz—Iti','Active',5,NULL,'2020-05-12 17:45:45','2020-05-25 14:50:45',0,163);
+INSERT INTO `users` VALUES (42,1,'sreekanth',_binary '],E«™’£r\Û\Öò¨½{\×ð—™‰À\ã°õ+\Æ\ËA5ÿeò5õ','Active',1,NULL,'2020-04-23 06:29:30','2020-05-05 14:13:49',0,NULL),(67,156,'premcoadmn',_binary '‘i~\ÅRdà»°o_,‰ó+-\×HF\å\Ê\×\éó\âóõF\Ò\Õ&_?ƒ2\è','Active',2,NULL,'2020-05-01 17:25:19','2020-05-05 14:32:40',0,1),(69,158,'premcoemp',_binary '¤M¦Æ³\Ô/ÁLÅ« ¬¼’\Ó^#gLª¯a=m	½\È7œ','Active',3,NULL,'2020-05-05 14:28:26','2020-05-27 12:08:32',0,1),(70,159,'premrdemp',_binary '\î4uN\ÝQÌ‰\áý-W\ZD˜P\Z©Œ›\á\ÕC²œö\Õ\èˆ\é3\ã‡HE','Active',3,NULL,'2020-05-05 14:34:11','2020-05-05 14:34:56',0,1),(71,160,'premrdadmn',_binary '?˜\ÉJ\Ú>t•:c\Æ\Ð]žõÿA‡«\Ë…fz’£\08bQ\å','Active',2,NULL,'2020-05-05 14:36:07','2020-05-05 14:36:40',0,1),(73,163,'anilmngrco',_binary 'oû~\0\ïqr\×J¤H\ÐJ	ˆˆ>•7\â§[ý¨!N\ã\â-®¿µ4','Active',4,NULL,'2020-05-12 11:08:41','2020-05-12 11:12:01',0,156),(74,164,'premcotl',_binary '{?¤|O)L1¸K±vº\ëjýÚ|·c—„ŠvBz—Iti','Active',5,NULL,'2020-05-12 17:45:45','2020-05-25 14:50:45',0,163);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -2125,7 +2488,7 @@ CREATE TABLE `usershistory` (
   `CreatedBy` int DEFAULT NULL,
   `ActionPerformed` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`IDusersHistory`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2134,7 +2497,7 @@ CREATE TABLE `usershistory` (
 
 LOCK TABLES `usershistory` WRITE;
 /*!40000 ALTER TABLE `usershistory` DISABLE KEYS */;
-INSERT INTO `usershistory` VALUES (90,NULL,162,NULL,NULL,'Activation Pending',3,'2020-05-06 14:01:57','2020-05-06 14:01:57',1,'User created'),(91,69,158,'premcoemp',NULL,'Active',3,NULL,'2020-05-05 14:28:26',1,'User Upadted'),(92,NULL,163,NULL,NULL,'Activation Pending',4,'2020-05-12 11:08:41','2020-05-12 11:08:41',156,'User created'),(93,73,163,NULL,NULL,'Activation Pending',4,'2020-05-12 11:08:41','2020-05-12 11:08:41',156,'User Upadted'),(94,NULL,164,NULL,NULL,'Activation Pending',5,'2020-05-12 17:45:45','2020-05-12 17:45:45',163,'User created'),(95,74,164,NULL,NULL,'Activation Pending',5,'2020-05-12 17:45:45','2020-05-12 17:45:45',163,'User Upadted'),(96,74,164,NULL,NULL,'Activation Pending',5,'2020-05-12 17:45:45','2020-05-12 17:45:45',163,'User Upadted'),(97,69,158,'premcoemp',NULL,'Active',5,NULL,'2020-05-05 14:28:26',1,'User Upadted'),(98,74,164,'premcotl',NULL,'Active',5,NULL,'2020-05-12 17:45:45',163,'User Upadated'),(99,74,164,'premcotl',NULL,'InActive',5,NULL,'2020-05-12 17:45:45',163,'User Upadated');
+INSERT INTO `usershistory` VALUES (90,NULL,162,NULL,NULL,'Activation Pending',3,'2020-05-06 14:01:57','2020-05-06 14:01:57',1,'User created'),(91,69,158,'premcoemp',NULL,'Active',3,NULL,'2020-05-05 14:28:26',1,'User Upadted'),(92,NULL,163,NULL,NULL,'Activation Pending',4,'2020-05-12 11:08:41','2020-05-12 11:08:41',156,'User created'),(93,73,163,NULL,NULL,'Activation Pending',4,'2020-05-12 11:08:41','2020-05-12 11:08:41',156,'User Upadted'),(94,NULL,164,NULL,NULL,'Activation Pending',5,'2020-05-12 17:45:45','2020-05-12 17:45:45',163,'User created'),(95,74,164,NULL,NULL,'Activation Pending',5,'2020-05-12 17:45:45','2020-05-12 17:45:45',163,'User Upadted'),(96,74,164,NULL,NULL,'Activation Pending',5,'2020-05-12 17:45:45','2020-05-12 17:45:45',163,'User Upadted'),(97,69,158,'premcoemp',NULL,'Active',5,NULL,'2020-05-05 14:28:26',1,'User Upadted'),(98,74,164,'premcotl',NULL,'Active',5,NULL,'2020-05-12 17:45:45',163,'User Upadated'),(99,74,164,'premcotl',NULL,'InActive',5,NULL,'2020-05-12 17:45:45',163,'User Upadated'),(100,69,158,'premcoemp',NULL,'Active',3,NULL,'2020-05-05 14:28:26',1,'User Upadated'),(101,69,158,'premcoemp',NULL,'InActive',3,NULL,'2020-05-05 14:28:26',1,'User Upadated');
 /*!40000 ALTER TABLE `usershistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2224,12 +2587,104 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_threshhold`
+--
+
+DROP TABLE IF EXISTS `view_threshhold`;
+/*!50001 DROP VIEW IF EXISTS `view_threshhold`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `view_threshhold` AS SELECT 
+ 1 AS `AssetName`,
+ 1 AS `IdentificationNo`,
+ 1 AS `AvailableQnty`,
+ 1 AS `ThresholdQnty`,
+ 1 AS `LocationID`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Dumping events for database 'ams'
 --
 
 --
 -- Dumping routines for database 'ams'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `sp_AdminDashBoard` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_AdminDashBoard`(
+ IN _EmpID int,
+IN _LocID int
+)
+BEGIN
+ declare ActivationPendingUsers int;declare InActiveUsers int;declare ITAssetWarrentyExpired int;
+declare   ITAssetApprovals int;declare   NonITAssetApprovals int;
+declare   ITAssetsAvailable int;declare  ITAssetsAssigned int;
+declare  NonITAssetThreshold int;declare ConsumableThreshold int;declare OutwardApproval int;
+declare ReadyToShip int;declare InWardAssets int;declare  ITAssetServiceRequests int;
+
+
+select count(*) into ActivationPendingUsers from users usr join employees emp on usr.EmployeeId=emp.IdEmployees 
+where UserName is null and (Location =_LocID or ( _LocID=0 and Location  !=0))  ;
+
+ select count(*) into InActiveUsers from users usr join employees emp on usr.EmployeeId=emp.IdEmployees 
+  where usr.Status="InActive" and (Location =_LocID or ( _LocID=0 and Location !=0));
+ 
+ SELECT count( DATEDIFF(ITAssetWarranty, now())>10) into  ITAssetWarrentyExpired  FROM itassets  where RecordStatus='Active'
+ and (location =_LocID or ( _LocID=0 and location  !=0));
+
+
+ SELECT count(distinct iditassetrequest) into ITAssetApprovals FROM itassetrequest itr 
+ join itasset_req_approvals ita  on itr.ReqGroupID=ita.itassetReqGroupID
+ where itr.ReqStatus='Requested' and ita.ApproverID=_EmpID;
+
+ SELECT count(distinct nir.idnonitassetrequest) into NonITAssetApprovals FROM nonitassetrequest nir 
+ join nonitasset_req_approvals nia on nir.ReqGroupID=nia.nonitassetReqGroupID
+ where nir.ReqStatus='Requested' and nia.ApproverID=_EmpID;
+
+
+
+ SELECT count(idITAssets) into ITAssetsAvailable FROM itassets where ITAssetStatus=1
+ and (location =_LocID or ( _LocID=0 and location  !=0));
+
+ SELECT count(idITAssets) into ITAssetsAssigned FROM itassets where ITAssetStatus=3  
+ and (location =_LocID or ( _LocID=0 and location  !=0));
+ 
+ SELECT count(ThresholdQnty>=AvailableQnty) into NonITAssetThreshold 
+ FROM nonitassets where RecordStatus='Active'  and (LocationID =_LocID or ( _LocID=0 and LocationID  !=0));
+ 
+ SELECT count(ThresholdQnty>=TotalQnty) into ConsumableThreshold 
+FROM consumables  where RecordStatus='Active'  and (LocationID =_LocID or ( _LocID=0 and LocationID  !=0));
+
+SELECT count(*) into OutwardApproval FROM inwardoutward iwow 
+join inwardoutward_approval iwowa on iwow.idInWardOutWard=iwowa.IDinwardoutward 
+where iwowa.Status=9 and iwowa.ApproverID=_EmpID;
+
+SELECT count(*) into ReadyToShip FROM inwardoutward iwow 
+where iwow.TransferStatus=10 and iwow.SenderEmpID=_EmpID;
+
+SELECT count(*) into InWardAssets FROM inwardoutward iwow 
+where iwow.TransferStatus=11 and iwow.ReceiverEmpID=_EmpID;
+
+SELECT count(iditasset_service_request)  into ITAssetServiceRequests
+FROM itasset_service_request where Issue_Status='Requested' and Admin_EmpID=_EmpID;
+
+ select ActivationPendingUsers,InActiveUsers,ITAssetWarrentyExpired,
+ ITAssetApprovals,NonITAssetApprovals,ITAssetsAvailable,ITAssetsAssigned,
+ NonITAssetThreshold,ConsumableThreshold,OutwardApproval,ReadyToShip,InWardAssets,ITAssetServiceRequests; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_AuthorizationListByRole` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2349,6 +2804,26 @@ where iwow.idinwardoutwardAssets=_idinwardoutwardAssets ;
 INSERT INTO consumableoprtns (consumableID,Quantity,
 	Comments,StatusID)  SELECT LAST_INSERT_ID(),Quantity,Description,12 FROM inwardoutwardassets where idinwardoutwardAssets=_idinwardoutwardAssets; 
  end IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_ConsumableDelete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ConsumableDelete`(in _AssetID int)
+BEGIN
+delete from consumables where idconsumables=_AssetID;
+delete from consumableoprtns where consumableID=_AssetID;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2484,6 +2959,82 @@ left join locations as loc on loc.idLocations=con.LocationID
 left join  status stCon on stCon.idStatus=con.StatusID
 left join  status stCop on stCop.idStatus=cop.StatusID
 left join employees emp on emp.IdEmployees=cop.OrderedBy;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_ConsumablesByVendor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ConsumablesByVendor`(IN _VendorID int)
+BEGIN
+SELECT vend.idvendors, vend.name, vend.description, vend.websites, vend.address, vend.Email, vend.ContactPersonName, 
+vend.Phone, vend.Status, vend.CreatedOn, vend.ModifiedOn, vend.CreatedBy, vend.ModifiedBy, 
+vcm.IDVendors_ConsumableMaster_Map, vcm.ConsumableMasterID, vcm.VendorsID, vcm.PriceperUnit, vcm.ItemType, 
+vcm.CreatedBy, vcm.CreatedOn, vcm.VendorRfrdAssetName,
+cm.idconsumableMaster, cm.consumableName, cm.GroupID, cm.SubGroupID,cm.Description, cm.CreatedOn, cm.ModifiedOn
+FROM  consumablemaster  cm 
+left join vendors_consumablemaster_map vcm on vcm.ConsumableMasterID=cm.idconsumableMaster
+left join vendors vend on vend.idvendors=vcm.VendorsID
+where vend.idvendors =_VendorID; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_EmployeeDashboard` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_EmployeeDashboard`(
+ IN _EmpID int,
+IN _LocID int
+)
+BEGIN
+Declare  ITAssetsAssigned int;
+Declare  NonITAssetsAssigned int;
+declare  ITAssetRequests int;
+declare   NonITAssetRequests int;
+declare   ITAssetServiceRequests int;
+
+
+ SELECT count(idITAssets) into ITAssetsAssigned FROM itassets it 
+ join itassetcheckoutcheckin chk on chk.AssetID=it.idITAssets  
+ where it.ITAssetStatus=3  and chk.isCheckin=0 and chk.CheckedOutUserID=_EmpID;
+ 
+SELECT sum( nchk.InUse) into NonITAssetsAssigned FROM nonitassets nit join nonitassets_checkout_checkin nchk on
+nit.IDNonITAsset=nchk.NonITAsset_ID where nchk.CheckedOutUserID=_EmpID  ;
+
+
+ SELECT count(distinct nir.idnonitassetrequest) into  NonITAssetRequests FROM nonitassetrequest nir 
+ join nonitasset_req_approvals nia on nir.ReqGroupID=nia.nonitassetReqGroupID
+ where nir.ReqStatus='Requested' and nir.RequestedBy=_EmpID;
+ 
+ 
+ SELECT count(distinct iditassetrequest) into ITAssetRequests  FROM itassetrequest itr 
+ join itasset_req_approvals ita  on itr.ReqGroupID=ita.itassetReqGroupID
+ where itr.ReqStatus='Requested' and itr.RequestedBy=_EmpID;
+ 
+ SELECT count(iditasset_service_request)  into ITAssetServiceRequests
+FROM itasset_service_request where Issue_Status='Requested' and Emp_EmpID=_EmpID;
+ 
+select ITAssetsAssigned,NonITAssetsAssigned,NonITAssetRequests,ITAssetRequests,ITAssetServiceRequests;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2705,6 +3256,26 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_ITAssetDelete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ITAssetDelete`(In _AssetID int )
+BEGIN
+delete from itassets where idITAssets=_AssetID;
+delete from itassetcheckoutcheckin where AssetID=_AssetID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_ITAssetHistorybyAsset` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2758,6 +3329,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_ITAssetReqListByEmp` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ITAssetReqListByEmp`(in _EmpID int)
+BEGIN
+SELECT GROUP_CONCAT(ITAReq.AssetType separator ', ') as "AssetType", ITAReq.ReqGroupID,
+ITAReq.RequestedBy,ITAReq.ReqStatus,ITAReq.Priority,ITAReq.RequestedOn,ITAReq.AssetID, ITAReq.Description,
+empReq.FirstName,ira.RoleID,ira.ApproverID,ira.Grade,ira.Status,ira.Comments,ira.CreatedOn,ira.ActionedOn
+FROM itassetrequest ITAReq  
+join itasset_req_approvals ira on ira.itassetReqGroupID=ITAReq.ReqGroupID
+join employees empReq on ITAReq.RequestedBy=empReq.IdEmployees
+left join itassets ITA on ITA.idITAssets=ITAReq.AssetID
+where ITAReq.RequestedBy=_EmpID
+group by  ITAReq.ReqGroupID order by Status desc, ReqGroupID  ;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_ITAssetReqListByReqGroup` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2780,6 +3378,31 @@ join itasset_req_approvals ira on ira.itassetReqGroupID=ITAReq.ReqGroupID
 join employees empReq on ITAReq.RequestedBy=empReq.IdEmployees
 left join itassets ITA on ITA.idITAssets=ITAReq.AssetID
  where ITAReq.ReqGroupID=_ReqGroupID and  ira.ApproverID=_ApproverID and   ITAReq.ReqStatus="Requested";	
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_ITAssetService_Request_ApproveByAsst` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ITAssetService_Request_ApproveByAsst`(
+in _ITAssetID int,in _OldITAssetID int,in _Emp_EmpID int,in _Admin_EmpID int          
+)
+BEGIN
+update itassetcheckoutcheckin set AssetID=_ITAssetID where AssetID=_OldITAssetID 
+and CheckedOutUserID=_Emp_EmpID and isCheckin=0;
+update itassets set ITAssetStatus=1 where idITAssets=_OldITAssetID and ITAssetStatus=3;
+update itassets set ITAssetStatus=3 where idITAssets=_ITAssetID and ITAssetStatus=1;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3031,6 +3654,40 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_NonITAssetCheckin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_NonITAssetCheckin`(
+In _CheckIN_Qnty int,
+in _Checkin_Comments varchar(500),
+in _CheckIN_By int,
+in _nonitassets_checkout_checkinID int
+)
+BEGIN
+declare _AssetID int;
+insert nonitassets_checkin(CheckIN_Qnty,Checkin_Comments,CheckIN_By,nonitassets_checkout_checkinID) 
+values(_CheckIN_Qnty,_Checkin_Comments,_CheckIN_By,_nonitassets_checkout_checkinID);
+
+update nonitassets_checkout_checkin set  InUse=InUse-_CheckIN_Qnty 
+where IDNonITAssets_Checkout_Checkin=_nonitassets_checkout_checkinID;
+
+SELECT NonITAsset_ID into _AssetID  FROM nonitassets_checkout_checkin where IDNonITAssets_Checkout_Checkin=_nonitassets_checkout_checkinID;
+
+update nonitassets set  AvailableQnty=AvailableQnty+_CheckIN_Qnty,InUseQnty=InUseQnty-_CheckIN_Qnty 
+where IDNonITAsset=_AssetID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_NonITAssetCheckinDetails` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3113,6 +3770,26 @@ join nonitassets_master nimstr on nimstr.idNonITAssets_Master=nit.NonITAssets_Ma
 left join employees chkUsr on chkUsr.IdEmployees=nchk.CheckedOutUserID
 left join employees chkOutBy on chkOutBy.IdEmployees=nchk.CheckOut_By
 where nchk.CheckedOutUserID=_EmpID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_NonITAssetDelete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_NonITAssetDelete`(IN _AssetID int )
+BEGIN
+delete from  nonitassets where IDNonITAsset=_AssetID ;
+delete from  nonitassets_checkout_checkin where NonITAsset_ID =_AssetID;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3361,6 +4038,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_NonITAssetReqListByEmp` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_NonITAssetReqListByEmp`(in _EmpID int )
+BEGIN
+SELECT GROUP_CONCAT(NonITAReq.AssetType separator ', ') as "AssetType", NonITAReq.ReqGroupID,
+NonITAReq.RequestedBy,NonITAReq.ReqStatus,NonITAReq.Priority,NonITAReq.RequestedOn,NonITAReq.AssetID, NonITAReq.Description,
+empReq.FirstName,ira.RoleID,ira.ApproverID,ira.Grade,ira.Status,ira.Comments,ira.CreatedOn,ira.ActionedOn
+FROM nonitassetrequest NonITAReq  
+join nonitasset_req_approvals ira on ira.nonitassetReqGroupID=NonITAReq.ReqGroupID
+join employees empReq on NonITAReq.RequestedBy=empReq.IdEmployees
+left join nonitassets ITA on ITA.IDNonITAsset=NonITAReq.AssetID
+where NonITAReq.RequestedBy=_EmpID
+group by  NonITAReq.ReqGroupID order by Status desc, ReqGroupID  ;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_NonITAssetReqListByReqGroup` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3501,6 +4205,235 @@ left join locations FrmLoc on iwow.FromLocationID=FrmLoc.idLocations
 left join locations ToLoc on iwow.ToLocationID=ToLoc.idLocations
 join inwardoutwardassets iwa on iwa.inwardoutwardid=iwow.idInWardOutWard
 join status sts on sts.idStatus =iwow.TransferStatus group by  iwow.idInWardOutWard;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_PODetailsByApprover` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_PODetailsByApprover`(in _ApproverID int)
+BEGIN
+SELECT poa.IDPO_approval, poa.PurchaseOrders_RequestsID, poa.RoleID, poa.ApproverID, poa.Grade, poa.Comments, poa.Status, poa.CreatedOn, poa.ActionedOn,
+por.IDPurchaseOrders_Requests, por.POID, por.LocationID, por.VendorID, por.PORequestedBy, por.PODescription, 
+por.ShipmentTerms, por.PaymentTerms, por.TotalAmmount, por.StatusID, por.CreatedBy, por.ModifiedBy, por.CreatedOn,
+ por.ModifiedOn, por.RecordStatus,
+vend.name, vend.description, vend.websites, vend.address, vend.Email, 
+vend.ContactPersonName, vend.Phone,
+loc.Name,loc.Address1,loc.Address2,loc.city,loc.zipcode,
+empReq.FirstName,st.StatusName
+from po_approval poa
+join   purchaseorders_requests por on poa.PurchaseOrders_RequestsID=por.IDPurchaseOrders_Requests
+left join vendors vend  on por.VendorID=vend.idvendors
+left join locations loc  on por.LocationID=loc.idLocations
+left join employees empReq on empReq.IdEmployees=por.PORequestedBy
+left join status st on st.idStatus=por.StatusID
+where poa.ApproverID=_ApproverID;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_PODetailsByPOID` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_PODetailsByPOID`(in _POID int)
+BEGIN
+SELECT por.IDPurchaseOrders_Requests, por.POID, por.LocationID, por.VendorID, por.PORequestedBy, por.PODescription, 
+por.ShipmentTerms, por.PaymentTerms, por.TotalAmmount, por.StatusID, por.CreatedBy, por.ModifiedBy, por.CreatedOn,
+ por.ModifiedOn, por.RecordStatus,
+vend.name, vend.description, vend.websites, vend.address, vend.Email, 
+vend.ContactPersonName, vend.Phone,
+loc.Name,loc.Address1,loc.Address2,loc.city,loc.zipcode,
+empReq.FirstName,st.StatusName
+ FROM  purchaseorders_requests por
+left join vendors vend  on por.VendorID=vend.idvendors
+left join locations loc  on por.LocationID=loc.idLocations
+left join employees empReq on empReq.IdEmployees=por.PORequestedBy
+left join status st on st.idStatus=por.StatusID
+where por.IDPurchaseOrders_Requests=_POID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_PODetailsByReq` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_PODetailsByReq`(in _ReqID int)
+BEGIN
+SELECT por.IDPurchaseOrders_Requests, por.POID, por.LocationID, por.VendorID, por.PORequestedBy, por.PODescription, 
+por.ShipmentTerms, por.PaymentTerms, por.TotalAmmount, por.StatusID, por.CreatedBy, por.ModifiedBy, por.CreatedOn,
+ por.ModifiedOn, por.RecordStatus,
+vend.name, vend.description, vend.websites, vend.address, vend.Email, 
+vend.ContactPersonName, vend.Phone,
+loc.Name,loc.Address1,loc.Address2,loc.city,loc.zipcode,
+empReq.FirstName,st.StatusName
+ FROM  purchaseorders_requests por
+left join vendors vend  on por.VendorID=vend.idvendors
+left join locations loc  on por.LocationID=loc.idLocations
+left join employees empReq on empReq.IdEmployees=por.PORequestedBy
+left join status st on st.idStatus=por.StatusID
+where empReq.IdEmployees=_ReqID and (empReq.IdEmployees =_ReqID or ( _ReqID=0 and empReq.IdEmployees  !=0)) order by por.IDPurchaseOrders_Requests desc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_RequisitionByApprover` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RequisitionByApprover`(in _ApproverID int)
+BEGIN
+SELECT poa.IDRequisition_approval, poa.Requisition_RequestsID, poa.RoleID, poa.ApproverID, poa.Grade, poa.Comments, poa.Status, poa.CreatedOn, poa.ActionedOn,
+por.IDRequisition_Requests,  por.LocationID, por.VendorID, por.RequestedBy, por.Description, 
+por.ShipmentTerms, por.PaymentTerms, por.TotalAmmount,por.TotalPaidAmmount, por.StatusID, por.CreatedBy, por.ModifiedBy, por.CreatedOn,
+ por.ModifiedOn, por.RecordStatus,
+vend.name, vend.description, vend.websites, vend.address, vend.Email, 
+vend.ContactPersonName, vend.Phone,
+loc.Name,loc.Address1,loc.Address2,loc.city,loc.zipcode,
+empReq.FirstName,st.StatusName
+from requisition_approval poa
+join   requisition_requests por on poa.Requisition_RequestsID=por.IDRequisition_Requests
+left join vendors vend  on por.VendorID=vend.idvendors
+left join locations loc  on por.LocationID=loc.idLocations
+left join employees empReq on empReq.IdEmployees=por.RequestedBy
+left join status st on st.idStatus=por.StatusID
+where poa.ApproverID=_ApproverID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_RequisitionDetailsByID` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RequisitionDetailsByID`(in _ID int)
+BEGIN
+select por.IDRequisition_Requests, por.LocationID, por.VendorID, por.RequestedBy, por.Description, 
+por.ShipmentTerms, por.PaymentTerms, por.TotalAmmount,por.TotalPaidAmmount,por.BillInvoiceNo,por.BillImagePath,por.StatusID, por.CreatedBy, por.ModifiedBy, por.CreatedOn,
+ por.ModifiedOn, por.RecordStatus,
+vend.name, vend.description, vend.websites, vend.address, vend.Email, 
+vend.ContactPersonName, vend.Phone,
+loc.Name,loc.Address1,loc.Address2,loc.city,loc.zipcode,
+empReq.FirstName,st.StatusName
+ FROM  requisition_requests por
+left join vendors vend  on por.VendorID=vend.idvendors
+left join locations loc  on por.LocationID=loc.idLocations
+left join employees empReq on empReq.IdEmployees=por.RequestedBy
+left join status st on st.idStatus=por.StatusID
+where por.IDRequisition_Requests=_ID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_RequisitionDetailsByReq` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RequisitionDetailsByReq`(in _ReqID int)
+BEGIN
+SELECT por.IDRequisition_Requests, por.LocationID, por.VendorID, por.RequestedBy, por.Description, 
+por.ShipmentTerms, por.PaymentTerms, por.TotalAmmount,por.TotalPaidAmmount,por.BillInvoiceNo,por.BillImagePath,por.StatusID, por.CreatedBy, por.ModifiedBy, por.CreatedOn,
+ por.ModifiedOn, por.RecordStatus,
+vend.name, vend.description, vend.websites, vend.address, vend.Email, 
+vend.ContactPersonName, vend.Phone,
+loc.Name,loc.Address1,loc.Address2,loc.city,loc.zipcode,
+empReq.FirstName,st.StatusName
+ FROM  requisition_requests por
+left join vendors vend  on por.VendorID=vend.idvendors
+left join locations loc  on por.LocationID=loc.idLocations
+left join employees empReq on empReq.IdEmployees=por.RequestedBy
+left join status st on st.idStatus=por.StatusID
+where
+ (empReq.IdEmployees =_ReqID or ( _ReqID=0 and empReq.IdEmployees  !=0)) order by por.IDRequisition_Requests desc;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_RequisitionRecvStock` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RequisitionRecvStock`( 
+In _AssetID int,
+in _LocationID int,
+in _IDRequisition_assets int,
+in _RecvQuantity int,
+in _UnitPrice int,
+in _VendorID int,
+in _ModifiedBy int
+)
+BEGIN
+declare _idconsumables int;
+select  idconsumables into _idconsumables  from consumables 
+where idconsumableMaster=_AssetID and LocationID=_LocationID;
+
+update requisition_assets set RecvQuantity=_RecvQuantity,ModifiedBy=_ModifiedBy,ModifiedOn=now() 
+where IDRequisition_assets=_IDRequisition_assets;
+
+INSERT INTO consumableoprtns (consumableID,Quantity,UnitPrice,VendorID,OrderedBy,Comments,StatusID) 
+VALUES (_idconsumables,_RecvQuantity,_UnitPrice,_VendorID, _ModifiedBy,'added from Requisition',25 );
+update consumables set TotalQnty=TotalQnty + _RecvQuantity,ModifiedOn=now() where idconsumables=_idconsumables ;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3669,7 +4602,25 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_activitylog` AS select `emph`.`IDemployeesHistory` AS `IDHistory`,`emph`.`IdEmployees` AS `IDMaintable`,`emph`.`CreatedOn` AS `CreatedOn`,`emph`.`ActionPerformed` AS `ActionPerformed`,`emph`.`CreatedBy` AS `CreatedBy`,'Employee' AS `Module`,concat(ifnull(`emph`.`FirstName`,''),' ',ifnull(`emph`.`LastName`,'')) AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`employeeshistory` `emph` join `employees` `crtd` on((`crtd`.`IdEmployees` = `emph`.`CreatedBy`))) union select `ush`.`IDusersHistory` AS `IDHistory`,`ush`.`EmployeeId` AS `IDMaintable`,`ush`.`CreatedOn` AS `CreatedOn`,`ush`.`ActionPerformed` AS `ActionPerformed`,`ush`.`CreatedBy` AS `CreatedBy`,'User' AS `Module`,concat(ifnull(`emp`.`FirstName`,''),' ',ifnull(`emp`.`LastName`,'')) AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`usershistory` `ush` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ush`.`CreatedBy`))) left join `employees` `emp` on((`emp`.`IdEmployees` = `ush`.`EmployeeId`))) union select `ith`.`iditassets_history` AS `IDHistory`,`ith`.`MainTblID` AS `IDMaintable`,`ith`.`ActionedOn` AS `CreatedOn`,`ith`.`ActionePerformed` AS `ActionePerformed`,`ith`.`ActionedBy` AS `ActionedBy`,'ITAsset' AS `Module`,`ita`.`ITAssetName` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`itassets_history` `ith` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ith`.`ActionedBy`))) left join `itassets` `ita` on((`ita`.`idITAssets` = `ith`.`idITAssets`))) union select `ith`.`iditassetrequest_History` AS `IDHistory`,`ith`.`MainTblID` AS `IDMaintable`,`ith`.`ActionedOn` AS `CreatedOn`,`ith`.`ActionePerformed` AS `ActionePerformed`,`ith`.`ActionedBy` AS `ActionedBy`,'ITAsset Request' AS `Module`,'' AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`itassetrequest_history` `ith` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ith`.`ActionedBy`))) union select `cth`.`idconsumables_History` AS `IDHistory`,`cth`.`MainTblID` AS `IDMaintable`,`cth`.`ActionedOn` AS `CreatedOn`,`cth`.`ActionePerformed` AS `ActionePerformed`,`cth`.`ActionedBy` AS `ActionedBy`,'Consumable' AS `Module`,`cth`.`IdentificationNo` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`consumables_history` `cth` join `employees` `crtd` on((`crtd`.`IdEmployees` = `cth`.`ActionedBy`))) union select `co`.`idconsumableOprtns` AS `IDHistory`,`co`.`idconsumableOprtns` AS `IDMaintable`,`co`.`CreatedOn` AS `CreatedOn`,`st`.`StatusName` AS `ActionePerformed`,`co`.`OrderedBy` AS `ActionedBy`,'Consumable Stocks' AS `Module`,'' AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`consumableoprtns` `co` join `employees` `crtd` on((`crtd`.`IdEmployees` = `co`.`OrderedBy`))) join `status` `st` on((`st`.`idStatus` = `co`.`StatusID`))) union select `iwowh`.`idinwardoutward_History` AS `IDHistory`,`iwowh`.`MainTblID` AS `IDMaintable`,`iwowh`.`ActionedOn` AS `CreatedOn`,`iwowh`.`ActionePerformed` AS `ActionePerformed`,`iwowh`.`ActionedBy` AS `ActionedBy`,'InWard-OutWard' AS `Module`,`iwow`.`TransactionID` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`inwardoutward_history` `iwowh` join `employees` `crtd` on((`crtd`.`IdEmployees` = `iwowh`.`ActionedBy`))) left join `inwardoutward` `iwow` on((`iwow`.`idInWardOutWard` = `iwowh`.`idInWardOutWard`))) order by `CreatedOn` desc */;
+/*!50001 VIEW `view_activitylog` AS select `emph`.`IDemployeesHistory` AS `IDHistory`,`emph`.`IdEmployees` AS `IDMaintable`,`emph`.`CreatedOn` AS `CreatedOn`,`emph`.`ActionPerformed` AS `ActionPerformed`,`emph`.`CreatedBy` AS `CreatedBy`,'Employee' AS `Module`,concat(ifnull(`emph`.`FirstName`,''),' ',ifnull(`emph`.`LastName`,'')) AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`employeeshistory` `emph` join `employees` `crtd` on((`crtd`.`IdEmployees` = `emph`.`CreatedBy`))) union select `ush`.`IDusersHistory` AS `IDHistory`,`ush`.`EmployeeId` AS `IDMaintable`,`ush`.`CreatedOn` AS `CreatedOn`,`ush`.`ActionPerformed` AS `ActionPerformed`,`ush`.`CreatedBy` AS `CreatedBy`,'User' AS `Module`,concat(ifnull(`emp`.`FirstName`,''),' ',ifnull(`emp`.`LastName`,'')) AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`usershistory` `ush` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ush`.`CreatedBy`))) left join `employees` `emp` on((`emp`.`IdEmployees` = `ush`.`EmployeeId`))) union select `ith`.`iditassets_history` AS `IDHistory`,`ith`.`MainTblID` AS `IDMaintable`,`ith`.`ActionedOn` AS `CreatedOn`,`ith`.`ActionePerformed` AS `ActionePerformed`,`ith`.`ActionedBy` AS `ActionedBy`,'ITAsset' AS `Module`,`ita`.`ITAssetName` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`itassets_history` `ith` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ith`.`ActionedBy`))) left join `itassets` `ita` on((`ita`.`idITAssets` = `ith`.`idITAssets`))) union select `ith`.`iditassetrequest_History` AS `IDHistory`,`ith`.`MainTblID` AS `IDMaintable`,`ith`.`ActionedOn` AS `CreatedOn`,`ith`.`ActionePerformed` AS `ActionePerformed`,`ith`.`ActionedBy` AS `ActionedBy`,'ITAsset Request' AS `Module`,'' AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`itassetrequest_history` `ith` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ith`.`ActionedBy`))) union select `cth`.`idconsumables_History` AS `IDHistory`,`cth`.`MainTblID` AS `IDMaintable`,`cth`.`ActionedOn` AS `CreatedOn`,`cth`.`ActionePerformed` AS `ActionePerformed`,`cth`.`ActionedBy` AS `ActionedBy`,'Consumable' AS `Module`,`cth`.`IdentificationNo` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`consumables_history` `cth` join `employees` `crtd` on((`crtd`.`IdEmployees` = `cth`.`ActionedBy`))) union select `co`.`idconsumableOprtns` AS `IDHistory`,`co`.`idconsumableOprtns` AS `IDMaintable`,`co`.`CreatedOn` AS `CreatedOn`,`st`.`StatusName` AS `ActionePerformed`,`co`.`OrderedBy` AS `ActionedBy`,'Consumable Stocks' AS `Module`,'' AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`consumableoprtns` `co` join `employees` `crtd` on((`crtd`.`IdEmployees` = `co`.`OrderedBy`))) join `status` `st` on((`st`.`idStatus` = `co`.`StatusID`))) union select `iwowh`.`idinwardoutward_History` AS `IDHistory`,`iwowh`.`MainTblID` AS `IDMaintable`,`iwowh`.`ActionedOn` AS `CreatedOn`,`iwowh`.`ActionePerformed` AS `ActionePerformed`,`iwowh`.`ActionedBy` AS `ActionedBy`,'InWard-OutWard' AS `Module`,`iwow`.`TransactionID` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from ((`inwardoutward_history` `iwowh` join `employees` `crtd` on((`crtd`.`IdEmployees` = `iwowh`.`ActionedBy`))) left join `inwardoutward` `iwow` on((`iwow`.`idInWardOutWard` = `iwowh`.`idInWardOutWard`))) union select `ph`.`IDPurchaseOrders_Requests_History` AS `IDHistory`,`ph`.`MainTblID` AS `IDMaintable`,`ph`.`ActionedOn` AS `CreatedOn`,`ph`.`ActionePerformed` AS `ActionePerformed`,`ph`.`ActionedBy` AS `ActionedBy`,'PO' AS `Module`,`ph`.`POID` AS `Name`,`crtd`.`FirstName` AS `ActionedByFirstName`,`crtd`.`LastName` AS `ActionedByLastName` from (`purchaseorders_requests_history` `ph` join `employees` `crtd` on((`crtd`.`IdEmployees` = `ph`.`ActionedBy`))) order by `CreatedOn` desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_threshhold`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_threshhold`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_threshhold` AS select `nim`.`NonITAssets_Name` AS `AssetName`,`ni`.`IdentificationNo` AS `IdentificationNo`,`ni`.`InUseQnty` AS `AvailableQnty`,`ni`.`ThresholdQnty` AS `ThresholdQnty`,`ni`.`LocationID` AS `LocationID` from (`nonitassets` `ni` join `nonitassets_master` `nim` on((`nim`.`idNonITAssets_Master` = `ni`.`IDNonITAsset`))) where ((`ni`.`RecordStatus` = 'Active') and (`ni`.`ThresholdQnty` >= `ni`.`AvailableQnty`)) union select `cnm`.`consumableName` AS `AssetName`,`con`.`IdentificationNo` AS `IdentificationNo`,`con`.`TotalQnty` AS `AvailableQnty`,`con`.`ThresholdQnty` AS `ThresholdQnty`,`con`.`LocationID` AS `LocationID` from (`consumables` `con` join `consumablemaster` `cnm` on((`cnm`.`idconsumableMaster` = `con`.`idconsumableMaster`))) where ((`con`.`RecordStatus` = 'Active') and (`con`.`ThresholdQnty` >= `con`.`TotalQnty`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3683,4 +4634,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-26 14:43:35
+-- Dump completed on 2020-06-03 16:25:12
