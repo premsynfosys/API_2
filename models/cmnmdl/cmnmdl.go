@@ -19,14 +19,16 @@ type AdminDashBoard struct {
 	NonITAssetApprovals *int `json:"NonITAssetApprovals"`
 	ITAssetApprovals    *int `json:"ITAssetApprovals"`
 
-	ITAssetsAvailable      *int `json:"ITAssetsAvailable"`
-	ITAssetsAssigned       *int `json:"ITAssetsAssigned"`
-	NonITAssetThreshold    *int `json:"NonITAssetThreshold"`
-	ConsumableThreshold    *int `json:"ConsumableThreshold"`
-	OutwardApproval        *int `json:"OutwardApproval"`
-	ReadyToShip            *int `json:"ReadyToShip"`
-	InWardAssets           *int `json:"InWardAssets"`
-	ITAssetServiceRequests *int `json:"ITAssetServiceRequests"`
+	ITAssetsAvailable           *int `json:"ITAssetsAvailable"`
+	ITAssetsAssigned            *int `json:"ITAssetsAssigned"`
+	NonITAssetThreshold         *int `json:"NonITAssetThreshold"`
+	ConsumableThreshold         *int `json:"ConsumableThreshold"`
+	OutwardApproval             *int `json:"OutwardApproval"`
+	ReadyToShip                 *int `json:"ReadyToShip"`
+	InWardAssets                *int `json:"InWardAssets"`
+	ITAssetServiceRequests      *int `json:"ITAssetServiceRequests"`
+	RequisitionRequestesPending *int `json:"RequisitionRequestesPending"`
+	RequisitionApprovalRequests *int `json:"RequisitionApprovalRequests"`
 }
 
 type EmployeeDashboard struct {
