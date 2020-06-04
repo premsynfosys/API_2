@@ -281,6 +281,19 @@ func (p *CmnIrepo) UpdateVendors(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (p *CmnIrepo) DeleteVendors(w http.ResponseWriter, r *http.Request) {
+	usr := cmnmdl.Vendors{}
+	json.NewDecoder(r.Body).Decode(&usr)
+
+	err := p.ICmnrepo.DeleteVendors(r.Context(), &usr)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
 //RetryFailedmails a new post
 func (p *CmnIrepo) RetryFailedmails() {
 	p.ICmnrepo.RetryFailedmails()
@@ -811,6 +824,8 @@ func (p *CmnIrepo) PurchaseOrders_RequestsUpdate(w http.ResponseWriter, r *http.
 		respondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
+
 func (p *CmnIrepo) GetPurchaseOrderUniqueID(w http.ResponseWriter, r *http.Request) {
 	dt, err := p.ICmnrepo.GetPurchaseOrderUniqueID()
 	if err != nil {
@@ -1060,5 +1075,17 @@ func (p *CmnIrepo) RequisitionStcokReceived(w http.ResponseWriter, r *http.Reque
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
+func (p *CmnIrepo) GetRequisitionHistoryByReqID(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	ID := params["ReqID"]
+	IDs, _ := strconv.Atoi(ID)
+	dt, err := p.ICmnrepo.GetRequisitionHistoryByReqID(r.Context(), IDs)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		respondwithJSON(w, http.StatusOK, dt)
 	}
 }

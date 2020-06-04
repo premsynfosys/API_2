@@ -475,6 +475,9 @@ func (m *mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl
 	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
 		usr.CheckedOutDate,
 		usr.ExpectedCheckInDate, usr.Comments, usr.IsCheckin, usr.CreatedBy)
+	if err != nil {
+		return err
+	}
 	defer stmt.Close()
 	if *usr.CheckedOutTo == "User" {
 		mail, name := m.GetMailByUserID(nil, usr.CheckedOutUserID)
@@ -1095,4 +1098,28 @@ func (m *mysqlRepo) ITAssetDelete(ctx context.Context, AssetID int) error {
 	_, err = stmt.ExecContext(ctx, AssetID)
 	defer stmt.Close()
 	return err
+}
+
+func (m *mysqlRepo) GetITAssetToCheckoutToITasset(ctx context.Context, LocID int, AssetID int) ([]*itassetmdl.ITAssetModel, error) {
+	qry := " SELECT idITAssets,ITAssetName,ITAssetSerialNo,ITAssetIdentificationNo FROM  " +
+		" itassets where ITAssetStatus=1 and idITAssets !=? and Location=? and RecordStatus='Active' ;"
+	selDB, err := m.Conn.QueryContext(ctx, qry, AssetID, LocID)
+	if err != nil {
+		panic(err.Error())
+	}
+	res := make([]*itassetmdl.ITAssetModel, 0)
+	for selDB.Next() {
+		mdl := new(itassetmdl.ITAssetModel)
+		err = selDB.Scan(&mdl.IDITAssets, &mdl.ITAssetName, &mdl.ITAssetSerialNo, &mdl.ITAssetIdentificationNo)
+		if err != nil {
+			panic(err.Error())
+		}
+		res = append(res, mdl)
+	}
+	if err != nil {
+		return nil, err
+
+	}
+	defer selDB.Close()
+	return res, nil
 }

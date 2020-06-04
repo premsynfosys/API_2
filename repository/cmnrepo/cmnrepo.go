@@ -435,7 +435,7 @@ func (m *mysqlRepo) CreateOutWardCart(ctx context.Context, List []*cmnmdl.OutWar
 
 //______________________________________________________________________________________________
 func (m *mysqlRepo) GetVendors(ctx context.Context) ([]*cmnmdl.Vendors, error) {
-	selDB, err := m.Conn.QueryContext(ctx, "SELECT idvendors,name,description,websites,address,Email,ContactPersonName,Phone,Status FROM  vendors order by idvendors desc ;")
+	selDB, err := m.Conn.QueryContext(ctx, "SELECT idvendors,name,description,websites,address,Email,ContactPersonName,Phone,Status FROM  vendors where Status='Active' order by idvendors desc ;")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -579,6 +579,35 @@ func (m *mysqlRepo) UpdateVendors(ctx context.Context, usr *cmnmdl.Vendors) erro
 	}
 	_, err = stmt.ExecContext(ctx, usr.Name, usr.Description, usr.Websites, usr.Address, usr.Email, usr.ContactPersonName, usr.Phone, usr.Idvendors)
 	defer stmt.Close()
+	return err
+}
+
+func (m *mysqlRepo) DeleteVendors(ctx context.Context, usr *cmnmdl.Vendors) error {
+	txn, _ := m.Conn.Begin()
+	query := " update  vendors set Status='InActive' where idvendors=?;"
+	stmt, err := txn.PrepareContext(ctx, query)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmt.ExecContext(ctx, usr.Idvendors)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	queryA := "delete from vendors_consumablemaster_map where VendorsID=?;"
+	stmtA, err := txn.PrepareContext(ctx, queryA)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	_, err = stmtA.ExecContext(ctx, usr.Idvendors)
+	if err != nil {
+		txn.Rollback()
+		return err
+	}
+	defer stmt.Close()
+	err = txn.Commit()
 	return err
 }
 
@@ -1944,7 +1973,7 @@ func (m *mysqlRepo) GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDash
 	res := cmnmdl.AdminDashBoard{}
 	err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpired, &res.ITAssetApprovals, &res.NonITAssetApprovals, &res.ITAssetsAvailable,
 		&res.ITAssetsAssigned, &res.NonITAssetThreshold, &res.ConsumableThreshold, &res.OutwardApproval, &res.ReadyToShip, &res.InWardAssets, &res.ITAssetServiceRequests,
-		&res.RequisitionRequestesPending,&res.RequisitionApprovalRequests,)
+		&res.RequisitionRequestesPending, &res.RequisitionApprovalRequests)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
@@ -2544,7 +2573,7 @@ func (m *mysqlRepo) RequisitionDetailsByID(ctx context.Context, ID int) (*cmnmdl
 	vend := new(cmnmdl.Vendors)
 	loc := new(cmnmdl.Locations)
 	err := selDB.Scan(&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
-		&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount,&por.BillInvoiceNo,&por.BillImagePath, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
+		&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.BillInvoiceNo, &por.BillImagePath, &por.StatusID, &por.CreatedBy, &por.ModifiedBy, &por.CreatedOn,
 		&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 		&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 	if err != nil {
@@ -2867,4 +2896,31 @@ func (m *mysqlRepo) RequisitionStcokReceived(mdl *cmnmdl.Requisition_Requests) (
 	}
 	err = txn.Commit()
 	return err
+}
+
+func (m *mysqlRepo) GetRequisitionHistoryByReqID(ctx context.Context, ReqID int) ([]*cmnmdl.Requisition_Requests, error) {
+	query := "call sp_RequisitionHistoryByReqID(?) ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, ReqID)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+	res := make([]*cmnmdl.Requisition_Requests, 0)
+	for selDB.Next() {
+		por := new(cmnmdl.Requisition_Requests)
+		vend := new(cmnmdl.Vendors)
+		loc := new(cmnmdl.Locations)
+		err = selDB.Scan(&por.IDRequisition_Requests, &por.LocationID, &por.VendorID, &por.RequestedBy, &por.Description,
+			&por.ShipmentTerms, &por.PaymentTerms, &por.TotalAmmount, &por.TotalPaidAmmount, &por.BillInvoiceNo, &por.BillImagePath, &por.StatusID, &por.CreatedBy,
+			&por.ActionedOn, &por.ActionePerformed, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
+			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
+		if err != nil {
+			fmt.Println(err.Error())
+			return nil, err
+		}
+		por.VendorData = vend
+		por.LocationData = loc
+		res = append(res, por)
+	}
+	return res, nil
 }

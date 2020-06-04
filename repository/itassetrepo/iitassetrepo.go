@@ -43,6 +43,7 @@ type ITAsserIntfc interface {
 	ITAsset_Service_Request_Resolve(ctx context.Context, itm *itassetmdl.ITAsset_service_request) error
 	GetITAssetReqListByEmp(ctx context.Context, EmpID int) ([]*itassetmdl.ITAssetReqList, error)
 	ITAssetDelete(ctx context.Context, AssetID int) error
+	GetITAssetToCheckoutToITasset(ctx context.Context, LocID int, AssetID int) ([]*itassetmdl.ITAssetModel, error) 
 }
 
 // //ITAssetRepo interface

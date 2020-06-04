@@ -454,6 +454,9 @@ type Requisition_Requests struct {
 	VendorData             *Vendors              `json:"VendorData"`
 	LocationData           *Locations            `json:"LocationData"`
 	RequisitionApproval    *RequisitionApproval  `json:"RequisitionApproval"`
+	ActionedOn             *string               `json:"ActionedOn"`
+	ActionePerformed       *string               `json:"ActionePerformed"`
+	MainTblID              *string               `json:"MainTblID"`
 }
 
 type Requisition_Assets struct {

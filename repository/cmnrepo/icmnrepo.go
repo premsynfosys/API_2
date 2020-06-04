@@ -98,5 +98,7 @@ type CmnIntrfc interface {
 	RequisitionReqForward(ctx context.Context, mdl *cmnmdl.RequisitionApproval) error
 	RequisitionStatusChange(ID int, Status int) error
 	RequisitionStcokReceived(mdl *cmnmdl.Requisition_Requests) (err error)
+	DeleteVendors(ctx context.Context, usr *cmnmdl.Vendors) error
+	GetRequisitionHistoryByReqID(ctx context.Context, ReqID int) ([]*cmnmdl.Requisition_Requests, error) 
 }
  

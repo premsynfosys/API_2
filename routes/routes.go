@@ -35,6 +35,7 @@ func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	
 	r.HandleFunc("/PODetailsByIDPO/{IDPO}", Handler.PODetailsByIDPO)
 	r.HandleFunc("/RequisitionDetailsByID/{ID}", Handler.RequisitionDetailsByID)
+	r.HandleFunc("/GetRequisitionHistoryByReqID/{ReqID}", Handler.GetRequisitionHistoryByReqID)
 	
 	r.HandleFunc("/POAssetDetailsByIDPO/{IDPO}", Handler.POAssetDetailsByIDPO)
 	r.HandleFunc("/RequisitionAssetDetailsByID/{ID}", Handler.RequisitionAssetDetailsByID)
@@ -91,6 +92,7 @@ func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	r.HandleFunc("/GetLocations", Handler.GetLocations)
 	r.HandleFunc("/CreateLocations", Handler.CreateLocations)
 	r.HandleFunc("/UpdateVendors", Handler.UpdateVendors)
+	r.HandleFunc("/DeleteVendors", Handler.DeleteVendors)
 	r.HandleFunc("/UpdateLocations", Handler.UpdateLocations)
 	r.HandleFunc("/CreateVendors", Handler.CreateVendor)
 	r.HandleFunc("/CreateInWardOutWard", Handler.CreateInWardOutWard)
@@ -134,6 +136,7 @@ func ConsumableRoutings(r *mux.Router, Handler *cnsmblhndlr.IConsumableRepo) {
 
 //ITAssetRouting ..
 func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
+	r.HandleFunc("/GetITAssetToCheckoutToITasset/{LocID}/{AssetID}", pHandler.GetITAssetToCheckoutToITasset)
 	r.HandleFunc("/ITAssetReqForward", pHandler.ITAssetReqForward)
 	r.HandleFunc("/ITAssetDelete/{AssetID}", pHandler.ITAssetDelete)
 	r.HandleFunc("/GetITAssetReqListByEmp/{EmpID}", pHandler.GetITAssetReqListByEmp)

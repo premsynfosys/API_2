@@ -435,3 +435,17 @@ func (p *IITAsset) ITAssetDelete(w http.ResponseWriter, r *http.Request) {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
+func (p *IITAsset) GetITAssetToCheckoutToITasset(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	LocID := params["LocID"]
+	LocIDs, _ := strconv.Atoi(LocID)
+	AssetID := params["AssetID"]
+	AssetIDs, _ := strconv.Atoi(AssetID)
+	payload, err := p.ITAssetRepo.GetITAssetToCheckoutToITasset(r.Context(),LocIDs, AssetIDs)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, payload)
+	}
+}
