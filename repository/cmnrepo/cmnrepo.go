@@ -142,26 +142,6 @@ func (m *mysqlRepo) Login(ctx context.Context, usr *cmnmdl.User) (*cmnmdl.User, 
 
 }
 
-// func (m *mysqlRepo) GetUniqueID(ctx context.Context, modulename string) (int, error) {
-// 	var selDB *sql.Row
-// 	var query string
-// 	var MaxID int
-// 	if modulename == "itassets" {
-// 		query = "select ifnull(max(idITAssets), 0)  from itassets "
-// 	} else if modulename == "consumable" {
-// 		query = "select  ifnull(max(idconsumables), 0) from consumables "
-// 	} else if modulename == "nonitassets" {
-// 		query = "select  ifnull(max(IDNonITAsset), 0) from nonitassets "
-// 	}
-// 	selDB = m.Conn.QueryRowContext(ctx, query)
-// 	err := selDB.Scan(&MaxID)
-
-// 	if err != nil {
-// 		return 0, err
-
-// 	}
-// 	return MaxID, nil
-// }
 
 func (m *mysqlRepo) GetUsers(ctx context.Context, LocID int) ([]*cmnmdl.User, error) {
 	selDB, err := m.Conn.QueryContext(ctx, "call sp_Users(?)", LocID)
@@ -1973,7 +1953,7 @@ func (m *mysqlRepo) GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDash
 	res := cmnmdl.AdminDashBoard{}
 	err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpired, &res.ITAssetApprovals, &res.NonITAssetApprovals, &res.ITAssetsAvailable,
 		&res.ITAssetsAssigned, &res.NonITAssetThreshold, &res.ConsumableThreshold, &res.OutwardApproval, &res.ReadyToShip, &res.InWardAssets, &res.ITAssetServiceRequests,
-		&res.RequisitionRequestesPending, &res.RequisitionApprovalRequests)
+		&res.RequisitionRequestesPending, &res.RequisitionApprovalRequests, &res.ITAssetExpectedCheckInDate)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
@@ -2132,7 +2112,7 @@ func (m *mysqlRepo) PurchaseOrders_RequestsInsert(ctx context.Context, mdl *cmnm
 }
 
 func (m *mysqlRepo) GetPurchaseOrderUniqueID() (*string, error) {
-	query := "SELECT max(IDPurchaseOrders_Requests)+1 as nextid FROM purchaseorders_requests;"
+	query := "SELECT ifnull(max(IDPurchaseOrders_Requests),0)+1 as nextid FROM purchaseorders_requests;"
 	var NextID string
 	err := m.Conn.QueryRow(query).Scan(&NextID)
 	if err != nil {

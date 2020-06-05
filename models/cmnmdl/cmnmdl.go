@@ -29,7 +29,8 @@ type AdminDashBoard struct {
 	ITAssetServiceRequests      *int `json:"ITAssetServiceRequests"`
 	RequisitionRequestesPending *int `json:"RequisitionRequestesPending"`
 	RequisitionApprovalRequests *int `json:"RequisitionApprovalRequests"`
-}
+	ITAssetExpectedCheckInDate *int `json:"ITAssetExpectedCheckInDate"`
+}  
 
 type EmployeeDashboard struct {
 	EmpID                  *int `json:"EmpID"`

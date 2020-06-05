@@ -429,7 +429,7 @@ func (m *mysqlRepo) GetNonITAssetOprtnListByID(ctx context.Context, IDNonITAsset
 
 func (m *mysqlRepo) CreateNonITAssetRequest(Listmdl []*nonitassets_mdl.NonITAssetRequest) (err error) {
 	var ReqGroupID int
-	err = m.Conn.QueryRow("SELECT max(ReqGroupID)+1 FROM nonitassetrequest;").Scan(&ReqGroupID)
+	err = m.Conn.QueryRow("SELECT ifnull(max(ReqGroupID),0)+1 FROM nonitassetrequest;").Scan(&ReqGroupID)
 	query := " INSERT INTO nonitassetrequest(ReqGroupID,RequestedBy,AssetType,AssetID,Description,RequestedOn,Priority,ReqStatus) VALUES "
 	vals := []interface{}{}
 	mailHtmlbody := "<table   border='1' width='50%'> <thead><th>Asset Type</th><th>Description</th></thead><tbody>"

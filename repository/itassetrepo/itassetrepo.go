@@ -99,7 +99,7 @@ func (m *mysqlRepo) GetEmployeeITAssetsByID(ctx context.Context, EmpID int, isCh
 
 func (m *mysqlRepo) CreateITAssetRequest(Listmdl []*itassetmdl.ITAssetRequest) (err error) {
 	var ReqGroupID int
-	err = m.Conn.QueryRow("SELECT max(ReqGroupID)+1 FROM itassetrequest;").Scan(&ReqGroupID)
+	err = m.Conn.QueryRow("SELECT ifnull(max(ReqGroupID),0)+1 FROM itassetrequest;").Scan(&ReqGroupID)
 	query := " INSERT INTO itassetrequest(ReqGroupID,RequestedBy,AssetType,AssetID,Description,RequestedOn,Priority,ReqStatus) VALUES "
 	vals := []interface{}{}
 	mailHtmlbody := "<table   border='1' width='50%'> <thead><th>Asset Type</th><th>Description</th></thead><tbody>"

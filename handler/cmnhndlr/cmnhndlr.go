@@ -478,19 +478,7 @@ func (p *CmnIrepo) GetStatus(w http.ResponseWriter, r *http.Request) {
 	utils.RespondwithJSON(w, http.StatusOK, payload)
 }
 
-// // GetUniqueID a post
-// func (p *CmnIrepo) GetUniqueID(w http.ResponseWriter, r *http.Request) {
-// 	params := mux.Vars(r)
-// 	modulename := params["modulename"]
-// 	Maxid, err := p.ICmnrepo.GetUniqueID(r.Context(), modulename)
 
-// 	if err != nil {
-// 		utils.RespondWithError(w, http.StatusInternalServerError, "Server Error")
-// 	} else {
-
-// 		utils.RespondwithJSON(w, http.StatusOK, map[string]int64{"id": int64(Maxid)})
-// 	}
-// }
 
 // UpdateIsMsngStcksRslvdMain a post
 func (p *CmnIrepo) UpdateIsMsngStcksRslvdMain(w http.ResponseWriter, r *http.Request) {
