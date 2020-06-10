@@ -20,7 +20,7 @@ type ITAsserIntfc interface {
 	CreateITassetsFiles(ctx context.Context, usr *itassetmdl.ITassetsFiles) error
 	UpdateITAsset(ctx context.Context, usr *itassetmdl.ITAssetModel) error
 	ITAssetsBulkEdit(ctx context.Context, mdl *itassetmdl.ITAssetModel, ids []string) error
-	GetCustomFields(ctx context.Context) (*itassetmdl.ITAssetModel, error)
+	GetCustomFields(ctx context.Context,id int) (*itassetmdl.ITAssetModel, error)
 	ITAssetRetire(ctx context.Context, Rtr *itassetmdl.Retire) error
 	CreateITAssetRequest(Listmdl []*itassetmdl.ITAssetRequest) (err error)
 	GetITAssetReqList(ctx context.Context, ApprvrID int) ([]*itassetmdl.ITAssetReqList, error)

@@ -423,14 +423,18 @@ func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	ss := mdl.ITAssetWarranty
 	t, _ := time.Parse(shortForm, *ss)
 	query.WriteString("UPDATE itassets SET ITAssetName =?,ITAssetGroup = ?,ITAssetModel = ?,ITAssetSerialNo =?,ITAssetDescription =?,")
-	query.WriteString("ITAssetPrice =?,ITAssetWarranty =?,ITAssetStatus =?,ITAssetImg =?,Vendor =?,Location = ?,ModifiedBy=? WHERE idITAssets = ?;")
+	query.WriteString("ITAssetPrice =?,ITAssetWarranty =?,ITAssetStatus =?,ITAssetImg =?,Vendor =?,Location = ?,")
+	query.WriteString("CustomFields1 = ?,CustomFields1Value = ?,CustomFields1Type = ?,CustomFields2 = ?,CustomFields2Value = ?,CustomFields2Type = ?,CustomFields3 = ?,CustomFields3Value = ?,CustomFields3Type = ?,CustomFields4 = ?,CustomFields4Value = ?,CustomFields4Type = ?,CustomFields5 = ?,CustomFields5Value = ?,CustomFields5Type = ?,")
+	query.WriteString("ModifiedBy=? WHERE idITAssets = ?;")
 	stmt, err := m.Conn.PrepareContext(ctx, query.String())
 	if err != nil {
 		return err
 	}
 	_, err = stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetDescription,
-		mdl.ITAssetPrice, t, mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.ModifiedBy, mdl.IDITAssets)
+		mdl.ITAssetPrice, t, mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
+		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
+		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.ModifiedBy, mdl.IDITAssets)
 	defer stmt.Close()
 
 	return err
@@ -590,11 +594,11 @@ func (m *mysqlRepo) ITAssetsBulkEdit(ctx context.Context, usr *itassetmdl.ITAsse
 	}
 	return err
 }
-func (m *mysqlRepo) GetCustomFields(ctx context.Context) (*itassetmdl.ITAssetModel, error) {
+func (m *mysqlRepo) GetCustomFields(ctx context.Context,id int) (*itassetmdl.ITAssetModel, error) {
 	qry := "SELECT CustomFields1,CustomFields1Value,CustomFields1Type,CustomFields2,CustomFields2Value,CustomFields2Type, "
 	qry += " CustomFields3,CustomFields3Value,CustomFields3Type,CustomFields4,CustomFields4Value,CustomFields4Type,CustomFields5, "
-	qry += " CustomFields5Value,CustomFields5Type FROM itassets  order by idITAssets desc limit 1; "
-	selDB := m.Conn.QueryRowContext(ctx, qry)
+	qry += " CustomFields5Value,CustomFields5Type FROM itassets where  idITAssets=?; "
+	selDB := m.Conn.QueryRowContext(ctx, qry,id)
 
 	item := new(itassetmdl.ITAssetModel)
 
