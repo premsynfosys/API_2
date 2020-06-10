@@ -205,7 +205,8 @@ func (p *IITAsset) GetCustomFields(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	ID := params["id"]
 	id, _ := strconv.Atoi(ID)
-	data, err := p.ITAssetRepo.GetCustomFields(r.Context(),id)
+	Mod:=params["Mod"]
+	data, err := p.ITAssetRepo.GetCustomFields(r.Context(),id,Mod)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {

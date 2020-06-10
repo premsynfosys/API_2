@@ -171,13 +171,18 @@ func (m *mysqlRepo) GetNonITAssetList_BY_AssetID(ctx context.Context, AssetID in
 
 func (m *mysqlRepo) NonITAsset_Edit(ctx context.Context, mdl *nonitassets_mdl.NonITAssets) error {
 	query := "UPDATE nonitassets SET NonITAssets_Master_ID = ?,ModelNo = ?,Description = ?,Img =?,ThresholdQnty =?,ReOrderStockPrice = ?, "
-	query += " ReOrderQuantity = ?,LocationID = ?,Modified_On = now(),Modified_By = ? WHERE IDNonITAsset = ?; "
+	query += " ReOrderQuantity = ?,LocationID = ?,Modified_On = now(),Modified_By = ? ,"
+	query += " CustomFields1 = ?,CustomFields1Value = ?,CustomFields1Type = ?,CustomFields2 = ?,CustomFields2Value = ?,CustomFields2Type = ?,CustomFields3 = ?,CustomFields3Value = ?,CustomFields3Type = ?,CustomFields4 = ?,CustomFields4Value = ?,CustomFields4Type = ?,CustomFields5 = ?,CustomFields5Value = ?,CustomFields5Type = ? "
+	query += " WHERE IDNonITAsset = ?; "
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
 		return err
 	}
 	_, err = stmt.ExecContext(ctx, mdl.NonITAssets_Master_ID, mdl.ModelNo, mdl.Description, mdl.Img, mdl.ThresholdQnty, mdl.ReOrderStockPrice,
-		mdl.ReOrderQuantity, mdl.LocationID, mdl.Modified_By, mdl.IDNonITAsset)
+		mdl.ReOrderQuantity, mdl.LocationID, mdl.Modified_By, 
+		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
+		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
+		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type,mdl.IDNonITAsset)
 	defer stmt.Close()
 
 	if err != nil {

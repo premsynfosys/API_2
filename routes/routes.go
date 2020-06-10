@@ -164,7 +164,7 @@ func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
 	r.HandleFunc("/CreateITAssetsCheckIn",utils.IsAuthorized( pHandler.CreateITAssetsCheckIn))
 	r.HandleFunc("/GetITassetsFilesByID/{id:[0-9]+}",utils.IsAuthorized( pHandler.GetITassetsFilesByID))
 	r.HandleFunc("/CreateITAssetFiles", utils.IsAuthorized(pHandler.CreateITAssetFiles))
-	r.HandleFunc("/GetCustomFields/{id}", utils.IsAuthorized(pHandler.GetCustomFields))
+	r.HandleFunc("/GetCustomFields/{id}/{Mod}", utils.IsAuthorized(pHandler.GetCustomFields))
 	r.HandleFunc("/ITasset_services_Insert", utils.IsAuthorized(pHandler.ITasset_services_Insert))
 	r.HandleFunc("/ITasset_services_start_Update", utils.IsAuthorized(pHandler.ITasset_services_start_Update))
 	r.HandleFunc("/ITasset_services_Extend_Update",utils.IsAuthorized( pHandler.ITasset_services_Extend_Update))

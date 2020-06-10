@@ -594,11 +594,18 @@ func (m *mysqlRepo) ITAssetsBulkEdit(ctx context.Context, usr *itassetmdl.ITAsse
 	}
 	return err
 }
-func (m *mysqlRepo) GetCustomFields(ctx context.Context,id int) (*itassetmdl.ITAssetModel, error) {
+func (m *mysqlRepo) GetCustomFields(ctx context.Context, id int, Mod string) (*itassetmdl.ITAssetModel, error) {
 	qry := "SELECT CustomFields1,CustomFields1Value,CustomFields1Type,CustomFields2,CustomFields2Value,CustomFields2Type, "
 	qry += " CustomFields3,CustomFields3Value,CustomFields3Type,CustomFields4,CustomFields4Value,CustomFields4Type,CustomFields5, "
-	qry += " CustomFields5Value,CustomFields5Type FROM itassets where  idITAssets=?; "
-	selDB := m.Conn.QueryRowContext(ctx, qry,id)
+	qry += " CustomFields5Value,CustomFields5Type "
+	if Mod == "ITAsset" {
+		qry += "  FROM itassets where  idITAssets=?; "
+	} else if ( Mod == "Consumable"){
+		qry += "  FROM consumables where  idconsumables=?; "
+	}else if ( Mod == "NonITAsset"){
+		qry += "  FROM nonitassets where  IDNonITAsset=?; "
+	}
+	selDB := m.Conn.QueryRowContext(ctx, qry, id)
 
 	item := new(itassetmdl.ITAssetModel)
 

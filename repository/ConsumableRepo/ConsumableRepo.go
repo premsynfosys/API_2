@@ -430,13 +430,18 @@ func (m *mysqlRepo) GetConsumableOprtnListByID(ctx context.Context, IDConsumable
 func (m *mysqlRepo) UpdateConsumable(ctx context.Context, mdl *cnsmblemdl.Consumables) (err error) {
 	var query strings.Builder
 	query.WriteString("UPDATE consumables SET idconsumableMaster = ?,Description =?,ThresholdQnty = ?,")
-	query.WriteString("ReOrderStockPrice =? ,ReOrderQuantity = ?,Img =? ,LocationID =?,ModifiedOn = Now(),ModifiedBy=? WHERE idconsumables =? ;")
+	query.WriteString("ReOrderStockPrice =? ,ReOrderQuantity = ?,Img =? ,LocationID =?,ModifiedOn = Now(),ModifiedBy=?,")
+	query.WriteString(" CustomFields1 = ?,CustomFields1Value = ?,CustomFields1Type = ?,CustomFields2 = ?,CustomFields2Value = ?,CustomFields2Type = ?,CustomFields3 = ?,CustomFields3Value = ?,CustomFields3Type = ?,CustomFields4 = ?,CustomFields4Value = ?,CustomFields4Type = ?,CustomFields5 = ?,CustomFields5Value = ?,CustomFields5Type = ? ")
+	query.WriteString("WHERE idconsumables =? ;")
 	stmt, err := m.Conn.PrepareContext(ctx, query.String())
 	if err != nil {
 		return err
 	}
 	_, err = stmt.ExecContext(ctx, mdl.IDconsumableMaster, mdl.Description, mdl.ThresholdQnty,
-		mdl.ReOrderStockPrice, mdl.ReOrderQuantity, mdl.Img, mdl.LocationID, mdl.ModifiedBy, mdl.IDConsumables)
+		mdl.ReOrderStockPrice, mdl.ReOrderQuantity, mdl.Img, mdl.LocationID, mdl.ModifiedBy,
+		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
+		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
+		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type,mdl.IDConsumables)
 	defer stmt.Close()
 
 	return err
