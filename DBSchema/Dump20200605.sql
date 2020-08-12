@@ -29,7 +29,7 @@ CREATE TABLE `authorization` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `CreatedBy` int DEFAULT NULL,
   PRIMARY KEY (`idAuthorization`)
-) ENGINE=InnoDB AUTO_INCREMENT=1620 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1620 DEFAULT CHARSET=utf8mb4; ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `consumablegroups` (
   `idconsumablegroups` int NOT NULL AUTO_INCREMENT,
   `ConsumableGroupName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idconsumablegroups`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `consumablemaster` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifiedOn` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`idconsumableMaster`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `consumableoprtns` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `StatusID` int DEFAULT NULL,
   PRIMARY KEY (`idconsumableOprtns`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `consumables` (
   `CreatedBy` int DEFAULT NULL,
   `ModifiedBy` int DEFAULT NULL,
   PRIMARY KEY (`idconsumables`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +307,7 @@ CREATE TABLE `consumables_history` (
   `ActionePerformed` varchar(50) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`idconsumables_History`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +358,7 @@ CREATE TABLE `designation` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `Record_Status` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`idDesignation`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +384,7 @@ CREATE TABLE `educations` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `Record_Status` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`idEducations`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -415,7 +415,7 @@ CREATE TABLE `emails` (
   `Created_On` datetime DEFAULT CURRENT_TIMESTAMP,
   `Reason` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`idEmails`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,7 +459,7 @@ CREATE TABLE `employees` (
   `ModifiedBy` int DEFAULT NULL,
   `CreatedBy` int DEFAULT NULL,
   PRIMARY KEY (`IdEmployees`)
-) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -549,7 +549,7 @@ CREATE TABLE `employeeshistory` (
   `CreatedBy` int DEFAULT NULL,
   `ActionPerformed` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`IDemployeesHistory`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -574,7 +574,7 @@ CREATE TABLE `features_list` (
   `Module` varchar(45) DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idFeatures_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -601,7 +601,7 @@ CREATE TABLE `identificationno` (
   `Module` varchar(45) DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idIdentificationNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -634,7 +634,7 @@ CREATE TABLE `inwardoutward` (
   `StatusUpdatedOn` datetime DEFAULT NULL,
   `IsMsngStcksRslvdMain` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idInWardOutWard`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -709,7 +709,7 @@ CREATE TABLE `inwardoutward_approval` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`IDInwardoutward_Approval`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -787,7 +787,7 @@ CREATE TABLE `inwardoutward_history` (
   `ActionePerformed` varchar(45) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`idinwardoutward_History`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -818,7 +818,7 @@ CREATE TABLE `inwardoutwardassets` (
   `UpdatedOn` datetime DEFAULT NULL,
   `IsMsngStcksRslvd` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idinwardoutwardAssets`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -848,7 +848,7 @@ CREATE TABLE `itasset_req_approvals` (
   `Comments` varchar(500) DEFAULT NULL,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`iditasset_Req_approvals`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -922,7 +922,7 @@ CREATE TABLE `itasset_service_request` (
   `CreatedBy` int DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iditasset_service_request`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -962,7 +962,7 @@ CREATE TABLE `itasset_services` (
   `ModifiedOn` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ModifiedBy` int DEFAULT NULL,
   PRIMARY KEY (`idITAsset_Services`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -999,7 +999,7 @@ CREATE TABLE `itassetcheckoutcheckin` (
   `CheckIN_By` int DEFAULT NULL,
   `CheckOut_By` int DEFAULT NULL,
   PRIMARY KEY (`idITAssetCheckOutCheckIN`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1064,7 +1064,7 @@ CREATE TABLE `itassetgroups` (
   `CreatedBy` int DEFAULT NULL,
   `RecordStatus` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`iditassetgroups`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1095,7 +1095,7 @@ CREATE TABLE `itassetrequest` (
   `Priority` varchar(45) DEFAULT NULL,
   `ReqStatus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`iditassetrequest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1144,7 +1144,7 @@ CREATE TABLE `itassetrequest_history` (
   `ActionedBy` int DEFAULT NULL,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`iditassetrequest_History`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1199,7 +1199,7 @@ CREATE TABLE `itassets` (
   `CustomFields5Value` varchar(45) DEFAULT NULL,
   `CustomFields5Type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idITAssets`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1334,7 +1334,7 @@ CREATE TABLE `itassets_history` (
   `ActionePerformed` varchar(60) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`iditassets_history`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1367,7 +1367,7 @@ CREATE TABLE `itassetsfiles` (
   `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Record_Status` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`idITAssetsFiles`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1403,7 +1403,7 @@ CREATE TABLE `locations` (
   `ModifiedOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idLocations`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1431,7 +1431,7 @@ CREATE TABLE `multilevelapproval_main` (
   `CreatedBy` int DEFAULT NULL,
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`IDMultiLevelApproval_Main`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1459,7 +1459,7 @@ CREATE TABLE `multilevelapproval_map` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `CreatedBy` int DEFAULT NULL,
   PRIMARY KEY (`IDMultiLevelApproval_Map`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1490,7 +1490,7 @@ CREATE TABLE `nonitasset_req_approvals` (
   `Comments` varchar(500) DEFAULT NULL,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`idnonitasset_Req_approvals`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1521,7 +1521,7 @@ CREATE TABLE `nonitassetrequest` (
   `Priority` varchar(45) DEFAULT NULL,
   `ReqStatus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idnonitassetrequest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1576,7 +1576,7 @@ CREATE TABLE `nonitassets` (
   `CustomFields5Type` varchar(45) DEFAULT NULL,
   `RecordStatus` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`IDNonITAsset`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1627,7 +1627,7 @@ CREATE TABLE `nonitassets_checkin` (
   `Checkin_Comments` varchar(500) DEFAULT NULL,
   `CheckIN_By` int DEFAULT NULL,
   PRIMARY KEY (`idnonitassets_checkin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1661,7 +1661,7 @@ CREATE TABLE `nonitassets_checkout_checkin` (
   `Record_Status` varchar(45) DEFAULT 'Active',
   `InUse` int DEFAULT NULL,
   PRIMARY KEY (`IDNonITAssets_Checkout_Checkin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1688,7 +1688,7 @@ CREATE TABLE `nonitassets_groups` (
   `ModifiedOn` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ModifiedBy` int DEFAULT NULL,
   PRIMARY KEY (`idNonITAssets_Groups`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1720,7 +1720,7 @@ CREATE TABLE `nonitassets_master` (
   `Modified_By` int DEFAULT NULL,
   `Record_Status` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`idNonITAssets_Master`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1753,7 +1753,7 @@ CREATE TABLE `nonitassets_oprtns` (
   `Created_By` int DEFAULT NULL,
   `StatusID` int DEFAULT NULL,
   PRIMARY KEY (`idnonitassets_Oprtns`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1781,7 +1781,7 @@ CREATE TABLE `notifications` (
   `CreatedOn` datetime DEFAULT NULL,
   `Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idNotifications`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1808,7 +1808,7 @@ CREATE TABLE `outwardcart` (
   `SenderEmpID` int DEFAULT NULL,
   `CreatedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`idOutWardCart`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1838,7 +1838,7 @@ CREATE TABLE `po_approval` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`IDPO_approval`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1863,7 +1863,7 @@ CREATE TABLE `po_bills` (
   `PurchaseOrders_RequestsID` int DEFAULT NULL,
   `InvoiceNumber` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IDPO_Bills`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1896,7 +1896,7 @@ CREATE TABLE `purchaseorders_assets` (
   `ModifiedBy` int DEFAULT NULL,
   `ModifiedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`IDpurchaseorders_Assets`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1930,7 +1930,7 @@ CREATE TABLE `purchaseorders_assets_received` (
   `ModelNo` varchar(45) DEFAULT NULL,
   `SerialNo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IDpurchaseorders_Assets_Received`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1966,7 +1966,7 @@ CREATE TABLE `purchaseorders_requests` (
   `ModifiedOn` datetime DEFAULT NULL,
   `RecordStatus` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`IDPurchaseOrders_Requests`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2063,7 +2063,7 @@ CREATE TABLE `purchaseorders_requests_history` (
   `ActionePerformed` varchar(500) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`IDPurchaseOrders_Requests_History`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2094,7 +2094,7 @@ CREATE TABLE `requisition_approval` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `ActionedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`IDRequisition_approval`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2128,7 +2128,7 @@ CREATE TABLE `requisition_assets` (
   `ModifiedBy` int DEFAULT NULL,
   `ModifiedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`IDRequisition_assets`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2167,7 +2167,7 @@ CREATE TABLE `requisition_requests` (
   `ModifiedOn` datetime DEFAULT NULL,
   `RecordStatus` varchar(45) DEFAULT 'Active',
   PRIMARY KEY (`IDRequisition_Requests`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2266,7 +2266,7 @@ CREATE TABLE `requisition_requests_history` (
   `ActionePerformed` varchar(500) DEFAULT NULL,
   `MainTblID` int DEFAULT NULL,
   PRIMARY KEY (`IDRequisition_Requests_history`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2294,7 +2294,7 @@ CREATE TABLE `retire` (
   `Commnets` varchar(500) DEFAULT NULL,
   `RetiredBy` int DEFAULT NULL,
   PRIMARY KEY (`idRetire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2338,7 +2338,7 @@ CREATE TABLE `roles` (
   `RoleName` varchar(45) NOT NULL,
   PRIMARY KEY (`idRoles`),
   UNIQUE KEY `RoleName_UNIQUE` (`RoleName`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2362,7 +2362,7 @@ CREATE TABLE `service_status` (
   `idServiceStatus` int NOT NULL AUTO_INCREMENT,
   `StatusName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idServiceStatus`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2386,7 +2386,7 @@ CREATE TABLE `service_type` (
   `idService_type` int NOT NULL AUTO_INCREMENT,
   `TypeName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idService_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2436,7 +2436,7 @@ CREATE TABLE `status` (
   `StatusName` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idStatus`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2469,7 +2469,7 @@ CREATE TABLE `users` (
   `ModifiedBy` int DEFAULT NULL,
   `CreatedBy` int DEFAULT NULL,
   PRIMARY KEY (`idUsers`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2478,7 +2478,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (42,1,'synfosuperadmin',_binary '],E´ôí£r\€\÷Ú®Ω{\◊óôâ¿\„∞ı+\∆\ÀA5ˇeÚ5ı','Active',1,NULL,'2020-04-23 06:29:30','2020-06-03 18:41:00',0,NULL),(67,156,'premcoadmn',_binary 'ëi~\≈Rd‡ª∞o_,âÛ+-\◊HF\Â\ \◊\ÈÛ\‚ÛıF\“\’&_?É2\Ë','Active',2,NULL,'2020-05-01 17:25:19','2020-05-05 14:32:40',0,1),(69,158,'premcoemp',_binary '§M¶∆≥\‘/¡L≈´†¨ºí\”^#gL™Øa=m	Ω\»7ú','Active',3,NULL,'2020-05-05 14:28:26','2020-05-27 12:08:32',0,1),(70,159,'premrdemp',_binary '\Ó4uN\›QÃâ\·è˝-W\ZDòP\ZÅ©åõ\·\’C≤úˆ\’\Ëà\È3\„áHE','Active',3,NULL,'2020-05-05 14:34:11','2020-05-05 14:34:56',0,1),(71,160,'premrdadmn',_binary '?ò\…J\⁄>tï:c\∆\–]ûıˇAá´\ÀÖfzí£\08bQ\Â','Active',2,NULL,'2020-05-05 14:36:07','2020-05-05 14:36:40',0,1),(73,163,'anilmngrco',_binary 'o˚ç~\0\Ôqr\◊J§H\–J	àà>ï7\‚ß[˝®!N\„\‚Å-Æøµ4','Active',4,NULL,'2020-05-12 11:08:41','2020-05-12 11:12:01',0,156),(74,164,'premcotl',_binary '{?§|O)L1∏K±v∫\Îj˝⁄ç|∑cóÑävBzóIti','Active',5,NULL,'2020-05-12 17:45:45','2020-05-25 14:50:45',0,163);
+INSERT INTO `users` VALUES (42,1,'synfosuperadmin',_binary '],EÔøΩÔøΩÔøΩÔøΩr\ÔøΩ\ÔøΩÔøΩ{\ÔøΩÔøΩÔøΩÔøΩÔøΩ\ÔøΩÔøΩ+\ÔøΩ\ÔøΩA5ÔøΩeÔøΩ5ÔøΩ','Active',1,NULL,'2020-04-23 06:29:30','2020-06-03 18:41:00',0,NULL),(67,156,'premcoadmn',_binary 'ÔøΩi~\ÔøΩRd‡ª∞o_,ÔøΩÔøΩ+-\ÔøΩHF\ÔøΩ\ÔøΩ\ÔøΩ\ÔøΩÔøΩ\ÔøΩÔøΩÔøΩF\ÔøΩ\ÔøΩ&_?ÔøΩ2\ÔøΩ','Active',2,NULL,'2020-05-01 17:25:19','2020-05-05 14:32:40',0,1),(69,158,'premcoemp',_binary 'ÔøΩMÔøΩ∆≥\ÔøΩ/ÔøΩL≈´ÔøΩÔøΩÔøΩÔøΩ\ÔøΩ^#gLÔøΩÔøΩa=m	ÔøΩ\ÔøΩ7ÔøΩ','Active',3,NULL,'2020-05-05 14:28:26','2020-05-27 12:08:32',0,1),(70,159,'premrdemp',_binary '\ÔøΩ4uN\ÔøΩQÃâ\ÔøΩÔøΩ-W\ZDÔøΩP\ZÔøΩÔøΩÔøΩÔøΩ\ÔøΩ\ÔøΩCÔøΩÔøΩÔøΩ\ÔøΩ\ÔøΩ\ÔøΩ3\ÔøΩHE','Active',3,NULL,'2020-05-05 14:34:11','2020-05-05 14:34:56',0,1),(71,160,'premrdadmn',_binary '?ÔøΩ\ÔøΩJ\ÔøΩ>tÔøΩ:c\ÔøΩ\ÔøΩ]ÔøΩÔøΩÔøΩAÔøΩÔøΩ\ÔøΩÔøΩfzÔøΩÔøΩ\08bQ\ÔøΩ','Active',2,NULL,'2020-05-05 14:36:07','2020-05-05 14:36:40',0,1),(73,163,'anilmngrco',_binary 'oÔøΩÔøΩ~\0\ÔøΩqr\ÔøΩJÔøΩH\ÔøΩJ	ÔøΩÔøΩ>ÔøΩ7\ÔøΩ[ÔøΩÔøΩ!N\ÔøΩ\ÔøΩ-ÔøΩÔøΩÔøΩ4','Active',4,NULL,'2020-05-12 11:08:41','2020-05-12 11:12:01',0,156),(74,164,'premcotl',_binary '{?ÔøΩ|O)L1ÔøΩKÔøΩvÔøΩ\ÔøΩjÔøΩ⁄ç|ÔøΩcÔøΩÔøΩÔøΩvBzÔøΩIti','Active',5,NULL,'2020-05-12 17:45:45','2020-05-25 14:50:45',0,163);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -2530,7 +2530,7 @@ CREATE TABLE `users_status` (
   `idUsers_Status` int NOT NULL,
   `StatusName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUsers_Status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2563,7 +2563,7 @@ CREATE TABLE `usershistory` (
   `CreatedBy` int DEFAULT NULL,
   `ActionPerformed` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`IDusersHistory`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2597,7 +2597,7 @@ CREATE TABLE `vendors` (
   `CreatedBy` int DEFAULT NULL,
   `ModifiedBy` int DEFAULT NULL,
   PRIMARY KEY (`idvendors`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2627,7 +2627,7 @@ CREATE TABLE `vendors_consumablemaster_map` (
   `CreatedOn` datetime DEFAULT CURRENT_TIMESTAMP,
   `VendorRfrdAssetName` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`IDVendors_ConsumableMaster_Map`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
