@@ -32,7 +32,7 @@ var connection *DBdriver.DB
 var err error
 
 func init() {
-	connection, err = DBdriver.ConnectSQL("mysql", "3306", "root", "Admin&123", "ams") //aws pwd
+	connection, err = DBdriver.ConnectSQL("mysql", "3306", "AMS", "Admin&123", "ams") //aws pwd //AMS is usrname
 
 }
 
