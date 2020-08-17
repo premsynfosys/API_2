@@ -4,11 +4,13 @@ import (
 	"bytes"
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
 	"net/url"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -20,16 +22,24 @@ import (
 )
 
 //NewSQLRepo ..
-func NewSQLRepo(con *sql.DB,host *cmnmdl.Configuration) CmnIntrfc {
+func NewSQLRepo(con *sql.DB) CmnIntrfc {
+	file, _ := os.Open("conf.json")
+	configuration := cmnmdl.Configuration{}
+	err := json.NewDecoder(file).Decode(&configuration)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	defer file.Close()
 	return &mysqlRepo{
-		Conn: con,
-		Host:host,
+		Conn:      con,
+		WebAppURL: configuration.WebAppURL,
 	}
 }
 
 type mysqlRepo struct {
-	Conn *sql.DB
-	Host *cmnmdl.Configuration
+	Conn      *sql.DB
+	WebAppURL string
 }
 
 func (m *mysqlRepo) GetRoles(ctx context.Context) ([]*cmnmdl.Role, error) {
@@ -291,7 +301,7 @@ func (m *mysqlRepo) CreateUser(ctx context.Context, usr *cmnmdl.User) (int64, er
 	}
 	userid, err := res.LastInsertId()
 
-	baseURL, err := url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
+	baseURL, err := url.Parse(m.WebAppURL)
 	if err != nil {
 		fmt.Println("Malformed URL: ", err.Error())
 		return 0, err
@@ -948,7 +958,7 @@ func (m *mysqlRepo) ReceiveIWAssets(obj *cmnmdl.InWardOutWard) error {
 		queryinwardoutwardassetsvals = append(queryinwardoutwardassetsvals, Statusrcvd, obj.IDInWardOutWard)
 	} else {
 		queryinwardoutwardassetsvals = append(queryinwardoutwardassetsvals, StatusPrtllyrcvd, obj.IDInWardOutWard)
-		baseURL, _ :=  url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
+		baseURL, _ := url.Parse(m.WebAppURL)
 		baseURL.Path += "/InWardDetails"
 		// params := url.Values{}
 		// params.Add("empid", strconv.Itoa(*obj.ApproverEmpID))
@@ -1414,7 +1424,7 @@ func (m *mysqlRepo) Resend_Activation_Link(ctx context.Context, EmpID int) error
 		return err
 	}
 
-	baseURL, err :=  url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
+	baseURL, err := url.Parse(m.WebAppURL)
 	// Add a Path Segment (Path segment is automatically escaped)
 	baseURL.Path += "/UserCreate"
 	params := url.Values{}
@@ -1484,7 +1494,7 @@ func (m *mysqlRepo) GetFeatures_List() ([]*cmnmdl.Features_List, error) {
 
 func (m *mysqlRepo) Send_ResetPasswordLink(ctx context.Context, EmpID int) error {
 
-	baseURL, err := url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
+	baseURL, err := url.Parse(m.WebAppURL)
 	// Add a Path Segment (Path segment is automatically escaped)
 	baseURL.Path += "/ResetPassword"
 	params := url.Values{}

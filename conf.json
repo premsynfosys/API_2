@@ -1,5 +1,6 @@
 {
     "IsTesting": true,
+    "WebAppURL":"http://13.235.245.41:9001",
     "Test": {
         "APIPORT": "9000",
         "APIHost": "http://localhost",
@@ -8,8 +9,8 @@
     },
     "Production": {
         "APIPORT": "9002",
-        "APIHost": "http://13.233.195.23",
+        "APIHost": "http://localhost",
         "WEBPORT": "9003",
-        "WEBHost": "http://13.233.195.23"
+        "WEBHost": "http://localhost"
     }
 }

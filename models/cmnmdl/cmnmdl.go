@@ -3,6 +3,7 @@ package cmnmdl
 
 type Configuration struct {
 	IsTesting  bool
+	WebAppURL string
 	Test       map[string]string
 	Production map[string]string
 	APIPORT    string

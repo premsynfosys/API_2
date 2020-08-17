@@ -53,7 +53,7 @@ func main() {
 	r := mux.NewRouter()
 	cnsmblhndlr := cnsmblhndlr.NewConsumablHandler(connection)
 	pHandler := itassetshndlr.NewITAssetHandler(connection)
-	cmnhndlr := cmnhndlr.NewCommonHandler(connection,&configuration)
+	cmnhndlr := cmnhndlr.NewCommonHandler(connection,)
 	nonitassetshndlr := nonitassetshndlr.NewNonITAssetHandler(connection)
 
 	routes.ITAssetRouting(r, pHandler)

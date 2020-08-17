@@ -19,9 +19,10 @@ type CmnIrepo struct {
 }
 
 //NewCommonHandler ..
-func NewCommonHandler(db *DBdriver.DB,host *cmnmdl.Configuration ) *CmnIrepo {
+func NewCommonHandler(db *DBdriver.DB) *CmnIrepo {
+
 	return &CmnIrepo{
-		ICmnrepo: cmnrepo.NewSQLRepo(db.SQLDB,host),
+		ICmnrepo: cmnrepo.NewSQLRepo(db.SQLDB),
 	}
 }
 
@@ -478,8 +479,6 @@ func (p *CmnIrepo) GetStatus(w http.ResponseWriter, r *http.Request) {
 	utils.RespondwithJSON(w, http.StatusOK, payload)
 }
 
-
-
 // UpdateIsMsngStcksRslvdMain a post
 func (p *CmnIrepo) UpdateIsMsngStcksRslvdMain(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -813,7 +812,6 @@ func (p *CmnIrepo) PurchaseOrders_RequestsUpdate(w http.ResponseWriter, r *http.
 	}
 }
 
-
 func (p *CmnIrepo) GetPurchaseOrderUniqueID(w http.ResponseWriter, r *http.Request) {
 	dt, err := p.ICmnrepo.GetPurchaseOrderUniqueID()
 	if err != nil {
@@ -885,7 +883,7 @@ func (p *CmnIrepo) GetPODetailsByApprover(w http.ResponseWriter, r *http.Request
 func (p *CmnIrepo) POReqForward(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.POApproval{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.POReqForward(r.Context(), &data)
+	err := p.ICmnrepo.POReqForward(r.Context(), &data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -895,7 +893,7 @@ func (p *CmnIrepo) POReqForward(w http.ResponseWriter, r *http.Request) {
 func (p *CmnIrepo) POReqApproved(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.POApproval{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.POReqApproved(r.Context(), &data)
+	err := p.ICmnrepo.POReqApproved(r.Context(), &data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -905,7 +903,7 @@ func (p *CmnIrepo) POReqApproved(w http.ResponseWriter, r *http.Request) {
 func (p *CmnIrepo) POReqRejected(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.POApproval{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.POReqRejected(r.Context(), &data)
+	err := p.ICmnrepo.POReqRejected(r.Context(), &data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -949,7 +947,6 @@ func (p *CmnIrepo) GetRequisitionDetailsByReqstrID(w http.ResponseWriter, r *htt
 	}
 }
 
-
 func (p *CmnIrepo) RequisitionDetailsByID(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	ID := params["ID"]
@@ -986,7 +983,6 @@ func (p *CmnIrepo) Requisition_ApprovalStatusList(w http.ResponseWriter, r *http
 	}
 }
 
-
 func (p *CmnIrepo) GetRequisitionDetailsByApprover(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	ApprvrID := params["ApprvrID"]
@@ -1012,7 +1008,7 @@ func (p *CmnIrepo) Requisition_RequestsUpdate(w http.ResponseWriter, r *http.Req
 func (p *CmnIrepo) RequisitionReqRejected(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.RequisitionApproval{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.RequisitionReqRejected(r.Context(), &data)
+	err := p.ICmnrepo.RequisitionReqRejected(r.Context(), &data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -1023,7 +1019,7 @@ func (p *CmnIrepo) RequisitionReqRejected(w http.ResponseWriter, r *http.Request
 func (p *CmnIrepo) RequisitionReqForward(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.RequisitionApproval{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.RequisitionReqForward(r.Context(), &data)
+	err := p.ICmnrepo.RequisitionReqForward(r.Context(), &data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -1033,7 +1029,7 @@ func (p *CmnIrepo) RequisitionReqForward(w http.ResponseWriter, r *http.Request)
 func (p *CmnIrepo) RequisitionReqApproved(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.RequisitionApproval{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.RequisitionReqApproved(r.Context(), &data)
+	err := p.ICmnrepo.RequisitionReqApproved(r.Context(), &data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -1058,7 +1054,7 @@ func (p *CmnIrepo) RequisitionStatusChange(w http.ResponseWriter, r *http.Reques
 func (p *CmnIrepo) RequisitionStcokReceived(w http.ResponseWriter, r *http.Request) {
 	data := cmnmdl.Requisition_Requests{}
 	json.NewDecoder(r.Body).Decode(&data)
-	 err := p.ICmnrepo.RequisitionStcokReceived(&data)
+	err := p.ICmnrepo.RequisitionStcokReceived(&data)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
