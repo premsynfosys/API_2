@@ -20,14 +20,16 @@ import (
 )
 
 //NewSQLRepo ..
-func NewSQLRepo(con *sql.DB) CmnIntrfc {
+func NewSQLRepo(con *sql.DB,host *cmnmdl.Configuration) CmnIntrfc {
 	return &mysqlRepo{
 		Conn: con,
+		Host:host,
 	}
 }
 
 type mysqlRepo struct {
 	Conn *sql.DB
+	Host *cmnmdl.Configuration
 }
 
 func (m *mysqlRepo) GetRoles(ctx context.Context) ([]*cmnmdl.Role, error) {
@@ -141,7 +143,6 @@ func (m *mysqlRepo) Login(ctx context.Context, usr *cmnmdl.User) (*cmnmdl.User, 
 	return &mdl, err
 
 }
-
 
 func (m *mysqlRepo) GetUsers(ctx context.Context, LocID int) ([]*cmnmdl.User, error) {
 	selDB, err := m.Conn.QueryContext(ctx, "call sp_Users(?)", LocID)
@@ -290,7 +291,7 @@ func (m *mysqlRepo) CreateUser(ctx context.Context, usr *cmnmdl.User) (int64, er
 	}
 	userid, err := res.LastInsertId()
 
-	baseURL, err := url.Parse("http://localhost:9001")
+	baseURL, err := url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
 	if err != nil {
 		fmt.Println("Malformed URL: ", err.Error())
 		return 0, err
@@ -947,7 +948,7 @@ func (m *mysqlRepo) ReceiveIWAssets(obj *cmnmdl.InWardOutWard) error {
 		queryinwardoutwardassetsvals = append(queryinwardoutwardassetsvals, Statusrcvd, obj.IDInWardOutWard)
 	} else {
 		queryinwardoutwardassetsvals = append(queryinwardoutwardassetsvals, StatusPrtllyrcvd, obj.IDInWardOutWard)
-		baseURL, _ := url.Parse("http://localhost:9001")
+		baseURL, _ :=  url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
 		baseURL.Path += "/InWardDetails"
 		// params := url.Values{}
 		// params.Add("empid", strconv.Itoa(*obj.ApproverEmpID))
@@ -1413,7 +1414,7 @@ func (m *mysqlRepo) Resend_Activation_Link(ctx context.Context, EmpID int) error
 		return err
 	}
 
-	baseURL, err := url.Parse("http://localhost:9001")
+	baseURL, err :=  url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
 	// Add a Path Segment (Path segment is automatically escaped)
 	baseURL.Path += "/UserCreate"
 	params := url.Values{}
@@ -1483,7 +1484,7 @@ func (m *mysqlRepo) GetFeatures_List() ([]*cmnmdl.Features_List, error) {
 
 func (m *mysqlRepo) Send_ResetPasswordLink(ctx context.Context, EmpID int) error {
 
-	baseURL, err := url.Parse("http://localhost:9001")
+	baseURL, err := url.Parse(m.Host.WEBHost+":"+m.Host.WEBPORT)
 	// Add a Path Segment (Path segment is automatically escaped)
 	baseURL.Path += "/ResetPassword"
 	params := url.Values{}

@@ -1,15 +1,15 @@
 {
-    "IsTesting": true,
+    "IsTesting": false,
     "Test": {
         "APIPORT": "9000",
-        "APIHost": "http://localhost",
+        "APIHost": "http://13.233.195.23",
         "WEBPORT": "9001",
-        "WEBHost": "http://localhost"
+        "WEBHost": "http://13.233.195.23"
     },
     "Production": {
         "APIPORT": "9002",
-        "APIHost": "http://localhost",
+        "APIHost": "http://13.233.195.23",
         "WEBPORT": "9003",
-        "WEBHost": "http://localhost"
+        "WEBHost": "http://13.233.195.23"
     }
 }

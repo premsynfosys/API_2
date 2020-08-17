@@ -19,9 +19,9 @@ type CmnIrepo struct {
 }
 
 //NewCommonHandler ..
-func NewCommonHandler(db *DBdriver.DB) *CmnIrepo {
+func NewCommonHandler(db *DBdriver.DB,host *cmnmdl.Configuration ) *CmnIrepo {
 	return &CmnIrepo{
-		ICmnrepo: cmnrepo.NewSQLRepo(db.SQLDB),
+		ICmnrepo: cmnrepo.NewSQLRepo(db.SQLDB,host),
 	}
 }
 

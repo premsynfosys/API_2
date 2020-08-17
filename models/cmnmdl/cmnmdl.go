@@ -1,5 +1,15 @@
 package cmnmdl
 
+
+type Configuration struct {
+	IsTesting  bool
+	Test       map[string]string
+	Production map[string]string
+	APIPORT    string
+	APIHost    string
+	WEBPORT    string
+	WEBHost    string
+}
 type ThresholdAlert struct {
 	AssetName        *string `json:"AssetName"`
 	IdentificationNo *string `json:"IdentificationNo"`

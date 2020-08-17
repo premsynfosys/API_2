@@ -10,7 +10,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/premsynfosys/AMS_API/DBdriver"
-
+	"github.com/premsynfosys/AMS_API/models/cmnmdl"
 	"github.com/premsynfosys/AMS_API/handler/cmnhndlr"
 	"github.com/premsynfosys/AMS_API/handler/cnsmblhndlr"
 	"github.com/premsynfosys/AMS_API/handler/itassetshndlr"
@@ -18,15 +18,6 @@ import (
 	"github.com/premsynfosys/AMS_API/routes"
 )
 
-type configuration struct {
-	IsTesting  bool
-	Test       map[string]string
-	Production map[string]string
-	APIPORT    string
-	APIHost    string
-	WEBPORT    string
-	WEBHost    string
-}
 
 var connection *DBdriver.DB
 var err error
@@ -39,7 +30,7 @@ func init() {
 func main() {
 
 	file, _ := os.Open("conf.json")
-	configuration := configuration{}
+	configuration := cmnmdl.Configuration{}
 	err := json.NewDecoder(file).Decode(&configuration)
 	if configuration.IsTesting {
 		configuration.APIHost = configuration.Test["APIHost"]
@@ -62,7 +53,7 @@ func main() {
 	r := mux.NewRouter()
 	cnsmblhndlr := cnsmblhndlr.NewConsumablHandler(connection)
 	pHandler := itassetshndlr.NewITAssetHandler(connection)
-	cmnhndlr := cmnhndlr.NewCommonHandler(connection)
+	cmnhndlr := cmnhndlr.NewCommonHandler(connection,&configuration)
 	nonitassetshndlr := nonitassetshndlr.NewNonITAssetHandler(connection)
 
 	routes.ITAssetRouting(r, pHandler)
