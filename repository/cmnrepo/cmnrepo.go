@@ -226,13 +226,16 @@ func (m *mysqlRepo) GetEmployees(ctx context.Context, LocID int) ([]*cmnmdl.Empl
 		usr := new(cmnmdl.User)
 		ed := new(cmnmdl.Educations)
 		des := new(cmnmdl.Designation)
+		rl := new(cmnmdl.Role)
 		err := selDB.Scan(&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear,
 			&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 			&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
-			&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name)
+			&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName)
+		usr.Role = rl
 		emp.User = usr
 		emp.EducationData = ed
 		emp.DesignationData = des
+	
 		if err != nil {
 			fmt.Println(err.Error())
 			return nil, err
