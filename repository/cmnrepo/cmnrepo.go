@@ -255,11 +255,13 @@ func (m *mysqlRepo) GetEmployeeByID(ctx context.Context, id int) (*cmnmdl.Employ
 	usr := new(cmnmdl.User)
 	ed := new(cmnmdl.Educations)
 	des := new(cmnmdl.Designation)
+	rl := new(cmnmdl.Role)
 	err := selDB.Scan(&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear,
 		&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 		&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
-		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name)
-	emp.User = usr
+		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName)
+	usr.Role=rl;
+		emp.User = usr
 	emp.EducationData = ed
 	emp.DesignationData = des
 	if err != nil {
@@ -1092,6 +1094,7 @@ func (m *mysqlRepo) SendEmail(mdl *cmnmdl.Email, IsRetry bool) {
 	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 	Htmlsubject := "Subject: " + mdl.Subject + "!\n"
 	msg := []byte(Htmlsubject + mime + "\n" + body)
+	
 	err = smtp.SendMail("smtp.gmail.com:587", auth, "premkumardot123@gmail.com", []string{mdl.ToAddress}, msg)
 	if err != nil {
 		if IsRetry {
