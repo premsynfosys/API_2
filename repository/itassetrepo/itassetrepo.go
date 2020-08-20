@@ -793,7 +793,7 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 	}
 	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
 		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.Is_Asset_UnAvailable, itm.CreatedBy)
-	if err == nil && *itm.Is_Asset_UnAvailable == 1 && itm.Expected_Start_Date == nil {
+	if err == nil && itm.Is_Asset_UnAvailable!=nil  && itm.Expected_Start_Date == nil {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
 		if err != nil {
 			return err
@@ -818,7 +818,7 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	return err
 }
 func (m *mysqlRepo) ITasset_services_Complete_Update(ctx context.Context, itm *itassetmdl.ITasset_services) error {
-	qryA := "update itassets set ITAssetStatus=1 where idITAssets = (select distinct ITAssetID from itasset_services where Is_Asset_UnAvailable=1 and Status=1 and Expected_Start_Date < now() or Actual_Start_Date < now() and  ITAssetID=? );"
+	qryA := "update itassets set ITAssetStatus=1 where idITAssets = (select distinct ITAssetID from itasset_services where Is_Asset_UnAvailable=1 and Status=1 and (Expected_Start_Date < now() or Actual_Start_Date < now()) and  idITAsset_Services=? );"
 
 	qry := "update itasset_services set Actual_End_Date=?,Status=3,Cost=?,Comments=? where idITAsset_Services=?"
 
@@ -826,7 +826,7 @@ func (m *mysqlRepo) ITasset_services_Complete_Update(ctx context.Context, itm *i
 	stmtA, err1 := txn.PrepareContext(ctx, qryA)
 	stmtB, err2 := txn.PrepareContext(ctx, qry)
 
-	_, err4 := stmtA.Exec(itm.ITAssetID)
+	_, err4 := stmtA.Exec(itm.IDITAsset_Services)
 	_, err3 := stmtB.Exec(itm.Actual_End_Date, itm.Cost, itm.Comments, itm.IDITAsset_Services)
 
 	defer func() {
