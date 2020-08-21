@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -49,6 +50,7 @@ func main() {
 		log.Println("error:", err)
 	}
 	log.Println("WebAPI started on: " + configuration.APIHost + ":" + configuration.APIPORT + "")
+	fmt.Println("WebAPI started on: " + configuration.APIHost + ":" + configuration.APIPORT + "")
 
 	if err != nil {
 		log.Println(err)
