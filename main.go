@@ -21,10 +21,11 @@ var connection *DBdriver.DB
 var err error
 
 func init() {
-	connection, err = DBdriver.ConnectSQL("mysql", "3306", "AMS", "Admin&123", "ams") //aws pwd //AMS is usrname
+	connection, err = DBdriver.ConnectSQL("mysql", "3306", "root", "Admin", "ams") //aws pwd //AMS is usrname
 
 }
 
+// changed db config
 func main() {
 	logfile, e := os.OpenFile("AMSLog.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if e != nil {
