@@ -20,12 +20,12 @@ import (
 var connection *DBdriver.DB
 var err error
 
+// changed db config name and pwd
 func init() {
 	connection, err = DBdriver.ConnectSQL("mysql", "3306", "root", "Admin", "ams") //aws pwd //AMS is usrname
 
 }
 
-// changed db config
 func main() {
 	logfile, e := os.OpenFile("AMSLog.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if e != nil {
