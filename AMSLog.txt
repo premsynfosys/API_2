@@ -1,0 +1,63 @@
+2020/08/20 10:17:51 erro1
+2020/08/20 10:17:51 erro2
+2020/08/20 10:17:51 WebAPI started on: http://localhost:9000
+2020/08/20 10:21:09 erro1
+2020/08/20 10:21:09 erro2
+2020/08/20 10:21:09 WebAPI started on: http://localhost:9000
+2020/08/20 10:34:31 erro1
+2020/08/20 10:34:31 erro2
+2020/08/20 10:34:31 WebAPI started on: http://localhost:9000
+2020/08/20 11:34:37 smtp error: 534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbs
+5.7.14 IKE75PPsJxil-DkNDHlY_LrNRYIJgYphscDBIGWlBZ34E5eSr8cgsJcExF7WWFzdJY8uH
+5.7.14 jzEIdQsJao-AIK0e2QrRe8egNGlH7gbfVK9EY7E9M8sWh1tYnitdopT_KZB2LCkA>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 a13sm1242143pfo.49 - gsmtp
+2020/08/20 11:34:37 smtp error: 534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbt
+5.7.14 BnvdQiWAQ4EKXOpWZJmrPk11tXSyhm1ZYMQsq9W5xEB0eD2fz2IYNmfc67BUBGHuJxOOQ
+5.7.14 84c1g3Iz-wW1LMgNlvoQ9p6m1DeKRTIbHkjZb9ijBcYpPWJ7ft9K5l4n6HksinXB>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 gm9sm869253pjb.12 - gsmtp
+2020/08/20 11:34:38 smtp error: 534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu
+5.7.14 mtcREZZiBQm7U1BAa-jtxyRQeJnu3uVBEkhMnGHA1jGrb5PbymPLMq1Kt8bvZDx5vfy5-
+5.7.14 whekKb4Rvun-wAbnghyiEgTlNQYInrbw2DcN4sCjhuGdSg0HkKj6UYfeikFZwDg0>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 2sm910966pjg.32 - gsmtp
+2020/08/20 12:21:52 erro1
+2020/08/20 12:21:52 erro2
+2020/08/20 12:21:52 WebAPI started on: http://localhost:9000
+2020/08/20 16:01:17 erro1
+2020/08/20 16:01:17 erro2
+2020/08/20 16:01:17 WebAPI started on: http://localhost:9000
+2020/08/20 16:39:29 erro1
+2020/08/20 16:39:29 erro2
+2020/08/20 16:39:29 WebAPI started on: http://localhost:9000
+2020/08/20 16:41:10 erro1
+2020/08/20 16:41:10 erro2
+2020/08/20 16:41:10 WebAPI started on: http://localhost:9000
+2020/08/20 16:45:51 erro1
+2020/08/20 16:45:51 erro2
+2020/08/20 16:45:51 WebAPI started on: http://localhost:9000
+2020/08/20 16:47:00 erro1
+2020/08/20 16:47:00 erro2
+2020/08/20 16:47:00 WebAPI started on: http://localhost:9000
+2020/08/20 18:47:07 smtp error: 534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu
+5.7.14 iJXPy28bPRFB0JrlMxKn2oBqcdMvA_rzi0yPTQSLnwGBW_OCCUIQlnhClaJWNGTDo4uZi
+5.7.14 6rqh8ddFkTjNpcESybLSwOSL-xKiv5GKqsxRi325rlTYLsLcRUUpU4y3_BoF7EeY>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 mh14sm2087782pjb.23 - gsmtp
+2020/08/20 18:47:08 smtp error: 534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbt
+5.7.14 7Z2EZwA2qFOiNMNMEg9oyeHRNz3s-OKHbQPretWjOtNNi75idjcy1KqLCBzUoVa4mV-Su
+5.7.14 sMpJzptfZ3wTRx9C0kMXBVRttvjg0Hdne8RSQWvdyvl3zfqtHoHdzotalSbMn3Qw>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 k5sm2688936pgk.78 - gsmtp
+2020/08/20 18:47:08 smtp error: 534 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu
+5.7.14 _piev4CVUKZxsIZjKtfrT2Hy2fKJ0JRO73sdCMMRZnl1PUxnleLQuZsZaglVsRQS6tinU
+5.7.14 UdhVJHrwNdQhEnu6wo-xxi3kDVlethVyIGS5s7SIg8G_Mqv4ml6VvZHm8VXDaAir>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 w14sm2838213pfi.211 - gsmtp

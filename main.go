@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -10,14 +9,13 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/premsynfosys/AMS_API/DBdriver"
-	"github.com/premsynfosys/AMS_API/models/cmnmdl"
 	"github.com/premsynfosys/AMS_API/handler/cmnhndlr"
 	"github.com/premsynfosys/AMS_API/handler/cnsmblhndlr"
 	"github.com/premsynfosys/AMS_API/handler/itassetshndlr"
 	"github.com/premsynfosys/AMS_API/handler/nonitassetshndlr"
+	"github.com/premsynfosys/AMS_API/models/cmnmdl"
 	"github.com/premsynfosys/AMS_API/routes"
 )
-
 
 var connection *DBdriver.DB
 var err error
@@ -28,7 +26,13 @@ func init() {
 }
 
 func main() {
-
+	logfile, e := os.OpenFile("AMSLog.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if e != nil {
+		log.Fatalln("failed to log")
+	}
+	log.SetOutput(logfile)
+	log.Println("erro1")
+	log.Println("erro2")
 	file, _ := os.Open("conf.json")
 	configuration := cmnmdl.Configuration{}
 	err := json.NewDecoder(file).Decode(&configuration)
@@ -41,19 +45,19 @@ func main() {
 	}
 	defer file.Close()
 	if err != nil {
-		fmt.Println("error:", err)
+		log.Println("error:", err)
 	}
 	log.Println("WebAPI started on: " + configuration.APIHost + ":" + configuration.APIPORT + "")
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		os.Exit(-1)
 	}
 
 	r := mux.NewRouter()
 	cnsmblhndlr := cnsmblhndlr.NewConsumablHandler(connection)
 	pHandler := itassetshndlr.NewITAssetHandler(connection)
-	cmnhndlr := cmnhndlr.NewCommonHandler(connection,)
+	cmnhndlr := cmnhndlr.NewCommonHandler(connection)
 	nonitassetshndlr := nonitassetshndlr.NewNonITAssetHandler(connection)
 
 	routes.ITAssetRouting(r, pHandler)

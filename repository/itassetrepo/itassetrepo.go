@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"database/sql"
-	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -600,9 +599,9 @@ func (m *mysqlRepo) GetCustomFields(ctx context.Context, id int, Mod string) (*i
 	qry += " CustomFields5Value,CustomFields5Type "
 	if Mod == "ITAsset" {
 		qry += "  FROM itassets where  idITAssets=?; "
-	} else if ( Mod == "Consumable"){
+	} else if Mod == "Consumable" {
 		qry += "  FROM consumables where  idconsumables=?; "
-	}else if ( Mod == "NonITAsset"){
+	} else if Mod == "NonITAsset" {
 		qry += "  FROM nonitassets where  IDNonITAsset=?; "
 	}
 	selDB := m.Conn.QueryRowContext(ctx, qry, id)
@@ -750,7 +749,7 @@ func (m *mysqlRepo) RetryFailedmails() {
 		case <-time.After(time.Hour):
 			ListEmails, err = m.GetFailedMails()
 			if err != nil {
-				fmt.Println("failed in retrying mails")
+				log.Println("failed in retrying mails")
 			}
 			for _, itm := range ListEmails {
 				if itm.TimePeriod == 1 {
@@ -775,8 +774,8 @@ func (m *mysqlRepo) RetryFailedmails() {
 
 func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl.ITasset_services) error {
 	qry := "INSERT INTO itasset_services (ITAssetID,Expected_Start_Date,Expected_End_Date,Actual_Start_Date,"
-	qry += "	Actual_End_Date,ServiceBy_Type,ServiceBy_EmpID,ServiceBy_VendorID,Service_Type, Status,Description,Is_Asset_UnAvailable"
-	qry += " ,CreatedBy) VALUES (?,?,?,?, ?,?,?,?, ?,?,?,? , ?); "
+	qry += "	Actual_End_Date,ServiceBy_Type,ServiceBy_EmpID,ServiceBy_VendorID,Service_Type, Status,Description"
+	qry += " ,CreatedBy) VALUES (?,?,?,?, ?,?,?,?, ?,?,?,? ); "
 	stmt, err := m.Conn.PrepareContext(ctx, qry)
 	if err != nil {
 		return err
@@ -792,8 +791,8 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 		itm.Status = &schedule
 	}
 	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
-		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.Is_Asset_UnAvailable, itm.CreatedBy)
-	if err == nil && itm.Is_Asset_UnAvailable!=nil  && itm.Expected_Start_Date == nil {
+		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.CreatedBy)
+	if err == nil && itm.Expected_Start_Date == nil {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
 		if err != nil {
 			return err
@@ -818,15 +817,15 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	return err
 }
 func (m *mysqlRepo) ITasset_services_Complete_Update(ctx context.Context, itm *itassetmdl.ITasset_services) error {
-	qryA := "update itassets set ITAssetStatus=1 where idITAssets = (select distinct ITAssetID from itasset_services where Is_Asset_UnAvailable=1 and Status=1 and (Expected_Start_Date < now() or Actual_Start_Date < now()) and  idITAsset_Services=? );"
-
+//	qryA := "update itassets set ITAssetStatus=1 where idITAssets = (select distinct ITAssetID from itasset_services where  Status=1  and  idITAsset_Services=? );"
+qryA :="call sp_ITserviceComplete(?)"
 	qry := "update itasset_services set Actual_End_Date=?,Status=3,Cost=?,Comments=? where idITAsset_Services=?"
 
 	txn, err := m.Conn.Begin()
 	stmtA, err1 := txn.PrepareContext(ctx, qryA)
 	stmtB, err2 := txn.PrepareContext(ctx, qry)
 
-	_, err4 := stmtA.Exec(itm.IDITAsset_Services)
+	_, err4 := stmtA.Exec(itm.ITAssetID)
 	_, err3 := stmtB.Exec(itm.Actual_End_Date, itm.Cost, itm.Comments, itm.IDITAsset_Services)
 
 	defer func() {
@@ -1019,7 +1018,7 @@ func (m *mysqlRepo) Get_ITAssetsHistory_ByAsset(ctx context.Context, AssetID int
 	query := "call sp_ITAssetHistorybyAsset(?)"
 	selDB, err := m.Conn.QueryContext(ctx, query, AssetID)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	res := make([]*itassetmdl.ITAssetModel, 0)
@@ -1032,7 +1031,7 @@ func (m *mysqlRepo) Get_ITAssetsHistory_ByAsset(ctx context.Context, AssetID int
 
 		mdl.Employees = CrtdBy
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 
@@ -1049,7 +1048,7 @@ func (m *mysqlRepo) ITAssetReq_ApprovalStatusList(ctx context.Context, ReqGroupI
 	query += "where ira.itassetReqGroupID= ?; "
 	selDB, err := m.Conn.QueryContext(ctx, query, ReqGroupID)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	res := make([]*itassetmdl.ITAssetRequestApproval, 0)
@@ -1061,7 +1060,7 @@ func (m *mysqlRepo) ITAssetReq_ApprovalStatusList(ctx context.Context, ReqGroupI
 			&mdl.ActionedOn, &mdl.RoleName)
 		mdl.Employee = apprvr
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 

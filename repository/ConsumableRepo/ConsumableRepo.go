@@ -5,7 +5,6 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -235,10 +234,10 @@ func (m *mysqlRepo) GetThresholdReachedStockConsumablesByID(AssetID int) (*cmnmd
 	query += " join consumablemaster cnm on cnm.idconsumableMaster= con.idconsumableMaster "
 	query += " join users usr on usr.EmployeeId=emp.IdEmployees where usr.Role=2 and  con.ThresholdQnty >= con.TotalQnty and con.idconsumables=? "
 	res := cmnmdl.ThresholdAlert{}
-	selDB:= m.Conn.QueryRow(query, AssetID)
+	selDB := m.Conn.QueryRow(query, AssetID)
 	err := selDB.Scan(&res.AssetName, &res.IdentificationNo, &res.FirstName, &res.Email, &res.AvailableQnty, &res.ThresholdQnty)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 
@@ -441,7 +440,7 @@ func (m *mysqlRepo) UpdateConsumable(ctx context.Context, mdl *cnsmblemdl.Consum
 		mdl.ReOrderStockPrice, mdl.ReOrderQuantity, mdl.Img, mdl.LocationID, mdl.ModifiedBy,
 		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
-		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type,mdl.IDConsumables)
+		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.IDConsumables)
 	defer stmt.Close()
 
 	return err
@@ -603,7 +602,7 @@ func (m *mysqlRepo) ConsumableBulkDelete(ctx context.Context, ids []string) erro
 	// }
 	query = query[0 : len(query)-1]
 	query += " )"
-	fmt.Println(query)
+	log.Println(query)
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
 		return err
@@ -616,7 +615,6 @@ func (m *mysqlRepo) ConsumableBulkDelete(ctx context.Context, ids []string) erro
 	}
 	return err
 }
-
 
 func (m *mysqlRepo) ConsumableDelete(ctx context.Context, AssetID int) error {
 	query := "call sp_ConsumableDelete(?);"

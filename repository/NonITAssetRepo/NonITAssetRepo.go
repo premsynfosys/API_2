@@ -5,7 +5,6 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -179,10 +178,10 @@ func (m *mysqlRepo) NonITAsset_Edit(ctx context.Context, mdl *nonitassets_mdl.No
 		return err
 	}
 	_, err = stmt.ExecContext(ctx, mdl.NonITAssets_Master_ID, mdl.ModelNo, mdl.Description, mdl.Img, mdl.ThresholdQnty, mdl.ReOrderStockPrice,
-		mdl.ReOrderQuantity, mdl.LocationID, mdl.Modified_By, 
+		mdl.ReOrderQuantity, mdl.LocationID, mdl.Modified_By,
 		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
-		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type,mdl.IDNonITAsset)
+		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.IDNonITAsset)
 	defer stmt.Close()
 
 	if err != nil {
@@ -282,7 +281,7 @@ func (m *mysqlRepo) PostNonITAssets_CheckOut(mdl *nonitassets_mdl.NonITAssets_ch
 			Subject:   Subject,
 			Body:      mailHtmlbody,
 		}
-		fmt.Println(mailHtmlbody)
+		log.Println(mailHtmlbody)
 		go m.SendEmail(&emailAprvr, false)
 	}
 	return err

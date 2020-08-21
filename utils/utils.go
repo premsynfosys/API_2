@@ -39,7 +39,7 @@ func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 			})
 
 			if err != nil {
-				fmt.Fprintf(w, err.Error())
+				log.Println(w, err.Error())
 			}
 
 			if token.Valid {

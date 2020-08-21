@@ -2,7 +2,8 @@ package nonitassetshndlr
 
 import (
 	"encoding/json"
-	"fmt"
+
+	"log"
 	"net/http"
 	"strconv"
 
@@ -253,7 +254,7 @@ func (p *INonITAsset) NonITAssetReqApprove(w http.ResponseWriter, r *http.Reques
 	json.NewDecoder(r.Body).Decode(&mdl)
 	err := p.INonTAssetRepo.NonITAssetReqApprove(mdl)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
@@ -266,7 +267,7 @@ func (p *INonITAsset) GetNonITAssetCheckinDetails(w http.ResponseWriter, r *http
 	LocIDs, _ := strconv.Atoi(LocID)
 	data, err := p.INonTAssetRepo.GetNonITAssetCheckinDetails(r.Context(), LocIDs)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, data)
@@ -279,7 +280,7 @@ func (p *INonITAsset) GetNonITAssetCheckinDetailsByAsset(w http.ResponseWriter, 
 	IDNonITAssets, _ := strconv.Atoi(IDNonITAsset)
 	data, err := p.INonTAssetRepo.GetNonITAssetCheckinDetailsByAsset(r.Context(), IDNonITAssets)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, data)
@@ -291,7 +292,7 @@ func (p *INonITAsset) GetNonITAssetCheckinDetailsByEmp(w http.ResponseWriter, r 
 	EmpIDs, _ := strconv.Atoi(EmpID)
 	data, err := p.INonTAssetRepo.GetNonITAssetCheckinDetailsByEmp(r.Context(), EmpIDs)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, data)
@@ -301,9 +302,9 @@ func (p *INonITAsset) GetNonITAssetCheckinDetailsByEmp(w http.ResponseWriter, r 
 func (p *INonITAsset) NonITAssetCheckin(w http.ResponseWriter, r *http.Request) {
 	mdl := nonitassets_mdl.NonITAssets_checkin{}
 	json.NewDecoder(r.Body).Decode(&mdl)
-	err := p.INonTAssetRepo.NonITAssetCheckin(r.Context(),&mdl)
+	err := p.INonTAssetRepo.NonITAssetCheckin(r.Context(), &mdl)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
@@ -315,13 +316,12 @@ func (p *INonITAsset) Getnonitassets_checkinByID(w http.ResponseWriter, r *http.
 	checkinIDs, _ := strconv.Atoi(checkinID)
 	data, err := p.INonTAssetRepo.Getnonitassets_checkinByID(r.Context(), checkinIDs)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
 		utils.RespondwithJSON(w, http.StatusOK, data)
 	}
 }
-
 
 func (p *INonITAsset) GetNonITAssetReqListByEmp(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -339,7 +339,7 @@ func (p *INonITAsset) NonITAssetDelete(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	AssetID := params["AssetID"]
 	id, _ := strconv.Atoi(AssetID)
-	 err := p.INonTAssetRepo.NonITAssetDelete(r.Context(), id)
+	err := p.INonTAssetRepo.NonITAssetDelete(r.Context(), id)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {

@@ -5,7 +5,6 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -27,7 +26,7 @@ func NewSQLRepo(con *sql.DB) CmnIntrfc {
 	configuration := cmnmdl.Configuration{}
 	err := json.NewDecoder(file).Decode(&configuration)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 	}
 
 	defer file.Close()
@@ -235,9 +234,9 @@ func (m *mysqlRepo) GetEmployees(ctx context.Context, LocID int) ([]*cmnmdl.Empl
 		emp.User = usr
 		emp.EducationData = ed
 		emp.DesignationData = des
-	
+
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 
 		}
@@ -260,8 +259,8 @@ func (m *mysqlRepo) GetEmployeeByID(ctx context.Context, id int) (*cmnmdl.Employ
 		&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 		&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
 		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName)
-	usr.Role=rl;
-		emp.User = usr
+	usr.Role = rl
+	emp.User = usr
 	emp.EducationData = ed
 	emp.DesignationData = des
 	if err != nil {
@@ -286,7 +285,7 @@ func (m *mysqlRepo) CreateEmployee(ctx context.Context, emp *cmnmdl.Employees) (
 	defer stmt.Close()
 
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return -1, err
 	}
 
@@ -308,7 +307,7 @@ func (m *mysqlRepo) CreateUser(ctx context.Context, usr *cmnmdl.User) (int64, er
 
 	baseURL, err := url.Parse(m.WebAppURL)
 	if err != nil {
-		fmt.Println("Malformed URL: ", err.Error())
+		log.Println("Malformed URL: ", err.Error())
 		return 0, err
 	}
 	// Add a Path Segment (Path segment is automatically escaped)
@@ -616,7 +615,7 @@ func (m *mysqlRepo) RetryFailedmails() {
 		case <-time.After(time.Hour):
 			ListEmails, err = m.GetFailedMails()
 			if err != nil {
-				fmt.Println("failed in retrying mails")
+				log.Println("failed in retrying mails")
 			}
 			for _, itm := range ListEmails {
 				if itm.TimePeriod == 1 {
@@ -1094,7 +1093,7 @@ func (m *mysqlRepo) SendEmail(mdl *cmnmdl.Email, IsRetry bool) {
 	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 	Htmlsubject := "Subject: " + mdl.Subject + "!\n"
 	msg := []byte(Htmlsubject + mime + "\n" + body)
-	
+
 	err = smtp.SendMail("smtp.gmail.com:587", auth, "premkumardot123@gmail.com", []string{mdl.ToAddress}, msg)
 	if err != nil {
 		if IsRetry {
@@ -1643,7 +1642,7 @@ func (m *mysqlRepo) GetEmployee_History_ByEmpID(ctx context.Context, EmpID int) 
 		emp.DesignationData = des
 		emp.CreatedByData = CrtdBy
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 
 		}
@@ -1673,7 +1672,7 @@ func (m *mysqlRepo) Get_UsersHistory_ByEmpID(ctx context.Context, EmpID int) ([]
 		emp.DesignationData = des
 		emp.CreatedByData = CrtdBy
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 
 		}
@@ -1701,7 +1700,7 @@ func (m *mysqlRepo) Activivty_Log_List(ctx context.Context, EmpID int, FromDate 
 			&mdl.ActionedByLastName)
 
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 
 		}
@@ -1847,7 +1846,7 @@ func (m *mysqlRepo) VendorsAssetDetails(ctx context.Context, VendorID int) ([]*c
 		obj.Consumablemaster = cm
 		obj.Vendors = vend
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 
 		}
@@ -1869,7 +1868,7 @@ func (m *mysqlRepo) VednorsAssetMapInsert(ctx context.Context, mdl *cmnmdl.Vendo
 	defer stmt.Close()
 
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return err
 	}
 
@@ -1889,7 +1888,7 @@ func (m *mysqlRepo) VednorsAssetMapUpdate(ctx context.Context, mdl *cmnmdl.Vendo
 	defer stmt.Close()
 
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return err
 	}
 
@@ -1907,7 +1906,7 @@ func (m *mysqlRepo) IWOW_ApprovalStatusList(ctx context.Context, IDinwardoutward
 
 	selDB, err := m.Conn.QueryContext(ctx, query, IDinwardoutward)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	res := make([]*cmnmdl.InWardOutWardApproval, 0)
@@ -1917,7 +1916,7 @@ func (m *mysqlRepo) IWOW_ApprovalStatusList(ctx context.Context, IDinwardoutward
 			&iwa.Status, &iwa.CreatedOn, &iwa.ActionedOn, &iwa.RoleName, &iwa.ApproverName, &iwa.StatusName)
 
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 
@@ -1972,7 +1971,7 @@ func (m *mysqlRepo) GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDash
 		&res.ITAssetsAssigned, &res.NonITAssetThreshold, &res.ConsumableThreshold, &res.OutwardApproval, &res.ReadyToShip, &res.InWardAssets, &res.ITAssetServiceRequests,
 		&res.RequisitionRequestesPending, &res.RequisitionApprovalRequests, &res.ITAssetExpectedCheckInDate)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	return &res, nil
@@ -1984,7 +1983,7 @@ func (m *mysqlRepo) GetEmployeeDashboard(ctx context.Context, mdl *cmnmdl.Employ
 	res := cmnmdl.EmployeeDashboard{}
 	err := selDB.Scan(&res.ITAssetsAssigned, &res.NonITAssetsAssigned, &res.NonITAssetRequests, &res.ITAssetRequests, &res.ITAssetServiceRequests)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 
@@ -2001,7 +2000,7 @@ func (m *mysqlRepo) GetThresholdReachedStocks() ([]*cmnmdl.ThresholdAlert, error
 		iwa := new(cmnmdl.ThresholdAlert)
 		err := selDB.Scan(&iwa.AssetName, &iwa.IdentificationNo, &iwa.AvailableQnty, &iwa.ThresholdQnty, &iwa.LocationID, &iwa.FirstName, &iwa.Email)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 		res = append(res, iwa)
@@ -2154,7 +2153,7 @@ func (m *mysqlRepo) GetPODetailsByReqstrID(ctx context.Context, ReqstrID int) ([
 			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.PORequestedByName, &por.StatusName)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 		por.VendorData = vend
@@ -2176,7 +2175,7 @@ func (m *mysqlRepo) PODetailsByIDPO(ctx context.Context, IDPO int) (*cmnmdl.Purc
 		&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 		&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.PORequestedByName, &por.StatusName)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	por.VendorData = vend
@@ -2199,7 +2198,7 @@ func (m *mysqlRepo) POAssetDetailsByIDPO(ctx context.Context, IDPO int) ([]*cmnm
 		err := selDB.Scan(&por.IDpurchaseorders_Assets, &por.Purchaseorders_requests_ID, &por.AssetType, &por.AssetName, &por.AssetID, &por.Quantity,
 			&por.PriceperUnit, &por.AssetComments, &por.CreatedBy, &por.CreatedOn)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 
@@ -2219,7 +2218,7 @@ func (m *mysqlRepo) PO_ApprovalStatusList(ctx context.Context, IDPO int) ([]*cmn
 
 	selDB, err := m.Conn.QueryContext(ctx, query, IDPO)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	res := make([]*cmnmdl.POApproval, 0)
@@ -2229,7 +2228,7 @@ func (m *mysqlRepo) PO_ApprovalStatusList(ctx context.Context, IDPO int) ([]*cmn
 			&iwa.StatusName, &iwa.CreatedOn, &iwa.ActionedOn, &iwa.RoleName, &iwa.ApproverName)
 
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 
@@ -2256,7 +2255,7 @@ func (m *mysqlRepo) GetPODetailsByApprover(ctx context.Context, ApproverID int) 
 			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.PORequestedByName, &por.StatusName)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 		por.POApproval = poa
@@ -2552,7 +2551,7 @@ func (m *mysqlRepo) GetRequisitionDetailsByReqstrID(ctx context.Context, ReqstrI
 			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 		por.VendorData = vend
@@ -2574,7 +2573,7 @@ func (m *mysqlRepo) RequisitionDetailsByID(ctx context.Context, ID int) (*cmnmdl
 		&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 		&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	por.VendorData = vend
@@ -2597,7 +2596,7 @@ func (m *mysqlRepo) RequisitionAssetDetailsByID(ctx context.Context, IDPO int) (
 		err := selDB.Scan(&por.IDRequisition_assets, &por.Requisition_RequestsID, &por.AssetName, &por.AssetID, &por.ReqQuantity, &por.RecvQuantity,
 			&por.PriceperUnit, &por.AssetComments, &por.CreatedBy, &por.CreatedOn, &por.ModifiedBy, &por.ModifiedOn)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 
@@ -2614,7 +2613,7 @@ func (m *mysqlRepo) Requisition_ApprovalStatusList(ctx context.Context, IDPO int
 
 	selDB, err := m.Conn.QueryContext(ctx, query, IDPO)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	res := make([]*cmnmdl.RequisitionApproval, 0)
@@ -2624,7 +2623,7 @@ func (m *mysqlRepo) Requisition_ApprovalStatusList(ctx context.Context, IDPO int
 			&iwa.StatusName, &iwa.CreatedOn, &iwa.ActionedOn, &iwa.RoleName, &iwa.ApproverName)
 
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 
@@ -2651,7 +2650,7 @@ func (m *mysqlRepo) GetRequisitionDetailsByApprover(ctx context.Context, Approve
 			&por.ModifiedOn, &por.RecordStatus, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 		por.RequisitionApproval = poa
@@ -2899,7 +2898,7 @@ func (m *mysqlRepo) GetRequisitionHistoryByReqID(ctx context.Context, ReqID int)
 	query := "call sp_RequisitionHistoryByReqID(?) ;"
 	selDB, err := m.Conn.QueryContext(ctx, query, ReqID)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	res := make([]*cmnmdl.Requisition_Requests, 0)
@@ -2912,7 +2911,7 @@ func (m *mysqlRepo) GetRequisitionHistoryByReqID(ctx context.Context, ReqID int)
 			&por.ActionedOn, &por.ActionePerformed, &vend.Name, &vend.Description, &vend.Websites, &vend.Address, &vend.Email,
 			&vend.ContactPersonName, &vend.Phone, &loc.Name, &loc.Address1, &loc.Address2, &loc.City, &loc.Zipcode, &por.RequestedByName, &por.StatusName)
 		if err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
 			return nil, err
 		}
 		por.VendorData = vend
