@@ -61,3 +61,6 @@
 5.7.14 Please log in via your web browser and then try again.
 5.7.14  Learn more at
 5.7.14  https://support.google.com/mail/answer/78754 w14sm2838213pfi.211 - gsmtp
+2020/08/21 11:32:19 erro1
+2020/08/21 11:32:19 erro2
+2020/08/21 11:32:19 WebAPI started on: http://localhost:9000
