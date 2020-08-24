@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )
@@ -51,3 +52,19 @@ func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 		}
 	})
 }
+
+func CustomDateFormate(date string) time.Time {
+	const shortForm = "02-01-2006"
+	DOB, _ := time.Parse(shortForm, date)
+	return DOB
+}
+
+// func CustomDateTimeFormate(datetime string) string{
+// 	const shortForm = "2006-01-02 10:00"
+// 	ss := emp.DOB
+// 	_DOJ := emp.DOJ
+// 	DOB, _ := time.Parse(shortForm, *ss)
+// 	DOJ, _ := time.Parse(shortForm, *_DOJ)
+
+// 	return r.width * r.height
+// }

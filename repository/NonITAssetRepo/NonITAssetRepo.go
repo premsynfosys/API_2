@@ -10,10 +10,10 @@ import (
 	"net/smtp"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/premsynfosys/AMS_API/models/cmnmdl"
 	"github.com/premsynfosys/AMS_API/models/nonitassets_mdl"
+	"github.com/premsynfosys/AMS_API/utils"
 )
 
 //NewSQLRepo ..
@@ -85,13 +85,13 @@ func (m *mysqlRepo) CreateNonITAsset(ctx context.Context, mdl *nonitassets_mdl.N
 	nonitassets, err2 := res.LastInsertId()
 	Oprtns := mdl.NonITAssets_Oprtns
 	*Oprtns.NonITAsset_ID = int(nonitassets)
-	const shortForm = "2006-01-02"
-	ss := Oprtns.Warranty
-	Warranty, _ := time.Parse(shortForm, *ss)
+	// const shortForm = "2006-01-02"
+	// ss := Oprtns.Warranty
+	// Warranty, _ := time.Parse(shortForm, *ss)
 	qry := "INSERT INTO nonitassets_oprtns(NonITAsset_ID,Quantity,Warranty,UnitPrice,VendorID,OrderedBy,Comments,Created_By,StatusID) "
 	qry += " VALUES (?,?,?, ?,?,?, ?,?,?);"
 	stmtA, err3 := txn.PrepareContext(ctx, qry)
-	_, err4 := stmtA.ExecContext(ctx, &Oprtns.NonITAsset_ID, &Oprtns.Quantity, &Warranty, &Oprtns.UnitPrice, &Oprtns.VendorID, &Oprtns.OrderedBy,
+	_, err4 := stmtA.ExecContext(ctx, &Oprtns.NonITAsset_ID, &Oprtns.Quantity, utils.CustomDateFormate(*Oprtns.Warranty), &Oprtns.UnitPrice, &Oprtns.VendorID, &Oprtns.OrderedBy,
 		&Oprtns.Comments, &Oprtns.Created_By, &Oprtns.StatusID)
 	if err != nil || err1 != nil || err2 != nil || err3 != nil || err4 != nil {
 		txn.Rollback()

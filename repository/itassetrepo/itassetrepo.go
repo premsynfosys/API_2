@@ -13,6 +13,7 @@ import (
 
 	"github.com/premsynfosys/AMS_API/models/cmnmdl"
 	itassetmdl "github.com/premsynfosys/AMS_API/models/itassetmdl"
+	"github.com/premsynfosys/AMS_API/utils"
 	//cmnrepo "github.com/premsynfosys/AMS_API/repository/cmnrepo"
 )
 
@@ -364,9 +365,9 @@ func (m *mysqlRepo) ITAssetReqForward(ctx context.Context, mdl *itassetmdl.ITAss
 }
 func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetModel) (int64, error) {
 	var query strings.Builder
-	const shortForm = "2006-01-02"
-	ss := mdl.ITAssetWarranty
-	t, _ := time.Parse(shortForm, *ss)
+	// const shortForm = "2006-01-02"
+	// ss := mdl.ITAssetWarranty
+	// t, _ := time.Parse(shortForm, *ss)
 
 	query.WriteString("INSERT into  itassets (ITAssetName,ITAssetGroup,ITAssetModel,ITAssetSerialNo,")
 	query.WriteString("ITAssetIdentificationNo,ITAssetDescription,ITAssetPrice,ITAssetWarranty,")
@@ -379,7 +380,7 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 
 	res, err := stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetIdentificationNo, mdl.ITAssetDescription,
-		mdl.ITAssetPrice, t, mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
+		mdl.ITAssetPrice, utils.CustomDateFormate(*mdl.ITAssetWarranty), mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
 		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
 		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.CreatedBy)
@@ -418,9 +419,9 @@ func (m *mysqlRepo) BulkCreateITAsset(ctx context.Context, Listmdl []*itassetmdl
 }
 func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetModel) error {
 	var query strings.Builder
-	const shortForm = "2006-01-02"
-	ss := mdl.ITAssetWarranty
-	t, _ := time.Parse(shortForm, *ss)
+	// const shortForm = "2006-01-02"
+	// ss := mdl.ITAssetWarranty
+	// t, _ := time.Parse(shortForm, *ss)
 	query.WriteString("UPDATE itassets SET ITAssetName =?,ITAssetGroup = ?,ITAssetModel = ?,ITAssetSerialNo =?,ITAssetDescription =?,")
 	query.WriteString("ITAssetPrice =?,ITAssetWarranty =?,ITAssetStatus =?,ITAssetImg =?,Vendor =?,Location = ?,")
 	query.WriteString("CustomFields1 = ?,CustomFields1Value = ?,CustomFields1Type = ?,CustomFields2 = ?,CustomFields2Value = ?,CustomFields2Type = ?,CustomFields3 = ?,CustomFields3Value = ?,CustomFields3Type = ?,CustomFields4 = ?,CustomFields4Value = ?,CustomFields4Type = ?,CustomFields5 = ?,CustomFields5Value = ?,CustomFields5Type = ?,")
@@ -431,7 +432,7 @@ func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	}
 	_, err = stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetDescription,
-		mdl.ITAssetPrice, t, mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
+		mdl.ITAssetPrice, utils.CustomDateFormate(*mdl.ITAssetWarranty), mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
 		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.ModifiedBy, mdl.IDITAssets)
 	defer stmt.Close()
@@ -582,10 +583,10 @@ func (m *mysqlRepo) ITAssetsBulkEdit(ctx context.Context, usr *itassetmdl.ITAsse
 	if err != nil {
 		return err
 	}
-	const shortForm = "2006-01-02"
-	ss := usr.ITAssetWarranty
-	t, _ := time.Parse(shortForm, *ss)
-	_, err = stmt.ExecContext(ctx, usr.ITAssetDescription, t, usr.Vendor, usr.Location)
+	// const shortForm = "2006-01-02"
+	// ss := usr.ITAssetWarranty
+	// t, _ := time.Parse(shortForm, *ss)
+	_, err = stmt.ExecContext(ctx, usr.ITAssetDescription, utils.CustomDateFormate(*usr.ITAssetWarranty), usr.Vendor, usr.Location)
 	defer stmt.Close()
 
 	if err != nil {
@@ -817,8 +818,8 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	return err
 }
 func (m *mysqlRepo) ITasset_services_Complete_Update(ctx context.Context, itm *itassetmdl.ITasset_services) error {
-//	qryA := "update itassets set ITAssetStatus=1 where idITAssets = (select distinct ITAssetID from itasset_services where  Status=1  and  idITAsset_Services=? );"
-qryA :="call sp_ITserviceComplete(?)"
+	//	qryA := "update itassets set ITAssetStatus=1 where idITAssets = (select distinct ITAssetID from itasset_services where  Status=1  and  idITAsset_Services=? );"
+	qryA := "call sp_ITserviceComplete(?)"
 	qry := "update itasset_services set Actual_End_Date=?,Status=3,Cost=?,Comments=? where idITAsset_Services=?"
 
 	txn, err := m.Conn.Begin()

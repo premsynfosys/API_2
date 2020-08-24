@@ -18,6 +18,7 @@ import (
 	"github.com/premsynfosys/AMS_API/models/cnsmblemdl"
 	"github.com/premsynfosys/AMS_API/models/itassetmdl"
 	"github.com/premsynfosys/AMS_API/models/nonitassets_mdl"
+	"github.com/premsynfosys/AMS_API/utils"
 )
 
 //NewSQLRepo ..
@@ -275,13 +276,13 @@ func (m *mysqlRepo) CreateEmployee(ctx context.Context, emp *cmnmdl.Employees) (
 	if err != nil {
 		return -1, err
 	}
-	const shortForm = "2006-01-02"
-	ss := emp.DOB
-	_DOJ := emp.DOJ
-	DOB, _ := time.Parse(shortForm, *ss)
-	DOJ, _ := time.Parse(shortForm, *_DOJ)
+	// const shortForm = "2006-01-02"
+	// ss := emp.DOB
+	// _DOJ := emp.DOJ
+	// DOB, _ := time.Parse(shortForm, *ss)
+	// DOJ, _ := time.Parse(shortForm, *_DOJ)
 
-	res, err := stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, &DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, &DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.CreatedBy)
+	res, err := stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, utils.CustomDateFormate(*emp.DOB), &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, utils.CustomDateFormate(*emp.DOJ), &emp.EmpCode, &emp.Location, &emp.Gender, &emp.CreatedBy)
 	defer stmt.Close()
 
 	if err != nil {
@@ -370,13 +371,13 @@ func (m *mysqlRepo) UpdateEmployee(ctx context.Context, emp *cmnmdl.Employees) (
 	if err != nil {
 		return nil, err
 	}
-	const shortForm = "2006-01-02"
-	ss := emp.DOB
-	_DOJ := emp.DOJ
-	DOB, _ := time.Parse(shortForm, *ss)
-	DOJ, _ := time.Parse(shortForm, *_DOJ)
+	// const shortForm = "2006-01-02"
+	// ss := emp.DOB
+	// _DOJ := emp.DOJ
+	// DOB, _ := time.Parse(shortForm, *ss)
+	// DOJ, _ := time.Parse(shortForm, *_DOJ)
 
-	_, err = stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, &DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, &DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.ModifiedBy, &emp.IDEmployees)
+	_, err = stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, utils.CustomDateFormate(*emp.DOB), &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, utils.CustomDateFormate(*emp.DOJ), &emp.EmpCode, &emp.Location, &emp.Gender, &emp.ModifiedBy, &emp.IDEmployees)
 	if err != nil {
 		return nil, err
 	}
@@ -1389,15 +1390,15 @@ func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl
 	query.WriteString("insert into employees (FirstName,LastName,DOB,Email,Mobile,PrmntAddress,Address,DOJ,EmpCode,CreatedBy) values ")
 
 	vals := []interface{}{}
-	const shortForm = "2006-01-02"
+	// const shortForm = "2006-01-02"
 	for _, row := range Listmdl {
 		query.WriteString(" (?,?,?,?,  ?,?,?,?,?,? ),")
 
-		_DOB := row.DOB
-		_DOJ := row.DOJ
-		DOB, _ := time.Parse(shortForm, *_DOB)
-		DOJ, _ := time.Parse(shortForm, *_DOJ)
-		vals = append(vals, &row.FirstName, &row.LastName, &DOB, &row.Email, &row.Mobile, &row.PrmntAddress, &row.Address, &DOJ, &row.EmpCode, &row.CreatedBy)
+		// _DOB := row.DOB
+		// _DOJ := row.DOJ
+		// DOB, _ := time.Parse(shortForm, *_DOB)
+		// DOJ, _ := time.Parse(shortForm, *_DOJ)
+		vals = append(vals, &row.FirstName, &row.LastName, utils.CustomDateFormate(*row.DOB), &row.Email, &row.Mobile, &row.PrmntAddress, &row.Address, utils.CustomDateFormate(*row.DOJ), &row.EmpCode, &row.CreatedBy)
 	}
 	//trim the last ,
 	sqlStr := query.String()
