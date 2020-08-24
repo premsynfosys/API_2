@@ -17,7 +17,7 @@ var dbConn = &DB{}
 // ConnectSQL  ...
 func ConnectSQL(host, port, uname, pass, dbname string) (*DB, error) {
 
-	db, err := sql.Open(host, uname+":"+pass+"@/"+dbname)
+	db, err := sql.Open(host, uname+":"+pass+"@tcp("+port+")/"+dbname)
 	if err != nil {
 		panic(err)
 	}
