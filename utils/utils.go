@@ -59,12 +59,8 @@ func CustomDateFormate(date string) time.Time {
 	return DOB
 }
 
-// func CustomDateTimeFormate(datetime string) string{
-// 	const shortForm = "2006-01-02 10:00"
-// 	ss := emp.DOB
-// 	_DOJ := emp.DOJ
-// 	DOB, _ := time.Parse(shortForm, *ss)
-// 	DOJ, _ := time.Parse(shortForm, *_DOJ)
-
-// 	return r.width * r.height
-// }
+func CustomDateTimeFormate(datetime string) time.Time {
+	const shortForm = "02-01-2006 3:04 PM"
+	DOB, _ := time.Parse(shortForm, datetime)
+	return DOB
+}

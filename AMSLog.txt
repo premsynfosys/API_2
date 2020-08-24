@@ -184,3 +184,7 @@
 2020/08/24 12:31:53 erro1
 2020/08/24 12:31:53 erro2
 2020/08/24 12:31:53 WebAPI started on: http://localhost:9000
+2020/08/24 12:43:04 erro1
+2020/08/24 12:43:04 erro2
+2020/08/24 12:43:04 WebAPI started on: http://localhost:9000
+2020/08/24 12:54:34 sql: expected 27 destination arguments in Scan, not 29

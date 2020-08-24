@@ -791,7 +791,7 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 		schedule := 2
 		itm.Status = &schedule
 	}
-	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
+	_, err = stmt.Exec(itm.ITAssetID, utils.CustomDateTimeFormate(*itm.Expected_Start_Date), utils.CustomDateTimeFormate(*itm.Expected_End_Date), itm.Actual_Start_Date,
 		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.CreatedBy)
 	if err == nil && itm.Expected_Start_Date == nil {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
