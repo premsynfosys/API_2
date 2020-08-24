@@ -171,6 +171,8 @@ func ITAssetRouting(r *mux.Router, pHandler *itassetshndlr.IITAsset) {
 	r.HandleFunc("/ITasset_services_Complete_Update", utils.IsAuthorized(pHandler.ITasset_services_Complete_Update))
 
 	r.HandleFunc("/GetITAssetservices_List/{ITAssetID:[0-9]+}",utils.IsAuthorized( pHandler.GetITAssetservices_List))
+	r.HandleFunc("/GetITAssetservices_List_ByLoc/{LocID:[0-9]+}",utils.IsAuthorized( pHandler.GetITAssetservices_List_ByLoc))
+	
 	r.HandleFunc("/ITAsset_Service_Request",utils.IsAuthorized( pHandler.ITAsset_Service_Request))
 	r.HandleFunc("/GetITAsset_service_request_List/{EmpID:[0-9]+}",utils.IsAuthorized( pHandler.GetITAsset_service_request_List))
 

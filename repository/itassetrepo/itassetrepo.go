@@ -477,6 +477,7 @@ func (m *mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl
 		return err
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// const shortForm = "2006-01-02"
 	// ss := usr.ExpectedCheckInDate
 	// t, _ := time.Parse(shortForm, *ss)
@@ -491,6 +492,14 @@ func (m *mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl
 		usr.CheckedOutDate,
 		t, usr.Comments, usr.IsCheckin, usr.CreatedBy)
 >>>>>>> 4cd1f854e6831529c18f2d3ae3aa1a4419da880a
+=======
+	// const shortForm = "2006-01-02"
+	// ss := usr.ExpectedCheckInDate
+	// t, _ := time.Parse(shortForm, *ss)
+	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
+		usr.CheckedOutDate,
+		utils.CustomDateFormate(*usr.ExpectedCheckInDate), usr.Comments, usr.IsCheckin, usr.CreatedBy)
+>>>>>>> dc7344d... test1
 	if err != nil {
 		return err
 	}
@@ -803,7 +812,7 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 		schedule := 2
 		itm.Status = &schedule
 	}
-	_, err = stmt.Exec(itm.ITAssetID, utils.CustomDateTimeFormate(*itm.Expected_Start_Date), utils.CustomDateTimeFormate(*itm.Expected_End_Date), itm.Actual_Start_Date,
+	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
 		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.CreatedBy)
 	if err == nil && itm.Expected_Start_Date == nil {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
@@ -905,6 +914,50 @@ func (m *mysqlRepo) GetITAssetservices_List(ctx context.Context, _ITAssetID int)
 	defer selDB.Close()
 	return res, nil
 }
+func (m *mysqlRepo) GetITAssetservices_List_ByLoc(ctx context.Context, _LocID int) ([]*itassetmdl.ITasset_services, error) {
+	selDB, err := m.Conn.QueryContext(ctx, "call sp_itassetServicesList_ByLoc(?)", _LocID)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	res := make([]*itassetmdl.ITasset_services, 0)
+	for selDB.Next() {
+		its := new(itassetmdl.ITasset_services)
+		vnd := new(cmnmdl.Vendors)
+		emp := new(cmnmdl.Employees)
+		it := new(itassetmdl.ITAssetModel)
+		sct := new(itassetmdl.Service_type)
+		scs := new(itassetmdl.Service_status)
+		emp_crtdby := new(cmnmdl.Employees)
+		err = selDB.Scan(&its.IDITAsset_Services, &its.ITAssetID, &its.Expected_Start_Date, &its.Expected_End_Date, &its.Actual_Start_Date, &its.Actual_End_Date,
+			&its.ServiceBy_Type, &its.ServiceBy_EmpID, &its.ServiceBy_VendorID, &its.Service_Type, &its.Status, &its.Description, &its.Is_Asset_UnAvailable,
+			&its.Cost, &its.Comments, &its.CreatedOn, &its.CreatedBy,
+			&vnd.Idvendors, &vnd.Name, &vnd.Description, &vnd.Websites, &vnd.Address, &vnd.Email, &vnd.ContactPersonName, &vnd.Phone,
+			&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.Email, &emp.Mobile,
+			&it.IDITAssets, &it.ITAssetName, &it.ITAssetModel, &it.ITAssetIdentificationNo, &it.ITAssetDescription,
+			&sct.IDService_type, &sct.TypeName, &scs.StatusName, &scs.IDServiceStatus,
+			&emp_crtdby.IDEmployees, &emp_crtdby.FirstName, &emp_crtdby.LastName)
+		its.Vendors = vnd
+		its.Employees = emp
+		its.ITAssetModel = it
+		its.Service_type = sct
+		its.Service_status = scs
+		its.Employees_CreatedBy = emp_crtdby
+		if err != nil {
+			return nil, err
+
+		}
+		res = append(res, its)
+	}
+	if err != nil {
+		return nil, err
+
+	}
+	defer selDB.Close()
+	return res, nil
+}
+
+
 func (m *mysqlRepo) ITAsset_Service_Request(ctx context.Context, itm *itassetmdl.ITAsset_service_request) error {
 	UserQry := "SELECT  emp.IdEmployees  from employees emp join users usr on usr.EmployeeId=emp.IdEmployees "
 	UserQry += " where Location=? and role=2 limit 1 "

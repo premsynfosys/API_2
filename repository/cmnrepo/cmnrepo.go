@@ -1968,7 +1968,7 @@ func (m *mysqlRepo) GetAdminDashBoard(ctx context.Context, mdl *cmnmdl.AdminDash
 	query := "call sp_AdminDashBoard(?,?) ;"
 	selDB := m.Conn.QueryRowContext(ctx, query, mdl.EmpID, mdl.LocID)
 	res := cmnmdl.AdminDashBoard{}
-	err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpired, &res.ITAssetApprovals, &res.NonITAssetApprovals, &res.ITAssetsAvailable,
+	err := selDB.Scan(&res.ActivationPendingUsers, &res.InActiveUsers, &res.ITAssetWarrentyExpireSoon,&res.ITAssetWarrentyExpired, &res.ITAssetApprovals, &res.NonITAssetApprovals, &res.ITAssetsAvailable,
 		&res.ITAssetsAssigned, &res.NonITAssetThreshold, &res.ConsumableThreshold, &res.OutwardApproval, &res.ReadyToShip, &res.InWardAssets, &res.ITAssetServiceRequests,
 		&res.RequisitionRequestesPending, &res.RequisitionApprovalRequests, &res.ITAssetExpectedCheckInDate)
 	if err != nil {

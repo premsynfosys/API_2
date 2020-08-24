@@ -329,6 +329,18 @@ func (p *IITAsset) GetITAssetservices_List(w http.ResponseWriter, r *http.Reques
 		utils.RespondwithJSON(w, http.StatusOK, payload)
 	}
 }
+func (p *IITAsset) GetITAssetservices_List_ByLoc(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	LocID := params["LocID"]
+	locID, _ := strconv.Atoi(LocID)
+	payload, err := p.ITAssetRepo.GetITAssetservices_List_ByLoc(r.Context(), locID)
+
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, payload)
+	}
+}
 
 //ITAsset_Service_Request a new post
 func (p *IITAsset) ITAsset_Service_Request(w http.ResponseWriter, r *http.Request) {

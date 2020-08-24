@@ -33,6 +33,8 @@ type ITAsserIntfc interface {
 	ITasset_services_Complete_Update(ctx context.Context, itm *itassetmdl.ITasset_services) error
 	ITasset_services_Extend_Update(ctx context.Context, itm *itassetmdl.ITasset_services) error 
 	GetITAssetservices_List(ctx context.Context,_ITAssetID int) ([]*itassetmdl.ITasset_services, error)
+	GetITAssetservices_List_ByLoc(ctx context.Context,_LocID int) ([]*itassetmdl.ITasset_services, error)
+
 	ITAsset_Service_Request(ctx context.Context, itm *itassetmdl.ITAsset_service_request) error
 	GetITAsset_service_request_List(ctx context.Context, EmpID int) ([]*itassetmdl.ITAsset_service_request, error)
 	GetITAsset_Retired(ctx context.Context, LocID int, EmpID int) ([]*itassetmdl.ITAssetModel, error) 
