@@ -476,9 +476,12 @@ func (m *mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl
 	if err != nil {
 		return err
 	}
+	const shortForm = "2006-01-02"
+	ss := usr.ExpectedCheckInDate
+	t, _ := time.Parse(shortForm, *ss)
 	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
 		usr.CheckedOutDate,
-		usr.ExpectedCheckInDate, usr.Comments, usr.IsCheckin, usr.CreatedBy)
+		t, usr.Comments, usr.IsCheckin, usr.CreatedBy)
 	if err != nil {
 		return err
 	}
