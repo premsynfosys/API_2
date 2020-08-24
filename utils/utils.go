@@ -60,7 +60,7 @@ func CustomDateFormate(date string) time.Time {
 }
 
 func CustomDateTimeFormate(datetime string) time.Time {
-	const shortForm = "02-01-2006 3:04 PM"
+	const shortForm = "02-01-2006 15:04"
 	DOB, _ := time.Parse(shortForm, datetime)
 	return DOB
 }
