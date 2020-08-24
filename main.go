@@ -23,9 +23,10 @@ var err error
 
 // changed db config name and pwd
 func init() {
-//	connection, err = DBdriver.ConnectSQL("mysql", "3306", "AMS", "Admin&123", "ams") //aws pwd //AMS is usrname
-connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "AMS", "Admin&123", "ams")
+	//	connection, err = DBdriver.ConnectSQL("mysql", "3306", "AMS", "Admin&123", "ams") //aws pwd //AMS is usrname
+	connection, err = DBdriver.ConnectSQL("mysql", "3306", "root", "Admin", "ams")
 }
+
 //commit test
 func main() {
 	logfile, e := os.OpenFile("AMSLog.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
