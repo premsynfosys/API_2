@@ -469,57 +469,39 @@ func (m *mysqlRepo) GetITAsset(ctx context.Context, LocID int) ([]*itassetmdl.IT
 	return res, nil
 }
 
-func (m *mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl.ITassetCheckout) error {
+func (m mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl.ITassetCheckout) error {
 	query := "call sp_ITasset_CheckOut_insert(?,?,?, ?,?,?, ?,?,?) ;"
-
+	
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
-		return err
+	return err
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 	// const shortForm = "2006-01-02"
 	// ss := usr.ExpectedCheckInDate
 	// t, _ := time.Parse(shortForm, *ss)
 	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
-		usr.CheckedOutDate,
-		utils.CustomDateFormate(*usr.ExpectedCheckInDate), usr.Comments, usr.IsCheckin, usr.CreatedBy)
-=======
-	const shortForm = "2006-01-02"
-	ss := usr.ExpectedCheckInDate
-	t, _ := time.Parse(shortForm, *ss)
-	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
-		usr.CheckedOutDate,
-		t, usr.Comments, usr.IsCheckin, usr.CreatedBy)
->>>>>>> 4cd1f854e6831529c18f2d3ae3aa1a4419da880a
-=======
-	// const shortForm = "2006-01-02"
-	// ss := usr.ExpectedCheckInDate
-	// t, _ := time.Parse(shortForm, *ss)
-	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
-		usr.CheckedOutDate,
-		utils.CustomDateFormate(*usr.ExpectedCheckInDate), usr.Comments, usr.IsCheckin, usr.CreatedBy)
->>>>>>> dc7344d... test1
+	usr.CheckedOutDate,
+	utils.CustomDateFormate(*usr.ExpectedCheckInDate), usr.Comments, usr.IsCheckin, usr.CreatedBy)
 	if err != nil {
-		return err
+	return err
 	}
 	defer stmt.Close()
 	if *usr.CheckedOutTo == "User" {
-		mail, name := m.GetMailByUserID(nil, usr.CheckedOutUserID)
-		Msg := "<h3>Hai " + name + "</h3>"
-		Msg += "<p>ITAsset successfully allocated to you.</p>"
-		emailRcvr := cmnmdl.Email{
-			ToAddress: mail,
-			Subject:   "ITAsset Allocated.",
-			Body:      Msg,
-		}
-		go m.SendEmail(&emailRcvr, false)
+	mail, name := m.GetMailByUserID(nil, usr.CheckedOutUserID)
+	Msg := "<h3>Hai " + name + "</h3>"
+	Msg += "<p>ITAsset successfully allocated to you.</p>"
+	emailRcvr := cmnmdl.Email{
+	ToAddress: mail,
+	Subject: "ITAsset Allocated.",
+	Body: Msg,
+	}
+	go m.SendEmail(&emailRcvr, false)
 	}
 	if err != nil {
-		return err
+	return err
 	}
 	return err
-}
+	}
 
 func (m *mysqlRepo) CreateITAssetsCheckIn(ctx context.Context, usr *itassetmdl.ITassetCheckout) error {
 	query := "call sp_ITasset_CheckIn(?,?,?) ;"
@@ -812,7 +794,7 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 		schedule := 2
 		itm.Status = &schedule
 	}
-	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
+	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date,itm.Expected_End_Date, itm.Actual_Start_Date,
 		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.CreatedBy)
 	if err == nil && itm.Expected_Start_Date == nil {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")

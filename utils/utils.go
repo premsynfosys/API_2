@@ -54,13 +54,15 @@ func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 }
 
 func CustomDateFormate(date string) time.Time {
-	const shortForm = "02-01-2006"
+//	const shortForm = "02-01-2006"
+const shortForm = "2006-01-02"
 	DOB, _ := time.Parse(shortForm, date)
 	return DOB
 }
 
 func CustomDateTimeFormate(datetime string) time.Time {
-	const shortForm = "02-01-2006 15:04"
+	//const shortForm = "02-01-2006 15:04"
+	const shortForm = "2006-01-02 15:04"
 	DOB, _ := time.Parse(shortForm, datetime)
 	return DOB
 }
