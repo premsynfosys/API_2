@@ -1,9 +1,8 @@
 package cmnmdl
 
-
 type Configuration struct {
 	IsTesting  bool
-	WebAppURL string
+	WebAppURL  string
 	Test       map[string]string
 	Production map[string]string
 	APIPORT    string
@@ -40,9 +39,9 @@ type AdminDashBoard struct {
 	ITAssetServiceRequests      *int `json:"ITAssetServiceRequests"`
 	RequisitionRequestesPending *int `json:"RequisitionRequestesPending"`
 	RequisitionApprovalRequests *int `json:"RequisitionApprovalRequests"`
-	ITAssetExpectedCheckInDate *int `json:"ITAssetExpectedCheckInDate"`
-	ITAssetWarrentyExpireSoon  *int `json:"ITAssetWarrentyExpireSoon"`
-}  
+	ITAssetExpectedCheckInDate  *int `json:"ITAssetExpectedCheckInDate"`
+	ITAssetWarrentyExpireSoon   *int `json:"ITAssetWarrentyExpireSoon"`
+}
 
 type EmployeeDashboard struct {
 	EmpID                  *int `json:"EmpID"`
