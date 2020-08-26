@@ -13,7 +13,6 @@ import (
 
 	"github.com/premsynfosys/AMS_API/models/cmnmdl"
 	itassetmdl "github.com/premsynfosys/AMS_API/models/itassetmdl"
-	"github.com/premsynfosys/AMS_API/utils"
 	//cmnrepo "github.com/premsynfosys/AMS_API/repository/cmnrepo"
 )
 
@@ -368,6 +367,7 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	// const shortForm = "2006-01-02"
 	// ss := mdl.ITAssetWarranty
 	// t, _ := time.Parse(shortForm, *ss)
+	//ITAssetWarranty, _ := utils.CustomDateFormate(*mdl.ITAssetWarranty)
 
 	query.WriteString("INSERT into  itassets (ITAssetName,ITAssetGroup,ITAssetModel,ITAssetSerialNo,")
 	query.WriteString("ITAssetIdentificationNo,ITAssetDescription,ITAssetPrice,ITAssetWarranty,")
@@ -380,7 +380,7 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 
 	res, err := stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetIdentificationNo, mdl.ITAssetDescription,
-		mdl.ITAssetPrice, utils.CustomDateFormate(*mdl.ITAssetWarranty), mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
+		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
 		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
 		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.CreatedBy)
@@ -422,6 +422,8 @@ func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	// const shortForm = "2006-01-02"
 	// ss := mdl.ITAssetWarranty
 	// t, _ := time.Parse(shortForm, *ss)
+	//ITAssetWarranty, _ := utils.CustomDateFormate(*mdl.ITAssetWarranty)
+
 	query.WriteString("UPDATE itassets SET ITAssetName =?,ITAssetGroup = ?,ITAssetModel = ?,ITAssetSerialNo =?,ITAssetDescription =?,")
 	query.WriteString("ITAssetPrice =?,ITAssetWarranty =?,ITAssetStatus =?,ITAssetImg =?,Vendor =?,Location = ?,")
 	query.WriteString("CustomFields1 = ?,CustomFields1Value = ?,CustomFields1Type = ?,CustomFields2 = ?,CustomFields2Value = ?,CustomFields2Type = ?,CustomFields3 = ?,CustomFields3Value = ?,CustomFields3Type = ?,CustomFields4 = ?,CustomFields4Value = ?,CustomFields4Type = ?,CustomFields5 = ?,CustomFields5Value = ?,CustomFields5Type = ?,")
@@ -432,7 +434,7 @@ func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	}
 	_, err = stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetDescription,
-		mdl.ITAssetPrice, utils.CustomDateFormate(*mdl.ITAssetWarranty), mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
+		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
 		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.ModifiedBy, mdl.IDITAssets)
 	defer stmt.Close()
@@ -471,37 +473,39 @@ func (m *mysqlRepo) GetITAsset(ctx context.Context, LocID int) ([]*itassetmdl.IT
 
 func (m mysqlRepo) CreateITAssetsCheckoutT(ctx context.Context, usr *itassetmdl.ITassetCheckout) error {
 	query := "call sp_ITasset_CheckOut_insert(?,?,?, ?,?,?, ?,?,?) ;"
-	
+
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
-	return err
+		return err
 	}
 	// const shortForm = "2006-01-02"
 	// ss := usr.ExpectedCheckInDate
 	// t, _ := time.Parse(shortForm, *ss)
+	//ExpectedCheckInDate, _ := utils.CustomDateFormate(*usr.ExpectedCheckInDate)
+	//CheckedOutDate, _ := utils.CustomDateFormate(*usr.CheckedOutDate)
+
 	_, err = stmt.ExecContext(ctx, usr.AssetID, usr.CheckedOutTo, usr.CheckedOutUserID, usr.CheckedOutAssetID,
-	usr.CheckedOutDate,
-	utils.CustomDateFormate(*usr.ExpectedCheckInDate), usr.Comments, usr.IsCheckin, usr.CreatedBy)
+		usr.CheckedOutDate, usr.ExpectedCheckInDate, usr.Comments, usr.IsCheckin, usr.CreatedBy)
 	if err != nil {
-	return err
+		return err
 	}
 	defer stmt.Close()
 	if *usr.CheckedOutTo == "User" {
-	mail, name := m.GetMailByUserID(nil, usr.CheckedOutUserID)
-	Msg := "<h3>Hai " + name + "</h3>"
-	Msg += "<p>ITAsset successfully allocated to you.</p>"
-	emailRcvr := cmnmdl.Email{
-	ToAddress: mail,
-	Subject: "ITAsset Allocated.",
-	Body: Msg,
-	}
-	go m.SendEmail(&emailRcvr, false)
+		mail, name := m.GetMailByUserID(nil, usr.CheckedOutUserID)
+		Msg := "<h3>Hai " + name + "</h3>"
+		Msg += "<p>ITAsset successfully allocated to you.</p>"
+		emailRcvr := cmnmdl.Email{
+			ToAddress: mail,
+			Subject:   "ITAsset Allocated.",
+			Body:      Msg,
+		}
+		go m.SendEmail(&emailRcvr, false)
 	}
 	if err != nil {
-	return err
+		return err
 	}
 	return err
-	}
+}
 
 func (m *mysqlRepo) CreateITAssetsCheckIn(ctx context.Context, usr *itassetmdl.ITassetCheckout) error {
 	query := "call sp_ITasset_CheckIn(?,?,?) ;"
@@ -589,7 +593,9 @@ func (m *mysqlRepo) ITAssetsBulkEdit(ctx context.Context, usr *itassetmdl.ITAsse
 	// const shortForm = "2006-01-02"
 	// ss := usr.ITAssetWarranty
 	// t, _ := time.Parse(shortForm, *ss)
-	_, err = stmt.ExecContext(ctx, usr.ITAssetDescription, utils.CustomDateFormate(*usr.ITAssetWarranty), usr.Vendor, usr.Location)
+	//ITAssetWarranty, _ := utils.CustomDateFormate(*usr.ITAssetWarranty)
+
+	_, err = stmt.ExecContext(ctx, usr.ITAssetDescription, usr.ITAssetWarranty, usr.Vendor, usr.Location)
 	defer stmt.Close()
 
 	if err != nil {
@@ -784,19 +790,19 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 	if err != nil {
 		return err
 	}
-	if itm.Expected_Start_Date == nil { //start
-		t := time.Now()
-		tm := t.Format("2006-01-02 15:04:05")
-		itm.Actual_Start_Date = &tm
+	if itm.Expected_Start_Date == nil ||itm.Expected_Start_Date.IsZero() { //start
+	//	t := time.Now()
+	//	tm := t.Format("02-01-2006 15:04:05")
+		*itm.Actual_Start_Date = time.Now()
 		start := 1
 		itm.Status = &start
 	} else { //schedule
 		schedule := 2
 		itm.Status = &schedule
 	}
-	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date,itm.Expected_End_Date, itm.Actual_Start_Date,
+	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
 		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.CreatedBy)
-	if err == nil && itm.Expected_Start_Date == nil {
+	if err == nil && (itm.Expected_Start_Date == nil||itm.Expected_Start_Date.IsZero()) {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
 		if err != nil {
 			return err
@@ -812,9 +818,9 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	if err != nil {
 		return err
 	}
-	t := time.Now()
-	tm := t.Format("2006-01-02 15:04:05")
-	itm.Actual_Start_Date = &tm
+	// t := time.Now()
+	// tm := t.Format("2006-01-02 15:04:05")
+	*itm.Actual_Start_Date =  time.Now()
 
 	_, err = stmt.Exec(itm.Actual_Start_Date, itm.IDITAsset_Services)
 
@@ -938,7 +944,6 @@ func (m *mysqlRepo) GetITAssetservices_List_ByLoc(ctx context.Context, _LocID in
 	defer selDB.Close()
 	return res, nil
 }
-
 
 func (m *mysqlRepo) ITAsset_Service_Request(ctx context.Context, itm *itassetmdl.ITAsset_service_request) error {
 	UserQry := "SELECT  emp.IdEmployees  from employees emp join users usr on usr.EmployeeId=emp.IdEmployees "
