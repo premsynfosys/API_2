@@ -18,7 +18,6 @@ import (
 	"github.com/premsynfosys/AMS_API/models/cnsmblemdl"
 	"github.com/premsynfosys/AMS_API/models/itassetmdl"
 	"github.com/premsynfosys/AMS_API/models/nonitassets_mdl"
-	"github.com/premsynfosys/AMS_API/utils"
 )
 
 //NewSQLRepo ..
@@ -261,9 +260,9 @@ func (m *mysqlRepo) GetEmployeeByID(ctx context.Context, id int) (*cmnmdl.Employ
 		&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
 		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName)
 
-	_, *emp.DOJ = utils.CustomDateFormate(*emp.DOJ)
+	//	_, *emp.DOJ = utils.CustomDateFormate(*emp.DOJ)
 	// //emp.DOJ = &DOJ
-	_, *emp.DOB = utils.CustomDateFormate(*emp.DOB)
+	//	_, *emp.DOB = utils.CustomDateFormate(*emp.DOB)
 	//emp.DOB = &DOB
 
 	usr.Role = rl
@@ -287,9 +286,9 @@ func (m *mysqlRepo) CreateEmployee(ctx context.Context, emp *cmnmdl.Employees) (
 	// _DOJ := emp.DOJ
 	// DOB, _ := time.Parse(shortForm, *ss)
 	// DOJ, _ := time.Parse(shortForm, *_DOJ)
-	_,DOJ := utils.CustomDateFormate(*emp.DOJ)
-	_,DOB := utils.CustomDateFormate(*emp.DOB)
-	res, err := stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.CreatedBy)
+	//_,DOJ := utils.CustomDateFormate(*emp.DOJ)
+	//_,DOB := utils.CustomDateFormate(*emp.DOB)
+	res, err := stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.CreatedBy)
 	defer stmt.Close()
 
 	if err != nil {
@@ -383,10 +382,10 @@ func (m *mysqlRepo) UpdateEmployee(ctx context.Context, emp *cmnmdl.Employees) (
 	// _DOJ := emp.DOJ
 	// DOB, _ := time.Parse(shortForm, *ss)
 	// DOJ, _ := time.Parse(shortForm, *_DOJ)
-	DOB, _ := utils.CustomDateFormate(*emp.DOB)
-	DOJ, _ := utils.CustomDateFormate(*emp.DOJ)
+	//DOB, _ := utils.CustomDateFormate(*emp.DOB)
+	//DOJ, _ := utils.CustomDateFormate(*emp.DOJ)
 
-	_, err = stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.ModifiedBy, &emp.IDEmployees)
+	_, err = stmt.ExecContext(ctx, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear, &emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.ModifiedBy, &emp.IDEmployees)
 	if err != nil {
 		return nil, err
 	}
@@ -1407,10 +1406,10 @@ func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl
 		// _DOJ := row.DOJ
 		// DOB, _ := time.Parse(shortForm, *_DOB)
 		// DOJ, _ := time.Parse(shortForm, *_DOJ)
-		DOB, _ := utils.CustomDateFormate(*row.DOB)
-		DOJ, _ := utils.CustomDateFormate(*row.DOJ)
+		//	DOB, _ := utils.CustomDateFormate(*row.DOB)
+		//	DOJ, _ := utils.CustomDateFormate(*row.DOJ)
 
-		vals = append(vals, &row.FirstName, &row.LastName, DOB, &row.Email, &row.Mobile, &row.PrmntAddress, &row.Address, DOJ, &row.EmpCode, &row.CreatedBy)
+		vals = append(vals, &row.FirstName, &row.LastName, &row.DOB, &row.Email, &row.Mobile, &row.PrmntAddress, &row.Address, &row.DOJ, &row.EmpCode, &row.CreatedBy)
 	}
 	//trim the last ,
 	sqlStr := query.String()

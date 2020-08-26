@@ -1,2 +1,0 @@
-2020/08/25 20:19:24 Error 1292: Incorrect datetime value: '25-08-2020' for column 'CheckedOutDate' at row 1
-2020/08/25 20:21:56 WebAPI started on: http://localhost:9000

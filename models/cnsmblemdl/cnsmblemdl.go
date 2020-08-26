@@ -1,6 +1,8 @@
 package cnsmblemdl
 
 import (
+	"time"
+
 	cmnmdl "github.com/premsynfosys/AMS_API/models/cmnmdl"
 )
 
@@ -13,8 +15,8 @@ type Consumablemaster struct {
 	ConsumableGroups   []*ConsumableGroup `json:"ConsumableGroup"`
 	SubGroupID         *int               `json:"SubGroupID"`
 	Description        *string            `json:"Description"`
-	CreatedOn          *string            `json:"CreatedOn"`
-	ModifiedOn         *string            `json:"ModifiedOn"`
+	CreatedOn          *time.Time         `json:"CreatedOn"`
+	ModifiedOn         *time.Time         `json:"ModifiedOn"`
 }
 
 //Consumables ..
@@ -28,14 +30,14 @@ type Consumables struct {
 	ThresholdQnty      *int              `json:"ThresholdQnty"`
 	ReOrderStockPrice  *float64          `json:"ReOrderStockPrice"`
 	ReOrderQuantity    *int              `json:"ReOrderQuantity"`
-	Warranty           *string           `json:"Warranty"`
+	Warranty           *time.Time           `json:"Warranty"`
 	StatusID           *int              `json:"StatusID"`
 	LocationID         *int              `json:"LocationID"`
-	CreatedOn          *string           `json:"CreatedOn"`
+	CreatedOn          *time.Time           `json:"CreatedOn"`
 	CreatedBy          *int              `json:"CreatedBy"`
-	CreatedByName          *string              `json:"CreatedByName"`
+	CreatedByName      *string           `json:"CreatedByName"`
 	ModifiedBy         *int              `json:"ModifiedBy"`
-	ModifiedOn         *string           `json:"ModifiedOn"`
+	ModifiedOn         *time.Time           `json:"ModifiedOn"`
 	CustomFields1      *string           `json:"CustomFields1"`
 	CustomFields1Value *string           `json:"CustomFields1Value"`
 	CustomFields1Type  *string           `json:"CustomFields1Type"`
@@ -67,11 +69,11 @@ type ConsumableOprtns struct {
 	VendorID           *int            `json:"VendorID"`
 	OrderedBy          *int            `json:"OrderedBy"`
 	Comments           *string         `json:"Comments"`
-	CreataedOn         *string         `json:"CreataedOn"`
+	CreataedOn         *time.Time         `json:"CreataedOn"`
 	StatusID           *int            `json:"StatusID"`
 	Vendor             *cmnmdl.Vendors `json:"Vendor"`
 	Status             cmnmdl.Status   `json:"Status"`
-	CreatedByName          *string              `json:"CreatedByName"`
+	CreatedByName      *string         `json:"CreatedByName"`
 }
 
 // ConsumableGroup type details
@@ -85,6 +87,6 @@ type Consumables_Retire struct {
 	IDConsumables_Retire *int    `json:"IDConsumables_Retire"`
 	AssetID              *int    `json:"AssetID"`
 	ReasonID             *int    `json:"ReasonID"`
-	RetireDate           *string `json:"RetireDate"`
+	RetireDate           *time.Time `json:"RetireDate"`
 	Comments             *string `json:"Comments"`
 }
