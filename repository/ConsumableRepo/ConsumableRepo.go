@@ -76,6 +76,10 @@ func (m *mysqlRepo) PostConsumableOprtnsAddStock(mdl *cnsmblemdl.ConsumableOprtn
 	_, err2 = stmt2.Exec(mdl.Quantity, mdl.ConsumableID)
 	if err != nil || err1 != nil || err2 != nil || err3 != nil {
 		txn.Rollback()
+		log.Println(err.Error())
+		log.Println(err1.Error())
+		log.Println(err2.Error())
+		log.Println(err3.Error())
 		return errors.New("failed")
 	} else {
 		err = txn.Commit()

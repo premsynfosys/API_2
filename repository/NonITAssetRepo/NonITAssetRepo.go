@@ -96,6 +96,11 @@ func (m *mysqlRepo) CreateNonITAsset(ctx context.Context, mdl *nonitassets_mdl.N
 		&Oprtns.Comments, &Oprtns.Created_By, &Oprtns.StatusID)
 	if err != nil || err1 != nil || err2 != nil || err3 != nil || err4 != nil {
 		txn.Rollback()
+		log.Println(err.Error())
+		log.Println(err1.Error())
+		log.Println(err2.Error())
+		log.Println(err3.Error())
+		log.Println(err4.Error())
 		return errors.New("failed")
 	} else {
 		err = txn.Commit()
@@ -237,6 +242,10 @@ func (m *mysqlRepo) PostNonITAssets_oprtns_Removestock(mdl *nonitassets_mdl.NonI
 
 	if err != nil || err1 != nil || err2 != nil || err3 != nil {
 		txn.Rollback()
+		log.Println(err.Error())
+		log.Println(err1.Error())
+		log.Println(err2.Error())
+		log.Println(err3.Error())
 		return errors.New("failed")
 	} else {
 		err = txn.Commit()
@@ -261,6 +270,10 @@ func (m *mysqlRepo) PostNonITAssets_CheckOut(mdl *nonitassets_mdl.NonITAssets_ch
 	_, err2 = stmt2.Exec(mdl.CheckOut_Qnty, mdl.CheckOut_Qnty, mdl.NonITAsset_ID)
 	if err != nil || err1 != nil || err2 != nil {
 		txn.Rollback()
+		log.Println(err.Error())
+		log.Println(err1.Error())
+		log.Println(err2.Error())
+
 		return errors.New("failed")
 	}
 
