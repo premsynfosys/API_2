@@ -1,6 +1,7 @@
 package NonITAssetRepo
 
 import (
+	"fmt"
 	"bytes"
 	"context"
 	"database/sql"
@@ -70,6 +71,7 @@ func (m *mysqlRepo) CreateNonITAsset(ctx context.Context, mdl *nonitassets_mdl.N
 	if err != nil {
 		return err
 	}
+	fmt.Println(mdl)
 	res, err1 := stmt.ExecContext(ctx, &mdl.NonITAssets_Master_ID, &mdl.ModelNo, &mdl.Description, &mdl.Img, &mdl.TotalQnty,
 		&mdl.AvailableQnty, &mdl.InUseQnty, &mdl.ThresholdQnty, &mdl.ReOrderStockPrice, &mdl.ReOrderQuantity, &mdl.StatusID, &mdl.LocationID, &mdl.Created_By,
 		&mdl.CustomFields1, &mdl.CustomFields1Value, &mdl.CustomFields1Type, &mdl.CustomFields2, &mdl.CustomFields2Value, &mdl.CustomFields2Type,

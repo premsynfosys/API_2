@@ -1,5 +1,5 @@
 {
-    "IsTesting": true,
+    "IsTesting": false,
     "WebAppURL":"http://13.126.209.223:9001",
     "Test": {
         "APIPORT": "9000",
