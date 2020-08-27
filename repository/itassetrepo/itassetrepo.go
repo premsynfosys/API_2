@@ -378,10 +378,15 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	if err != nil {
 		return -1, err
 	}
-	fmt.Println(mdl)
+	fmt.Println(*mdl.ITAssetWarranty)
+	fmt.Println(*mdl.ITAssetName)
+	fmt.Println(mdl.ITAssetWarranty)
+	fmt.Println(mdl.ITAssetName)
+	fmt.Println(&mdl.ITAssetWarranty)
+	fmt.Println(&mdl.ITAssetName)
 	res, err := stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetIdentificationNo, mdl.ITAssetDescription,
-		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
+		mdl.ITAssetPrice, &mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
 		mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
 		mdl.CustomFields3, mdl.CustomFields3Value, mdl.CustomFields3Type, mdl.CustomFields4, mdl.CustomFields4Value, mdl.CustomFields4Type,
 		mdl.CustomFields5, mdl.CustomFields5Value, mdl.CustomFields5Type, mdl.CreatedBy)
@@ -433,6 +438,7 @@ func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	if err != nil {
 		return err
 	}
+	
 	_, err = stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetDescription,
 		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
