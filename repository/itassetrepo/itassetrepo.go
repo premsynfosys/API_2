@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"database/sql"
+	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -377,7 +378,7 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	if err != nil {
 		return -1, err
 	}
-
+	fmt.Println(mdl)
 	res, err := stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetIdentificationNo, mdl.ITAssetDescription,
 		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
@@ -790,9 +791,9 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 	if err != nil {
 		return err
 	}
-	if itm.Expected_Start_Date == nil ||itm.Expected_Start_Date.IsZero() { //start
-	//	t := time.Now()
-	//	tm := t.Format("02-01-2006 15:04:05")
+	if itm.Expected_Start_Date == nil || itm.Expected_Start_Date.IsZero() { //start
+		//	t := time.Now()
+		//	tm := t.Format("02-01-2006 15:04:05")
 		*itm.Actual_Start_Date = time.Now()
 		start := 1
 		itm.Status = &start
@@ -802,7 +803,7 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 	}
 	_, err = stmt.Exec(itm.ITAssetID, itm.Expected_Start_Date, itm.Expected_End_Date, itm.Actual_Start_Date,
 		itm.Actual_End_Date, itm.ServiceBy_Type, itm.ServiceBy_EmpID, itm.ServiceBy_VendorID, itm.Service_Type, itm.Status, itm.Description, itm.CreatedBy)
-	if err == nil && (itm.Expected_Start_Date == nil||itm.Expected_Start_Date.IsZero()) {
+	if err == nil && (itm.Expected_Start_Date == nil || itm.Expected_Start_Date.IsZero()) {
 		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
 		if err != nil {
 			return err
@@ -820,7 +821,7 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	}
 	// t := time.Now()
 	// tm := t.Format("2006-01-02 15:04:05")
-	*itm.Actual_Start_Date =  time.Now()
+	*itm.Actual_Start_Date = time.Now()
 
 	_, err = stmt.Exec(itm.Actual_Start_Date, itm.IDITAsset_Services)
 

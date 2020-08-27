@@ -113,8 +113,8 @@ func (p *IITAsset) ITAssetReqListByReqGroup(w http.ResponseWriter, r *http.Reque
 	ReqGroupID, _ := strconv.Atoi(ID)
 	ApproverID := params["ApproverID"]
 	approverID, _ := strconv.Atoi(ApproverID)
-	
-	payload, _ := p.ITAssetRepo.ITAssetReqListByReqGroup(r.Context(), ReqGroupID,approverID)
+
+	payload, _ := p.ITAssetRepo.ITAssetReqListByReqGroup(r.Context(), ReqGroupID, approverID)
 	utils.RespondwithJSON(w, http.StatusOK, payload)
 }
 
@@ -205,8 +205,8 @@ func (p *IITAsset) GetCustomFields(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	ID := params["id"]
 	id, _ := strconv.Atoi(ID)
-	Mod:=params["Mod"]
-	data, err := p.ITAssetRepo.GetCustomFields(r.Context(),id,Mod)
+	Mod := params["Mod"]
+	data, err := p.ITAssetRepo.GetCustomFields(r.Context(), id, Mod)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -272,6 +272,7 @@ func (p *IITAsset) RetryFailedmails() {
 func (p *IITAsset) ITasset_services_Insert(w http.ResponseWriter, r *http.Request) {
 	mdl := &itassetmdl.ITasset_services{}
 	json.NewDecoder(r.Body).Decode(&mdl)
+
 	err := p.ITAssetRepo.ITasset_services_Insert(r.Context(), mdl)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
@@ -364,6 +365,7 @@ func (p *IITAsset) ITAsset_Service_Request_Resolve(w http.ResponseWriter, r *htt
 		utils.RespondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
 //GetITAsset_service_request_List ..
 func (p *IITAsset) GetITAsset_service_request_List(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -417,8 +419,6 @@ func (p *IITAsset) ITAssetReq_ApprovalStatusList(w http.ResponseWriter, r *http.
 	}
 }
 
-
-
 func (p *IITAsset) ITAssetReqForward(w http.ResponseWriter, r *http.Request) {
 	mdl := &itassetmdl.ITAssetRequestApproval{}
 	json.NewDecoder(r.Body).Decode(&mdl)
@@ -443,7 +443,7 @@ func (p *IITAsset) ITAssetDelete(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	AssetID := params["AssetID"]
 	id, _ := strconv.Atoi(AssetID)
-	 err := p.ITAssetRepo.ITAssetDelete(r.Context(), id)
+	err := p.ITAssetRepo.ITAssetDelete(r.Context(), id)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
@@ -457,7 +457,7 @@ func (p *IITAsset) GetITAssetToCheckoutToITasset(w http.ResponseWriter, r *http.
 	LocIDs, _ := strconv.Atoi(LocID)
 	AssetID := params["AssetID"]
 	AssetIDs, _ := strconv.Atoi(AssetID)
-	payload, err := p.ITAssetRepo.GetITAssetToCheckoutToITasset(r.Context(),LocIDs, AssetIDs)
+	payload, err := p.ITAssetRepo.GetITAssetToCheckoutToITasset(r.Context(), LocIDs, AssetIDs)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {
