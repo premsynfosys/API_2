@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"database/sql"
-	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -378,7 +377,7 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	if err != nil {
 		return -1, err
 	}
-	fmt.Println(mdl)
+
 	res, err := stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetIdentificationNo, mdl.ITAssetDescription,
 		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetFileUpld, mdl.ITAssetImg, mdl.Vendor, mdl.Location,
@@ -433,6 +432,7 @@ func (m *mysqlRepo) UpdateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 	if err != nil {
 		return err
 	}
+
 	_, err = stmt.ExecContext(ctx, mdl.ITAssetName, mdl.ITAssetGroup, mdl.ITAssetModel, mdl.ITAssetSerialNo,
 		mdl.ITAssetDescription,
 		mdl.ITAssetPrice, mdl.ITAssetWarranty, mdl.ITAssetStatus, mdl.ITAssetImg, mdl.Vendor, mdl.Location, mdl.CustomFields1, mdl.CustomFields1Value, mdl.CustomFields1Type, mdl.CustomFields2, mdl.CustomFields2Value, mdl.CustomFields2Type,
@@ -792,9 +792,9 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 		return err
 	}
 	if itm.Expected_Start_Date == nil || itm.Expected_Start_Date.IsZero() { //start
-		//	t := time.Now()
+		t := time.Now()
 		//	tm := t.Format("02-01-2006 15:04:05")
-		*itm.Actual_Start_Date = time.Now()
+		itm.Actual_Start_Date = &t
 		start := 1
 		itm.Status = &start
 	} else { //schedule
@@ -819,9 +819,9 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	if err != nil {
 		return err
 	}
-	// t := time.Now()
+	t := time.Now()
 	// tm := t.Format("2006-01-02 15:04:05")
-	*itm.Actual_Start_Date = time.Now()
+	itm.Actual_Start_Date = &t
 
 	_, err = stmt.Exec(itm.Actual_Start_Date, itm.IDITAsset_Services)
 
