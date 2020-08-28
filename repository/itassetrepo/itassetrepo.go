@@ -792,9 +792,9 @@ func (m *mysqlRepo) ITasset_services_Insert(ctx context.Context, itm *itassetmdl
 		return err
 	}
 	if itm.Expected_Start_Date == nil || itm.Expected_Start_Date.IsZero() { //start
-		//	t := time.Now()
+		t := time.Now()
 		//	tm := t.Format("02-01-2006 15:04:05")
-		*itm.Actual_Start_Date = time.Now()
+		itm.Actual_Start_Date = &t
 		start := 1
 		itm.Status = &start
 	} else { //schedule
@@ -819,9 +819,9 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	if err != nil {
 		return err
 	}
-	// t := time.Now()
+	t := time.Now()
 	// tm := t.Format("2006-01-02 15:04:05")
-	*itm.Actual_Start_Date = time.Now()
+	itm.Actual_Start_Date = &t
 
 	_, err = stmt.Exec(itm.Actual_Start_Date, itm.IDITAsset_Services)
 
