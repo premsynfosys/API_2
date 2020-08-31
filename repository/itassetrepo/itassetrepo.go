@@ -824,7 +824,13 @@ func (m *mysqlRepo) ITasset_services_start_Update(ctx context.Context, itm *itas
 	itm.Actual_Start_Date = &t
 
 	_, err = stmt.Exec(itm.Actual_Start_Date, itm.IDITAsset_Services)
-
+	if err == nil  {
+		stmt1, err := m.Conn.Prepare("update itassets set ITAssetStatus = 4  where idITAssets=?")
+		if err != nil {
+			return err
+		}
+		_, err = stmt1.Exec(*itm.ITAssetID)
+	}
 	return err
 }
 func (m *mysqlRepo) ITasset_services_Complete_Update(ctx context.Context, itm *itassetmdl.ITasset_services) error {
