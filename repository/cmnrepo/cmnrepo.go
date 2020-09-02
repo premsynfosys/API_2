@@ -371,6 +371,7 @@ func (m *mysqlRepo) UpdateUser(mdl *cmnmdl.User) (err error) {
 }
 
 func (m *mysqlRepo) UpdateEmployee(ctx context.Context, emp *cmnmdl.Employees) (*cmnmdl.Employees, error) {
+
 	query := "UPDATE Employees SET FirstName=?, LastName=?,DOB=?, Email=?,Mobile=?,Address=?,PrmntAddress=?, Image=?, Education=?,ExperienceYear=?,ExperienceMonth=?, Designation=?,DOJ=?,EmpCode=?,Location=?,Gender=?,ModifiedBy=? WHERE IdEmployees=? "
 
 	stmt, err := m.Conn.PrepareContext(ctx, query)

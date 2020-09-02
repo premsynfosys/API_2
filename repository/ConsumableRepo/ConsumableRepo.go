@@ -606,7 +606,7 @@ func (m *mysqlRepo) ConsumableBulkDelete(ctx context.Context, ids []string) erro
 	// }
 	query = query[0 : len(query)-1]
 	query += " )"
-	log.Println(query)
+
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
 		return err
