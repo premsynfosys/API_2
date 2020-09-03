@@ -24,9 +24,10 @@ var err error
 // changed db config name and pwd
 func init() {
 	//parseTime=True&loc=Asia%2FJakarta
-	//	connection, err = DBdriver.ConnectSQL("mysql", "3306", "AMS", "Admin&123", "ams") //aws pwd //AMS is usrname
-	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "AMS", "Admin&123", "ams?parseTime=True&loc=Asia%2FKolkata&charset=utf8")
-	//connection, err = DBdriver.ConnectSQL("mysql", "3306", "root", "Admin", "ams?parseTime=true")
+	//&charset=utf8
+	//host, uname+":"+pass+"@/"+dbname
+	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "AMS", "Admin&123", "ams?parseTime=True&loc=Asia%2FKolkata")
+	
 }
 
 //commit test
