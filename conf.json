@@ -1,6 +1,6 @@
 {
-    "IsTesting": true,
-    "WebAppURL":"http://13.126.31.40:9001",
+    "IsTesting": false,
+    "WebAppURL":"http://localhost:9001",
     "Test": {
         "APIPORT": "9000",
         "APIHost": "http://localhost",
