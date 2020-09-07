@@ -1,6 +1,8 @@
 {
     "IsTesting": false,
     "WebAppURL":"http://localhost:9001",
+    "DBUserName":"AMS",
+    "DBPwd":"Admin&123",
     "Test": {
         "APIPORT": "9000",
         "APIHost": "http://localhost",

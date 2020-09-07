@@ -26,8 +26,16 @@ func init() {
 	//parseTime=True&loc=Asia%2FJakarta
 	//&charset=utf8
 	//host, uname+":"+pass+"@/"+dbname
-	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "AMS", "Admin&123", "ams?parseTime=True&loc=Asia%2FKolkata")
-	
+	file, _ := os.Open("conf.json")
+	configuration := cmnmdl.Configuration{}
+	err := json.NewDecoder(file).Decode(&configuration)
+	defer file.Close()
+	if err != nil {
+		log.Println("error:", err)
+	}
+	//connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "root", "Admin&123", "ams?parseTime=True&loc=Asia%2FKolkata")
+	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", configuration.DBUserName, configuration.DBPwd, "ams?parseTime=True&loc=Asia%2FKolkata")
+
 }
 
 //commit test

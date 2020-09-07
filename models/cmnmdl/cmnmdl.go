@@ -11,6 +11,8 @@ type Configuration struct {
 	APIHost    string
 	WEBPORT    string
 	WEBHost    string
+	DBUserName string
+	DBPwd      string
 }
 type ThresholdAlert struct {
 	AssetName        *string `json:"AssetName"`
@@ -141,7 +143,6 @@ type User struct {
 	CreatedOn         *time.Time       `json:"CreatedOn"`
 }
 
-
 type Authorization_Create struct {
 	RoleID           *int
 	CreatedBy        *int
@@ -158,6 +159,7 @@ type ActivityLog struct {
 	ActionedByFirstName *string    `json:"ActionedByFirstName"`
 	ActionedByLastName  *string    `json:"ActionedByLastName"`
 }
+
 // Status type details
 type Status struct {
 	IDStatus   *int    `json:"IDStatus,omitempty"`
@@ -196,7 +198,6 @@ type Vendors struct {
 	ModifiedOn        *time.Time `json:"ModifiedOn"`
 }
 
-
 //Locations ..
 type Locations struct {
 	IDLocations *int       `json:"IDLocations"`
@@ -217,6 +218,7 @@ type Locations struct {
 	ModifiedOn  *time.Time `json:"ModifiedOn"`
 	Status      *string    `json:"Status"`
 }
+
 //Notifications ..
 type Notifications struct {
 	IDNotifications *int       `json:"IDNotifications"`
@@ -227,6 +229,7 @@ type Notifications struct {
 	CreatedOn       *time.Time `json:"CreatedOn"`
 	Name            *string    `json:"Name"`
 }
+
 //InWardOutWard ..
 type InWardOutWard struct {
 	IDInWardOutWard        *int                   `json:"IDInWardOutWard"`
@@ -252,7 +255,6 @@ type InWardOutWard struct {
 	InWardOutWardApproval  *InWardOutWardApproval `json:"InWardOutWardApproval"`
 }
 
-
 type InWardOutWardApproval struct {
 	IDInwardoutward_Approval *int       `json:"IDInwardoutward_Approval"`
 	IDinwardoutward          *int       `json:"IDinwardoutward"`
@@ -270,7 +272,6 @@ type InWardOutWardApproval struct {
 	NextApproverID           *int       `json:"NextApproverID"`
 	NextGrade                *int       `json:"NextGrade"`
 }
-
 
 //InWardOutWardAsset ..
 type InWardOutWardAsset struct {
@@ -291,7 +292,6 @@ type InWardOutWardAsset struct {
 	CreatedBy             *int        `json:"CreatedBy"`
 	CreatedOn             *time.Time  `json:"CreatedOn"`
 }
-
 
 //OutWardCart  ..
 type OutWardCart struct {
@@ -323,7 +323,6 @@ type MultiLevelApproval_Main struct {
 	MultiLevelApproval_Map      *MultiLevelApproval_Map   `json:"MultiLevelApproval_Map"`
 }
 
-
 type MultiLevelApproval_Map struct {
 	IDMultiLevelApproval_Map   *int       `json:"IDMultiLevelApproval_Map"`
 	MultiLevelApproval_Main_ID *int       `json:"MultiLevelApproval_Main_ID"`
@@ -333,7 +332,6 @@ type MultiLevelApproval_Map struct {
 	CreatedBy                  *int       `json:"CreatedBy"`
 	Role                       *Role      `json:"Role"`
 }
-
 
 type VendorsAssetDetails struct {
 	Vendors_consumablemaster_map *Vendors_consumablemaster_map `json:"Vendors_consumablemaster_map"`
@@ -492,6 +490,7 @@ type RequisitionApproval struct {
 	NextApproverID         *int       `json:"NextApproverID"`
 	NextGrade              *int       `json:"NextGrade"`
 }
+
 //Email ..
 type Email struct {
 	IDEmails   int       `json:"IDEmails"`
