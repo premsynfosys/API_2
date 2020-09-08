@@ -166,11 +166,12 @@ func (m *mysqlRepo) GetUsers(ctx context.Context, LocID int) ([]*cmnmdl.User, er
 		des := new(cmnmdl.Designation)
 		rl := new(cmnmdl.Role)
 		ed := new(cmnmdl.Educations)
+		
 		err = selDB.Scan(&usr.IDUsers, &usr.EmployeeID, &usr.UserName, &usr.Status, &usr.RoleID, &usr.LinkGeneratedOn,
 			&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.PrmntAddress,
 			&emp.Address, &emp.Image, &emp.Education, &emp.ExperienceMonth, &emp.ExperienceYear,
 			&emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
-			&ed.IDEducations, &ed.Name, &des.IDDesignation, &des.DesignationName, &rl.IDRoles, &rl.RoleName)
+			&ed.IDEducations, &ed.Name, &des.IDDesignation, &des.DesignationName, &rl.IDRoles, &rl.RoleName,&emp.LocationName)
 		usr.Employee = emp
 		usr.Designation = des
 		usr.Role = rl
@@ -229,7 +230,7 @@ func (m *mysqlRepo) GetEmployees(ctx context.Context, LocID int) ([]*cmnmdl.Empl
 		err := selDB.Scan(&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear,
 			&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 			&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
-			&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName)
+			&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName,&emp.LocationName)
 		usr.Role = rl
 		emp.User = usr
 		emp.EducationData = ed
@@ -258,7 +259,7 @@ func (m *mysqlRepo) GetEmployeeByID(ctx context.Context, id int) (*cmnmdl.Employ
 	err := selDB.Scan(&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear,
 		&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 		&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
-		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName)
+		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName,&emp.LocationName)
 
 	//	_, *emp.DOJ = utils.CustomDateFormate(*emp.DOJ)
 	// //emp.DOJ = &DOJ
