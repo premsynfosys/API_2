@@ -166,12 +166,12 @@ func (m *mysqlRepo) GetUsers(ctx context.Context, LocID int) ([]*cmnmdl.User, er
 		des := new(cmnmdl.Designation)
 		rl := new(cmnmdl.Role)
 		ed := new(cmnmdl.Educations)
-		
+
 		err = selDB.Scan(&usr.IDUsers, &usr.EmployeeID, &usr.UserName, &usr.Status, &usr.RoleID, &usr.LinkGeneratedOn,
 			&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.PrmntAddress,
 			&emp.Address, &emp.Image, &emp.Education, &emp.ExperienceMonth, &emp.ExperienceYear,
 			&emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
-			&ed.IDEducations, &ed.Name, &des.IDDesignation, &des.DesignationName, &rl.IDRoles, &rl.RoleName,&emp.LocationName)
+			&ed.IDEducations, &ed.Name, &des.IDDesignation, &des.DesignationName, &rl.IDRoles, &rl.RoleName, &emp.LocationName)
 		usr.Employee = emp
 		usr.Designation = des
 		usr.Role = rl
@@ -230,7 +230,7 @@ func (m *mysqlRepo) GetEmployees(ctx context.Context, LocID int) ([]*cmnmdl.Empl
 		err := selDB.Scan(&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear,
 			&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 			&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
-			&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName,&emp.LocationName)
+			&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName, &emp.LocationName)
 		usr.Role = rl
 		emp.User = usr
 		emp.EducationData = ed
@@ -259,7 +259,7 @@ func (m *mysqlRepo) GetEmployeeByID(ctx context.Context, id int) (*cmnmdl.Employ
 	err := selDB.Scan(&emp.IDEmployees, &emp.FirstName, &emp.LastName, &emp.DOB, &emp.Email, &emp.Mobile, &emp.Address, &emp.PrmntAddress, &emp.Image, &emp.Education, &emp.ExperienceYear,
 		&emp.ExperienceMonth, &emp.Designation, &emp.DOJ, &emp.EmpCode, &emp.Location, &emp.Gender, &emp.Status,
 		&usr.IDUsers, &usr.UserName, &usr.RoleID, &usr.Status, &usr.LinkGeneratedOn,
-		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName,&emp.LocationName)
+		&des.IDDesignation, &des.DesignationName, &ed.IDEducations, &ed.Name, &rl.IDRoles, &rl.RoleName, &emp.LocationName)
 
 	//	_, *emp.DOJ = utils.CustomDateFormate(*emp.DOJ)
 	// //emp.DOJ = &DOJ
@@ -1396,34 +1396,29 @@ func (m *mysqlRepo) UpdateIsMsngStcksRslvdMain(ctx context.Context, IDInWardOutW
 }
 
 func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl.Employees) error {
-	var query strings.Builder
-	query.WriteString("insert into employees (FirstName,LastName,DOB,Email,Mobile,PrmntAddress,Address,DOJ,EmpCode,CreatedBy) values ")
+
+	query := " insert into employees (FirstName,LastName,DOB,Email,Gender,Mobile,PrmntAddress, "
+	query += "	Address,EmpCode,Education,ExperienceYear,ExperienceMonth,DOJ,Designation,Location,CreatedBy) values "
 
 	vals := []interface{}{}
 	// const shortForm = "2006-01-02"
 	for _, row := range Listmdl {
-		query.WriteString(" (?,?,?,?,  ?,?,?,?,?,? ),")
-
-		// _DOB := row.DOB
-		// _DOJ := row.DOJ
-		// DOB, _ := time.Parse(shortForm, *_DOB)
-		// DOJ, _ := time.Parse(shortForm, *_DOJ)
-		//	DOB, _ := utils.CustomDateFormate(*row.DOB)
-		//	DOJ, _ := utils.CustomDateFormate(*row.DOJ)
-
-		vals = append(vals, &row.FirstName, &row.LastName, &row.DOB, &row.Email, &row.Mobile, &row.PrmntAddress, &row.Address, &row.DOJ, &row.EmpCode, &row.CreatedBy)
+		query += " (?,?,?,?,  ?,?,?,?,  ?,?,?,?,  ?,?,?,? ),"
+		vals = append(vals, &row.FirstName, &row.LastName, &row.DOB, &row.Email, &row.Gender, &row.Mobile, &row.PrmntAddress, &row.Address, &row.EmpCode, &row.Education, &row.ExperienceYear, &row.ExperienceMonth, &row.DOJ, &row.Designation, &row.Location, &row.CreatedBy)
 	}
 	//trim the last ,
-	sqlStr := query.String()
-	sqlStr = sqlStr[0 : len(sqlStr)-1]
 
-	stmt, _ := m.Conn.Prepare(sqlStr)
+	query = query[0 : len(query)-1]
+	txn, _ := m.Conn.Begin()
+	stmt, _ := txn.Prepare(query)
 	_, err := stmt.Exec(vals...)
 
 	defer stmt.Close()
 
 	if err != nil {
-		return err
+		txn.Rollback()
+	} else {
+		txn.Commit()
 	}
 
 	return err

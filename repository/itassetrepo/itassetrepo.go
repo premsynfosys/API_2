@@ -395,12 +395,12 @@ func (m *mysqlRepo) CreateITAsset(ctx context.Context, mdl *itassetmdl.ITAssetMo
 func (m *mysqlRepo) BulkCreateITAsset(ctx context.Context, Listmdl []*itassetmdl.ITAssetModel) error {
 	var query strings.Builder
 	query.WriteString("INSERT into  itassets (ITAssetName,ITAssetModel,ITAssetSerialNo,")
-	query.WriteString("ITAssetDescription,ITAssetPrice,CreatedBy) values ")
+	query.WriteString("ITAssetDescription,ITAssetPrice,CreatedBy,ITAssetGroup,ITAssetWarranty,Vendor,ITAssetStatus,Location) values ")
 	vals := []interface{}{}
 
 	for _, row := range Listmdl {
-		query.WriteString(" (?,?,?,?,?,?),")
-		vals = append(vals, row.ITAssetName, row.ITAssetModel, row.ITAssetSerialNo, row.ITAssetDescription, row.ITAssetPrice, row.CreatedBy)
+		query.WriteString(" (?,?,?,?, ?,?,?,?, ?,?,?),")
+		vals = append(vals, row.ITAssetName, row.ITAssetModel, row.ITAssetSerialNo, row.ITAssetDescription, row.ITAssetPrice, row.CreatedBy, row.ITAssetGroup, row.ITAssetWarranty, row.Vendor, row.ITAssetStatus,row.Location)
 	}
 	//trim the last ,
 	sqlStr := query.String()
