@@ -1,0 +1,4 @@
+2020/09/10 15:58:04 WebAPI started on: http://localhost:9000
+2020/09/10 16:58:07 smtp error: 555 5.5.2 Syntax error. gm17sm1808057pjb.46 - gsmtp
+2020/09/10 17:58:06 smtp error: 555 5.5.2 Syntax error. y128sm5640696pfy.74 - gsmtp
+2020/09/10 18:58:07 smtp error: 555 5.5.2 Syntax error. a16sm5296875pgh.48 - gsmtp
