@@ -659,3 +659,39 @@ func (m *mysqlRepo) GetConsumableMastersByVendors(ctx context.Context, VendorID 
 	defer selDB.Close()
 	return res, nil
 }
+
+func (m *mysqlRepo) BulkCreateConsumables(ctx context.Context, list []*cnsmblemdl.Consumables) error {
+
+	txn, err := m.Conn.Begin()
+	for _, mdl := range list {
+		id, err := m.CheckDuplicateAssetEntry(ctx, *mdl.IDconsumableMaster, *mdl.LocationID)
+		if err == nil {
+			if id != nil {
+				if *id == *mdl.IDconsumableMaster {
+					return errors.New("Asset already added with same AssetID")
+				}
+			}
+		} else {
+			return errors.New("Internal error")
+		}
+
+		var query strings.Builder
+		query.WriteString("INSERT INTO consumables(idconsumableMaster,Description ")
+		query.WriteString(",TotalQnty,ThresholdQnty,ReOrderQuantity,StatusID,LocationID, ")
+		query.WriteString("CreatedBy)VALUES (?,?,?,?, ?,?,?,?) ")
+		stmt, err := txn.PrepareContext(ctx, query.String())
+		if err != nil {
+			return err
+		}
+		_, err = stmt.ExecContext(ctx, mdl.IDconsumableMaster, mdl.Description,
+			mdl.TotalQnty, mdl.ThresholdQnty, mdl.ReOrderQuantity, mdl.StatusID, mdl.LocationID,
+			mdl.CreatedBy)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+
+	}
+	err = txn.Commit()
+	return err
+}

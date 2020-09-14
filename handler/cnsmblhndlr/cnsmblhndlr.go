@@ -258,3 +258,14 @@ func (p *IConsumableRepo) GetConsumableMastersByVendors(w http.ResponseWriter, r
 		utils.RespondwithJSON(w, http.StatusOK, data)
 	}
 }
+//BulkCreateNonITAsset ..
+func (p *IConsumableRepo) BulkCreateConsumables(w http.ResponseWriter, r *http.Request) {
+	mdl := []*cnsmblemdl.Consumables{}
+	json.NewDecoder(r.Body).Decode(&mdl)
+	err := p.IConsumableRepo.BulkCreateConsumables(r.Context(), mdl)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}

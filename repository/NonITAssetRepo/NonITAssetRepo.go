@@ -933,3 +933,61 @@ func (m *mysqlRepo) NonITAssetDelete(ctx context.Context, AssetID int) error {
 	defer stmt.Close()
 	return err
 }
+
+func (m *mysqlRepo) BulkCreateNonITAsset(ctx context.Context, list []*nonitassets_mdl.NonITAssets) error {
+
+	txn, err := m.Conn.Begin()
+	for _, mdl := range list {
+		id, err := m.CheckDuplicateNonITAssetEntry(ctx, *mdl.NonITAssets_Master_ID, *mdl.LocationID)
+		if err == nil {
+			if id != nil {
+				if *id == *mdl.NonITAssets_Master_ID {
+					return errors.New("Asset already added with same AssetID")
+				}
+			}
+		} else {
+			return errors.New("Internal error")
+		}
+		var query strings.Builder
+		query.WriteString(" INSERT INTO nonitassets (NonITAssets_Master_ID,ModelNo,Description,TotalQnty,AvailableQnty,InUseQnty,ThresholdQnty, ")
+		query.WriteString(" ReOrderStockPrice,ReOrderQuantity,StatusID,LocationID,Created_By)")
+		query.WriteString("  VALUES (?,?,?,?, ?,?,?,?,   ?,?,?,?); ")
+		stmt, err := txn.PrepareContext(ctx, query.String())
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+
+		res, err1 := stmt.ExecContext(ctx, &mdl.NonITAssets_Master_ID, &mdl.ModelNo, &mdl.Description, &mdl.TotalQnty,
+			&mdl.AvailableQnty, &mdl.InUseQnty, &mdl.ThresholdQnty, &mdl.ReOrderStockPrice, &mdl.ReOrderQuantity,
+			&mdl.StatusID, &mdl.LocationID, &mdl.Created_By)
+
+		defer stmt.Close()
+
+		if err1 != nil {
+			txn.Rollback()
+			return err
+		}
+		nonitassets, err2 := res.LastInsertId()
+		Oprtns := mdl.NonITAssets_Oprtns
+		*Oprtns.NonITAsset_ID = int(nonitassets)
+		qry := "INSERT INTO nonitassets_oprtns(NonITAsset_ID,Quantity,Warranty,UnitPrice,VendorID,OrderedBy,Comments,Created_By,StatusID) "
+		qry += " VALUES (?,?,?, ?,?,?, ?,?,?);"
+		stmtA, err3 := txn.PrepareContext(ctx, qry)
+		_, err4 := stmtA.ExecContext(ctx, &Oprtns.NonITAsset_ID, &Oprtns.Quantity, &Oprtns.Warranty, &Oprtns.UnitPrice, &Oprtns.VendorID, &Oprtns.OrderedBy,
+			&Oprtns.Comments, &Oprtns.Created_By, &Oprtns.StatusID)
+		if err != nil || err1 != nil || err2 != nil || err3 != nil || err4 != nil {
+			txn.Rollback()
+			log.Println(err.Error())
+			log.Println(err1.Error())
+			log.Println(err2.Error())
+			log.Println(err3.Error())
+			log.Println(err4.Error())
+			return errors.New("failed")
+		}
+
+	}
+
+	err = txn.Commit()
+	return err
+}

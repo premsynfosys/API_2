@@ -9,6 +9,7 @@ import (
 
 //ConsumableIntfc ...
 type ConsumableIntfc interface {
+	BulkCreateConsumables(ctx context.Context, list []*cnsmblemdl.Consumables) error 
 	ConsumableDelete(ctx context.Context, AssetID int) error 
 	//GetThresholdReachedStockConsumablesByID(AssetID int) (*cmnmdl.ThresholdAlert, error)
 	CreateConsumables(ctx context.Context, mdl *cnsmblemdl.Consumables) error

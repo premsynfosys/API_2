@@ -346,3 +346,15 @@ func (p *INonITAsset) NonITAssetDelete(w http.ResponseWriter, r *http.Request) {
 		utils.RespondwithJSON(w, http.StatusOK, nil)
 	}
 }
+
+
+func (p *INonITAsset) BulkCreateNonITAsset(w http.ResponseWriter, r *http.Request) {
+	mdl := []*nonitassets_mdl.NonITAssets{}
+	json.NewDecoder(r.Body).Decode(&mdl)
+	err := p.INonTAssetRepo.BulkCreateNonITAsset(r.Context(), mdl)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
