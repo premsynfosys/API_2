@@ -13,6 +13,7 @@ type Configuration struct {
 	WEBHost    string
 	DBUserName string
 	DBPwd      string
+	DB      string
 }
 type ThresholdAlert struct {
 	AssetName        *string `json:"AssetName"`

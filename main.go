@@ -34,7 +34,7 @@ func init() {
 		log.Println("error:", err)
 	}
 	//connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "root", "Admin&123", "ams?parseTime=True&loc=Asia%2FKolkata")
-	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", configuration.DBUserName, configuration.DBPwd, "ams?parseTime=True&loc=Asia%2FKolkata")
+	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", configuration.DBUserName, configuration.DBPwd, configuration.DB)
 
 }
 
