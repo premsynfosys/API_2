@@ -661,7 +661,6 @@ func (m *mysqlRepo) GetConsumableMastersByVendors(ctx context.Context, VendorID 
 }
 
 func (m *mysqlRepo) BulkCreateConsumables(ctx context.Context, list []*cnsmblemdl.Consumables) error {
-
 	txn, err := m.Conn.Begin()
 	for _, mdl := range list {
 		id, err := m.CheckDuplicateAssetEntry(ctx, *mdl.IDconsumableMaster, *mdl.LocationID)
