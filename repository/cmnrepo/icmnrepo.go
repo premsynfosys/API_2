@@ -100,5 +100,6 @@ type CmnIntrfc interface {
 	RequisitionStcokReceived(mdl *cmnmdl.Requisition_Requests) (err error)
 	DeleteVendors(ctx context.Context, usr *cmnmdl.Vendors) error
 	GetRequisitionHistoryByReqID(ctx context.Context, ReqID int) ([]*cmnmdl.Requisition_Requests, error) 
+	GetSearchDetails(ctx context.Context, LocID int,Name string) ([]*cmnmdl.Search, error) 
 }
  

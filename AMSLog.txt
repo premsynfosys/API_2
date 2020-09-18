@@ -1,0 +1,176 @@
+2020/09/17 14:17:42 WebAPI started on: http://localhost:9000
+2020/09/17 14:18:12 http: panic serving [::1]:62260: runtime error: invalid memory address or nil pointer dereference
+goroutine 9 [running]:
+net/http.(*conn).serve.func1(0xc00037f680)
+	c:/go/src/net/http/server.go:1772 +0x150
+panic(0xa16340, 0xe40320)
+	c:/go/src/runtime/panic.go:973 +0x429
+database/sql.(*Stmt).ExecContext(0x0, 0xb471a0, 0xc0000120a8, 0xc0003c72b8, 0x10, 0x10, 0x0, 0x0, 0x0, 0x0)
+	c:/go/src/database/sql/sql.go:2394 +0x57
+database/sql.(*Stmt).Exec(0x0, 0xc0003c72b8, 0x10, 0x10, 0x0, 0x0, 0x0, 0x0)
+	c:/go/src/database/sql/sql.go:2423 +0xc0
+github.com/premsynfosys/AMS_API/repository/cmnrepo.(*mysqlRepo).Employees_Bulk_Insert(0xc000004ce0, 0xb47220, 0xc000394540, 0xc0003a41e0, 0x4, 0x4, 0x0, 0x0)
+	D:/Office/Projects_Office/AMS_Proj/API_2/repository/cmnrepo/cmnrepo.go:1409 +0x805
+github.com/premsynfosys/AMS_API/handler/cmnhndlr.(*CmnIrepo).Employees_Bulk_Insert(0xc00003f2d0, 0xb466e0, 0xc00039e0e0, 0xc000212300)
+	D:/Office/Projects_Office/AMS_Proj/API_2/handler/cmnhndlr/cmnhndlr.go:501 +0x1d5
+github.com/premsynfosys/AMS_API/utils.IsAuthorized.func1(0xb466e0, 0xc00039e0e0, 0xc000212300)
+	D:/Office/Projects_Office/AMS_Proj/API_2/utils/utils.go:47 +0x2ff
+net/http.HandlerFunc.ServeHTTP(0xc0002ae450, 0xb466e0, 0xc00039e0e0, 0xc000212300)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/gorilla/mux.(*Router).ServeHTTP(0xc0001600c0, 0xb466e0, 0xc00039e0e0, 0xc000212300)
+	C:/Users/premk/go/pkg/mod/github.com/gorilla/mux@v1.7.3/mux.go:212 +0x220
+net/http.serverHandler.ServeHTTP(0xc00039e000, 0xb466e0, 0xc00039e0e0, 0xc000212100)
+	c:/go/src/net/http/server.go:2807 +0x216
+net/http.(*conn).serve(0xc00037f680, 0xb47160, 0xc000382680)
+	c:/go/src/net/http/server.go:1895 +0x171d
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x938
+2020/09/17 14:18:40 http: panic serving [::1]:62263: runtime error: invalid memory address or nil pointer dereference
+goroutine 14 [running]:
+net/http.(*conn).serve.func1(0xc00037f7c0)
+	c:/go/src/net/http/server.go:1772 +0x150
+panic(0xa16340, 0xe40320)
+	c:/go/src/runtime/panic.go:973 +0x429
+database/sql.(*Stmt).ExecContext(0x0, 0xb471a0, 0xc0000120a8, 0xc0003fb2b8, 0x10, 0x10, 0x0, 0x0, 0x0, 0x0)
+	c:/go/src/database/sql/sql.go:2394 +0x57
+database/sql.(*Stmt).Exec(0x0, 0xc0003fb2b8, 0x10, 0x10, 0x0, 0x0, 0x0, 0x0)
+	c:/go/src/database/sql/sql.go:2423 +0xc0
+github.com/premsynfosys/AMS_API/repository/cmnrepo.(*mysqlRepo).Employees_Bulk_Insert(0xc000004ce0, 0xb47220, 0xc000395080, 0xc0003a50a0, 0x4, 0x4, 0x0, 0x0)
+	D:/Office/Projects_Office/AMS_Proj/API_2/repository/cmnrepo/cmnrepo.go:1409 +0x805
+github.com/premsynfosys/AMS_API/handler/cmnhndlr.(*CmnIrepo).Employees_Bulk_Insert(0xc00003f2d0, 0xb466e0, 0xc00039e700, 0xc000212600)
+	D:/Office/Projects_Office/AMS_Proj/API_2/handler/cmnhndlr/cmnhndlr.go:501 +0x1d5
+github.com/premsynfosys/AMS_API/utils.IsAuthorized.func1(0xb466e0, 0xc00039e700, 0xc000212600)
+	D:/Office/Projects_Office/AMS_Proj/API_2/utils/utils.go:47 +0x2ff
+net/http.HandlerFunc.ServeHTTP(0xc0002ae450, 0xb466e0, 0xc00039e700, 0xc000212600)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/gorilla/mux.(*Router).ServeHTTP(0xc0001600c0, 0xb466e0, 0xc00039e700, 0xc000212600)
+	C:/Users/premk/go/pkg/mod/github.com/gorilla/mux@v1.7.3/mux.go:212 +0x220
+net/http.serverHandler.ServeHTTP(0xc00039e000, 0xb466e0, 0xc00039e700, 0xc000212400)
+	c:/go/src/net/http/server.go:2807 +0x216
+net/http.(*conn).serve(0xc00037f7c0, 0xb47160, 0xc000382900)
+	c:/go/src/net/http/server.go:1895 +0x171d
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x938
+2020/09/17 14:19:00 http: panic serving [::1]:62268: runtime error: invalid memory address or nil pointer dereference
+goroutine 18 [running]:
+net/http.(*conn).serve.func1(0xc00037f860)
+	c:/go/src/net/http/server.go:1772 +0x150
+panic(0xa16340, 0xe40320)
+	c:/go/src/runtime/panic.go:973 +0x429
+github.com/premsynfosys/AMS_API/repository/cmnrepo.(*mysqlRepo).Employees_Bulk_Insert(0xc000004ce0, 0xb47220, 0xc0003953b0, 0xc0003a59e0, 0x4, 0x4, 0x0, 0x0)
+	D:/Office/Projects_Office/AMS_Proj/API_2/repository/cmnrepo/cmnrepo.go:1413 +0x8cc
+github.com/premsynfosys/AMS_API/handler/cmnhndlr.(*CmnIrepo).Employees_Bulk_Insert(0xc00003f2d0, 0xb466e0, 0xc00039ed20, 0xc000212a00)
+	D:/Office/Projects_Office/AMS_Proj/API_2/handler/cmnhndlr/cmnhndlr.go:501 +0x1d5
+github.com/premsynfosys/AMS_API/utils.IsAuthorized.func1(0xb466e0, 0xc00039ed20, 0xc000212a00)
+	D:/Office/Projects_Office/AMS_Proj/API_2/utils/utils.go:47 +0x2ff
+net/http.HandlerFunc.ServeHTTP(0xc0002ae450, 0xb466e0, 0xc00039ed20, 0xc000212a00)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/gorilla/mux.(*Router).ServeHTTP(0xc0001600c0, 0xb466e0, 0xc00039ed20, 0xc000212a00)
+	C:/Users/premk/go/pkg/mod/github.com/gorilla/mux@v1.7.3/mux.go:212 +0x220
+net/http.serverHandler.ServeHTTP(0xc00039e000, 0xb466e0, 0xc00039ed20, 0xc000212800)
+	c:/go/src/net/http/server.go:2807 +0x216
+net/http.(*conn).serve(0xc00037f860, 0xb47160, 0xc000382b00)
+	c:/go/src/net/http/server.go:1895 +0x171d
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x938
+2020/09/17 14:19:04 smtp error: 555 5.5.2 Syntax error. x9sm20747371pfj.96 - gsmtp
+2020/09/17 14:20:05 WebAPI started on: http://localhost:9000
+2020/09/17 14:20:15 http: panic serving [::1]:62279: runtime error: invalid memory address or nil pointer dereference
+goroutine 9 [running]:
+net/http.(*conn).serve.func1(0xc00037f720)
+	c:/go/src/net/http/server.go:1772 +0x150
+panic(0xa16340, 0xe40320)
+	c:/go/src/runtime/panic.go:973 +0x429
+github.com/premsynfosys/AMS_API/repository/cmnrepo.(*mysqlRepo).Employees_Bulk_Insert(0xc000004ce0, 0xb47220, 0xc000394540, 0xc0003a41e0, 0x4, 0x4, 0x0, 0x0)
+	D:/Office/Projects_Office/AMS_Proj/API_2/repository/cmnrepo/cmnrepo.go:1414 +0x8d7
+github.com/premsynfosys/AMS_API/handler/cmnhndlr.(*CmnIrepo).Employees_Bulk_Insert(0xc00003f2d0, 0xb466e0, 0xc00039e0e0, 0xc000212300)
+	D:/Office/Projects_Office/AMS_Proj/API_2/handler/cmnhndlr/cmnhndlr.go:501 +0x1d5
+github.com/premsynfosys/AMS_API/utils.IsAuthorized.func1(0xb466e0, 0xc00039e0e0, 0xc000212300)
+	D:/Office/Projects_Office/AMS_Proj/API_2/utils/utils.go:47 +0x2ff
+net/http.HandlerFunc.ServeHTTP(0xc0002ae450, 0xb466e0, 0xc00039e0e0, 0xc000212300)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/gorilla/mux.(*Router).ServeHTTP(0xc0001600c0, 0xb466e0, 0xc00039e0e0, 0xc000212300)
+	C:/Users/premk/go/pkg/mod/github.com/gorilla/mux@v1.7.3/mux.go:212 +0x220
+net/http.serverHandler.ServeHTTP(0xc00039e000, 0xb466e0, 0xc00039e0e0, 0xc000212100)
+	c:/go/src/net/http/server.go:2807 +0x216
+net/http.(*conn).serve(0xc00037f720, 0xb47160, 0xc000382680)
+	c:/go/src/net/http/server.go:1895 +0x171d
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x938
+2020/09/17 14:20:18 smtp error: 555 5.5.2 Syntax error. u21sm1431233pgf.25 - gsmtp
+2020/09/17 14:20:29 http: panic serving [::1]:62285: runtime error: invalid memory address or nil pointer dereference
+goroutine 21 [running]:
+net/http.(*conn).serve.func1(0xc000198be0)
+	c:/go/src/net/http/server.go:1772 +0x150
+panic(0xa16340, 0xe40320)
+	c:/go/src/runtime/panic.go:973 +0x429
+github.com/premsynfosys/AMS_API/repository/cmnrepo.(*mysqlRepo).Employees_Bulk_Insert(0xc000004ce0, 0xb47220, 0xc000395650, 0xc0003a5200, 0x4, 0x4, 0x0, 0x0)
+	D:/Office/Projects_Office/AMS_Proj/API_2/repository/cmnrepo/cmnrepo.go:1414 +0x8d7
+github.com/premsynfosys/AMS_API/handler/cmnhndlr.(*CmnIrepo).Employees_Bulk_Insert(0xc00003f2d0, 0xb466e0, 0xc00039e700, 0xc000212800)
+	D:/Office/Projects_Office/AMS_Proj/API_2/handler/cmnhndlr/cmnhndlr.go:501 +0x1d5
+github.com/premsynfosys/AMS_API/utils.IsAuthorized.func1(0xb466e0, 0xc00039e700, 0xc000212800)
+	D:/Office/Projects_Office/AMS_Proj/API_2/utils/utils.go:47 +0x2ff
+net/http.HandlerFunc.ServeHTTP(0xc0002ae450, 0xb466e0, 0xc00039e700, 0xc000212800)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/gorilla/mux.(*Router).ServeHTTP(0xc0001600c0, 0xb466e0, 0xc00039e700, 0xc000212800)
+	C:/Users/premk/go/pkg/mod/github.com/gorilla/mux@v1.7.3/mux.go:212 +0x220
+net/http.serverHandler.ServeHTTP(0xc00039e000, 0xb466e0, 0xc00039e700, 0xc000212600)
+	c:/go/src/net/http/server.go:2807 +0x216
+net/http.(*conn).serve(0xc000198be0, 0xb47160, 0xc000382b40)
+	c:/go/src/net/http/server.go:1895 +0x171d
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x938
+2020/09/17 14:20:32 smtp error: 555 5.5.2 Syntax error. 137sm20103559pfb.183 - gsmtp
+2020/09/17 14:20:56 http: panic serving [::1]:62288: runtime error: invalid memory address or nil pointer dereference
+goroutine 28 [running]:
+net/http.(*conn).serve.func1(0xc0001997c0)
+	c:/go/src/net/http/server.go:1772 +0x150
+panic(0xa16340, 0xe40320)
+	c:/go/src/runtime/panic.go:973 +0x429
+github.com/premsynfosys/AMS_API/repository/cmnrepo.(*mysqlRepo).Employees_Bulk_Insert(0xc000004ce0, 0xb47220, 0xc0004c2840, 0xc0004c7d80, 0x4, 0x4, 0x0, 0x0)
+	D:/Office/Projects_Office/AMS_Proj/API_2/repository/cmnrepo/cmnrepo.go:1414 +0x8d7
+github.com/premsynfosys/AMS_API/handler/cmnhndlr.(*CmnIrepo).Employees_Bulk_Insert(0xc00003f2d0, 0xb466e0, 0xc0001f08c0, 0xc0001b0900)
+	D:/Office/Projects_Office/AMS_Proj/API_2/handler/cmnhndlr/cmnhndlr.go:501 +0x1d5
+github.com/premsynfosys/AMS_API/utils.IsAuthorized.func1(0xb466e0, 0xc0001f08c0, 0xc0001b0900)
+	D:/Office/Projects_Office/AMS_Proj/API_2/utils/utils.go:47 +0x2ff
+net/http.HandlerFunc.ServeHTTP(0xc0002ae450, 0xb466e0, 0xc0001f08c0, 0xc0001b0900)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/gorilla/mux.(*Router).ServeHTTP(0xc0001600c0, 0xb466e0, 0xc0001f08c0, 0xc0001b0900)
+	C:/Users/premk/go/pkg/mod/github.com/gorilla/mux@v1.7.3/mux.go:212 +0x220
+net/http.serverHandler.ServeHTTP(0xc00039e000, 0xb466e0, 0xc0001f08c0, 0xc0001b0700)
+	c:/go/src/net/http/server.go:2807 +0x216
+net/http.(*conn).serve(0xc0001997c0, 0xb47160, 0xc00019ab40)
+	c:/go/src/net/http/server.go:1895 +0x171d
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x938
+2020/09/17 14:20:59 smtp error: 555 5.5.2 Syntax error. q7sm16521474pgg.10 - gsmtp
+2020/09/17 14:22:22 WebAPI started on: http://localhost:9000
+2020/09/17 14:27:23 Error 1062: Duplicate entry '1234' for key 'employees.EmpCode_UNIQUE'
+2020/09/17 14:27:26 smtp error: 555 5.5.2 Syntax error. s24sm5042694pjp.53 - gsmtp
+2020/09/17 14:28:55 Error 1062: Duplicate entry '1234' for key 'employees.EmpCode_UNIQUE'
+2020/09/17 14:28:58 smtp error: 555 5.5.2 Syntax error. r1sm13938416pgl.66 - gsmtp
+2020/09/17 14:30:23 Error 1062: Duplicate entry '1234' for key 'employees.EmpCode_UNIQUE'
+2020/09/17 14:30:26 smtp error: 555 5.5.2 Syntax error. x13sm7285731pff.152 - gsmtp
+2020/09/17 14:30:41 Error 1062: Duplicate entry '1234' for key 'employees.EmpCode_UNIQUE'
+2020/09/17 14:30:43 smtp error: 555 5.5.2 Syntax error. n72sm20764624pfd.27 - gsmtp
+2020/09/17 14:32:35 Error 1062: Duplicate entry 'a1@b.com' for key 'employees.Email_UNIQUE'
+2020/09/17 14:32:38 smtp error: 555 5.5.2 Syntax error. hg16sm5063440pjb.37 - gsmtp
+2020/09/17 14:38:26 Error 1062: Duplicate entry '12332' for key 'employees.EmpCode_UNIQUE'
+2020/09/17 14:38:29 smtp error: 555 5.5.2 Syntax error. u10sm19950382pfn.122 - gsmtp
+2020/09/17 14:38:29 smtp error: 555 5.5.2 Syntax error. r3sm19629039pfh.88 - gsmtp
+2020/09/17 14:39:25 Error 1062: Duplicate entry '12332' for key 'employees.EmpCode_UNIQUE'
+2020/09/17 14:39:28 smtp error: 555 5.5.2 Syntax error. i2sm18404215pfq.89 - gsmtp
+2020/09/17 14:39:28 smtp error: 555 5.5.2 Syntax error. g1sm4992005pjs.30 - gsmtp
+2020/09/17 14:40:24 smtp error: 555 5.5.2 Syntax error. y6sm5503793pjl.9 - gsmtp
+2020/09/17 14:40:24 smtp error: 555 5.5.2 Syntax error. w192sm20238705pfd.156 - gsmtp
+2020/09/17 15:29:18 WebAPI started on: http://localhost:9000
+2020/09/17 17:54:35 WebAPI started on: http://localhost:9000
+2020/09/17 18:57:49 context canceled
+2020/09/17 18:57:49 context canceled
+2020/09/17 19:01:24 Error 1406: Data too long for column '_Name' at row 1
+2020/09/17 19:01:24 Error 1406: Data too long for column '_Name' at row 1
+2020/09/17 19:01:35 Error 1406: Data too long for column '_Name' at row 1
+2020/09/17 19:01:35 Error 1406: Data too long for column '_Name' at row 1
+2020/09/17 19:11:57 WebAPI started on: http://localhost:9000
+2020/09/18 10:26:52 WebAPI started on: http://localhost:9000
+2020/09/18 15:39:13 sql: no rows in result set

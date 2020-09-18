@@ -12,6 +12,7 @@ import (
 //CmnRoutings ggg ..
 func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	//	r.HandleFunc("/GetThresholdReachedStocks/{LocID}", Handler.GetThresholdReachedStocks)
+	r.HandleFunc("/GetSearchDetails/{LocID}/{Name}", utils.IsAuthorized(Handler.GetSearchDetails))
 	r.HandleFunc("/POStatusChange/{IDPO}/{Status}", utils.IsAuthorized(Handler.POStatusChange))
 	r.HandleFunc("/RequisitionStatusChange/{ID}/{Status}", utils.IsAuthorized(Handler.RequisitionStatusChange))
 	r.HandleFunc("/POReqApproved", utils.IsAuthorized(Handler.POReqApproved))

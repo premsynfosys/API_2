@@ -13,7 +13,7 @@ type Configuration struct {
 	WEBHost    string
 	DBUserName string
 	DBPwd      string
-	DB      string
+	DB         string
 }
 type ThresholdAlert struct {
 	AssetName        *string `json:"AssetName"`
@@ -115,7 +115,7 @@ type Employees struct {
 	DOJ             *time.Time   `json:"DOJ"`
 	User            *User        `json:"User"`
 	Location        *int         `json:"Location"`
-	LocationName        *string         `json:"LocationName"`
+	LocationName    *string      `json:"LocationName"`
 	Gender          *string      `json:"Gender"`
 	ModifiedBy      *int         `json:"ModifiedBy"`
 	CreatedBy       *int         `json:"CreatedBy"`
@@ -504,4 +504,10 @@ type Email struct {
 	Attempts   int       `json:"Attempts"`
 	CreatedOn  time.Time `json:"CreatedOn"`
 	Reason     string    `json:"Reason"`
+}
+
+type Search struct {
+	ID     *int    `json:"ID"`
+	Name   *string `json:"Name"`
+	Module *string `json:"Module"`
 }

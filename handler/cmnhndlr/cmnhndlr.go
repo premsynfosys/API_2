@@ -1074,3 +1074,16 @@ func (p *CmnIrepo) GetRequisitionHistoryByReqID(w http.ResponseWriter, r *http.R
 	}
 }
 
+
+func (p *CmnIrepo) GetSearchDetails(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	LocID := params["LocID"]
+	Name := params["Name"]
+	locid, _ := strconv.Atoi(LocID)
+	res,err := p.ICmnrepo.GetSearchDetails(r.Context(), locid,Name)
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+		utils.RespondwithJSON(w, http.StatusOK, res)
+	}
+}

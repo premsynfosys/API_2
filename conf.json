@@ -3,7 +3,7 @@
     "WebAppURL":"http://localhost:9001",
     "DBUserName":"AMS",
     "DBPwd":"Admin&123",
-    "DB":"ams1?parseTime=True&loc=Asia%2FKolkata",
+    "DB":"ams?parseTime=True&loc=Asia%2FKolkata",
     "Test": {
         "APIPORT": "9000",
         "APIHost": "http://localhost",

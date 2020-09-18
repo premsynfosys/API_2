@@ -1396,33 +1396,88 @@ func (m *mysqlRepo) UpdateIsMsngStcksRslvdMain(ctx context.Context, IDInWardOutW
 }
 
 func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl.Employees) error {
-
-	query := " insert into employees (FirstName,LastName,DOB,Email,Gender,Mobile,PrmntAddress, "
-	query += "	Address,EmpCode,Education,ExperienceYear,ExperienceMonth,DOJ,Designation,Location,CreatedBy) values "
-
-	vals := []interface{}{}
-	// const shortForm = "2006-01-02"
-	for _, row := range Listmdl {
-		query += " (?,?,?,?,  ?,?,?,?,  ?,?,?,?,  ?,?,?,? ),"
-		vals = append(vals, &row.FirstName, &row.LastName, &row.DOB, &row.Email, &row.Gender, &row.Mobile, &row.PrmntAddress, &row.Address, &row.EmpCode, &row.Education, &row.ExperienceYear, &row.ExperienceMonth, &row.DOJ, &row.Designation, &row.Location, &row.CreatedBy)
-	}
-	//trim the last ,
-
-	query = query[0 : len(query)-1]
 	txn, _ := m.Conn.Begin()
-	stmt, _ := txn.Prepare(query)
-	_, err := stmt.Exec(vals...)
+	var err error
 
-	defer stmt.Close()
+	for _, row := range Listmdl {
+		query := " insert into employees (FirstName,LastName,DOB,Email,Gender,Mobile,PrmntAddress, "
+		query += "	Address,EmpCode,Education,ExperienceYear,ExperienceMonth,DOJ,Designation,Location,CreatedBy) values "
+		query += " (?,?,?,?,  ?,?,?,?,  ?,?,?,?,  ?,?,?,? )"
+		stmtEmp, err := txn.PrepareContext(ctx, query)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		res, err := stmtEmp.Exec(&row.FirstName, &row.LastName, &row.DOB, &row.Email, &row.Gender, &row.Mobile, &row.PrmntAddress, &row.Address, &row.EmpCode, &row.Education, &row.ExperienceYear, &row.ExperienceMonth, &row.DOJ, &row.Designation, &row.Location, &row.CreatedBy)
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		EMPID, err := res.LastInsertId()
+		if err != nil {
+			txn.Rollback()
+			return err
+		}
+		if row.User != nil && *row.User.RoleID != 0 {
+			usr := row.User
+			query := "INSERT INTO users(EmployeeId,Status,Role,CreatedOn,LinkGeneratedOn,CreatedBy) VALUES (?,?,?,now(),now(),?)"
+			stmtUser, err := txn.PrepareContext(ctx, query)
+			if err != nil {
+				txn.Rollback()
+				return err
+			}
+			_, err = stmtUser.ExecContext(ctx, &EMPID, &usr.Status, &usr.RoleID, &row.CreatedBy)
+			if err != nil {
+				txn.Rollback()
+				return err
+			}
+			baseURL, err := url.Parse(m.WebAppURL)
+			if err != nil {
+				log.Println("Malformed URL: ", err.Error())
+			}
+			// Add a Path Segment (Path segment is automatically escaped)
+			baseURL.Path += "/UserCreate"
+			params := url.Values{}
+			params.Add("empid", strconv.Itoa(*usr.EmployeeID))
+			baseURL.RawQuery = params.Encode()
+			Mail, Name := m.GetMailByUserID(nil, usr.EmployeeID)
+			emailRcvr := cmnmdl.Email{}
+			emailRcvr.ToAddress = Mail
+			emailRcvr.Subject = "AMS Activation Link"
+			emailRcvr.Body = "Hi " + Name + "<br/>" + "<p>Please click below link and fill up details to activate your account</p> <br/><a href='" + baseURL.String() + "'>" + baseURL.String() + "</a>"
+			go m.SendEmail(&emailRcvr, false)
+		}
 
-	if err != nil {
-		txn.Rollback()
-	} else {
-		txn.Commit()
 	}
-
+	err = txn.Commit()
 	return err
 }
+
+// query := " insert into employees (FirstName,LastName,DOB,Email,Gender,Mobile,PrmntAddress, "
+// query += "	Address,EmpCode,Education,ExperienceYear,ExperienceMonth,DOJ,Designation,Location,CreatedBy) values "
+
+// vals := []interface{}{}
+// // const shortForm = "2006-01-02"
+// for _, row := range Listmdl {
+// 	query += " (?,?,?,?,  ?,?,?,?,  ?,?,?,?,  ?,?,?,? ),"
+// 	vals = append(vals, &row.FirstName, &row.LastName, &row.DOB, &row.Email, &row.Gender, &row.Mobile, &row.PrmntAddress, &row.Address, &row.EmpCode, &row.Education, &row.ExperienceYear, &row.ExperienceMonth, &row.DOJ, &row.Designation, &row.Location, &row.CreatedBy)
+// }
+// //trim the last ,
+
+// query = query[0 : len(query)-1]
+// txn, _ := m.Conn.Begin()
+// stmt, _ := txn.Prepare(query)
+// _, err := stmt.Exec(vals...)
+
+// defer stmt.Close()
+
+// if err != nil {
+// 	txn.Rollback()
+// } else {
+// 	txn.Commit()
+// }
+
+// return err
 
 func (m *mysqlRepo) Resend_Activation_Link(ctx context.Context, EmpID int) error {
 	query := "update users set LinkGeneratedOn=now() where Status='Active' and EmployeeId=?"
@@ -1545,7 +1600,7 @@ func (m *mysqlRepo) User_Inactive(UserID int) error {
 func (m *mysqlRepo) Authorization_Create(ctx context.Context, data *cmnmdl.Authorization_Create) error {
 
 	queryA := "delete from authorization where RoleID=?;"
-	queryC := "insert into authorization  (RoleID,Features_List_ID)  select 1,idFeatures_list from features_list;"
+	//queryC := "insert into authorization  (RoleID,Features_List_ID)  select 1,idFeatures_list from features_list;"
 
 	queryB := "insert into authorization (RoleID,Features_List_ID,CreatedBy) values "
 
@@ -1562,14 +1617,14 @@ func (m *mysqlRepo) Authorization_Create(ctx context.Context, data *cmnmdl.Autho
 	txn, err := m.Conn.Begin()
 
 	_, err3 := txn.ExecContext(ctx, queryA, data.RoleID)
-	_, err5 := txn.ExecContext(ctx, queryC)
+	//_, err5 := txn.ExecContext(ctx, queryC)
 	_, err4 := txn.ExecContext(ctx, queryB, res...)
 
 	if err != nil {
 		return err
 	}
 	defer func() {
-		if err != nil || err3 != nil || err4 != nil || err5 != nil {
+		if err != nil || err3 != nil || err4 != nil {
 			txn.Rollback()
 			return
 		}
@@ -2926,6 +2981,27 @@ func (m *mysqlRepo) GetRequisitionHistoryByReqID(ctx context.Context, ReqID int)
 		por.VendorData = vend
 		por.LocationData = loc
 		res = append(res, por)
+	}
+	return res, nil
+}
+
+func (m *mysqlRepo) GetSearchDetails(ctx context.Context, LocID int, Name string) ([]*cmnmdl.Search, error) {
+	query := "call sp_search(?,?) ;"
+	selDB, err := m.Conn.QueryContext(ctx, query, LocID, Name)
+	if err != nil {
+		log.Println(err.Error())
+		return nil, err
+	}
+	res := make([]*cmnmdl.Search, 0)
+	for selDB.Next() {
+		itm := new(cmnmdl.Search)
+		err = selDB.Scan(&itm.ID, &itm.Name, &itm.Module)
+		if err != nil {
+			log.Println(err.Error())
+			return nil, err
+		}
+
+		res = append(res, itm)
 	}
 	return res, nil
 }
