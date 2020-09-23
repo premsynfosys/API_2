@@ -171,6 +171,20 @@ func (p *CmnIrepo) UpdateEmployee(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//ChangePassword ..
+func (p *CmnIrepo) ChangePassword(w http.ResponseWriter, r *http.Request) {
+	data := cmnmdl.User{}
+	json.NewDecoder(r.Body).Decode(&data)
+	err := p.ICmnrepo.ChangePassword(r.Context(), &data)
+
+	if err != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+	} else {
+
+		utils.RespondwithJSON(w, http.StatusOK, nil)
+	}
+}
+
 // DeleteEmployee a post
 func (p *CmnIrepo) DeleteEmployee(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -1074,13 +1088,12 @@ func (p *CmnIrepo) GetRequisitionHistoryByReqID(w http.ResponseWriter, r *http.R
 	}
 }
 
-
 func (p *CmnIrepo) GetSearchDetails(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	LocID := params["LocID"]
 	Name := params["Name"]
 	locid, _ := strconv.Atoi(LocID)
-	res,err := p.ICmnrepo.GetSearchDetails(r.Context(), locid,Name)
+	res, err := p.ICmnrepo.GetSearchDetails(r.Context(), locid, Name)
 	if err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
 	} else {

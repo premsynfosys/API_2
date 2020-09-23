@@ -79,6 +79,7 @@ func CmnRoutings(r *mux.Router, Handler *cmnhndlr.CmnIrepo) {
 	r.HandleFunc("/employee/create", utils.IsAuthorized(Handler.CreateEmployee))
 	r.HandleFunc("/user/create", utils.IsAuthorized(Handler.CreateUser))
 	r.HandleFunc("/user/update", utils.IsAuthorized(Handler.UpdateUser))
+	r.HandleFunc("/ChangePassword", utils.IsAuthorized(Handler.ChangePassword))
 	r.HandleFunc("/User_Inactive/{UserID}", utils.IsAuthorized(Handler.User_Inactive))
 	r.HandleFunc("/User_Active/{UserID}", utils.IsAuthorized(Handler.User_Active))
 	r.HandleFunc("/Check_Unique_Email_Mobile", utils.IsAuthorized(Handler.Check_Unique_Email_Mobile))

@@ -3,8 +3,11 @@ package cmnrepo
 import (
 	"bytes"
 	"context"
+	"crypto/rand"
 	"database/sql"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"html/template"
 	"log"
 	"net/smtp"
@@ -301,12 +304,13 @@ func (m *mysqlRepo) CreateEmployee(ctx context.Context, emp *cmnmdl.Employees) (
 }
 
 func (m *mysqlRepo) CreateUser(ctx context.Context, usr *cmnmdl.User) (int64, error) {
-	query := "INSERT INTO users(EmployeeId,Status,Role,CreatedOn,LinkGeneratedOn,CreatedBy) VALUES (?,?,?,now(),now(),?)"
+	token := ActivateTokenGenerator()
+	query := "INSERT INTO users(EmployeeId,Status,Role,CreatedOn,LinkGeneratedOn,CreatedBy,ActivateToken) VALUES (?,?,?,now(),now(),?,?)"
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
 		return -1, err
 	}
-	res, err := stmt.ExecContext(ctx, &usr.EmployeeID, &usr.Status, &usr.RoleID, &usr.CreatedBy)
+	res, err := stmt.ExecContext(ctx, &usr.EmployeeID, &usr.Status, &usr.RoleID, &usr.CreatedBy, token)
 	defer stmt.Close()
 	if err != nil {
 		return -1, err
@@ -322,6 +326,7 @@ func (m *mysqlRepo) CreateUser(ctx context.Context, usr *cmnmdl.User) (int64, er
 	baseURL.Path += "/UserCreate"
 	params := url.Values{}
 	params.Add("empid", strconv.Itoa(*usr.EmployeeID))
+	params.Add("token", token)
 	baseURL.RawQuery = params.Encode()
 	Mail, Name := m.GetMailByUserID(nil, usr.EmployeeID)
 	emailRcvr := cmnmdl.Email{}
@@ -352,6 +357,7 @@ func (m *mysqlRepo) UpdateUser(mdl *cmnmdl.User) (err error) {
 	}
 	if mdl.Password != nil {
 		query += "Password =? ,"
+		query += "ActivateToken =null ,"
 		vals = append(vals, &mdl.Password)
 	}
 	if *mdl.UserName != "" {
@@ -361,11 +367,25 @@ func (m *mysqlRepo) UpdateUser(mdl *cmnmdl.User) (err error) {
 	query += " ModifiedBy=? "
 	vals = append(vals, &mdl.ModifiedBy)
 	vals = append(vals, &mdl.IDUsers)
-	//query = query[0 : len(query)-1]
-	query += " WHERE idUsers = ? ;"
-	stmt, err := m.Conn.Prepare(query)
-	_, err = stmt.Exec(vals...)
 
+	//query = query[0 : len(query)-1]
+	query += " WHERE idUsers = ? "
+	if mdl.Password != nil {
+		vals = append(vals, &mdl.ActivateToken)
+		query += " and ActivateToken=? and  ActivateToken!='' ;"
+	}
+	stmt, err := m.Conn.Prepare(query)
+	res, err := stmt.Exec(vals...)
+	if err != nil {
+		return err
+	}
+	id, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if id == 0 {
+		err = errors.New("Error")
+	}
 	defer stmt.Close()
 
 	return err
@@ -1419,14 +1439,15 @@ func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl
 			return err
 		}
 		if row.User != nil && *row.User.RoleID != 0 {
+			token := ActivateTokenGenerator()
 			usr := row.User
-			query := "INSERT INTO users(EmployeeId,Status,Role,CreatedOn,LinkGeneratedOn,CreatedBy) VALUES (?,?,?,now(),now(),?)"
+			query := "INSERT INTO users(EmployeeId,Status,Role,CreatedOn,LinkGeneratedOn,CreatedBy,ActivateToken) VALUES (?,?,?,now(),now(),?,?)"
 			stmtUser, err := txn.PrepareContext(ctx, query)
 			if err != nil {
 				txn.Rollback()
 				return err
 			}
-			_, err = stmtUser.ExecContext(ctx, &EMPID, &usr.Status, &usr.RoleID, &row.CreatedBy)
+			_, err = stmtUser.ExecContext(ctx, &EMPID, &usr.Status, &usr.RoleID, &row.CreatedBy, token)
 			if err != nil {
 				txn.Rollback()
 				return err
@@ -1439,6 +1460,7 @@ func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl
 			baseURL.Path += "/UserCreate"
 			params := url.Values{}
 			params.Add("empid", strconv.Itoa(*usr.EmployeeID))
+			params.Add("token", token)
 			baseURL.RawQuery = params.Encode()
 			Mail, Name := m.GetMailByUserID(nil, usr.EmployeeID)
 			emailRcvr := cmnmdl.Email{}
@@ -1480,13 +1502,14 @@ func (m *mysqlRepo) Employees_Bulk_Insert(ctx context.Context, Listmdl []*cmnmdl
 // return err
 
 func (m *mysqlRepo) Resend_Activation_Link(ctx context.Context, EmpID int) error {
-	query := "update users set LinkGeneratedOn=now() where Status='Active' and EmployeeId=?"
+	token := ActivateTokenGenerator()
+	query := "update users set LinkGeneratedOn=now(),ActivateToken=? where Status='Active' and EmployeeId=?"
 
 	stmt, err := m.Conn.PrepareContext(ctx, query)
 	if err != nil {
 		return err
 	}
-	_, err = stmt.ExecContext(ctx, EmpID)
+	_, err = stmt.ExecContext(ctx, token, EmpID)
 	defer stmt.Close()
 
 	if err != nil {
@@ -1498,6 +1521,7 @@ func (m *mysqlRepo) Resend_Activation_Link(ctx context.Context, EmpID int) error
 	baseURL.Path += "/UserCreate"
 	params := url.Values{}
 	params.Add("empid", strconv.Itoa(EmpID))
+	params.Add("token", token)
 	baseURL.RawQuery = params.Encode()
 	Mail, Name := m.GetMailByUserID(nil, &EmpID)
 	emailRcvr := cmnmdl.Email{}
@@ -1561,13 +1585,43 @@ func (m *mysqlRepo) GetFeatures_List() ([]*cmnmdl.Features_List, error) {
 	return res, nil
 }
 
-func (m *mysqlRepo) Send_ResetPasswordLink(ctx context.Context, EmpID int) error {
+func (m *mysqlRepo) ChangePassword(ctx context.Context, usr *cmnmdl.User) error {
 
+	query := "update users set Password=?,ActivateToken=null where Status='Active' and idUsers=?"
+
+	stmt, err := m.Conn.PrepareContext(ctx, query)
+	if err != nil {
+		return err
+	}
+	_, err = stmt.ExecContext(ctx,&usr.Password, &usr.IDUsers)
+	defer stmt.Close()
+
+	if err != nil {
+		return err
+	}
+
+	return err
+}
+func (m *mysqlRepo) Send_ResetPasswordLink(ctx context.Context, EmpID int) error {
+	token := ActivateTokenGenerator()
+	query := "update users set LinkGeneratedOn=now(),ActivateToken=? where Status='Active' and EmployeeId=?"
+
+	stmt, err := m.Conn.PrepareContext(ctx, query)
+	if err != nil {
+		return err
+	}
+	_, err = stmt.ExecContext(ctx, token, EmpID)
+	defer stmt.Close()
+
+	if err != nil {
+		return err
+	}
 	baseURL, err := url.Parse(m.WebAppURL)
 	// Add a Path Segment (Path segment is automatically escaped)
 	baseURL.Path += "/ResetPassword"
 	params := url.Values{}
 	params.Add("empid", strconv.Itoa(EmpID))
+	params.Add("token", token)
 	baseURL.RawQuery = params.Encode()
 	Mail, Name := m.GetMailByUserID(nil, &EmpID)
 	emailRcvr := cmnmdl.Email{}
@@ -3004,4 +3058,10 @@ func (m *mysqlRepo) GetSearchDetails(ctx context.Context, LocID int, Name string
 		res = append(res, itm)
 	}
 	return res, nil
+}
+
+func ActivateTokenGenerator() string {
+	b := make([]byte, 32)
+	rand.Read(b)
+	return fmt.Sprintf("%x", b)
 }

@@ -8,6 +8,7 @@ import (
 
 //CmnIntrfc ...
 type CmnIntrfc interface {
+	ChangePassword(ctx context.Context, usr *cmnmdl.User) error 
 	//GetUniqueID(ctx context.Context, modulename string) (int, error)
 	GetRoles(ctx context.Context) ([]*cmnmdl.Role, error)
 	GetDesignations(ctx context.Context) ([]*cmnmdl.Designation, error)

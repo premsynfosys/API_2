@@ -143,6 +143,7 @@ type User struct {
 	ModifiedBy        *int             `json:"ModifiedBy"`
 	CreatedBy         *int             `json:"CreatedBy"`
 	CreatedOn         *time.Time       `json:"CreatedOn"`
+	ActivateToken     *string          `json:"ActivateToken"`
 }
 
 type Authorization_Create struct {
