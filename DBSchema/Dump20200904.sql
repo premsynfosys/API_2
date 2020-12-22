@@ -44,7 +44,7 @@ UNLOCK TABLES;
 
 --
 -- Table structure for table `consumablegroups`
---
+-- 
 
 DROP TABLE IF EXISTS `consumablegroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
