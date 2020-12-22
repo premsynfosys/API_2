@@ -61,3 +61,5 @@ rm filename
 
 # cmd to generate linux supported binary file
 $Env:GOOS = "linux"; $Env:GOARCH = "amd64"
+$Env:GOOS = "windows"; $Env:GOARCH = "amd64"
+$Env:GOOS = "windows"; $Env:GOARCH = "386"
