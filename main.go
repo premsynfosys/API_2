@@ -23,28 +23,34 @@ var err error
 
 // changed db config name and pwd
 func init() {
+	logfile, e := os.OpenFile("AMSLog.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if e != nil {
+		log.Fatalln("failed to log")
+	}
+	log.SetOutput(logfile)
+	log.Println("Welcome to AMS")
 	//parseTime=True&loc=Asia%2FJakarta
 	//&charset=utf8
 	//host, uname+":"+pass+"@/"+dbname
 	file, _ := os.Open("conf.json")
 	configuration := cmnmdl.Configuration{}
 	err := json.NewDecoder(file).Decode(&configuration)
+	log.Println(configuration)
 	defer file.Close()
 	if err != nil {
 		log.Println("error:", err)
 	}
 	//connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", "root", "Admin&123", "ams?parseTime=True&loc=Asia%2FKolkata")
 	connection, err = DBdriver.ConnectSQL("mysql", "localhost:3306", configuration.DBUserName, configuration.DBPwd, configuration.DB)
-
+	if err != nil {
+		log.Println("error:", err)
+	}
+	log.Println(connection)
 }
 
 //commit test
 func main() {
-	logfile, e := os.OpenFile("AMSLog.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	if e != nil {
-		log.Fatalln("failed to log")
-	}
-	log.SetOutput(logfile)
+
 	file, _ := os.Open("conf.json")
 	configuration := cmnmdl.Configuration{}
 	err := json.NewDecoder(file).Decode(&configuration)
@@ -80,5 +86,9 @@ func main() {
 
 	go pHandler.RetryFailedmails()
 
-	http.ListenAndServe(":"+configuration.APIPORT+"", r)
+	errServe := http.ListenAndServe(":"+configuration.APIPORT+"", r)
+	if errServe != nil {
+		log.Println(errServe)
+		os.Exit(-1)
+	}
 }

@@ -159,7 +159,11 @@ func (m *mysqlRepo) GetNonITAssetList_BY_AssetID(ctx context.Context, AssetID in
 		&mdl.Img, &mdl.TotalQnty, &mdl.AvailableQnty, &mdl.InUseQnty, &mdl.ThresholdQnty, &mdl.ReOrderStockPrice,
 		&mdl.ReOrderQuantity, &mdl.StatusID, &mdl.LocationID, &mdl.Created_On,
 		&nim.IDNonITAssets_Master, &nim.NonITAssets_Name, &nig.IDNonITAssets_Groups, &nig.NonITAssets_GroupName,
-		&loc.Name, &loc.Address1, &loc.Address2, &loc.State, &loc.Zipcode, &st.IDStatus, &st.StatusName)
+		&loc.Name, &loc.Address1, &loc.Address2, &loc.State, &loc.Zipcode, &st.IDStatus, &st.StatusName,
+
+		&mdl.CustomFields1, &mdl.CustomFields1Value, &mdl.CustomFields1Type, &mdl.CustomFields2, &mdl.CustomFields2Value, &mdl.CustomFields2Type,
+		&mdl.CustomFields3, &mdl.CustomFields3Value, &mdl.CustomFields3Type, &mdl.CustomFields4, &mdl.CustomFields4Value, &mdl.CustomFields4Type,
+		&mdl.CustomFields5, &mdl.CustomFields5Value, &mdl.CustomFields5Type)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -938,16 +942,16 @@ func (m *mysqlRepo) BulkCreateNonITAsset(ctx context.Context, list []*nonitasset
 
 	txn, err := m.Conn.Begin()
 	for _, mdl := range list {
-		id, err := m.CheckDuplicateNonITAssetEntry(ctx, *mdl.NonITAssets_Master_ID, *mdl.LocationID)
-		if err == nil {
-			if id != nil {
-				if *id == *mdl.NonITAssets_Master_ID {
-					return errors.New("Asset already added with same AssetID")
-				}
-			}
-		} else {
-			return errors.New("Internal error")
-		}
+		// id, err := m.CheckDuplicateNonITAssetEntry(ctx, *mdl.NonITAssets_Master_ID, *mdl.LocationID)
+		// if err == nil {
+		// 	if id != nil {
+		// 		if *id == *mdl.NonITAssets_Master_ID {
+		// 			return errors.New("Asset already added with same AssetID")
+		// 		}
+		// 	}
+		// } else {
+		// 	return errors.New("Internal error")
+		// }
 		var query strings.Builder
 		query.WriteString(" INSERT INTO nonitassets (NonITAssets_Master_ID,ModelNo,Description,TotalQnty,AvailableQnty,InUseQnty,ThresholdQnty, ")
 		query.WriteString(" ReOrderStockPrice,ReOrderQuantity,StatusID,LocationID,Created_By)")
